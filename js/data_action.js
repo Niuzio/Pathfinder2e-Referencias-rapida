@@ -1,84 +1,152 @@
-// js/data_action.js
-// ACCIONES BÁSICAS (COMUNES) de Pathfinder 2e
-export default [
+data_action = [
   {
-    id: "zancada",
-    name: "Zancada",
-    actions: 1,
-    traits: ["Movimiento", "Común"],
-    category: "basicas-comunes",
-    page: 471,
-    icon: "icon-stride",
-    description: [
-      "Costo: 1 acción.",
-      "Efecto: Te mueves hasta tu velocidad.",
-      "Provoca reacciones de oportunidad cuando sales del alcance de una criatura enemiga.",
-      "La velocidad se reduce por terreno difícil (cada 5 pies de terreno difícil cuestan 1 pie extra).",
-      "No requiere prueba alguna: simplemente desplazas tu ficha."
+    title: "Zancada (Stride)",
+    icon: "single_action",
+    subtitle: "Movimiento",
+    description: "Te desplazas hasta tu velocidad usando el mismo tipo de movimiento que ya estás utilizando. Puedes usar la acción Zancada si estás bajo una condición que permita movimiento y no impida desplazarte.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Puedes usar múltiples Zancadas en tu turno, cada una gastando una acción.",
+      "Puedes intercalar Zancadas con otras acciones.",
+      "Si una criatura tiene varias velocidades, puedes elegir cuál usar para esta Zancada."
     ]
   },
   {
-    id: "golpear",
-    name: "Golpear",
-    actions: 1,
-    traits: ["Ataque", "Común"],
-    category: "basicas-comunes",
-    page: 470,
-    icon: "icon-strike",
-    description: [
-      "Costo: 1 acción.",
-      "Efecto: Realizas un ataque con un arma o un ataque sin armas.",
-      "Haz una tirada de ataque (1d20 + tu modificador de ataque) frente a la Clase de Armadura (CA) del objetivo.",
-      "Si igualas o superas la CA, impactas y causas daño según tu arma o tu daño desarmado.",
-      "Puedes dividir tus ataques entre distintos objetivos, si tienes más de un ataque por turno."
+    title: "Paso (Step)",
+    icon: "single_action",
+    subtitle: "Movimiento cuidadoso",
+    description: "Te mueves 5 pies sin provocar reacciones que se activen por movimiento. Usar Paso no se ve afectado por terreno difícil, ya que solo recorres una distancia corta y cuidadosa.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "No puedes usar Paso si tu velocidad es 0.",
+      "No puedes usar Paso para atravesar un espacio de un enemigo."
     ]
   },
   {
-    id: "lanzar-hechizo",
-    name: "Lanzar un hechizo",
-    actions: "varies",
-    traits: ["Magia", "Común"],
-    category: "basicas-comunes",
-    page: 302,
-    icon: "icon-cast-spell",
-    description: [
-      "Costo: varía según el conjuro (normalmente 1‒3 acciones).",
-      "Efecto: Lanzas un conjuro que has preparado o que conoces en tu repertorio.",
-      "Aplica componentes (ver 'Componentes de conjuro'): verbal, somático y/o material.",
-      "Algunos conjuros requieren concentración; cada vez que recibes daño debes hacer una salvación de Constitución para mantenerla.",
-      "Los conjuros pueden tener efectos instantáneos, de duración o de área; consulta la ficha del conjuro para detalles."
+    title: "Golpear (Strike)",
+    icon: "single_action",
+    subtitle: "Ataque con arma o sin armas",
+    description: "Realizas un ataque con un arma, una parte de tu cuerpo, o un conjuro que incluya un ataque. El ataque aplica todos los modificadores, bonificadores y penalizadores apropiados.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "El tipo de ataque (cuerpo a cuerpo o a distancia) depende del arma o efecto.",
+      "Se aplica penalización por ataques múltiples si no es el primero de tu turno.",
+      "Los Golpes pueden activar reacciones de los enemigos."
     ]
   },
   {
-    id: "paso",
-    name: "Paso",
-    actions: 1,
-    traits: ["Movimiento", "Común"],
-    category: "basicas-comunes",
-    page: 470,
-    icon: "icon-step",
-    description: [
-      "Costo: 1 acción.",
-      "Efecto: Te mueves exactamente 5 pies sin provocar reacciones.",
-      "Útil para reposicionarte cerca de aliados o esquivar protecciones de área enemigas.",
-      "No puede usarse para atravesar terreno difícil gratis: paga el coste normal de Movimiento.",
-      "No combina el movimiento de 'Paso' con otras acciones de movimiento."
+    title: "Lanzar conjuro (Cast a Spell)",
+    icon: "variable_action",
+    subtitle: "Concentración y componentes",
+    description: "Lanzas un conjuro que conoces o tienes preparado. El coste en acciones depende de sus componentes (verbal, somático, material, de enfoque). Cada componente generalmente requiere una acción.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Algunos conjuros requieren menos de una acción, otros hasta 3.",
+      "Debes cumplir todos los requisitos indicados en el conjuro.",
+      "Puedes sostener un conjuro si la descripción lo permite, gastando acciones en turnos posteriores."
     ]
   },
   {
-    id: "alzar-escudo",
-    name: "Alzar un escudo",
-    actions: 1,
-    traits: ["Manipulación", "Común"],
-    category: "basicas-comunes",
-    page: 472,
-    icon: "icon-raise-shield",
-    description: [
-      "Costo: 1 acción.",
-      "Efecto: Levantas o estabilizas tu escudo para ganar su bonificador a la CA.",
-      "Aplica inmediatamente el bonificador de tu escudo a todas las tiradas de ataque enemigas contra ti.",
-      "Si ya tienes el escudo alzado y no lo cambias de mano, mantenerlo no cuesta acciones adicionales.",
-      "No puedes atacar con la mano que sostiene un escudo sin antes soltarlo (lo que sí provoca reacciones)."
+    title: "Interactuar (Interact)",
+    icon: "single_action",
+    subtitle: "Manipular objeto o entorno",
+    description: "Manipulas un objeto o el entorno, por ejemplo, empuñar un arma, abrir una puerta, recoger un objeto, guardar una poción, etc. Cualquier acción que requiera uso físico intencionado entra en esta categoría.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Puede activar reacciones que respondan al rasgo Manipular.",
+      "Algunas interacciones requieren pruebas de habilidad adicionales."
+    ]
+  },
+  {
+    title: "Alzar escudo (Raise a Shield)",
+    icon: "single_action",
+    subtitle: "Defensa",
+    description: "Adoptas una postura defensiva con tu escudo, obteniendo su bonificador a la CA hasta el inicio de tu siguiente turno.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Mientras el escudo esté alzado, puedes usar la reacción Bloqueo con escudo si la posees.",
+      "No puedes alzar un escudo que no estés empuñando."
+    ]
+  },
+  {
+    title: "Buscar (Seek)",
+    icon: "single_action",
+    subtitle: "Percepción",
+    description: "Examinas con atención un área o una criatura para localizar objetivos ocultos, trampas, pistas, o cualquier detalle relevante que no sea evidente a simple vista.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Normalmente implica una tirada de Percepción contra la CD de Sigilo u ocultación.",
+      "El área examinada puede ser un cono de 30 pies o una esfera de 15 pies a tu alrededor."
+    ]
+  },
+  {
+    title: "Ocultarse (Hide)",
+    icon: "single_action",
+    subtitle: "Sigilo",
+    description: "Intentas evitar ser detectado por una criatura que no te esté observando directamente, usando cobertura o camuflaje.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Requiere cobertura o estar oculto tras un obstáculo.",
+      "Tiras Sigilo contra la Percepción pasiva del objetivo.",
+      "Si tienes éxito, obtienes la condición Oculto o No detectado."
+    ]
+  },
+  {
+    title: "Amedrentar (Demoralize)",
+    icon: "single_action",
+    subtitle: "Intimidación",
+    description: "Con una amenaza verbal o gestual, intentas debilitar la determinación de un oponente, infligiéndole miedo.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Tiras Intimidación contra la Voluntad del objetivo.",
+      "En éxito, el objetivo obtiene la condición Asustado 1; en crítico, Asustado 2."
+    ]
+  },
+  {
+    title: "Agarrar (Grapple)",
+    icon: "single_action",
+    subtitle: "Atletismo",
+    description: "Intentas agarrar físicamente a una criatura para impedirle moverse libremente.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Tiras Atletismo contra la Fortaleza del objetivo.",
+      "En éxito, el objetivo queda Agarrado; en crítico, además queda Inmovilizado.",
+      "Si fallas críticamente, quedas Prono."
+    ]
+  },
+  {
+    title: "Empujar (Shove)",
+    icon: "single_action",
+    subtitle: "Atletismo",
+    description: "Empujas a una criatura para alejarla de ti o moverla en el entorno.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Tiras Atletismo contra la Fortaleza del objetivo.",
+      "En éxito, la mueves 5 pies; en crítico, 10 pies.",
+      "Si fallas críticamente, caes Prono."
+    ]
+  },
+  {
+    title: "Derribar (Trip)",
+    icon: "single_action",
+    subtitle: "Atletismo",
+    description: "Usas tu fuerza o técnica para hacer caer al suelo a una criatura.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Tiras Atletismo contra la Fortaleza del objetivo.",
+      "En éxito, el objetivo queda Prono.",
+      "En fallo crítico, tú quedas Prono."
+    ]
+  },
+  {
+    title: "Prepararse (Ready)",
+    icon: "two_actions",
+    subtitle: "Definir disparador",
+    description: "Preparas una acción simple que ejecutarás como reacción cuando se cumpla una condición que especifiques.",
+    reference: "Pathfinder 2e SRD",
+    bullets: [
+      "Debes gastar 2 acciones para preparar 1 acción o acción libre.",
+      "Cuando el disparador ocurra, gastas tu reacción para ejecutarla."
     ]
   }
 ];
