@@ -1,5 +1,45 @@
 data_reaction = [
-  // === Acrobacias ===
+  // === REACCIONES BÁSICAS ===
+  {
+    title: "Ataque de oportunidad",
+    icon: "crossed-swords",
+    subtitle: "Reacción",
+    description: "Golpeas a un enemigo que abandona tu alcance o realiza ciertas acciones a tu lado.",
+    reference: "PHB, pg. 195",
+    bullets: [
+      "Activador: criatura enemiga que puedas ver sale de tu alcance o usa una acción con el rasgo manipular o movimiento.",
+      "Realiza un ataque cuerpo a cuerpo contra la criatura provocadora.",
+      "El ataque ocurre justo antes de que la criatura salga de tu alcance.",
+      "No se provoca si la criatura se teletransporta o es movida por otro sin usar sus propias acciones.",
+      "Rasgos: ataque"
+    ]
+  },
+  {
+    title: "Acción preparada",
+    icon: "stopwatch",
+    subtitle: "Reacción",
+    description: "Ejecutas la reacción que especificaste cuando preparaste una acción.",
+    reference: "PHB, pg. 193",
+    bullets: [
+      "Activador: el que definiste al preparar la acción.",
+      "Realizas la acción o ataque indicado.",
+      "Rasgos: preparación"
+    ]
+  },
+  {
+    title: "Lanzar un conjuro",
+    icon: "magic-swirl",
+    subtitle: "Reacción",
+    description: "Lanzas un conjuro cuyo tiempo de lanzamiento sea de 1 reacción.",
+    reference: "PHB, pg. 192",
+    bullets: [
+      "Activador: el que especifica el conjuro.",
+      "Sigue las reglas generales de Lanzar un conjuro.",
+      "Rasgos: conjuro"
+    ]
+  },
+
+  // === HABILIDADES: ACROBACIAS ===
   {
     title: "Mantener el equilibrio",
     icon: "balance-scale",
@@ -7,11 +47,10 @@ data_reaction = [
     description: "Te desplazas por una superficie estrecha o inestable sin caer.",
     reference: "Pantalla del Director – Acrobacias",
     bullets: [
-      "Circunstancia: te mueves por terreno que requiere equilibrio.",
       "Tirada: Acrobacias contra la CD indicada por el terreno.",
-      "Éxito: avanzas a velocidad reducida o normal según el éxito.",
+      "Éxito: avanzas sin caerte.",
       "Fracaso: caes o sufres el efecto del terreno.",
-      "Rasgos: movimiento."
+      "Rasgos: movimiento"
     ]
   },
   {
@@ -21,25 +60,23 @@ data_reaction = [
     description: "Te mueves a través del espacio de un enemigo esquivando con agilidad.",
     reference: "Pantalla del Director – Acrobacias",
     bullets: [
-      "Circunstancia: intentas atravesar un espacio ocupado por una criatura.",
       "Tirada: Acrobacias contra la CD de Reflejos de la criatura.",
       "Éxito: atraviesas sin provocar ataques de oportunidad.",
       "Fracaso: tu movimiento termina.",
-      "Rasgos: movimiento."
+      "Rasgos: movimiento"
     ]
   },
   {
     title: "Escurrirse",
     icon: "door-open",
     subtitle: "Acrobacias",
-    description: "Te mueves a través de un espacio extremadamente estrecho.",
+    description: "Pasas por un espacio extremadamente estrecho.",
     reference: "Pantalla del Director – Acrobacias",
     bullets: [
-      "Circunstancia: pasas por un espacio más estrecho que tu tamaño.",
       "Tirada: Acrobacias contra la CD del obstáculo.",
       "Éxito: avanzas lentamente.",
       "Fracaso: no avanzas.",
-      "Rasgos: movimiento, entrenado."
+      "Rasgos: movimiento, entrenado"
     ]
   },
   {
@@ -49,15 +86,14 @@ data_reaction = [
     description: "Ajustas dirección o estabilizas el vuelo.",
     reference: "Pantalla del Director – Acrobacias",
     bullets: [
-      "Circunstancia: necesitas cambiar rumbo o estabilizarte mientras vuelas.",
       "Tirada: Acrobacias contra la CD indicada.",
       "Éxito: controlas tu vuelo.",
       "Fracaso: pierdes altitud o estabilidad.",
-      "Rasgos: movimiento, entrenado."
+      "Rasgos: movimiento, entrenado"
     ]
   },
 
-  // === Arcanos ===
+  // === ARCANOS ===
   {
     title: "Recordar conocimiento",
     icon: "book",
@@ -68,12 +104,12 @@ data_reaction = [
       "Tirada: Arcanos contra la CD de la información.",
       "Éxito: obtienes detalles precisos.",
       "Fracaso: no recuerdas nada útil.",
-      "Rasgos: concentración, secreto."
+      "Rasgos: concentración, secreto"
     ]
   },
   {
     title: "Aprender un conjuro",
-    icon: "magic-swirl",
+    icon: "hand-holding-magic",
     subtitle: "Arcanos",
     description: "Añades un conjuro arcano a tu repertorio o libro.",
     reference: "Pantalla del Director – Arcanos",
@@ -82,20 +118,7 @@ data_reaction = [
       "Tirada: Arcanos contra la CD del conjuro.",
       "Éxito: lo aprendes.",
       "Fracaso: pierdes materiales.",
-      "Rasgos: concentración, exploración, tiempo libre, entrenado."
-    ]
-  },
-  {
-    title: "Descifrar escritura",
-    icon: "scroll-unfurled",
-    subtitle: "Arcanos",
-    description: "Interpretas un texto arcano, oculto o cifrado.",
-    reference: "Pantalla del Director – Arcanos",
-    bullets: [
-      "Tirada: Arcanos contra la CD del texto.",
-      "Éxito: comprendes el significado.",
-      "Fracaso: no logras descifrarlo.",
-      "Rasgos: secreto, exploración, entrenado."
+      "Rasgos: concentración, exploración, tiempo libre, entrenado"
     ]
   },
   {
@@ -108,33 +131,11 @@ data_reaction = [
       "Tirada: Arcanos contra la CD del efecto.",
       "Éxito: identificas propiedades y usos.",
       "Fracaso: no obtienes información.",
-      "Rasgos: concentración, secreto, exploración, entrenado."
-    ]
-  },
-  {
-    title: "Pedir prestado un conjuro arcano",
-    icon: "hand-holding-magic",
-    subtitle: "Arcanos",
-    description: "Obtienes temporalmente un conjuro arcano de otro lanzador.",
-    reference: "Pantalla del Director – Arcanos",
-    bullets: [
-      "Circunstancia: acceso a un lanzador arcano dispuesto.",
-      "Efecto: puedes lanzar el conjuro prestado una vez.",
-      "Rasgos: concentración, exploración, entrenado."
+      "Rasgos: concentración, secreto, exploración, entrenado"
     ]
   },
 
-  // === Artesanía ===
-  {
-    title: "Recordar conocimiento",
-    icon: "book",
-    subtitle: "Artesanía",
-    description: "Recuerdas técnicas, materiales y procesos artesanales.",
-    reference: "Pantalla del Director – Artesanía",
-    bullets: [
-      "Rasgos: concentración, secreto."
-    ]
-  },
+  // === ARTESANÍA ===
   {
     title: "Reparar",
     icon: "hammer",
@@ -144,7 +145,7 @@ data_reaction = [
     bullets: [
       "Requiere herramientas apropiadas.",
       "Tirada: Artesanía contra la CD del objeto.",
-      "Rasgos: manipular."
+      "Rasgos: manipular, entrenado"
     ]
   },
   {
@@ -155,7 +156,7 @@ data_reaction = [
     reference: "Pantalla del Director – Artesanía",
     bullets: [
       "Tiempo: varía según el objeto.",
-      "Rasgos: manipular, tiempo libre, entrenado."
+      "Rasgos: manipular, tiempo libre, entrenado"
     ]
   },
   {
@@ -165,49 +166,20 @@ data_reaction = [
     description: "Determinas las propiedades de un objeto alquímico.",
     reference: "Pantalla del Director – Artesanía",
     bullets: [
-      "Rasgos: concentración, secreto, entrenado."
-    ]
-  },
-  {
-    title: "Obtener ingresos",
-    icon: "coins",
-    subtitle: "Artesanía",
-    description: "Ganas dinero usando tus habilidades artesanales.",
-    reference: "Pantalla del Director – Artesanía",
-    bullets: [
-      "Rasgos: tiempo libre, entrenado."
+      "Rasgos: concentración, secreto, entrenado"
     ]
   },
 
-  // === Atletismo ===
+  // === ATLETISMO ===
   {
-    title: "Abrir a la fuerza",
-    icon: "door-unlocked",
+    title: "Trepar",
+    icon: "arrow-up",
     subtitle: "Atletismo",
-    description: "Fuerzas puertas, cofres o mecanismos.",
+    description: "Subes por superficies verticales o irregulares.",
     reference: "Pantalla del Director – Atletismo",
     bullets: [
-      "Rasgos: ataque."
-    ]
-  },
-  {
-    title: "Derribar",
-    icon: "falling",
-    subtitle: "Atletismo",
-    description: "Tiras al suelo a una criatura.",
-    reference: "Pantalla del Director – Atletismo",
-    bullets: [
-      "Rasgos: ataque."
-    ]
-  },
-  {
-    title: "Empujar",
-    icon: "hand",
-    subtitle: "Atletismo",
-    description: "Empujas a una criatura u objeto.",
-    reference: "Pantalla del Director – Atletismo",
-    bullets: [
-      "Rasgos: ataque."
+      "Tirada: Atletismo contra la CD del terreno.",
+      "Rasgos: movimiento"
     ]
   },
   {
@@ -217,7 +189,7 @@ data_reaction = [
     description: "Te desplazas en el agua.",
     reference: "Pantalla del Director – Atletismo",
     bullets: [
-      "Rasgos: movimiento."
+      "Rasgos: movimiento"
     ]
   },
   {
@@ -227,17 +199,40 @@ data_reaction = [
     description: "Agarras a una criatura.",
     reference: "Pantalla del Director – Atletismo",
     bullets: [
-      "Rasgos: ataque."
+      "Rasgos: ataque"
     ]
   },
   {
-    title: "Salto de altura",
-    icon: "arrow-up",
+    title: "Empujar",
+    icon: "hand",
     subtitle: "Atletismo",
-    description: "Saltas verticalmente para superar un obstáculo.",
+    description: "Empujas a una criatura u objeto.",
     reference: "Pantalla del Director – Atletismo",
     bullets: [
-      "Rasgos: movimiento."
+      "Rasgos: ataque"
+    ]
+  },
+
+  // === DIPLOMACIA ===
+  {
+    title: "Hacer una petición",
+    icon: "hands-helping",
+    subtitle: "Diplomacia",
+    description: "Solicitas un favor o acción a alguien.",
+    reference: "Pantalla del Director – Diplomacia",
+    bullets: [
+      "Rasgos: exploración"
     ]
   },
   {
+    title: "Reunir información",
+    icon: "search",
+    subtitle: "Diplomacia",
+    description: "Obtienes rumores o datos de una comunidad.",
+    reference: "Pantalla del Director – Diplomacia",
+    bullets: [
+      "Rasgos: tiempo libre"
+    ]
+  },
+
+  // === INTIMIDACIÓN
