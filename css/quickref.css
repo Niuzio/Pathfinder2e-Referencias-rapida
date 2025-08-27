@@ -182,22 +182,21 @@
     background-color: gray;
     border-color: gray;
 }
-#section-rest.text {
+#section-rest .text {
     color: gray;
 }
 #section-exploration-general {
     background-color: gray;
     border-color: gray;
 }
-#section-exploration-general.text {
+#section-exploration-general .text {
     color: gray;
 }
-
 #section-exploration-skill {
     background-color: gray;
     border-color: gray;
 }
-#section-exploration-skill.text {
+#section-exploration-skill .text {
     color: gray;
 }
 
@@ -352,24 +351,4 @@ p:first-child {
     .iconsize { width: 36px; height: 36px;}
     .itemsize { height: 36px; width:  33%; }
     .modalsize {}
-}
-
-/* ----------------------------------------
-   Íconos tintados con el color de sección
-   ---------------------------------------- */
-.section-container .section-row-icon i {
-  color: var(--section-color);
-}
-
-/* Opcional: fondo circular con silueta blanca */
-.section-container .section-row-icon {
-  background-color: var(--section-color);
-  color: white;
-  border-radius: 50%;
-  padding: 4px;      /* Ajusta según tu diseño */
-  width: 32px;       /* Igual que la altura para un círculo */
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
