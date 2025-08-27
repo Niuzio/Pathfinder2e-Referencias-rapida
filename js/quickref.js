@@ -100,27 +100,13 @@ function renderQuickRef() {
   replaceActionTags();
 }
 
-const actionIcons = {
-  "[one-action]": "icons/Acciones/single_action.png",
-  "[two-actions]": "icons/Acciones/two_action.png",
-  "[three-actions]": "icons/Acciones/three_action.png",
-  "[reaction]": "icons/Acciones/reaction.png",
-  "[free-action]": "icons/Acciones/free_action.png"
-};
-
-function replaceActionTagsIn(node) {
-  let html = node.innerHTML;
-  Object.entries(actionIcons).forEach(([tag, src]) => {
-    html = html.replaceAll(tag, `<img src="${src}" alt="${tag}" class="action-icon">`);
-  });
-  node.innerHTML = html;
-}
-
-// Vigilar el contenedor donde se inyecta tu contenido
-const container = document.querySelector("#content") || document.body;
-const observer = new MutationObserver(() => replaceActionTagsIn(container));
-
-observer.observe(container, { childList: true, subtree: true });
+function replaceActionTags() {
+  const actionIcons = {
+    "[one-action]": "icons/single_action.png",
+    "[two-actions]": "icons/two_action.png",
+    "[three-actions]": "icons/three_action.png",
+    "[reaction]": "icons/reaction.png",
+    "[free-action]": "icons/free_action.png"
   };
 
   const container = document.querySelector("#content") || document.body;
