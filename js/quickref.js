@@ -79,8 +79,22 @@ function hide_modal() {
 function fill_section(data, parentname, type) {
     var parent = document.getElementById(parentname);
     data.forEach(function (item) {
-        add_quickref_item(parent, item, type);
-    });
+/**
+ * Recorre un array de items y los añade al contenedor.
+ * Si el objeto tiene `header`, inyecta un subtítulo.
+ * En caso contrario llama a add_quickref_item.
+ */
+function fill_section(dataArray, parentElement, type) {
+  dataArray.forEach(item => {
+    if (item.header) {
+      const h = document.createElement("div");
+      h.className = "section-subheader";
+      h.textContent = item.header;
+      parentElement.appendChild(h);
+    } else {
+      add_quickref_item(parentElement, item, type);
+    }
+  });
 }
 
 function init() {
