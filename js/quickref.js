@@ -76,6 +76,22 @@ function init() {
     var modal = document.getElementById("modal");
     modal.onclick = hide_modal;
 }}
+}
+function renderRow(item) {
+  return `
+    <div class="section-row">
+      <div class="section-row-icon">${renderIcon(item.icon)}</div>
+      <div class="section-row-content">
+        <div class="section-row-title">${item.title}</div>
+        <div class="section-row-subtitle">${item.subtitle}</div>
+        ${renderTags(item.tags)}
+        <div class="section-row-description">${item.description}</div>
+        ${item.bullets.map(b => `<div class="section-row-bullet">• ${b}</div>`).join("")}
+        <div class="section-row-reference">${item.reference}</div>
+      </div>
+    </div>
+  `;
+}
 
 function renderTags(tags) {
   if (!tags || !tags.length) return "";
@@ -134,6 +150,7 @@ function renderTags(tags) {
   height: 8px;
   background: rgba(0,0,0,0.85);
   z-index: 10;
+}};
 }
 
 $(window).load(init);
