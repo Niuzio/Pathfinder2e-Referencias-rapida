@@ -352,3 +352,24 @@ p:first-child {
     .itemsize { height: 36px; width:  33%; }
     .modalsize {}
 }
+/* -----------------------------------------------------------------------------
+   Colorear los iconos de cada fila con la variable --section-color
+   -----------------------------------------------------------------------------
+*/
+.section-container .section-row-icon i,
+.section-container .section-row-icon .iconify {
+  color: var(--section-color);
+}
+
+/* Opcional: fondo circular con ícono blanco (ajusta tamaños si hace falta) */
+.section-container .section-row-icon {
+  background-color: var(--section-color);
+  color: white;
+  border-radius: 50%;
+  padding: 4px;      /* controla el “relleno” interno */
+  width: 32px;       /* mismo valor en width y height para un círculo */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
