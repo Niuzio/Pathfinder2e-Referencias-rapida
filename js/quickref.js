@@ -70,6 +70,7 @@ function init() {
 	fill_section(data_optional, "optional-actions", "Acción basicas");
 	fill_section(data_exploration_general, "exploration-general", "Exploración general");
 	fill_section(data_exploration_skill,   "exploration-skill",   "Exploración de habilidad");
+	fill_section(data_exploration_skill,   "Action-Starfinder2e",   "Starfinder2e");
 	
 
     var modal = document.getElementById("modal");
