@@ -8,51 +8,37 @@ function replaceMarkers(str) {
         .replaceAll('[reaction]',      '<img src="icons/reaction.png"      class="action-icon" alt="reacción">')
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
-// Mantiene el contenedor de ítems de la subcategoría actual
-var currentItemsContainer = null;
 function add_quickref_item(parent, data, type) {
-  // Si viene un header, creamos una nueva subcategoría
-  if (data.header) {
-    // <div class="category">
-    var category = document.createElement("div");
-    category.className = "category";
-    parent.appendChild(category);
-
-    //   <div class="section-subheader">Título</div>
-    var header = document.createElement("div");
-    header.className = "section-subheader";
-    header.textContent = data.header;
-    category.appendChild(header);
-
-    //   <div class="item-group">…aquí van los ítems…</div>
-    currentItemsContainer = document.createElement("div");
-    currentItemsContainer.className = "item-group";
-    category.appendChild(currentItemsContainer);
-
-    return;  // Salimos sin procesar como ítem normal
-  }
-
-  // Determina dónde inyectar el ítem: en la subcategoría o en el padre
-  var container = currentItemsContainer || parent;
-
-  // …aquí continúa tu código original para generar el botón/item…
-  var icon     = data.icon     || "perspective-dice-six-faces-one";
-  var subtitle = replaceMarkers(data.subtitle || "");
-  var title    = replaceMarkers(data.title    || "[no title]");
-  var item     = document.createElement("div");
-  item.className += "item itemsize";
-  item.innerHTML = `
-    <div class="item-icon iconsize icon-${icon}"></div>
-    <div class="item-text-container text">
-      <div class="item-title">${title}</div>
-      <div class="item-desc">${subtitle}</div>
-    </div>
-  `;
-  var style = window.getComputedStyle(parent.parentNode.parentNode);
-  var color = style.backgroundColor;
-  item.onclick = function() { show_modal(data, color, type); };
-  container.appendChild(item);
+	// Manejo de objeto subtítulo: { header: "Nombre de grupo" }
+if (data.header) {
+  var h = document.createElement("div");
+  h.className = "section-subheader";
+  h.textContent = data.header;
+  parent.appendChild(h);
+  return;        // dejamos de procesar esto como ítem normal
 }
+	
+    var icon = data.icon || "perspective-dice-six-faces-one";
+    var subtitle = replaceMarkers(data.subtitle || "");
+    var title    = replaceMarkers(data.title    || "[no title]");
+
+    var item = document.createElement("div");
+    item.className += "item itemsize"
+    item.innerHTML =
+    '\
+    <div class="item-icon iconsize icon-' + icon + '"></div>\
+    <div class="item-text-container text">\
+        <div class="item-title">' + title + '</div>\
+        <div class="item-desc">' + subtitle + '</div>\
+    </div>\
+    ';
+
+    var style = window.getComputedStyle(parent.parentNode.parentNode);
+    var color = style.backgroundColor;
+
+    item.onclick = function () {
+        show_modal(data, color, type);
+    }
 
     parent.appendChild(item);
 }
