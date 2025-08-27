@@ -444,3 +444,48 @@ p:first-child {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 0.75rem 1rem;
 }
+/* Tamaño base de cada item */
+.item {
+  font-size: 1.1rem;
+}
+
+/* Título en negrita y un poco más grande */
+.item-title {
+  font-size: 1.2rem;
+}
+
+/* Descripción con un ligero aumento */
+.item-desc {
+  font-size: 1rem;
+}
+/* Transición suave para hover */
+.item {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Fondo claro y elevación al pasar el ratón */
+.item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  border-radius: 4px;
+}
+/* Subtítulos de categoría más grandes y con línea inferior */
+.section-subheader {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid currentColor;
+}
+/* Fondo sutil y separación para cada subcategoría */
+.category {
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+/* Ajusta el tamaño de los iconos dentro de los items */
+.item-icon {
+  width: 48px;
+  height: 48px;
+}
