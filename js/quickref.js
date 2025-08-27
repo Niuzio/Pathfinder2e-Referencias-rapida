@@ -92,6 +92,9 @@ function init() {
 
     var modal = document.getElementById("modal");
     modal.onclick = hide_modal;
+
+	// Reemplazar marcadores en toda la página una vez que se montó todo:
+  replaceActionMarkers(document.body);
 }
 function renderQuickRef() {
   // ... código que genera tu HTML ...
@@ -102,6 +105,7 @@ function renderQuickRef() {
 
 function replaceActionTags() {
 // 1) Mapa de marcadores -> archivo de icono (rutas actuales)
+// --- Sustitución de [one-action] -> <img src="..."> ---
 const ACTION_ICON_SRC = {
   "[one-action]":  "icons/single_action.png",
   "[two-actions]": "icons/two_action.png",
@@ -110,7 +114,6 @@ const ACTION_ICON_SRC = {
   "[free-action]": "icons/free_action.png"
 };
 
-// 2) Reemplaza SOLO en nodos de texto bajo el contenedor dado
 function replaceActionMarkers(root = document.body) {
   const walker = document.createTreeWalker(
     root,
@@ -118,9 +121,7 @@ function replaceActionMarkers(root = document.body) {
     {
       acceptNode(node) {
         const t = node.nodeValue;
-        // Evitar sustituir en textos vacíos o triviales
         if (!t || !t.includes("[")) return NodeFilter.FILTER_REJECT;
-        // Aceptar si contiene alguno de los marcadores
         for (const key in ACTION_ICON_SRC) {
           if (t.includes(key)) return NodeFilter.FILTER_ACCEPT;
         }
@@ -137,29 +138,22 @@ function replaceActionMarkers(root = document.body) {
     let remaining = textNode.nodeValue;
 
     while (remaining.length) {
-      // Encuentra el próximo marcador
       let nextKey = null;
       let nextIdx = Infinity;
       for (const key in ACTION_ICON_SRC) {
         const i = remaining.indexOf(key);
-        if (i !== -1 && i < nextIdx) {
-          nextIdx = i;
-          nextKey = key;
-        }
+        if (i !== -1 && i < nextIdx) { nextIdx = i; nextKey = key; }
       }
 
       if (nextKey === null) {
-        // No hay más marcadores en este nodo
         frag.appendChild(document.createTextNode(remaining));
         break;
       }
 
-      // Texto antes del marcador
       if (nextIdx > 0) {
         frag.appendChild(document.createTextNode(remaining.slice(0, nextIdx)));
       }
 
-      // Inserta el icono
       const img = document.createElement("img");
       img.src = ACTION_ICON_SRC[nextKey];
       img.alt = nextKey;
@@ -168,11 +162,9 @@ function replaceActionMarkers(root = document.body) {
       img.loading = "lazy";
       frag.appendChild(img);
 
-      // Resto del texto tras el marcador
       remaining = remaining.slice(nextIdx + nextKey.length);
     }
 
-    // Reemplaza el nodo de texto original por el fragmento
     textNode.parentNode.replaceChild(frag, textNode);
   });
 }
