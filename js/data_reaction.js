@@ -120,7 +120,7 @@ data_reaction = [
     ]
   },
 
-  // === ARTESANÍA ===
+  { header: "Artesanía (Destreza)" },
   {
     title: "Recordar conocimiento",
     icon: "single_action",
@@ -187,7 +187,7 @@ data_reaction = [
     ]
   },
 
-  // === ATLETISMO ===
+  { header: "Atletismo (Fuerza)" },
   {
     title: "Presa",
     icon: "single_action",
@@ -306,7 +306,7 @@ data_reaction = [
     ]
   },
 
-  // === DIPLOMACIA ===
+  { header: "Diplomacia (Carisma)" },
   {
     title: "Reunir información",
     icon: "exploration",
@@ -348,7 +348,7 @@ data_reaction = [
     ]
   },
 
-  // === ENGAÑO ===
+  { header: "Engaño (Carisma)" },
   {
     title: "Crear una distracción",
     icon: "single_action",
@@ -402,7 +402,7 @@ data_reaction = [
     ]
   },
 
-  // === INTERPRETACIÓN ===
+  { header: "Interpretacion (Carisma)" },
   {
     title: "Interpretar",
     icon: "single_action",
@@ -431,7 +431,7 @@ data_reaction = [
     ]
   },
 
-  // === INTIMIDACIÓN ===
+  { header: "Intimidación (Carisma)" },
   {
     title: "Demoralizar",
     icon: "single_action",
@@ -459,7 +459,7 @@ data_reaction = [
     ]
   },
 
-  // === LATROCINIO ===
+  { header: "Latrocinio (Destreza)" },
   {
     title: "Escamotear objeto",
     icon: "single_action",
@@ -513,7 +513,7 @@ data_reaction = [
     ]
   },
 
-  // === MEDICINA ===
+  { header: "Medicina (Sabiduria)" },
   {
     title: "Primeros auxilios",
     icon: "single_action",
