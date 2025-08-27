@@ -95,11 +95,11 @@ function init() {
 }
 document.addEventListener("DOMContentLoaded", () => {
   const actionIcons = {
-    "[one-action]": "icons/Acciones/single_action.png",
-    "[two-actions]": "icons/Acciones/two_action.png",
-    "[three-actions]": "icons/Acciones/three_action.png",
-    "[reaction]": "icons/Acciones/reaction.png",
-    "[free-action]": "icons/Acciones/free_action.png"
+    "[one-action]": "icons/single_action.png",
+    "[two-actions]": "icons/two_action.png",
+    "[three-actions]": "icons/three_action.png",
+    "[reaction]": "icons/reaction.png",
+    "[free-action]": "icons/free_action.png"
   };
 
   // Selecciona el contenedor principal donde se inyecta tu contenido
