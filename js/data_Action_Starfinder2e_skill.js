@@ -1,4 +1,4 @@
-data_Action-Starfinder2e = [
+data_Action_Starfinder2e = [
   /* …tus otras reglas… */,
   // --------------------------------------------------
   // REGLAS DE PUNTOS DE HÉROE (añadido)
