@@ -2,7 +2,7 @@
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
     return str
-        .replaceAll('[one-action]',    `<img src="${base}/single_action.png"  class="action-icon" alt="1 acción">`)
+        .replaceAll('[one-action]',    '<img src="icons/single_action.png"  class="action-icon" alt="1 acción">')
         .replaceAll('[two-actions]',   '<img src="icons/two_action.png"    class="action-icon" alt="2 acciones">')
         .replaceAll('[three-actions]', '<img src="icons/three_action.png"  class="action-icon" alt="3 acciones">')
         .replaceAll('[reaction]',      '<img src="icons/reaction.png"      class="action-icon" alt="reacción">')
