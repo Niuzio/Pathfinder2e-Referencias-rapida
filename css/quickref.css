@@ -378,15 +378,31 @@ p:first-child {
 .item-tags {
     margin-top: 0.3em;
 }
+:root {
+  --tag-bg:   #7b1c1d;  /* Rojo oscuro */
+  --tag-border: #e6dccf; /* Beige */
+  --tag-color: #ffffff;  /* Blanco */
+}
 .item-tags .tag {
-    display: inline-block;
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 0.2em 0.4em;
-    margin-right: 0.3em;
-    font-size: 0.85em;
-    border-radius: 3px;
-    cursor: default;
+  display: inline-block;
+  background-color: var(--tag-bg);
+  border: 1.5px solid var(--tag-border);
+  color: var(--tag-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;       /* Ajusta según tu tipografía */
+  letter-spacing: 0.05em;   /* Un toque de separación */
+  padding: 0.25em 0.6em;     /* Alto y ancho interior */
+  border-radius: 3px;        /* Esquinas ligeramente redondeadas */
+  margin-right: 0.4em;       /* Espacio entre tags */
+  cursor: default;           /* Si no son clicables */
+  user-select: none;         /* Evita selección de texto al hacer hover */
+}
+
+/* Opcional: efecto sutil al pasar el ratón */
+.tag:hover {
+  background-color: #8f2629;
+  border-color: #d2c8b8;
 }
 /* Tooltips para .tag[data-tooltip] */
 .tag[data-tooltip] {
