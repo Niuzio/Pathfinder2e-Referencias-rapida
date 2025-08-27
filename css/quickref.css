@@ -436,3 +436,11 @@ p:first-child {
     vertical-align: text-bottom;
     margin: 0 0.15em;
 }
+.category {
+  margin-bottom: 2rem;
+}
+.item-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem 1rem;
+}
