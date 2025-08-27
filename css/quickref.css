@@ -489,37 +489,6 @@ p:first-child {
   width: 48px;
   height: 48px;
 }
-/* 1. Elimina float y permite flex-wrap */
-.item {
-  float: none;               /* anula el float:left original */
-  display: flex;
-  align-items: flex-start;   /* alinea icono y texto al tope */
-  flex-wrap: wrap;           /* permite que el texto baje a 2ª línea */
-  margin-bottom: 0.75rem;    /* separa filas de ítems */
-}
-
-/* 2. Ajuste de icono fijo y margen claro */
-.item-icon {
-  flex: 0 0 48px;            /* ancho fijo */
-  width: 48px;
-  height: 48px;
-  margin-right: 0.75rem;
-  margin-bottom: 0.25rem;    /* separa icono de texto si hay wrap */
-}
-
-/* 3. Contenedor de texto con base flexible */
-.item-text-container {
-  flex: 1 1 0;
-  min-width: 0;              /* necesario para que overflow funcione */
-}
-
-/* 4. Títulos y descripciones multilinea */
-.item-title,
-.item-desc {
-  white-space: normal;       /* permite varias líneas */
-  overflow: hidden;          /* recorta el texto que desborda */
-  text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
-}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
