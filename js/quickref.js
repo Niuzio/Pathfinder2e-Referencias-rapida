@@ -1,3 +1,5 @@
+// Mantiene referencia al último grupo de ítems donde insertar
+var lastItemsContainer = null;
 // — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
@@ -9,38 +11,43 @@ function replaceMarkers(str) {
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
 function add_quickref_item(parent, data, type) {
-	// Manejo de objeto subtítulo: { header: "Nombre de grupo" }
-if (data.header) {
-  var h = document.createElement("div");
-  h.className = "section-subheader";
-  h.textContent = data.header;
-  parent.appendChild(h);
-  return;        // dejamos de procesar esto como ítem normal
-}
-	
-    var icon = data.icon || "perspective-dice-six-faces-one";
-    var subtitle = replaceMarkers(data.subtitle || "");
-    var title    = replaceMarkers(data.title    || "[no title]");
+  // 1) Si viene un header, creamos una categoría nueva
+  if (data.header) {
+    var category = document.createElement("div");
+    category.className = "category";
+    parent.appendChild(category);
 
-    var item = document.createElement("div");
-    item.className += "item itemsize"
-    item.innerHTML =
-    '\
-    <div class="item-icon iconsize icon-' + icon + '"></div>\
-    <div class="item-text-container text">\
-        <div class="item-title">' + title + '</div>\
-        <div class="item-desc">' + subtitle + '</div>\
-    </div>\
-    ';
+    var h = document.createElement("div");
+    h.className = "section-subheader";
+    h.textContent = data.header;
+    category.appendChild(h);
 
-    var style = window.getComputedStyle(parent.parentNode.parentNode);
-    var color = style.backgroundColor;
+    lastItemsContainer = document.createElement("div");
+    lastItemsContainer.className = "item-group";
+    category.appendChild(lastItemsContainer);
+    return;
+  }
 
-    item.onclick = function () {
-        show_modal(data, color, type);
-    }
+  // 2) Lógica original para crear el ítem
+  var icon     = data.icon     || "perspective-dice-six-faces-one";
+  var subtitle = replaceMarkers(data.subtitle || "");
+  var title    = replaceMarkers(data.title    || "[no title]");
+  var item = document.createElement("div");
+  item.className = "item itemsize";
+  item.innerHTML =
+    '<div class="item-icon iconsize icon-' + icon + '"></div>' +
+    '<div class="item-text-container text">' +
+      '<div class="item-title">' + title    + '</div>' +
+      '<div class="item-desc" >'  + subtitle + '</div>' +
+    '</div>';
 
-    parent.appendChild(item);
+  var style = window.getComputedStyle(parent.parentNode.parentNode);
+  var color = style.backgroundColor;
+  item.onclick = function () { show_modal(data, color, type); };
+
+  // 3) Insertamos en el último grupo o en el parent directo
+  var container = lastItemsContainer || parent;
+  container.appendChild(item);
 }
 
 function show_modal(data, color, type) {
