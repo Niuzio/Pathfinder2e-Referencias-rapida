@@ -1,161 +1,154 @@
-// Efectos de iluminación y oscuridad que imponen condiciones de ocultamiento
-data_environment_obscurance = [
-  {
-    title: "Luz tenue",
-    icon: "semi-closed-eye",
-    subtitle: "Oculto",
-    description: "Zona con iluminación tenue o brumosa. Las criaturas que dependen de la vista están ocultas.",
-    reference: "Reglas básicas – Iluminación",
-    bullets: [
-      "Estado Oculto: los ataques, conjuros y pruebas de percepción contra ti tienen un 20% de probabilidad de fallo.",
-      "Ejemplos: luz del ocaso, antorcha a distancia, bruma ligera."
-    ]
-  },
-  {
-    title: "Oscuridad",
-    icon: "worried-eyes",
-    subtitle: "No detectado",
-    description: "Zona sin ningún tipo de luz. Las criaturas que dependen de la vista están no detectadas.",
-    reference: "Reglas básicas – Iluminación",
-    bullets: [
-      "Estado No detectado: no puedes ser objetivo de ataques, conjuros o habilidades que requieran selección directa de objetivo.",
-      "Ejemplos: tinieblas mágicas, cripta sin iluminación, escena cubierta por sombra total."
-    ]
-  }
-];
-
-// Tipos de iluminación y su efecto básico
+// Iluminación
 data_environment_light = [
   {
     title: "Luz brillante",
     icon: "star-pupil",
     subtitle: "Visión normal",
-    description: "Iluminación suficiente para ver con normalidad.",
+    description: "Iluminación suficiente para ver con claridad.",
     reference: "Reglas básicas – Iluminación",
     bullets: [
-      "Todas las criaturas perciben el entorno sin penalizadores.",
-      "Ejemplos: sol del mediodía, candiles, fuego abierto."
+      "No impone penalizadores a la percepción.",
+      "Ejemplos: sol del mediodía, antorcha a 10 pies."
     ]
   },
   {
     title: "Luz tenue",
     icon: "semi-closed-eye",
-    subtitle: "Oculto",
-    description: "Iluminación insuficiente para ver con claridad, provoca ocultamiento.",
+    subtitle: "Ligera ocultación",
+    description: "Visibilidad reducida: antorchas a distancia, penumbra o bruma ligera.",
     reference: "Reglas básicas – Iluminación",
     bullets: [
-      "Aplica la condición Oculto (20% de fallo).",
-      "Une frontera entre luz brillante y oscuridad total."
+      "Otorga el estado Oculto.",
+      "La criatura debe superar una prueba plana CD 5 para designarte como objetivo."
     ]
   },
   {
     title: "Oscuridad",
     icon: "worried-eyes",
-    subtitle: "No detectado",
-    description: "Ausencia de luz, provoca no detección para quien dependa solo de la vista.",
+    subtitle: "Ocultamiento severo",
+    description: "Ausencia de luz: noche sin luna, mazmorra a oscuras.",
     reference: "Reglas básicas – Iluminación",
     bullets: [
-      "Aplica la condición No detectado.",
-      "Solo visión en la oscuridad o verdadera permite contrarrestarlo."
+      "Otorga el estado No detectado.",
+      "Antes de atacar, la criatura debe superar una prueba plana CD 10 para determinar tu posición."
     ]
   }
 ];
 
-// Tipos de sentidos especiales de Pathfinder 2e
+// Sentidos precisos
 data_environment_vision = [
   {
-    title: "Visión en penumbra",
-    icon: "semi-closed-eye",
-    subtitle: "Ver en luz tenue",
-    description: "Permite ver en luz tenue como si fuera luz brillante.",
-    reference: "Reglas básicas – Sentidos",
-    bullets: [
-      "Ignoras el ocultamiento de la luz tenue.",
-      "En oscuridad, ves como si fuera luz tenue."
-    ]
-  },
-  {
     title: "Visión en la oscuridad",
-    icon: "blind",
-    subtitle: "Ver en la oscuridad",
-    description: "Permite ver en oscuridad como si fuera luz tenue.",
-    reference: "Reglas básicas – Sentidos",
+    icon: "semi-closed-eye",
+    subtitle: "Darkvision",
+    description: "Permite ver en la oscuridad como si fuera luz tenue.",
+    reference: "Reglas básicas – Sentidos especiales",
     bullets: [
-      "Ignoras la condición No detectado en oscuridad.",
-      "No distingues colores, solo tonos de gris."
+      "Ignora los efectos de la oscuridad para ver.",
+      "Solo distingue tonos de gris, no colores."
     ]
   },
   {
     title: "Visión verdadera",
     icon: "eye-shield",
-    subtitle: "Ver todo",
-    description: "Percibes criaturas invisibles, ilusiones y en el Plano Etéreo.",
-    reference: "Reglas básicas – Sentidos",
+    subtitle: "True Seeing",
+    description: "Revela ilusiones, criaturas invisibles y presencias en el Plano Etéreo.",
+    reference: "Reglas básicas – Sentidos especiales",
     bullets: [
-      "Revelas ilusiones y cambiaformas automáticamente.",
-      "Ves en el Plano Etéreo hasta el alcance de tu visión verdadera."
+      "Percibe criaturas e ilusiones de forma auténtica.",
+      "No es afectada por invisibilidad ni ilusiones."
+    ]
+  }
+];
+
+// Sentidos imprecisos
+data_environment_imprecise_senses = [
+  {
+    title: "Olfato",
+    icon: "nose",
+    subtitle: "Impreciso",
+    description: "Detectas olores en un área limitada, sin localización exacta.",
+    reference: "Reglas básicas – Sentidos especiales",
+    bullets: [
+      "Localiza criaturas por aroma, pero no su posición precisa.",
+      "Útil para rastrear y detectar objetivos ocultos."
     ]
   },
   {
     title: "Percepción sísmica",
     icon: "one-eyed",
-    subtitle: "Percibir vibraciones",
-    description: "Detectas vibraciones en el suelo dentro de tu radio.",
-    reference: "Reglas básicas – Sentidos",
+    subtitle: "Impreciso",
+    description: "Percibes vibraciones a través del suelo en un radio determinado.",
+    reference: "Reglas básicas – Sentidos especiales",
     bullets: [
-      "Puedes localizar criaturas a través de obstáculos sólidos.",
-      "No permite distinguir detalles finos ni colores."
-    ]
-  },
-  {
-    title: "Olfato",
-    icon: "nose",
-    subtitle: "Percibir olores",
-    description: "Detectas presencia y movimiento por el olor en un área limitada.",
-    reference: "Reglas básicas – Sentidos",
-    bullets: [
-      "Útil para rastrear e identificar criaturas en proximidad.",
-      "No distingue formas ni tamaños, solo proximidad y presencia."
+      "Detecta criaturas u objetos en contacto con la superficie.",
+      "No revela detalles finos ni posición exacta."
     ]
   }
 ];
 
-// Mapeo de “cobertura” a los estados de ocultamiento de PF2e
+// Cobertura
 data_environment_cover = [
   {
     title: "Cobertura parcial",
     icon: "broken-shield",
-    subtitle: "Oculto",
-    description: "Un obstáculo cubre parte de tu cuerpo, otorgándote ocultamiento.",
+    subtitle: "Cobertura media (½)",
+    description: "Un obstáculo cubre parte de tu cuerpo.",
     reference: "Reglas básicas – Cobertura",
     bullets: [
-      "Estado Oculto: 20% de probabilidad de fallo en ataques y conjuros dirigidos a ti."
+      "Bonificador circunstancial +2 a la CA y a la salvación de Reflejos."
+    ]
+  },
+  {
+    title: "Cobertura de tres cuartos",
+    icon: "cracked-shield",
+    subtitle: "Cobertura (¾)",
+    description: "Un obstáculo cubre la mayor parte de tu cuerpo.",
+    reference: "Reglas básicas – Cobertura",
+    bullets: [
+      "Bonificador circunstancial +5 a la CA y a la salvación de Reflejos."
     ]
   },
   {
     title: "Cobertura total",
     icon: "shield",
-    subtitle: "No detectado",
-    description: "Un obstáculo te oculta completamente, impidiendo que te elijan como objetivo.",
+    subtitle: "Cobertura total",
+    description: "Un obstáculo oculta completamente tu cuerpo.",
     reference: "Reglas básicas – Cobertura",
     bullets: [
-      "Estado No detectado: no puedes ser objetivo de ataques o efectos directos."
+      "No puedes ser elegido directamente como objetivo de ataques o conjuros.",
+      "Los efectos de área te afectan si estás dentro del área."
     ]
   }
 ];
 
-// Flanqueo en combate cuerpo a cuerpo
+// Flanqueo
 data_environment_flanking = [
   {
     title: "Flanqueo",
     icon: "crossed-swords",
-    subtitle: "Ventaja táctica",
-    description: "Obtienes ventaja en tus ataques cuerpo a cuerpo cuando flanqueas a un enemigo junto a un aliado.",
+    subtitle: "Estado Desprevenido",
+    description: "Cuando dos aliados flanquean a un enemigo, este queda desprevenido.",
     reference: "Reglas básicas – Flanqueo",
     bullets: [
-      "Debes ocupar espacios opuestos y adyacentes al objetivo, junto a un aliado.",
-      "No aplica contra criaturas que no pueden ser flanqueadas o que ocupan más de un espacio.",
-      "Algunos talentos o efectos permiten flanquear sin la posición estándar."
+      "Los aliados deben situarse en espacios adyacentes opuestos al objetivo.",
+      "El enemigo recibe el estado Desprevenido mientras siga flanqueado.",
+      "No funciona contra criaturas que no pueden ser flanqueadas."
+    ]
+  }
+];
+
+// Terreno y efectos ambientales
+data_environment_terrain = [
+  {
+    title: "Terreno difícil",
+    icon: "hiking",
+    subtitle: "Movimiento ralentizado",
+    description: "El terreno áspero o desordenado dificulta el movimiento.",
+    reference: "Reglas básicas – Terreno difícil",
+    bullets: [
+      "Cada 5 pies de movimiento requiere 1 pie adicional de movimiento.",
+      "No puedes correr ni saltar en terreno difícil."
     ]
   }
 ];
