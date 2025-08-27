@@ -1,4 +1,3 @@
-var lastItemsContainer = null;
 // — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
@@ -10,52 +9,29 @@ function replaceMarkers(str) {
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
 function add_quickref_item(parent, data, type) {
-    // 1) Si viene un header, creamos una nueva subcategoría
-    if (data.header) {
-        // wrapper .category
-        var category = document.createElement("div");
-        category.className = "category";
-        parent.appendChild(category);
-
-        // título de la subcategoría
-        var h = document.createElement("div");
-        h.className = "section-subheader";
-        h.textContent = data.header;
-        category.appendChild(h);
-
-        // grid para los ítems siguientes
-        lastItemsContainer = document.createElement("div");
-        lastItemsContainer.className = "item-group";
-        category.appendChild(lastItemsContainer);
-
-        // salimos para que este objeto no genere un ítem normal
-        return;
-    }
-
-    // 2) Ítem normal: icono, título, descripción
-    var icon     = data.icon     || "perspective-dice-six-faces-one";
+    var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = replaceMarkers(data.subtitle || "");
     var title    = replaceMarkers(data.title    || "[no title]");
 
     var item = document.createElement("div");
-    item.className = "item itemsize";
-    item.innerHTML = `
-        <div class="item-icon iconsize icon-${icon}"></div>
-        <div class="item-text-container text">
-            <div class="item-title">${title}</div>
-            <div class="item-desc">${subtitle}</div>
-        </div>
-    `;
+    item.className += "item itemsize"
+    item.innerHTML =
+    '\
+    <div class="item-icon iconsize icon-' + icon + '"></div>\
+    <div class="item-text-container text">\
+        <div class="item-title">' + title + '</div>\
+        <div class="item-desc">' + subtitle + '</div>\
+    </div>\
+    ';
 
     var style = window.getComputedStyle(parent.parentNode.parentNode);
     var color = style.backgroundColor;
-    item.onclick = function() {
-        show_modal(data, color, type);
-    };
 
-    // 3) Decidimos dónde insertar: en la última subcategoría activa o en parent
-    var container = lastItemsContainer || parent;
-    container.appendChild(item);
+    item.onclick = function () {
+        show_modal(data, color, type);
+    }
+
+    parent.appendChild(item);
 }
 
 function show_modal(data, color, type) {
