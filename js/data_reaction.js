@@ -1,4 +1,5 @@
 data_reaction = [
+  { header: "Acrobacias (Destreza)" },
   {
     title: "Mantener el equilibrio",
     icon: "single_action",
