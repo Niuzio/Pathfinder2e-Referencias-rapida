@@ -3,6 +3,10 @@ data_Action_Starfinder2e = [
     title: "Puntos de Héroe",
     icon: "star",
     subtitle: "Recursos heroicos",
+    tags: [
+  { name: "Goblin",    info: "Herencia goblin de las nieves" },
+  { name: "Ascendencia", info: "Guía de Personajes – Presagios Perdidos" }
+]
     description: "Tus logros heroicos te garantizan buena fortuna. Puedes tener un máximo de 3 puntos de héroe.",
     reference: "Pantalla del Director – Puntos de Héroe",
     bullets: [
