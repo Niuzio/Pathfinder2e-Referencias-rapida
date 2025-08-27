@@ -1,5 +1,3 @@
-// Mantiene referencia al último grupo de ítems donde insertar
-var lastItemsContainer = null;
 // — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
@@ -11,47 +9,38 @@ function replaceMarkers(str) {
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
 function add_quickref_item(parent, data, type) {
-    // 1) Si es un header, creamos un bloque categoría + reset de contenedor
-    if (data.header) {
-        // Contenedor de la subcategoría
-        var category = document.createElement("div");
-        category.className = "category";
-        parent.appendChild(category);
-
-        // Título de la subcategoría
-        var h = document.createElement("div");
-        h.className = "section-subheader";
-        h.textContent = data.header;
-        category.appendChild(h);
-
-        // Nuevo grupo de ítems dentro de esta subcategoría
-        lastItemsContainer = document.createElement("div");
-        lastItemsContainer.className = "item-group";
-        category.appendChild(lastItemsContainer);
-        return;
-    }
-
-    // 2) Código existente para crear el ítem
-    var icon     = data.icon     || "perspective-dice-six-faces-one";
+	// Manejo de objeto subtítulo: { header: "Nombre de grupo" }
+if (data.header) {
+  var h = document.createElement("div");
+  h.className = "section-subheader";
+  h.textContent = data.header;
+  parent.appendChild(h);
+  return;        // dejamos de procesar esto como ítem normal
+}
+	
+    var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = replaceMarkers(data.subtitle || "");
     var title    = replaceMarkers(data.title    || "[no title]");
-    var item     = document.createElement("div");
-    item.className = "item itemsize";
-    item.innerHTML = ''
-         '<div class="item-icon iconsize icon-' + icon + '"></div>'
-         '<div class="item-text-container text">'
-           '<div class="item-title">' + title    + '</div>'
-           '<div class="item-desc" >' + subtitle + '</div>'
-         '</div>';
 
-    // Color y evento (igual que antes)
+    var item = document.createElement("div");
+    item.className += "item itemsize"
+    item.innerHTML =
+    '\
+    <div class="item-icon iconsize icon-' + icon + '"></div>\
+    <div class="item-text-container text">\
+        <div class="item-title">' + title + '</div>\
+        <div class="item-desc">' + subtitle + '</div>\
+    </div>\
+    ';
+
     var style = window.getComputedStyle(parent.parentNode.parentNode);
     var color = style.backgroundColor;
-    item.onclick = function () { show_modal(data, color, type); };
 
-    // 3) Inserta en el último grupo o en el padre directo
-    var container = lastItemsContainer || parent;
-    container.appendChild(item);
+    item.onclick = function () {
+        show_modal(data, color, type);
+    }
+
+    parent.appendChild(item);
 }
 
 function show_modal(data, color, type) {
