@@ -2,35 +2,38 @@ function add_quickref_item(parent, data, type) {
     var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = data.subtitle || "";
     var title = data.title || "[no title]";
-    var tagsHTML = "";
-    if (data.tags && data.tags.length) {
-      tagsHTML = '<div class="item-tags">' +
-        data.tags.map(function(tag) {
-      return '<span class="tag" data-tooltip="' + tag.info + '">' +
-               tag.name +
-             '</span>';
-    }).join("") +
-  '</div>';
-}
-    var item = document.createElement("div");
-    item.className += "item itemsize"
-    item.innerHTML =
-  '<div class="item-icon iconsize icon-' + icon + '"></div>' +
-  '<div class="item-text-container text">' +
-    '<div class="item-title">' + title + '</div>' +
-    '<div class="item-desc">' + subtitle + '</div>' +
-    tagsHTML +    // ← aquí agregamos las etiquetas
-  '</div>';
-    ';
 
-    var style = window.getComputedStyle(parent.parentNode.parentNode);
-    var color = style.backgroundColor;
+	 // — Construcción de etiquetas (tags) —
+  var tagsHTML = "";
+  if (data.tags && data.tags.length) {
+    tagsHTML = '<div class="item-tags">' +
+      data.tags.map(function(tag) {
+        return '<span class="tag" data-tooltip="' + tag.info + '">' +
+                 tag.name +
+               '</span>';
+      }).join("") +
+    '</div>';
+  }
 
-    item.onclick = function () {
-        show_modal(data, color, type);
-    }
+// — Creación del bloque HTML —
+  var item = document.createElement("div");
+  item.className = "item itemsize";
+  item.innerHTML =
+    '<div class="item-icon iconsize icon-' + icon + '"></div>' +
+    '<div class="item-text-container text">' +
+      '<div class="item-title">' + title + '</div>' +
+      '<div class="item-desc">'  + subtitle + '</div>' +
+      tagsHTML +    // ← Aquí inyectamos las etiquetas
+    '</div>';
 
-    parent.appendChild(item);
+  // Color para el modal
+  var style   = window.getComputedStyle(parent.parentNode.parentNode);
+  var bgColor = style.backgroundColor;
+  item.onclick = function() {
+    show_modal(data, bgColor, type);
+  };
+
+  parent.appendChild(item);
 }
 
 function show_modal(data, color, type) {
@@ -87,3 +90,4 @@ function init() {
 }
 
 $(window).load(init);
+
