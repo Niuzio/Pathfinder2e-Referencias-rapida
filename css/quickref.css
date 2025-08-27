@@ -199,6 +199,13 @@
 #section-exploration-skill .text {
     color: gray;
 }
+#section-Action-Starfinder2e, #Action-Starfinder2e .item-icon {
+    background-color: purple;
+    border-color: purple;
+}
+#section-Action-Starfinder2e .text {
+    color: purple;
+}
 
 /* ------------------------------------------------------------------------- */
 /* Page container */
