@@ -25,6 +25,7 @@ function add_quickref_item(parent, data, type) {
 }
 
 function show_modal(data, color, type) {
+    $('#modal').find('.modal-tags, .modal-bullets').remove();
     var title = data.title || "[no title]";
     var subtitle = data.description || data.subtitle || "";
     var bullets = data.bullets || [];
@@ -62,6 +63,7 @@ function show_modal(data, color, type) {
 function hide_modal() {
     $("body").removeClass("modal-open");
     $("#modal").removeClass("modal-visible");
+	$('#modal').find('.modal-tags, .modal-bullets').remove();
 }
 
 function fill_section(data, parentname, type) {
