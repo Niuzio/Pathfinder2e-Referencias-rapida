@@ -9,6 +9,15 @@ function replaceMarkers(str) {
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
 function add_quickref_item(parent, data, type) {
+	// Manejo de objeto subtítulo: { header: "Nombre de grupo" }
+if (data.header) {
+  var h = document.createElement("div");
+  h.className = "section-subheader";
+  h.textContent = data.header;
+  parent.appendChild(h);
+  return;        // dejamos de procesar esto como ítem normal
+}
+	
     var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = replaceMarkers(data.subtitle || "");
     var title    = replaceMarkers(data.title    || "[no title]");
