@@ -1,8 +1,8 @@
 data_Action_Starfinder2e = [
   {
-    title: "Puntos de Héroe",
+    title: "Puntos de Héroe[one-action]",
     icon: "star",
-    subtitle: "Recursos heroicos",
+    subtitle: "Recursos heroicos[one-action]",
     description: "Tus logros heroicos te garantizan buena fortuna. Puedes tener un máximo de 3 puntos de héroe.[one-action] [two-actions] [three-actions] [reaction]",
     reference: "Pantalla del Director – Puntos de Héroe",
     tags       : [
@@ -12,7 +12,7 @@ data_Action_Starfinder2e = [
     bullets: [
       "Ganas 1 punto de héroe al inicio de la sesión.",
       "Ganas 1 punto de héroe por hora de juego o al realizar un acto heroico.",
-      "Gastas 1 punto de héroe para repetir una tirada y usar el segundo resultado (efecto de Fortuna).",
+      "Gastas 1 punto de héroe para [one-action] repetir una tirada y usar el segundo resultado (efecto de Fortuna).",
       "Gastas 3 puntos de héroe para eliminar la condición de moribundo y estabilizarte con 0 PS (Recuperación Heroica).",
       "Pierdes todos tus puntos de héroe al final de la sesión."
     ]
