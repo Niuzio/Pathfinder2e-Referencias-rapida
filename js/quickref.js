@@ -68,6 +68,8 @@ function init() {
     fill_section(data_environment_cover, "environment-cover", "Ambiente");
 	fill_section(data_rest, "basic-rest", "Descanso");
 	fill_section(data_optional, "optional-actions", "Acción basicas");
+	fill_section(data_exploration_general, "exploration-general", "Exploración general");
+	fill_section(data_exploration_skill,   "exploration-skill",   "Exploración de habilidad");
 	
 
     var modal = document.getElementById("modal");
