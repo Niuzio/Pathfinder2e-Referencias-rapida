@@ -1,6 +1,5 @@
-// Iluminación
-data_environment_light = [
-  {
+data_environment_obscurance = [
+    {
     title: "Luz brillante",
     icon: "star-pupil",
     subtitle: "Visión normal",
@@ -31,13 +30,12 @@ data_environment_light = [
     bullets: [
       "Otorga el estado No detectado.",
       "Antes de atacar, la criatura debe superar una prueba plana CD 10 para determinar tu posición."
-    ]
-  }
-];
+        ]
+    }
+]
 
-// Sentidos precisos
-data_environment_vision = [
-  {
+data_environment_light = [
+    {
     title: "Visión en la oscuridad",
     icon: "semi-closed-eye",
     subtitle: "Darkvision",
@@ -57,13 +55,12 @@ data_environment_vision = [
     bullets: [
       "Percibe criaturas e ilusiones de forma auténtica.",
       "No es afectada por invisibilidad ni ilusiones."
-    ]
-  }
-];
+        ]
+    }
+]
 
-// Sentidos imprecisos
-data_environment_imprecise_senses = [
-  {
+data_environment_vision = [
+    {
     title: "Olfato",
     icon: "nose",
     subtitle: "Impreciso",
@@ -83,13 +80,12 @@ data_environment_imprecise_senses = [
     bullets: [
       "Detecta criaturas u objetos en contacto con la superficie.",
       "No revela detalles finos ni posición exacta."
-    ]
-  }
-];
+        ]
+    }
+]
 
-// Cobertura
 data_environment_cover = [
-  {
+    {
     title: "Cobertura parcial",
     icon: "broken-shield",
     subtitle: "Cobertura media (½)",
@@ -119,11 +115,7 @@ data_environment_cover = [
       "No puedes ser elegido directamente como objetivo de ataques o conjuros.",
       "Los efectos de área te afectan si estás dentro del área."
     ]
-  }
-];
-
-// Flanqueo
-data_environment_flanking = [
+  },
   {
     title: "Flanqueo",
     icon: "crossed-swords",
@@ -135,11 +127,7 @@ data_environment_flanking = [
       "El enemigo recibe el estado Desprevenido mientras siga flanqueado.",
       "No funciona contra criaturas que no pueden ser flanqueadas."
     ]
-  }
-];
-
-// Terreno y efectos ambientales
-data_environment_terrain = [
+  },
   {
     title: "Terreno difícil",
     icon: "hiking",
