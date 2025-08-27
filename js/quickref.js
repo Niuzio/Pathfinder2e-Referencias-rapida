@@ -2,16 +2,26 @@ function add_quickref_item(parent, data, type) {
     var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = data.subtitle || "";
     var title = data.title || "[no title]";
-
+	// —————— Nuevo bloque para renderizar tags ——————
+var tagsHTML = "";
+if (data.tags && data.tags.length) {
+  tagsHTML = '<div class="item-tags">' +
+    data.tags.map(function(tag) {
+      return '<span class="tag" data-tooltip="' + tag.info + '">' +
+               tag.name +
+             '</span>';
+    }).join("") +
+  '</div>';
+}
     var item = document.createElement("div");
     item.className += "item itemsize"
     item.innerHTML =
-    '\
-    <div class="item-icon iconsize icon-' + icon + '"></div>\
-    <div class="item-text-container text">\
-        <div class="item-title">' + title + '</div>\
-        <div class="item-desc">' + subtitle + '</div>\
-    </div>\
+  '<div class="item-icon iconsize icon-' + icon + '"></div>' +
+  '<div class="item-text-container text">' +
+    '<div class="item-title">' + title + '</div>' +
+    '<div class="item-desc">' + subtitle + '</div>' +
+    tagsHTML +    // ← aquí agregamos las etiquetas
+  '</div>';
     ';
 
     var style = window.getComputedStyle(parent.parentNode.parentNode);
