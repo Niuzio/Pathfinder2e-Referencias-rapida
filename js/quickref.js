@@ -1,19 +1,7 @@
-// — helper para sustituir marcadores por <img> —
-function replaceMarkers(str) {
-  if (typeof str !== "string") return str;
-  return str
-    .replaceAll("[one-action]",  '<img src="icons/single_action.png"  class="action-icon" alt="1 acción">')
-    .replaceAll("[two-actions]", '<img src="icons/two_action.png"    class="action-icon" alt="2 acciones">')
-    .replaceAll("[three-actions]", '<img src="icons/three_action.png" class="action-icon" alt="3 acciones">')
-    .replaceAll("[reaction]",     '<img src="icons/reaction.png"      class="action-icon" alt="reacción">')
-    .replaceAll("[free-action]",  '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
-}
 function add_quickref_item(parent, data, type) {
     var icon = data.icon || "perspective-dice-six-faces-one";
-var subtitle = replaceMarkers(data.subtitle || "");
-var title    = replaceMarkers(data.title    || "[no title]");
-	// Si tienes algo como data.bullets.map(...), haz:
-var bullets = (data.bullets || []).map(b => replaceMarkers(b));
+    var subtitle = data.subtitle || "";
+    var title = data.title || "[no title]";
 
     var item = document.createElement("div");
     item.className += "item itemsize"
@@ -38,10 +26,10 @@ var bullets = (data.bullets || []).map(b => replaceMarkers(b));
 
 function show_modal(data, color, type) {
     $('#modal').find('.modal-tags, .modal-bullets').remove();
-var title     = replaceMarkers(data.title       || "[no title]");
-var subtitle  = replaceMarkers(data.description || data.subtitle || "");
-var bullets   = (data.bullets || []).map(b => replaceMarkers(b));
-var reference = replaceMarkers(data.reference   || "");
+    var title = data.title || "[no title]";
+    var subtitle = data.description || data.subtitle || "";
+    var bullets = data.bullets || [];
+    var reference = data.reference || "";
     type = type || "";
     color = color || "black"
 
@@ -104,82 +92,6 @@ function init() {
 
     var modal = document.getElementById("modal");
     modal.onclick = hide_modal;
-
-	// Reemplazar marcadores en toda la página una vez que se montó todo:
-  replaceActionMarkers(document.body);
-}
-function renderQuickRef() {
-  // ... código que genera tu HTML ...
-
-  // Al final, reemplazar marcadores por iconos
-  replaceActionTags();
-}
-
-function replaceActionTags() {
-// 1) Mapa de marcadores -> archivo de icono (rutas actuales)
-// --- Sustitución de [one-action] -> <img src="..."> ---
-const ACTION_ICON_SRC = {
-  "[one-action]":  "icons/single_action.png",
-  "[two-actions]": "icons/two_action.png",
-  "[three-actions]":"icons/three_action.png",
-  "[reaction]":    "icons/reaction.png",
-  "[free-action]": "icons/free_action.png"
-};
-
-function replaceActionMarkers(root = document.body) {
-  const walker = document.createTreeWalker(
-    root,
-    NodeFilter.SHOW_TEXT,
-    {
-      acceptNode(node) {
-        const t = node.nodeValue;
-        if (!t || !t.includes("[")) return NodeFilter.FILTER_REJECT;
-        for (const key in ACTION_ICON_SRC) {
-          if (t.includes(key)) return NodeFilter.FILTER_ACCEPT;
-        }
-        return NodeFilter.FILTER_REJECT;
-      }
-    }
-  );
-
-  const targets = [];
-  while (walker.nextNode()) targets.push(walker.currentNode);
-
-  targets.forEach(textNode => {
-    const frag = document.createDocumentFragment();
-    let remaining = textNode.nodeValue;
-
-    while (remaining.length) {
-      let nextKey = null;
-      let nextIdx = Infinity;
-      for (const key in ACTION_ICON_SRC) {
-        const i = remaining.indexOf(key);
-        if (i !== -1 && i < nextIdx) { nextIdx = i; nextKey = key; }
-      }
-
-      if (nextKey === null) {
-        frag.appendChild(document.createTextNode(remaining));
-        break;
-      }
-
-      if (nextIdx > 0) {
-        frag.appendChild(document.createTextNode(remaining.slice(0, nextIdx)));
-      }
-
-      const img = document.createElement("img");
-      img.src = ACTION_ICON_SRC[nextKey];
-      img.alt = nextKey;
-      img.className = "action-icon";
-      img.decoding = "async";
-      img.loading = "lazy";
-      frag.appendChild(img);
-
-      remaining = remaining.slice(nextIdx + nextKey.length);
-    }
-
-    textNode.parentNode.replaceChild(frag, textNode);
-  });
 }
 
 $(window).load(init);
-
