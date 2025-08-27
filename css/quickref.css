@@ -354,3 +354,22 @@ p:first-child {
     .modalsize {}
 }
 
+/* ----------------------------------------
+   Íconos tintados con el color de sección
+   ---------------------------------------- */
+.section-container .section-row-icon i {
+  color: var(--section-color);
+}
+
+/* Opcional: fondo circular con silueta blanca */
+.section-container .section-row-icon {
+  background-color: var(--section-color);
+  color: white;
+  border-radius: 50%;
+  padding: 4px;      /* Ajusta según tu diseño */
+  width: 32px;       /* Igual que la altura para un círculo */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
