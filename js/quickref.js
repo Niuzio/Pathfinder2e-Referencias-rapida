@@ -93,6 +93,26 @@ function init() {
     var modal = document.getElementById("modal");
     modal.onclick = hide_modal;
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const actionIcons = {
+    "[one-action]": "icons/Acciones/single_action.png",
+    "[two-actions]": "icons/Acciones/two_action.png",
+    "[three-actions]": "icons/Acciones/three_action.png",
+    "[reaction]": "icons/Acciones/reaction.png",
+    "[free-action]": "icons/Acciones/free_action.png"
+  };
+
+  // Selecciona el contenedor principal donde se inyecta tu contenido
+  const container = document.querySelector("#content") || document.body;
+
+  // Recorre cada marcador y reemplázalo por la imagen
+  Object.entries(actionIcons).forEach(([tag, src]) => {
+    container.innerHTML = container.innerHTML.replaceAll(
+      tag,
+      `<img src="${src}" alt="${tag}" class="action-icon">`
+    );
+  });
+});
 
 $(window).load(init);
 
