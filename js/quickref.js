@@ -62,11 +62,6 @@ item.onclick = function(e) {
   e.preventDefault();             // frena cualquier acción por defecto
   show_modal(data, color, type);  // tu modal sigue igual
 };
-
-var container = lastItemsContainer || parent;
-container.appendChild(item);
-  };
-
   // 3) Dónde lo metemos: en la subcategoría activa o en el parent general
   var container = lastItemsContainer || parent;
   container.appendChild(item);
