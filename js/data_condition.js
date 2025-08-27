@@ -386,7 +386,7 @@ data_condition = [
       "Penalizador por estatus igual al valor a pruebas y CD basadas en Destreza."
     ]
   },
-      {
+  {
         title: "Tumbado",
         icon: "falling",
         subtitle: "Desventaja",
@@ -397,6 +397,6 @@ data_condition = [
           "Contra ataques a distancia sufres +2 por circunstancia a la CA; contra ataques cuerpo a cuerpo, -2 a la CA",
           "Ponerse de pie finaliza este estado y puede desencadenar reacciones basadas en movimiento",
           "Puedes Reptar para moverte manteniendo el estado tumbado"
-        ]
-      }
-    ];
+    ]
+  }
+];
