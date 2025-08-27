@@ -1,7 +1,4 @@
 data_Action_Starfinder2e = [
-  /* …tus otras reglas… */,
-  // --------------------------------------------------
-  // REGLAS DE PUNTOS DE HÉROE (añadido)
   {
     title: "Puntos de Héroe",
     icon: "star",
