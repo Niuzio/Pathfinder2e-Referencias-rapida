@@ -1,3 +1,6 @@
+// Contenedor de subcategorías activo y su padre
+var lastItemsContainer = null;
+var lastParent = null;
 // — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
@@ -8,30 +11,62 @@ function replaceMarkers(str) {
         .replaceAll('[reaction]',      '<img src="icons/reaction.png"      class="action-icon" alt="reacción">')
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
+// COPIAR ↓
 function add_quickref_item(parent, data, type) {
-    var icon = data.icon || "perspective-dice-six-faces-one";
-    var subtitle = replaceMarkers(data.subtitle || "");
-    var title    = replaceMarkers(data.title    || "[no title]");
+// Si cambiamos de sección (parent distinto), borramos el grupo anterior
+if (parent !== lastParent) {
+  lastItemsContainer = null;
+  lastParent = parent;
+}
+  // 1) Si este objeto trae "header", abrimos nueva subcategoría
+  if (data.header) {
+    // Wrapper de sección
+    var category = document.createElement("div");
+    category.className = "category";
+    parent.appendChild(category);
 
-    var item = document.createElement("div");
-    item.className += "item itemsize"
-    item.innerHTML =
-    '\
-    <div class="item-icon iconsize icon-' + icon + '"></div>\
-    <div class="item-text-container text">\
-        <div class="item-title">' + title + '</div>\
-        <div class="item-desc">' + subtitle + '</div>\
-    </div>\
-    ';
+    // Título de subcategoría
+    var h = document.createElement("div");
+    h.className = "section-subheader";
+    h.textContent = data.header;
+    category.appendChild(h);
 
-    var style = window.getComputedStyle(parent.parentNode.parentNode);
-    var color = style.backgroundColor;
+    // Creamos un grid para los ítems siguientes
+    lastItemsContainer = document.createElement("div");
+    lastItemsContainer.className = "item-group";
+    category.appendChild(lastItemsContainer);
 
-    item.onclick = function () {
-        show_modal(data, color, type);
-    }
+    // Salimos: este objeto no genera un item normal
+    return;
+  }
 
-    parent.appendChild(item);
+  // 2) Ítem normal: icono, título, descripción
+  var icon     = data.icon     || "perspective-dice-six-faces-one";
+  var subtitle = replaceMarkers(data.subtitle || "");
+  var title    = replaceMarkers(data.title    || "[no title]");
+
+  var item = document.createElement("div");
+  item.className = "item itemsize";
+  item.innerHTML = `
+    <div class="item-icon iconsize icon-${icon}"></div>
+    <div class="item-text-container text">
+      <div class="item-title">${title}</div>
+      <div class="item-desc">${subtitle}</div>
+    </div>
+  `;
+
+  var style = window.getComputedStyle(parent.parentNode.parentNode);
+  var color = style.backgroundColor;
+  item.onclick = function() {
+    show_modal(data, color, type);
+	  // 3) Dónde lo metemos: en la subcategoría activa o en el parent general
+var container = lastItemsContainer || parent;
+container.appendChild(item);
+  };
+
+  // 3) Dónde lo metemos: en la subcategoría activa o en el parent general
+  var container = lastItemsContainer || parent;
+  container.appendChild(item);
 }
 
 function show_modal(data, color, type) {
