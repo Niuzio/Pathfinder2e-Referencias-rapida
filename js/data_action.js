@@ -3,10 +3,6 @@ data_action = [
     title: "Activar un objeto",
     icon: "variable_action",
     subtitle: "Manipular",
-    tags       : [
-      { name: "Goblin", info: "Herencia goblin de las nieves" },
-      { name: "Ascendencia", info: "Guía de personajes de los Presagios Perdidos" }
-    ],
     description: "Llamas al efecto de un objeto activándolo de la forma adecuada.",
     reference: "PF2e SRD p.532",
     traits: ["manipular"],
