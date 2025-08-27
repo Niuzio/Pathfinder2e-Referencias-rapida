@@ -39,19 +39,24 @@ function show_modal(data, color, type) {
     $("#modal-title").text(title).append("<span class=\"float-right\">" + type + "</span>");
     $("#modal-subtitle").text(subtitle);
 	// — INSERTAR TAGS EN EL MODAL —
-var tagsHTML = "";
-if (data.tags && data.tags.length) {
-    tagsHTML = '<div class="modal-tags">' +
-        data.tags.map(function(tag) {
-            return '<span class="tag" data-tooltip="' + tag.info + '">' +
-                       tag.name +
-                   '</span>';
-        }).join('') +
-    '</div>';
-}
-    $("#modal-subtitle").after(tagsHTML);
-	
-    $("#modal-reference").text(reference);
+// 2. Construir HTML de etiquetas
+ var tagsHTML = "";
+ if (data.tags && data.tags.length) {
+     tagsHTML = '<div class="modal-tags">' +
+         data.tags.map(function(tag) {
+             return '<span class="tag" data-tooltip="' + tag.info + '">' +
+                        tag.name +
+                    '</span>';
+         }).join('') +
+     '</div>';
+ }
+
+-// 3. Insertar las etiquetas justo encima de la descripción
+-$("#modal-subtitle").after(tagsHTML);
++// 3. Insertar las etiquetas justo encima de la descripción
++$("#modal-subtitle").after(tagsHTML);
+
+ $("#modal-reference").text(reference);
 
     var bullets_html = bullets.map(function (item) { return "<p class=\"fonstsize\">" + item + "</p>"; }).join("\n<hr>\n");
     $("#modal-bullets").html(bullets_html);
