@@ -75,6 +75,65 @@ function init() {
 
     var modal = document.getElementById("modal");
     modal.onclick = hide_modal;
+}}
+
+function renderTags(tags) {
+  if (!tags || !tags.length) return "";
+  return `
+    <div class="section-row-tags">
+      ${tags.map(tag =>
+        `<span class="tag" data-tooltip="${tag.info}">${tag.name}</span>`
+      ).join("")}
+    </div>
+  `;
+}
+/* — Etiquetas (“tags”) debajo del subtítulo — */
+.section-row-tags {
+  margin: 4px 0;
+}
+
+.section-row-tags .tag {
+  display: inline-block;
+  background-color: var(--section-color);
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.75em;
+  padding: 2px 6px;
+  margin-right: 4px;
+  position: relative;
+  cursor: default;
+}
+
+/* Tooltip nativo con pseudo-elemento */
+.section-row-tags .tag:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-size: 0.75em;
+  line-height: 1.2;
+  z-index: 10;
+  max-width: 200px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Flecha del tooltip */
+.section-row-tags .tag:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(0,0,0,0.85);
+  z-index: 10;
 }
 
 $(window).load(init);
