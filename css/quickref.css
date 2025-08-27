@@ -134,8 +134,8 @@
 }
 
 #section-action, #section-action .item-icon {
-    background-color: black;
-    border-color: black;
+    background-color: Green;
+    border-color: Green;
 }
 #section-action .text {
     color: black;
@@ -186,13 +186,13 @@
     color: gray;
 }
 #section-exploration-general {
-  section-color: #9C27B0;   /* púrpura */
-  section-bg:    #F3E5F5;   /* púrpura muy claro */
+    background-color: gray;
+    border-color: gray;
 }
 
 #section-exploration-skill {
-  section-color: #FF5722;   /* naranja */
-  section-bg:    #FBE9E7;   /* naranja muy claro */
+    background-color: gray;
+    border-color: gray;
 }
 
 /* ------------------------------------------------------------------------- */
