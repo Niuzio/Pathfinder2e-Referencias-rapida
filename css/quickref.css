@@ -431,3 +431,8 @@ p:first-child {
 .tag[data-tooltip]:hover::after {
   opacity: 1;
 }
+.action-icon {
+  height: 1.4em;
+  vertical-align: middle;
+  margin: 0 0.15em;
+}
