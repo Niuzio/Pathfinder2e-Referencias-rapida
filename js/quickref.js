@@ -1,7 +1,19 @@
+// — helper para sustituir marcadores por <img> —
+function replaceMarkers(str) {
+  if (typeof str !== "string") return str;
+  return str
+    .replaceAll("[one-action]",  '<img src="icons/single_action.png"  class="action-icon" alt="1 acción">')
+    .replaceAll("[two-actions]", '<img src="icons/two_action.png"    class="action-icon" alt="2 acciones">')
+    .replaceAll("[three-actions]", '<img src="icons/three_action.png" class="action-icon" alt="3 acciones">')
+    .replaceAll("[reaction]",     '<img src="icons/reaction.png"      class="action-icon" alt="reacción">')
+    .replaceAll("[free-action]",  '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
+}
 function add_quickref_item(parent, data, type) {
     var icon = data.icon || "perspective-dice-six-faces-one";
-    var subtitle = data.subtitle || "";
-    var title = data.title || "[no title]";
+var subtitle = replaceMarkers(data.subtitle || "");
+var title    = replaceMarkers(data.title    || "[no title]");
+	// Si tienes algo como data.bullets.map(...), haz:
+var bullets = (data.bullets || []).map(b => replaceMarkers(b));
 
     var item = document.createElement("div");
     item.className += "item itemsize"
@@ -26,10 +38,10 @@ function add_quickref_item(parent, data, type) {
 
 function show_modal(data, color, type) {
     $('#modal').find('.modal-tags, .modal-bullets').remove();
-    var title = data.title || "[no title]";
-    var subtitle = data.description || data.subtitle || "";
-    var bullets = data.bullets || [];
-    var reference = data.reference || "";
+var title     = replaceMarkers(data.title       || "[no title]");
+var subtitle  = replaceMarkers(data.description || data.subtitle || "");
+var bullets   = (data.bullets || []).map(b => replaceMarkers(b));
+var reference = replaceMarkers(data.reference   || "");
     type = type || "";
     color = color || "black"
 
