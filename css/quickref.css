@@ -379,32 +379,33 @@ p:first-child {
     margin-top: 0.3em;
 }
 :root {
-  --tag-bg:   #7b1c1d;  /* Rojo oscuro */
-  --tag-border: #e6dccf; /* Beige */
-  --tag-color: #ffffff;  /* Blanco */
-}
-.item-tags .tag {
-  display: inline-block;
-  background-color: var(--tag-bg:   #7b1c1d);
-  border: 1.5px solid var(--tag-border: #e6dccf);
-  color: var(--tag-color: #ffffff);
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.75rem;       /* Ajusta según tu tipografía */
-  letter-spacing: 0.05em;   /* Un toque de separación */
-  padding: 0.25em 0.6em;     /* Alto y ancho interior */
-  border-radius: 3px;        /* Esquinas ligeramente redondeadas */
-  margin-right: 0.4em;       /* Espacio entre tags */
-  cursor: default;           /* Si no son clicables */
-  user-select: none;         /* Evita selección de texto al hacer hover */
+  --tag-bg: #7b1c1d;
+  --tag-border: #e6dccf;
+  --tag-color: #ffffff;
 }
 
-/* Opcional: efecto sutil al pasar el ratón */
+.tag {
+  display: inline-block;
+  background-color: var(--tag-bg);
+  border: 1.5px solid var(--tag-border);
+  color: var(--tag-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.25em 0.6em;
+  border-radius: 3px;
+  margin-right: 0.4em;
+  cursor: default;
+  user-select: none;
+}
+
 .tag:hover {
   background-color: #8f2629;
   border-color: #d2c8b8;
 }
-/* Tooltips para .tag[data-tooltip] */
+
+/* Tooltip */
 .tag[data-tooltip] {
   position: relative;
 }
@@ -412,7 +413,7 @@ p:first-child {
 .tag[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 100%;           /* justo encima de la etiqueta */
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-0.5em);
   background: rgba(0, 0, 0, 0.85);
