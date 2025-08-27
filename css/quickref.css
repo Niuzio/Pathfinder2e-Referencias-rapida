@@ -436,3 +436,11 @@ p:first-child {
     vertical-align: text-bottom;
     margin: 0 0.15em;
 }
+.section-subheader {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
