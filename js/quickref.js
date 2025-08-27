@@ -1,4 +1,4 @@
-// — helper para sustituir marcadores por <img> —
+/ — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
     return str
@@ -79,22 +79,8 @@ function hide_modal() {
 function fill_section(data, parentname, type) {
     var parent = document.getElementById(parentname);
     data.forEach(function (item) {
-/**
- * Recorre un array de items y los añade al contenedor.
- * Si el objeto tiene `header`, inyecta un subtítulo.
- * En caso contrario llama a add_quickref_item.
- */
-function fill_section(dataArray, parentElement, type) {
-  dataArray.forEach(item => {
-    if (item.header) {
-      const h = document.createElement("div");
-      h.className = "section-subheader";
-      h.textContent = item.header;
-      parentElement.appendChild(h);
-    } else {
-      add_quickref_item(parentElement, item, type);
-    }
-  });
+        add_quickref_item(parent, item, type);
+    });
 }
 
 function init() {
