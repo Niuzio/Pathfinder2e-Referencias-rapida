@@ -432,7 +432,7 @@ p:first-child {
   opacity: 1;
 }
 .action-icon {
-  height: 1.4em;
-  vertical-align: middle;
-  margin: 0 0.15em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+    margin: 0 0.15em;
 }
