@@ -385,9 +385,9 @@ p:first-child {
 }
 .item-tags .tag {
   display: inline-block;
-  background-color: var(--tag-bg);
-  border: 1.5px solid var(red);
-  color: var(--tag-color);
+  background-color: var(--tag-bg:   #7b1c1d);
+  border: 1.5px solid var(--tag-border: #e6dccf);
+  color: var(--tag-color: #ffffff);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.75rem;       /* Ajusta según tu tipografía */
