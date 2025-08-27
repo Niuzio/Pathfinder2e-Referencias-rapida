@@ -1,29 +1,85 @@
 data_rest = [
-    {
-        title: "Descanso corto",
-        icon: "sands-of-time",
-        subtitle: "Al menos una hora",
-        description: "Periodo de relativa tranquilidad, de al menos una hora, durante el cual no se hace nada más extenuante que comer, beber, leer o atender las heridas",
-        reference: "PHB, pg. 186.",
-        bullets: [
-            "Durante un descanso corto, cada personaje puede gastar uno o más Dados de Golpe, hasta su máximo.",
-			"Un personaje tiene tantos Dados de Golpe como su nivel.",
-			"Por cada Dado de Golpe invertido, el personaje tirará un dado y añadirá al resultado su modificador de Constitución. Se recuperarán tantos puntos de golpe como el total (mínimo 0).",
-			"Se podrá decidir si se gasta otro Dado de Golpe tras cada tirada."
-        ]
-    },
-	{
-        title: "Descanso largo",
-        icon: "campfire",
-        subtitle: "Al menos ocho horas",
-        description: "Periodo de inactividad prolongada, de al menos ocho horas, en el que se duerme al menos seis horas y se lleva a cabo como mucho dos horas de actividades poco intensas, como leer, hablar, comer o montar guardia.",
-        reference: "PHB, pg. 186.",
-        bullets: [
-            "Si el descanso se ve interrumpido por un periodo de actividad más intensa (caminando al menos una hora, luchando, lanzando conjuros o esfuerzos similares), se tandrá que volver a comenzar el descanso desde el inicio para beneficiarse de sus efectos.",
-			"Al final de un descanso largo se recuperan todos los puntos de golpe perdidos.",
-			"También se recupera tantos Dados de golpe gastados como la mitad de su total (mínimo 1).",
-			"No puedes beneficiarte de los efectos de más un descanso largo en un periodo de veinticuatro horas.",
-			"Debes iniciar el descanso largo con al menos 1 punto de golpe para que el descanso surja algún efecto."
-        ]
-    }
-]
+  {
+    title: "Elaborar ítems",
+    icon: "hammer",
+    subtitle: "Tiempo libre",
+    description: "Creas objetos sencillos a partir de materias primas usando tu competencia en Artesanía.",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 242)",
+    bullets: [
+      "Consume un día completo de tiempo libre.",
+      "Requiere disponer de las materias primas y las herramientas adecuadas.",
+      "Al finalizar, produces un objeto cuyo coste base coincide con el valor de mercado de las materias primas empleadas."
+    ]
+  },
+  {
+    title: "Falsificar documento",
+    icon: "scroll",
+    subtitle: "Tiempo libre",
+    description: "Usas tu competencia en Sociedad para crear un texto o pergamino creíble.",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 252)",
+    bullets: [
+      "Consume un día completo de tiempo libre.",
+      "Realiza una tirada de Sociedad; la CD la determina el DJ según la complejidad del documento.",
+      "Con un éxito, produces un documento difícil de distinguir del original."
+    ]
+  },
+  {
+    title: "Obtener ingresos",
+    icon: "coins",
+    subtitle: "Tiempo libre",
+    description: "Dedicas tu tiempo libre a ganarte la vida usando tus competencias en Artesanía, Saber o Interpretación.",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 237)",
+    bullets: [
+      "Consume un día completo de tiempo libre.",
+      "Elige una de las tres habilidades y tira; la CD y la escala de ganancias las establece el DJ.",
+      "El resultado de la tirada determina cuánto dinero ganas (monedas de oro o doblones)."
+    ]
+  },
+  {
+    title: "Descanso de larga duración",
+    icon: "campfire",
+    subtitle: "Tiempo libre",
+    description: "Pasa un día entero descansando para recuperar energías y capacidades.",
+    reference: "Reglas básicas – Descanso largo (p. 481)",
+    bullets: [
+      "Requiere 8 horas de sueño y hasta 4 horas de actividad ligera (leer, vigilar, conversar).",
+      "Recuperas puntos de golpe iguales a tu modificador de Constitución (mínimo 1) multiplicado por el doble de tu nivel.",
+      "Recuperas todos tus conjuros preparados y refrescas aptitudes de un solo uso."
+    ]
+  },
+  {
+    title: "Reconvertir opciones",
+    icon: "shuffle",
+    subtitle: "Tiempo libre",
+    description: "Modificas una dote, rasgo de clase, aptitud de conjuro o competencia según tus orígenes.",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 481)",
+    bullets: [
+      "Consume un día completo de tiempo libre después de un descanso largo.",
+      "Solo puedes reconvertir una opción por día."
+    ]
+  },
+  {
+    title: "Subsistir",
+    icon: "bread-slice",
+    subtitle: "Tiempo libre",
+    description: "Buscas comida y refugio para tu grupo usando Supervivencia o Sociedad (en asentamientos).",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 240)",
+    bullets: [
+      "Consume un día completo de tiempo libre.",
+      "Tirada de Supervivencia (fuera de asentamientos) o de Sociedad (en asentamientos).",
+      "Con un éxito, evitas penalizadores por hambre, sed o fatiga."
+    ]
+  },
+  {
+    title: "Tratar enfermedad",
+    icon: "syringe",
+    subtitle: "Tiempo libre",
+    description: "Dedicas tu tiempo libre a cuidar a una criatura enferma o envenenada usando Medicina.",
+    reference: "Reglas básicas – Actividades de tiempo libre (p. 249)",
+    bullets: [
+      "Consume un día completo de tiempo libre por cada curso de tratamiento.",
+      "Realiza una tirada de Medicina con CD igual al progreso de la enfermedad o veneno.",
+      "Con un éxito, estabilizas al paciente o reduces un paso de la enfermedad o del efecto de veneno."
+    ]
+  }
+];
