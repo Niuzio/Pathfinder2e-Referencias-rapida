@@ -101,24 +101,88 @@ function renderQuickRef() {
 }
 
 function replaceActionTags() {
-  const actionIcons = {
-    "[one-action]": "icons/single_action.png",
-    "[two-actions]": "icons/two_action.png",
-    "[three-actions]": "icons/three_action.png",
-    "[reaction]": "icons/reaction.png",
-    "[free-action]": "icons/free_action.png"
-  };
+// 1) Mapa de marcadores -> archivo de icono (rutas actuales)
+const ACTION_ICON_SRC = {
+  "[one-action]":  "icons/single_action.png",
+  "[two-actions]": "icons/two_action.png",
+  "[three-actions]":"icons/three_action.png",
+  "[reaction]":    "icons/reaction.png",
+  "[free-action]": "icons/free_action.png"
+};
 
-  const container = document.querySelector("#content") || document.body;
+// 2) Reemplaza SOLO en nodos de texto bajo el contenedor dado
+function replaceActionMarkers(root = document.body) {
+  const walker = document.createTreeWalker(
+    root,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        const t = node.nodeValue;
+        // Evitar sustituir en textos vacíos o triviales
+        if (!t || !t.includes("[")) return NodeFilter.FILTER_REJECT;
+        // Aceptar si contiene alguno de los marcadores
+        for (const key in ACTION_ICON_SRC) {
+          if (t.includes(key)) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    }
+  );
 
-  Object.entries(actionIcons).forEach(([tag, src]) => {
-    container.innerHTML = container.innerHTML.replaceAll(
-      tag,
-      `<img src="${src}" alt="${tag}" class="action-icon">`
-    );
+  const targets = [];
+  while (walker.nextNode()) targets.push(walker.currentNode);
+
+  targets.forEach(textNode => {
+    const frag = document.createDocumentFragment();
+    let remaining = textNode.nodeValue;
+
+    while (remaining.length) {
+      // Encuentra el próximo marcador
+      let nextKey = null;
+      let nextIdx = Infinity;
+      for (const key in ACTION_ICON_SRC) {
+        const i = remaining.indexOf(key);
+        if (i !== -1 && i < nextIdx) {
+          nextIdx = i;
+          nextKey = key;
+        }
+      }
+
+      if (nextKey === null) {
+        // No hay más marcadores en este nodo
+        frag.appendChild(document.createTextNode(remaining));
+        break;
+      }
+
+      // Texto antes del marcador
+      if (nextIdx > 0) {
+        frag.appendChild(document.createTextNode(remaining.slice(0, nextIdx)));
+      }
+
+      // Inserta el icono
+      const img = document.createElement("img");
+      img.src = ACTION_ICON_SRC[nextKey];
+      img.alt = nextKey;
+      img.className = "action-icon";
+      img.decoding = "async";
+      img.loading = "lazy";
+      frag.appendChild(img);
+
+      // Resto del texto tras el marcador
+      remaining = remaining.slice(nextIdx + nextKey.length);
+    }
+
+    // Reemplaza el nodo de texto original por el fragmento
+    textNode.parentNode.replaceChild(frag, textNode);
   });
 }
+function renderQuickRef() {
+  // ... tu código actual que construye lista, tarjetas, modales ...
 
+  // Llama aquí. Ajusta el selector al contenedor principal real de tu app.
+  const root = document.querySelector("#content") || document.body;
+  replaceActionMarkers(root);
+}
 
 $(window).load(init);
 
