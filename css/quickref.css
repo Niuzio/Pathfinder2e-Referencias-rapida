@@ -185,14 +185,14 @@
 #section-rest .text {
     color: gray;
 }
-#section-exploration-general {
+#section-exploration-general, #section-exploration-general .item-icon {
     background-color: gray;
     border-color: gray;
 }
 #section-exploration-general .text {
     color: gray;
 }
-#section-exploration-skill {
+#section-exploration-skill, #section-exploration-skill .item-icon {
     background-color: gray;
     border-color: gray;
 }
