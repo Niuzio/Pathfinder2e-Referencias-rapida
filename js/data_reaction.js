@@ -53,7 +53,7 @@ data_reaction = [
     ]
   },
 
-  // === ARCANOS ===
+  { header: "Arcanos (Inteligencia)" },
   {
     title: "Recordar conocimiento",
     icon: "single_action",
