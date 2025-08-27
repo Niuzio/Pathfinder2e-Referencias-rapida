@@ -1,4 +1,4 @@
-/ — helper para sustituir marcadores por <img> —
+// — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
     return str
