@@ -189,10 +189,16 @@
     background-color: gray;
     border-color: gray;
 }
+#section-exploration-general.text {
+    color: gray;
+}
 
 #section-exploration-skill {
     background-color: gray;
     border-color: gray;
+}
+#section-exploration-skill.text {
+    color: gray;
 }
 
 /* ------------------------------------------------------------------------- */
