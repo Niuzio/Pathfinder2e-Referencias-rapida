@@ -176,13 +176,6 @@ function replaceActionMarkers(root = document.body) {
     textNode.parentNode.replaceChild(frag, textNode);
   });
 }
-function renderQuickRef() {
-  // ... tu código actual que construye lista, tarjetas, modales ...
-
-  // Llama aquí. Ajusta el selector al contenedor principal real de tu app.
-  const root = document.querySelector("#content") || document.body;
-  replaceActionMarkers(root);
-}
 
 $(window).load(init);
 
