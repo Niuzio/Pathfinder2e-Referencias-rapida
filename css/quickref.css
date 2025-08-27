@@ -359,50 +359,32 @@ p:first-child {
     .itemsize { height: 36px; width:  33%; }
     .modalsize {}
 }
-/* Bloque de tags debajo de la descripción */
+/* Tags dentro del modal */
+.modal-tags {
+    margin: 0.5em 0;
+}
+.modal-tags .tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 0.25em 0.5em;
+    margin-right: 0.4em;
+    font-size: 0.85em;
+    border-radius: 3px;
+    cursor: default;
+}
+
+/* Tags en la lista principal */
 .item-tags {
-  margin: 4px 0;
+    margin-top: 0.3em;
 }
-
 .item-tags .tag {
-  display: inline-block;
-  background-color: var(--section-color);
-  color: #fff;
-  border-radius: 3px;
-  font-size: 0.75em;
-  padding: 2px 6px;
-  margin-right: 4px;
-  position: relative;
-  cursor: default;
-}
-
-/* Tooltip en hover */
-.item-tags .tag:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  padding: 6px 8px;
-  border-radius: 4px;
-  white-space: pre-wrap;
-  font-size: 0.75em;
-  line-height: 1.2;
-  z-index: 10;
-  max-width: 200px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.item-tags .tag:hover::before {
-  content: "";
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  width: 8px;
-  height: 8px;
-  background: rgba(0,0,0,0.85);
-  z-index: 10;
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.2em 0.4em;
+    margin-right: 0.3em;
+    font-size: 0.85em;
+    border-radius: 3px;
+    cursor: default;
 }
