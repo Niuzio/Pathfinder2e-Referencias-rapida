@@ -489,13 +489,6 @@ p:first-child {
   width: 48px;
   height: 48px;
 }
-/* 1. Elimina float y permite flex-wrap */
-.item {
-  float: none;               /* anula el float:left original */
-  display: flex;
-  align-items: flex-start;   /* alinea icono y texto al tope */
-  flex-wrap: wrap;           /* permite que el texto baje a 2ª línea */
-}
 
 /* 2. Ajuste de icono fijo y margen claro */
 .item-icon {
