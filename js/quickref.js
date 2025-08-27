@@ -1,3 +1,4 @@
+var lastItemsContainer = null;
 // — helper para sustituir marcadores por <img> —
 function replaceMarkers(str) {
     if (typeof str !== 'string') return str;
@@ -9,6 +10,26 @@ function replaceMarkers(str) {
         .replaceAll('[free-action]',   '<img src="icons/free_action.png"   class="action-icon" alt="acción libre">');
 }
 function add_quickref_item(parent, data, type) {
+  // Si el objeto trae “header”, creamos una nueva subcategoría
+  if ( data.header ) {
+    // Creamos el wrapper .category
+    var category = document.createElement("div");
+    category.className = "category";
+    parent.appendChild(category);
+
+    // Creamos el título de la subcategoría
+    var h = document.createElement("div");
+    h.className = "section-subheader";
+    h.textContent = data.header;
+    category.appendChild(h);
+
+    // Preparamos el contenedor de ítems (grid)
+    lastItemsContainer = document.createElement("div");
+    lastItemsContainer.className = "item-group";
+    category.appendChild(lastItemsContainer);
+
+    return;
+  }
     var icon = data.icon || "perspective-dice-six-faces-one";
     var subtitle = replaceMarkers(data.subtitle || "");
     var title    = replaceMarkers(data.title    || "[no title]");
@@ -30,8 +51,9 @@ function add_quickref_item(parent, data, type) {
     item.onclick = function () {
         show_modal(data, color, type);
     }
-
-    parent.appendChild(item);
+  // en vez de parent.appendChild(item);
+  var container = lastItemsContainer || parent;
+  container.appendChild(item);
 }
 
 function show_modal(data, color, type) {
