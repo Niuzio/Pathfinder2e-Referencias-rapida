@@ -57,9 +57,12 @@ if (parent !== lastParent) {
 
   var style = window.getComputedStyle(parent.parentNode.parentNode);
   var color = style.backgroundColor;
-  item.onclick = function() {
-    show_modal(data, color, type);
-	  // 3) Dónde lo metemos: en la subcategoría activa o en el parent general
+item.onclick = function(e) {
+  e.stopPropagation();            // evita que el click burbujee
+  e.preventDefault();             // frena cualquier acción por defecto
+  show_modal(data, color, type);  // tu modal sigue igual
+};
+
 var container = lastItemsContainer || parent;
 container.appendChild(item);
   };
