@@ -21,7 +21,7 @@ data_movement = [
     "description": "<p>Atacas con un arma que empuñas o con un ataque sin armas, de signando como objetivo a una criatura a tu alcance (para un ataque cuerpo a cuerpo) o dentro del rango de distancia (para un ataque a distancia). Haz una tirada de ataque utilizando el modificador al ataque para el arma o ataque sin armas que estás utilizando, y compara el resultado con la CA de la criatura objetivo para determinar el efecto. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Haz una tirada de daño según el arma o el ataque sin armas, infligiendo doble daño (ver pág. 407 para las reglas sobre cómo se dobla el daño). </li><li><strong>Éxito </strong>Haz una tirada de daño según el arma o el ataque sin armas, infligiendo daño normal</li></ul>",
     "reference": "Manual de juego p.419",
     "traits": [
-      "ataque"
+      { name: "Ataque", info: "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403" }
     ],
     "bullets": [
       "tu objetivo tiene que  estar a tu alcance (pág. 426)",
