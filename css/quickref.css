@@ -533,22 +533,6 @@ p:first-child {
   overflow: hidden;          /* recorta el texto que desborda */
   text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
 }
-/*-----------------------------------
-1) Permite que el item se encoja
------------------------------------*/
-.item-group .item {
-  min-width: 0;
-}
-/*-----------------------------------
-2) Forzar wrap y romper palabras largas
------------------------------------*/
-.item .item-text,
-.item .item-desc {
-  min-width: 0;               /* clave en flexbox/grid */
-  white-space: normal;        /* habilita saltos de línea */
-  overflow-wrap: break-word;  /* quiebra palabras largas */
-  word-break: break-word;     /* para casos extremos */
-}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
