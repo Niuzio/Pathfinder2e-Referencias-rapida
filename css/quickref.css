@@ -537,6 +537,22 @@ p:first-child {
   /* ... */
   max-width: 150px; /* o el ancho que necesites */
 }
+.actions-list .item {
+  /* Si quieres ancho fijo: */
+  flex: 0 0 140px;      /* la caja mide siempre 140px de ancho */
+  
+  /* O bien ancho variable con límite máximo: */
+  /* flex: 0 1 auto;
+     max-width: 140px; */
+  
+  min-width: 0;         /* permite que el ítem se encoja hasta su flex-basis */
+}
+.item-text-container {
+  white-space: normal;            /* habilita saltos de línea */
+  overflow-wrap: break-word;      /* quiebra palabras largas */
+  word-break: break-word;         /* y también en caso extremo */
+  min-width: 0;                   /* clave en flexbox para permitir el wrap */
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
