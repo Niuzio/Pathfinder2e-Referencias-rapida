@@ -533,71 +533,6 @@ p:first-child {
   overflow: hidden;          /* recorta el texto que desborda */
   text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
 }
-.actions-list .item {
-  /* ... */
-  max-width: 150px; /* o el ancho que necesites */
-}
-.actions-list .item {
-  /* Si quieres ancho fijo: */
-  flex: 0 0 140px;      /* la caja mide siempre 140px de ancho */
-  
-  /* O bien ancho variable con límite máximo: */
-  /* flex: 0 1 auto;
-     max-width: 140px; */
-  
-  min-width: 0;         /* permite que el ítem se encoja hasta su flex-basis */
-}
-.item-text-container {
-  white-space: normal;            /* habilita saltos de línea */
-  overflow-wrap: break-word;      /* quiebra palabras largas */
-  word-break: break-word;         /* y también en caso extremo */
-  min-width: 0;                   /* clave en flexbox para permitir el wrap */
-}
-/* Al final de quickref.css */
-.itemsize {
-  width: auto !important;
-  height: auto !important;
-}
-/* -----------------------------------
-   Override para evitar solapamientos
-   ----------------------------------- */
-
-/* 1) Cada .item como grid/flex-item sin float */
-.item {
-  float: none;                 /* anula float: left */
-  width: 100%;                 /* ocupa todo el ancho de la celda */
-  display: flex;
-  flex-direction: column;      /* icono arriba, texto debajo */
-  align-items: stretch;        /* texto ocupa todo el ancho */
-  box-sizing: border-box;
-  margin: 0;                   /* el gap de grid controla el espaciado */
-}
-
-/* 2) Icono limpio y separado del texto */
-.item-icon {
-  float: none;                 /* anula float */
-  display: block;
-  margin: 0 auto 0.5rem auto;  /* centrado + espacio abajo */
-}
-
-/* 3) Contenedor de texto que admite wrap */
-.item-text-container {
-  flex: 1 1 auto;
-  width: 100%;
-  min-width: 0;                /* crucial en flex/grid para permitir el encojimiento */
-  white-space: normal;         /* habilita saltos de línea */
-  overflow-wrap: break-word;   /* rompe palabras largas */
-  word-break: break-word;      /* y en casos extremos */
-  overflow: visible;
-}
-
-/* 4) Títulos y descripciones también permiten wrap */
-.item-title,
-.item-desc {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-}
 /*-----------------------------------
 1) Permite que el item se encoja
 -----------------------------------*/
@@ -614,8 +549,8 @@ p:first-child {
   overflow-wrap: break-word;  /* quiebra palabras largas */
   word-break: break-word;     /* para casos extremos */
 }
-.item-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  grid-gap: 1rem;
+/* Al final de quickref.css */
+.itemsize {
+  width: auto !important;
+  height: auto !important;
 }
