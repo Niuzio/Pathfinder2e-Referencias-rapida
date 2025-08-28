@@ -15,115 +15,145 @@
     }
     * { box-sizing: border-box; }
     body {
-      margin:0; padding:0; font:14px/1.5 ui-sans-serif,system-ui;
-      background:var(--bg); color:var(--ink);
-      display:grid; grid-template-rows:auto 1fr auto;
-      grid-template-areas:"hd" "main" "ft";
+      margin: 0; padding: 0;
+      font: 14px/1.5 ui-sans-serif, system-ui;
+      background: var(--bg); color: var(--ink);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "hd"
+        "main"
+        "ft";
     }
+
     /* ===== Menú Nivel20 ===== */
     header {
-      grid-area:hd; background:var(--card);
-      border-bottom:1px solid var(--line); position:sticky;
-      top:0; z-index:10; padding:0 16px;
+      grid-area: hd;
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 10;
+      padding: 0 16px;
     }
-    nav { display:flex; }
-    .menu { list-style:none; margin:0; padding:0; display:flex; }
-    .menu>li { position:relative; }
-    .menu>li>a {
-      display:block; padding:12px 16px; text-decoration:none;
-      color:var(--ink); cursor:pointer;
+    nav { display: flex; }
+    .menu { list-style: none; margin: 0; padding: 0; display: flex; }
+    .menu > li { position: relative; }
+    .menu > li > a {
+      display: block; padding: 12px 16px;
+      color: var(--ink); text-decoration: none;
+      cursor: pointer;
     }
-    .menu>li:hover>a { background:hsla(210,80%,90%,.5); }
+    .menu > li:hover > a { background: hsla(210,80%,90%,.5); }
     .submenu {
-      list-style:none; margin:0; padding:4px 0;
-      position:absolute; top:100%; left:0;
-      background:var(--card); border:1px solid var(--line);
-      min-width:220px; display:none; z-index:20;
+      list-style: none; margin: 0; padding: 4px 0;
+      position: absolute; top: 100%; left: 0;
+      background: var(--card); border: 1px solid var(--line);
+      min-width: 220px; display: none; z-index: 20;
     }
-    .menu>li:hover>.submenu { display:block; }
-    .submenu li { margin:0; padding:0; }
+    .menu > li:hover > .submenu { display: block; }
+    .submenu li { margin: 0; padding: 0; }
     .submenu li button,
     .submenu li label {
-      width:100%; text-align:left; padding:8px 12px;
-      background:none; border:none; font:inherit;
-      color:var(--ink); cursor:pointer;
+      width: 100%; text-align: left;
+      padding: 8px 12px; background: none;
+      border: none; font: inherit;
+      color: var(--ink); cursor: pointer;
     }
     .submenu li button:hover,
-    .submenu li label:hover { background:var(--line); }
+    .submenu li label:hover { background: var(--line); }
     .submenu li input[type="text"] {
-      width:calc(100% - 24px); margin:4px 12px;
-      padding:6px; border:1px solid var(--line);
-      border-radius:4px; background:var(--bg);
-      color:var(--ink);
+      width: calc(100% - 24px);
+      margin: 4px 12px; padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--bg); color: var(--ink);
     }
-    #fileInput { display:none; }
+    #fileInput { display: none; }
 
-    /* ========== LAYOUT ========== */
+    /* ===== Layout ===== */
     .layout {
-      grid-area:main; display:grid;
-      grid-template-columns:1fr 1fr; gap:12px; padding:12px;
+      grid-area: main;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 12px;
     }
     .panel {
-      background:var(--card); border:1px solid var(--line);
-      border-radius:8px; padding:12px;
-      display:flex; flex-direction:column;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
     }
-    .panel.split { height:calc(100vh - 230px); }
+    .panel.split { height: calc(100vh - 230px); }
     table {
-      width:100%; border-collapse:separate;
-      border-spacing:0 8px; flex:1; overflow:auto;
+      width: 100%; border-collapse: separate;
+      border-spacing: 0 8px; flex: 1; overflow: auto;
     }
     thead th {
-      position:sticky; top:0; background:var(--card);
-      padding:8px; text-align:left; color:var(--muted);
-      border-bottom:1px solid var(--line);
+      position: sticky; top: 0;
+      background: var(--card);
+      padding: 8px; text-align: left;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
     }
-    tbody td { padding:8px; vertical-align:top; }
+    tbody td { padding: 8px; vertical-align: top; }
     .ce {
-      min-height:28px; padding:6px;
-      border:1px dashed transparent; border-radius:4px;
+      min-height: 28px; padding: 6px;
+      border: 1px dashed transparent;
+      border-radius: 4px;
     }
     .ce:focus {
-      outline:none; border-color:var(--accent);
-      background:hsla(210,100%,50%,.05);
+      outline: none;
+      border-color: var(--accent);
+      background: hsla(210,100%,50%,.05);
     }
     .ce.placeholder:empty:before {
-      content:attr(data-ph); color:var(--muted);
+      content: attr(data-ph);
+      color: var(--muted);
     }
-    .row-actions { display:flex; gap:4px; }
+    .row-actions { display: flex; gap: 4px; }
     .status {
-      margin:8px 0; font-size:13px;
+      margin: 8px 0; font-size: 13px;
     }
-    .status.ok { color:var(--ok); }
-    .status.err { color:var(--warn); }
-    .preview {
-      overflow:auto; flex:1;
-    }
+    .status.ok { color: var(--ok); }
+    .status.err { color: var(--warn); }
+    .preview { overflow: auto; flex: 1; }
     .card {
-      border:1px solid var(--line); border-radius:6px;
-      padding:10px; margin-bottom:10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
     }
-    .title { font-weight:700; }
-    .subtitle { color:var(--muted); margin:4px 0; }
+    .title { font-weight: 700; }
+    .subtitle { color: var(--muted); margin: 4px 0; }
     .traits {
-      display:flex; flex-wrap:wrap; gap:6px; margin:4px 0;
+      display: flex; flex-wrap: wrap;
+      gap: 6px; margin: 4px 0;
     }
     .trait {
-      background:var(--line); border-radius:4px;
-      padding:2px 6px; font-size:12px;
+      background: var(--line);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 12px;
     }
-    .desc { white-space:pre-wrap; margin:4px 0; }
-    .bullets { margin:0 0 0 16px; }
+    .desc { white-space: pre-wrap; margin: 4px 0; }
+    .bullets { margin: 0 0 0 16px; }
 
-    /* ===== Barra de formato ===== */
+    /* ===== Toolbar ===== */
     #toolbar {
-      position:fixed; bottom:24px; right:24px;
-      display:none; gap:4px; padding:6px;
-      background:var(--card); border:1px solid var(--line);
-      border-radius:6px; box-shadow:0 4px 8px rgba(0,0,0,.1);
+      position: fixed; bottom: 24px; right: 24px;
+      display: none; gap: 4px; padding: 6px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,.1);
     }
-    #toolbar button { padding:4px 6px; }
-    #toolbar .sep { width:1px; background:var(--line); margin:0 6px; }
+    #toolbar button { padding: 4px 6px; }
+    #toolbar .sep {
+      width: 1px; background: var(--line);
+      margin: 0 6px;
+    }
   </style>
 </head>
 <body>
@@ -134,7 +164,7 @@
 
       <!-- Archivo -->
       <li>
-        <a href="#">Archivo ▾</a>
+        <a>Archivo ▾</a>
         <ul class="submenu">
           <li><label for="fileInput">Abrir archivo…</label></li>
           <li><input type="text" id="urlInput" placeholder="URL raw GitHub" /></li>
@@ -147,7 +177,7 @@
 
       <!-- Editar -->
       <li>
-        <a href="#">Editar ▾</a>
+        <a>Editar ▾</a>
         <ul class="submenu">
           <li><button id="btnAdd">Añadir fila</button></li>
           <li><button id="btnValidate">Validar</button></li>
@@ -157,7 +187,7 @@
 
       <!-- Ver -->
       <li>
-        <a href="#">Ver ▾</a>
+        <a>Ver ▾</a>
         <ul class="submenu">
           <li><button id="btnDark">Modo oscuro</button></li>
           <li><button id="btnRestore">Restaurar tema</button></li>
@@ -171,7 +201,7 @@
 
 <div class="layout">
 
-  <!-- Panel de edición -->
+  <!-- Panel edición -->
   <div class="panel split">
     <div id="status" class="status err">
       Sin datos. Abra un archivo o pegue una URL.
@@ -192,7 +222,7 @@
     </table>
   </div>
 
-  <!-- Panel de vista previa -->
+  <!-- Panel vista previa -->
   <div class="panel">
     <strong>Vista previa</strong>
     <div id="preview" class="preview"></div>
@@ -216,78 +246,95 @@
 </div>
 
 <script>
-/* Estado global */
-let dataset = [], varNameDetected = null, focusedCell = null;
+/* — Estado global — */
+let dataset = [];
+let varNameDetected = null;
+let focusedCell = null;
 
-/* Helpers */
+/* — Helpers — */
 const $ = s => document.querySelector(s);
+
 function setStatus(msg, ok = false) {
   const st = $('#status');
   st.textContent = msg;
   st.className = 'status ' + (ok ? 'ok' : 'err');
 }
+
 function toRawUrl(u) {
   return u.includes('/blob/')
-    ? u.replace('github.com/','raw.githubusercontent.com/')
-        .replace('/blob/','/')
+    ? u.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/')
     : u;
 }
 
-/* — parseVarJs CORREGIDO — */
+/* — parseVarJs sin literales regex — */
 function parseVarJs(text) {
-  // Detecta nombre de variable antes del '='
-  const nameMatch = text.match(/(?:^|\W)([\w$]+)\s*=\s*
+  // 1) Buscar nombre de variable antes del '='
+  const nameRe = new RegExp('(?:^|\\W)([\\w$]+)\\s*=\\s*\
 
-\[/);
-  if (!nameMatch) throw new Error('No se encontró asignación de variable a un array.');
+\[');
+  const nameMatch = nameRe.exec(text);
+  if (!nameMatch) {
+    throw new Error('No se encontró asignación de variable a un array.');
+  }
   const varName = nameMatch[1];
 
-  // índice del primer '[' tras '='
+  // 2) Localizar corchetes y hacer conteo manual
   const eqPos = text.indexOf('=', nameMatch.index);
-  const brOpen = text.indexOf('[', eqPos);
-  if (brOpen < 0) throw new Error('No se encontró "[" tras la asignación.');
+  const openPos = text.indexOf('[', eqPos);
+  if (openPos < 0) throw new Error('No se encontró "[" tras la asignación.');
 
-  // Busca cierre correspondiente contando corchetes
-  let depth = 0, brClose = -1;
-  for (let i = brOpen; i < text.length; i++) {
+  let depth = 0;
+  let closePos = -1;
+  for (let i = openPos; i < text.length; i++) {
     if (text[i] === '[') depth++;
     else if (text[i] === ']') {
       depth--;
-      if (depth === 0) { brClose = i; break; }
+      if (depth === 0) {
+        closePos = i;
+        break;
+      }
     }
   }
-  if (brClose < 0) throw new Error('No se encontró cierre "]" correspondiente.');
+  if (closePos < 0) {
+    throw new Error('No se encontró cierre "]" correspondiente.');
+  }
 
-  // Extrae y evalúa
-  const jsArray = text.slice(brOpen, brClose + 1);
+  // 3) Extraer literal JS y evaluarlo
+  const jsArray = text.slice(openPos, closePos + 1);
   let arr;
   try {
     arr = (new Function('return ' + jsArray))();
   } catch (e) {
-    throw new Error('Error al parsear array: ' + e.message);
+    throw new Error('Error al evaluar array: ' + e.message);
   }
-  if (!Array.isArray(arr)) throw new Error('La variable extraída no es un array.');
+  if (!Array.isArray(arr)) {
+    throw new Error('La variable extraída no es un array.');
+  }
 
   varNameDetected = varName;
   return arr;
 }
 
-/* Resto de funciones (descarga, render, toolbar, etc.) idénticas a la versión anterior… */
-
+/* — Descarga — */
 function downloadJs(name, arr) {
-  const header = /^\w/.test(name) ? name : 'data_x';
-  const content = header + ' = ' + JSON.stringify(arr, null, 2) + ';\n';
-  const blob = new Blob([content], { type: 'application/javascript' });
+  const safeName = name.match(/^[\w$]+$/) ? name : 'data_x';
+  const header = safeName + ' = ';
+  const js = header + JSON.stringify(arr, null, 2) + ';\n';
+  const blob = new Blob([js], { type: 'application/javascript' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = $('#fileName').value.trim() || (header + '.js');
+  a.download = $('#fileName').value.trim() || (safeName + '.js');
   document.body.appendChild(a);
   a.click();
   a.remove();
 }
 
+/* — Render tabla y preview — */
 function ensure(i) {
-  dataset[i] ||= { title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] };
+  dataset[i] ||= {
+    title: '', subtitle: '', reference: '',
+    traits: [], description: '', bullets: []
+  };
 }
 function renderTable() {
   const tbody = $('#tbody');
@@ -315,15 +362,14 @@ function renderTable() {
   );
   refreshPreview();
 }
-
 function refreshPreview() {
   const pr = $('#preview');
   pr.innerHTML = '';
   dataset.forEach(it => {
     const c = document.createElement('div'); c.className = 'card';
-    const t = Object.assign(document.createElement('div'), { className:'title',    innerText: it.title });
-    const s = Object.assign(document.createElement('div'), { className:'subtitle', innerText: it.subtitle });
-    const r = Object.assign(document.createElement('div'), { className:'subtitle', innerText: it.reference });
+    const t = Object.assign(document.createElement('div'), { className: 'title',    innerText: it.title });
+    const s = Object.assign(document.createElement('div'), { className: 'subtitle', innerText: it.subtitle });
+    const r = Object.assign(document.createElement('div'), { className: 'subtitle', innerText: it.reference });
     const trts = document.createElement('div'); trts.className = 'traits';
     (it.traits||[]).forEach(x => {
       const sp = document.createElement('span'); sp.className = 'trait'; sp.innerText = x;
@@ -333,25 +379,29 @@ function refreshPreview() {
     d.innerHTML = it.description.replace(/\n/g,'<br>');
     const ul = document.createElement('ul'); ul.className = 'bullets';
     (it.bullets||[]).forEach(x => {
-      const li = document.createElement('li'); li.innerText = x; ul.appendChild(li);
+      const li = document.createElement('li'); li.innerText = x;
+      ul.appendChild(li);
     });
     c.append(t,s,trts,r,d,ul);
     pr.appendChild(c);
   });
 }
 
+/* — Sincronización inline — */
 document.addEventListener('input', e => {
   const ce = e.target.closest('.ce');
   if (!ce) return;
   const i = +ce.dataset.idx, f = ce.dataset.field;
   ensure(i);
-  let v = ce.innerText;
-  if (f === 'traits')       dataset[i][f] = v.split(',').map(x=>x.trim()).filter(Boolean);
-  else if (f === 'bullets') dataset[i][f] = v.split('\n').map(x=>x.trim()).filter(Boolean);
+  const v = ce.innerText;
+  if (f === 'traits')       dataset[i][f] = v.split(',').map(x => x.trim()).filter(Boolean);
+  else if (f === 'bullets') dataset[i][f] = v.split('\n').map(x => x.trim()).filter(Boolean);
   else                      dataset[i][f] = v;
-  saveLocal(); renderTable();
+  saveLocal();
+  renderTable();
 });
 
+/* — Botones de fila — */
 document.addEventListener('click', e => {
   const b = e.target.closest('button[data-act]');
   if (!b) return;
@@ -363,6 +413,7 @@ document.addEventListener('click', e => {
   saveLocal(); renderTable();
 });
 
+/* — Toolbar flotante — */
 function showToolbar(el) {
   focusedCell = el;
   const r = el.getBoundingClientRect(), tb = $('#toolbar');
@@ -381,28 +432,31 @@ document.addEventListener('click', e => {
 $('#toolbar').addEventListener('click', e => {
   const cmd = e.target.closest('button')?.dataset.cmd;
   if (cmd) {
-    document.execCommand(cmd,false,null);
+    document.execCommand(cmd, false, null);
     focusedCell.dispatchEvent(new Event('input'));
   }
   else if (e.target.id === 'btnLink') {
     const url = prompt('URL:');
-    if (url) document.execCommand('createLink',false,url),
-             focusedCell.dispatchEvent(new Event('input'));
+    if (url) {
+      document.execCommand('createLink', false, url);
+      focusedCell.dispatchEvent(new Event('input'));
+    }
   }
   else if (e.target.id === 'btnClearFmt') {
-    document.execCommand('removeFormat',false,null);
-    document.execCommand('unlink',false,null);
+    document.execCommand('removeFormat', false, null);
+    document.execCommand('unlink',       false, null);
     focusedCell.dispatchEvent(new Event('input'));
   }
 });
 
-/* Carga archivo / URL */
+/* — Carga de archivos y URLs — */
 $('#fileInput').addEventListener('change', e => {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = () => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
     try {
-      dataset = parseVarJs(r.result);
+      dataset = parseVarJs(reader.result);
       $('#varName').value = varNameDetected;
       setStatus(`Cargado ${f.name}`, true);
       renderTable();
@@ -410,15 +464,16 @@ $('#fileInput').addEventListener('change', e => {
       setStatus(err.message, false);
     }
   };
-  r.readAsText(f);
+  reader.readAsText(f);
 });
+
 $('#btnLoadUrl').onclick = async () => {
   const u = toRawUrl($('#urlInput').value.trim());
   if (!u) return setStatus('URL vacía', false);
   try {
     const res = await fetch(u);
     if (!res.ok) throw new Error(res.statusText);
-    const txt = await res.txt();
+    const txt = await res.text();     // <- CORREGIDO (antes era res.txt())
     dataset = parseVarJs(txt);
     $('#varName').value = varNameDetected;
     setStatus('Cargado desde URL', true);
@@ -428,17 +483,17 @@ $('#btnLoadUrl').onclick = async () => {
   }
 };
 
-/* Menú Editar */
+/* — Menú Editar — */
 $('#btnAdd').onclick      = () => { dataset.push({}); saveLocal(); renderTable(); };
-$('#btnClear').onclick    = () => { if (confirm('¿Vaciar todo?')) { dataset=[]; saveLocal(); renderTable(); } };
+$('#btnClear').onclick    = () => { if (confirm('¿Vaciar todo?')) { dataset = []; saveLocal(); renderTable(); } };
 $('#btnValidate').onclick = () => {
   const errs = [];
   if (!Array.isArray(dataset)) errs.push('No es un array');
   dataset.forEach((o,i) => { if (!o.title?.trim()) errs.push(`#${i+1} falta title`); });
-  setStatus(errs.length ? errs.join(' | ') : 'OK ✔', errs.length===0);
+  setStatus(errs.length ? errs.join(' | ') : 'OK ✔', errs.length === 0);
 };
 
-/* Tema */
+/* — Tema oscuro y restaurar — */
 $('#btnDark').onclick    = () => {
   document.body.classList.toggle('dark');
   localStorage.setItem('pf2e_theme', document.body.classList.contains('dark'));
@@ -451,9 +506,9 @@ if (localStorage.getItem('pf2e_theme') === 'true') {
   document.body.classList.add('dark');
 }
 
-/* Autosave */
+/* — Autosave en localStorage — */
 function saveLocal() {
-  localStorage.setItem('pf2e_editor', JSON.stringify({dataset}));
+  localStorage.setItem('pf2e_editor', JSON.stringify({ dataset }));
 }
 function loadLocal() {
   try {
@@ -471,7 +526,7 @@ window.onload = () => {
   else setStatus('Sin datos. Abra un archivo o pegue una URL.', false);
 };
 
-/* Descargar */
+/* — Descargar — */
 $('#btnDownload').onclick = () => {
   if (!varNameDetected && !$('#varName').value.trim()) {
     varNameDetected = prompt('Nombre de variable:', 'data_x');
