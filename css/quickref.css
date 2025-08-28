@@ -598,3 +598,24 @@ p:first-child {
   overflow: visible;
   text-overflow: clip;
 }
+/*-----------------------------------
+1) Permite que el item se encoja
+-----------------------------------*/
+.item-group .item {
+  min-width: 0;
+}
+/*-----------------------------------
+2) Forzar wrap y romper palabras largas
+-----------------------------------*/
+.item .item-text,
+.item .item-desc {
+  min-width: 0;               /* clave en flexbox/grid */
+  white-space: normal;        /* habilita saltos de línea */
+  overflow-wrap: break-word;  /* quiebra palabras largas */
+  word-break: break-word;     /* para casos extremos */
+}
+.item-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-gap: 1rem;
+}
