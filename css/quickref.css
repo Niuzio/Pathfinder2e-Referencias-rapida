@@ -404,23 +404,24 @@ p:first-child {
   background-color: #8f2629;
   border-color: #d2c8b8;
 }
-
-/* Tooltip tipo tarjeta para .tag[data-tooltip] */
+/* Tooltip tipo tarjeta estilo Nivel20 */
 .tag[data-tooltip] {
     position: relative;
 }
 
-.tag[data-tooltip]:hover::after {
+.tag[data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 110%;                   /* separarlo un poco de la etiqueta */
+    bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
-    background: #1b1b1b;            /* fondo oscuro tipo Nivel20 */
+    background: #1b1b1b;
     color: #fff;
     padding: 12px 14px;
     border-radius: 6px;
     max-width: 340px;
+    width: max-content;
+    min-width: 200px;
     box-sizing: border-box;
     font-size: 0.85em;
     line-height: 1.4;
@@ -428,20 +429,16 @@ p:first-child {
     z-index: 50;
     box-shadow: 0 2px 12px rgba(0,0,0,0.45);
 
-    white-space: normal;            /* permitir varias líneas */
+    /* multilínea */
+    white-space: normal;
     word-wrap: break-word;
 
-    opacity: 1;
-}
-
-/* Estado inicial oculto */
-.tag[data-tooltip]::after {
+    /* oculto por defecto */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s ease-in-out;
 }
 
-/* Animación al mostrar */
 .tag[data-tooltip]:hover::after {
     opacity: 1;
 }
