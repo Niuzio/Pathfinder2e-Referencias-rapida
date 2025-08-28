@@ -132,10 +132,11 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
     alert(err.message);
   }
 });
-document.getElementById('exportBtn').addEventListener('click', ()=>{
-  const code = toAssignmentJs(vm.varName, vm.items);
-  const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
-    saveAs(blob, vm.fileName || (vm.varName + '.js'));
+document.getElementById('exportBtn').addEventListener('click', async () => {
+  // Espera por si toAssignmentJs devuelve un Promise
+  const code = await Promise.resolve(toAssignmentJs(vm.varName, vm.items));
+  const blob = new Blob([code], { type: 'text/javascript;charset=utf-8' });
+  saveAs(blob, vm.fileName || (vm.varName + '.js'));
 });
 </script>
 </body>
