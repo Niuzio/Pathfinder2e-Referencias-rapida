@@ -1,137 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Editor — Pathfinder 2e</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
-  <style>
-    :root{
-      --bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;
-      --accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72;--ink2:#c7d1dd
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
-    header{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
-    .bar{display:flex;gap:8px;align-items:center;padding:8px 12px;flex-wrap:wrap}
-    input[type="text"], select, button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-    input[type="text"]{min-width:220px}
-    button{cursor:pointer}
-    .primary{background:var(--accent);color:#0b1420;border-color:transparent}
-    .ghost{background:transparent}
-    .status{margin-left:auto;font-size:12px;color:var(--muted)}
-    .status.ok{color:var(--ok)} .status.err{color:var(--warn)}
-    .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;padding:12px}
-    @media(max-width:1000px){.wrap{grid-template-columns:1fr}}
-    .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;min-height:320px}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-    table{width:100%;border-collapse:separate;border-spacing:0 8px}
-    thead th{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:8px;color:var(--muted);text-align:left}
-    tbody td{padding:6px;vertical-align:top}
-    .ce{min-height:34px;padding:8px;border:1px dashed transparent;border-radius:8px}
-    .ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
-    .placeholder:empty:before{content:attr(data-ph);color:var(--muted)}
-    .chips{display:flex;gap:6px;flex-wrap:wrap}
-    .chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
-    .actions{display:flex;gap:6px;flex-wrap:wrap}
-    .preview{overflow:auto;flex:1;display:grid;gap:10px}
-    .card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
-    .title{font-weight:700;font-size:16px}
-    .subtitle{color:var(--muted)}
-    .desc{white-space:pre-wrap}
-    .bullets{margin:0 0 0 18px}
-    .note{color:var(--ink2);font-size:12px;margin-top:6px}
-    .kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:var(--ink2)}
-    .split{gap:6px;display:grid;grid-template-columns:1fr 1fr}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generador de datos — PF2e</title>
+<style>
+:root{--bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;--accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
+header,footer{background:var(--card);border-bottom:1px solid var(--line)}
+header .bar, .wrap{padding:12px} .wrap{display:grid;gap:12px;grid-template-columns:1.1fr .9fr}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.row{display:grid;gap:8px} .row2{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+label{font-size:12px;color:var(--muted)}
+input[type="text"], textarea{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:90px}
+button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#0b1420;border-color:transparent}
+button.warn{border-color:var(--warn);color:var(--warn)}
+.status{font-size:12px;color:var(--muted)}
+.list{display:grid;gap:8px;max-height:40vh;overflow:auto}
+.item{border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1320;display:grid;gap:6px}
+.item .head{display:flex;gap:8px;justify-content:space-between;align-items:center}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap}
+.toolbar button{padding:6px 8px}
+.ce{min-height:120px;padding:8px;border:1px dashed transparent;border-radius:8px;background:#0e1320}
+.ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
+.preview{display:grid;gap:10px;max-height:60vh;overflow:auto}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
+.title{font-weight:700;font-size:16px}
+.subtitle{color:var(--muted)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+.desc{white-space:pre-wrap}
+.kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:#c7d1dd}
+</style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <input id="url" type="text" placeholder="URL .json o .js (GitHub raw o blob)" />
-    <button id="btnLoadUrl">Cargar URL</button>
-    <input id="file" type="file" accept=".json,.js,application/json,text/javascript" />
-    <button id="btnAdd" class="ghost">+ Nueva entrada</button>
-    <button id="btnTemplateAttack" class="ghost">+ Plantilla: Ataque</button>
-    <button id="btnTemplateMove" class="ghost">+ Plantilla: Movimiento</button>
+    <strong>Generador de datos para PF2e</strong>
     <span class="status" id="status">Listo</span>
-  </div>
-  <div class="bar">
-    <input id="varName" type="text" placeholder="Nombre de variable para exportar (p.ej. pf2eData)" />
-    <button id="btnExportJson" class="primary">Exportar JSON</button>
-    <button id="btnExportJs" class="primary">Exportar JS (const VAR = ...)</button>
-    <span class="note">Sugerencias: Edición rápida con Enter y Shift+Enter · Duplicar Alt+D · Eliminar Alt+Backspace</span>
   </div>
 </header>
 
 <div class="wrap">
   <div class="panel">
-    <div class="controls">
-      <span class="note">Campos: title · subtitle · reference · traits · description · bullets</span>
+    <div class="row2">
+      <div class="row">
+        <label>Título</label>
+        <input id="title" type="text" placeholder="Ej. Ataque">
+      </div>
+      <div class="row">
+        <label>Subtítulo</label>
+        <input id="subtitle" type="text" placeholder="Ej. Acción">
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>title</th>
-          <th>subtitle</th>
-          <th>reference</th>
-          <th>traits</th>
-          <th>description</th>
-          <th>bullets</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
+
+    <div class="row2">
+      <div class="row">
+        <label>Referencia</label>
+        <input id="reference" type="text" placeholder="Ej. CRB p.XXX">
+      </div>
+      <div class="row">
+        <label>Traits (separados por coma)</label>
+        <input id="traits" type="text" placeholder="Acción, Arma">
+      </div>
+    </div>
+
+    <div class="row">
+      <label>Descripción (formato permitido: <b>negrita</b>, <i>cursiva</i>, <u>subrayado</u>, <mark>resaltado</mark>, <code>code</code>, <a href='#'>link</a>, listas)</label>
+      <div class="toolbar">
+        <button data-cmd="bold"><strong>B</strong></button>
+        <button data-cmd="italic"><em>I</em></button>
+        <button data-cmd="underline"><u>U</u></button>
+        <button id="btnMark">Resaltar</button>
+        <button id="btnLink">Link</button>
+        <button data-cmd="insertUnorderedList">• Lista</button>
+        <button data-cmd="insertOrderedList">1. Lista</button>
+        <button id="btnClear">Limpiar formato</button>
+      </div>
+      <div id="description" class="ce" contenteditable="true" spellcheck="false" aria-label="Descripción"></div>
+      <span class="status">Sugerencias: Ctrl/Cmd+B/I/U · Selecciona texto y pulsa “Resaltar” o “Link”.</span>
+    </div>
+
+    <div class="row">
+      <label>Viñetas (una por línea)</label>
+      <textarea id="bullets" placeholder="Punto 1&#10;Punto 2"></textarea>
+    </div>
+
+    <div class="actions">
+      <button id="btnAdd" class="primary">Añadir a la lista</button>
+      <button id="btnReset">Limpiar formulario</button>
+    </div>
+
+    <div class="row">
+      <label>Elementos en la lista</label>
+      <div id="list" class="list"></div>
+    </div>
   </div>
 
   <div class="panel">
-    <strong>Vista previa</strong>
-    <div id="preview" class="preview"></div>
+    <div class="row">
+      <label>Vista previa</label>
+      <div id="preview" class="preview"></div>
+    </div>
+
+    <div class="row2">
+      <div class="row">
+        <label>Nombre de variable (para exportar JS)</label>
+        <input id="varName" type="text" placeholder="pf2eData">
+      </div>
+      <div class="row">
+        <label>&nbsp;</label>
+        <div class="actions">
+          <button id="btnExportJson" class="primary">Exportar JSON</button>
+          <button id="btnExportJs" class="primary">Exportar JS</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label>Atajos</label>
+      <span class="status">
+        Doble clic en un ítem para editar · Alt+D duplica · Alt+Backspace elimina · Ctrl/Cmd+S exporta JSON.
+      </span>
+    </div>
   </div>
 </div>
 
+<footer>
+  <div class="bar">
+    <span class="status">HTML permitido en descripción: a, b/strong, i/em, u, mark, br, ul/ol/li, sup/sub, span, code.</span>
+  </div>
+</footer>
+
 <script>
 "use strict";
-
-// Estado
-let data = []; // Array de objetos normalizados
-let dirty = false;
-
-// Utilidades
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
-const setStatus = (msg, ok=null) => {
-  const el = $('#status');
-  el.textContent = msg;
-  el.className = 'status' + (ok===true ? ' ok' : ok===false ? ' err' : '');
-};
+const setStatus = (m, ok=null) => { const el = $('#status'); el.textContent = m; el.style.color = ok===true ? 'var(--ok)' : ok===false ? 'var(--warn)' : 'var(--muted)'; };
 
-// Normaliza texto/arrays
-const toStr = v => (v ?? '').toString();
-const normArray = v => Array.isArray(v)
-  ? v.map(x => toStr(x).trim()).filter(Boolean)
-  : toStr(v).split(/[,\n;]/).map(s => s.trim()).filter(Boolean);
+let data = [];
+let editingIndex = -1;
 
-// Saneado HTML mínimo
-function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN','CODE']) {
-  if (!html) return '';
+function toStr(v){ return (v??'').toString(); }
+function normArray(v){
+  if(Array.isArray(v)) return v.map(x=>toStr(x).trim()).filter(Boolean);
+  return toStr(v).split(/[,\n]/).map(s=>s.trim()).filter(Boolean);
+}
+function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN','MARK','CODE']){
+  if(!html) return '';
   const root = document.createElement('div'); root.innerHTML = html;
-  root.querySelectorAll('script,style,iframe,object,embed').forEach(n => n.remove());
+  root.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove());
   const walk = node => {
-    if (node.nodeType === 1) {
-      if (!allowed.includes(node.tagName)) {
-        const p = node.parentNode;
-        while (node.firstChild) p.insertBefore(node.firstChild, node);
-        p.removeChild(node);
-        return;
+    if(node.nodeType===1){
+      if(!allowed.includes(node.tagName)){
+        const p=node.parentNode; while(node.firstChild)p.insertBefore(node.firstChild,node); p.removeChild(node); return;
       }
-      [...node.attributes].forEach(a => {
-        const n = a.name.toLowerCase(), v = a.value;
-        if (node.tagName === 'A' && n === 'href') {
-          if (!/^https?:\/\//i.test(v) && !v.startsWith('#') && !v.startsWith('mailto:')) node.removeAttribute(a.name);
-        } else if (n === 'style' || n.startsWith('on')) node.removeAttribute(a.name);
+      [...node.attributes].forEach(a=>{
+        const n=a.name.toLowerCase(), v=a.value;
+        if(node.tagName==='A' && n==='href'){
+          if(!/^https?:\/\//i.test(v) && !v.startsWith('#') && !v.startsWith('mailto:')) node.removeAttribute(a.name);
+        } else if(n==='style' || n.startsWith('on')) node.removeAttribute(a.name);
       });
     }
     [...node.childNodes].forEach(walk);
@@ -139,312 +171,156 @@ function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','
   [...root.childNodes].forEach(walk);
   return root.innerHTML;
 }
-
-// Limpia BOM y normaliza unicode
-function cleanText(txt) {
-  return txt.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
+function bulletsFromTextarea(txt){
+  return toStr(txt).split(/\n/).map(s=>s.trim()).filter(Boolean);
+}
+function escapeHtml(s){
+  return toStr(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-// Convierte URL GitHub "blob" a "raw"
-function toRaw(url) {
-  if (!url) return url;
-  if (url.includes('github.com/') && url.includes('/blob/')) {
-    return url.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
+// Toolbar
+const descEl = $('#description');
+$$('.toolbar [data-cmd]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.execCommand(b.dataset.cmd,false,null);
+    descEl.focus();
+  });
+});
+$('#btnClear').addEventListener('click', ()=>{
+  const sel = window.getSelection();
+  if(sel && sel.rangeCount){ document.execCommand('removeFormat'); }
+  // Además, limpia enlaces seleccionados
+  document.execCommand('unlink');
+  descEl.focus();
+});
+$('#btnLink').addEventListener('click', ()=>{
+  let url = prompt('URL del enlace (https://...)');
+  if(!url) return;
+  if(!/^https?:\/\//i.test(url) && !url.startsWith('mailto:') && !url.startsWith('#')) url = 'https://' + url;
+  document.execCommand('createLink', false, url);
+  descEl.focus();
+});
+$('#btnMark').addEventListener('click', ()=>{
+  wrapSelectionWithTag('mark');
+  descEl.focus();
+});
+function wrapSelectionWithTag(tag){
+  const sel = window.getSelection();
+  if(!sel || sel.rangeCount===0) return;
+  const range = sel.getRangeAt(0);
+  if(!descEl.contains(range.commonAncestorContainer)) return; // solo dentro de descripción
+  const el = document.createElement(tag);
+  try{
+    range.surroundContents(el);
+  }catch(e){
+    // Si selección es discontinua o cruza nodos, inserta de forma segura
+    el.appendChild(range.extractContents());
+    range.insertNode(el);
+    sel.removeAllRanges();
+    const r = document.createRange(); r.selectNodeContents(el); r.collapse(false);
+    sel.addRange(r);
   }
-  return url;
 }
 
-// Extrae literal de array JS: var/let/const NOMBRE = [ ... ];
-function extractArrayLiteral(js) {
-  const s = cleanText(js);
-  // Elimina comentarios para evitar confundir corchetes
-  const noComments = s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-  const assign = /(var|let|const)\s+([A-Za-z$_][\w$]*)\s*=\s*
-
-\[/m;
-  const m = assign.exec(noComments);
-  if (!m) throw new Error('No encontré un array con var/let/const NOMBRE = [ ... ]');
-  const start = noComments.indexOf('[', m.index);
-  let i = start, depth = 0, inStr = false, strCh = '', esc = false;
-  for (; i < noComments.length; i++) {
-    const ch = noComments[i];
-    if (inStr) {
-      if (esc) { esc = false; continue; }
-      if (ch === '\\') { esc = true; continue; }
-      if (ch === strCh) { inStr = false; strCh = ''; }
-      continue;
-    }
-    if (ch === '"' || ch === "'" || ch === '`') { inStr = true; strCh = ch; continue; }
-    if (ch === '[') depth++;
-    else if (ch === ']') { depth--; if (depth === 0) { i++; break; } }
-  }
-  if (depth !== 0) throw new Error('Corchetes sin cerrar en el array');
-  const literal = noComments.slice(start, i);
-  return literal;
-}
-
-// Evalúa SOLO el literal de array aislado en modo estricto
-function evalArrayLiteral(literal) {
-  // Permite trailing commas y claves no-entrecomilladas (JS estándar)
-  // No ejecuta el archivo completo, sólo el literal "([...])"
-  // eslint-disable-next-line no-new-func
-  const fn = new Function('"use strict"; return (' + literal + ');');
-  const arr = fn();
-  if (!Array.isArray(arr)) throw new Error('El literal no resultó en un Array');
-  return arr;
-}
-
-// Normaliza objeto a esquema esperado
-function normalizeEntry(x) {
-  const o = Object(x || {});
-  const traits = normArray(o.traits ?? '');
-  const bullets = normArray(o.bullets ?? '');
+// CRUD
+function readForm(){
   return {
-    title: toStr(o.title),
-    subtitle: toStr(o.subtitle),
-    reference: toStr(o.reference),
-    traits,
-    description: sanitizeHtml(toStr(o.description)),
-    bullets
+    title: toStr($('#title').value).trim(),
+    subtitle: toStr($('#subtitle').value).trim(),
+    reference: toStr($('#reference').value).trim(),
+    traits: normArray($('#traits').value),
+    description: sanitizeHtml(descEl.innerHTML),
+    bullets: bulletsFromTextarea($('#bullets').value)
   };
 }
-
-// UI: render
-function render() {
-  const tb = $('#tbody'); tb.innerHTML = '';
-  data.forEach((row, idx) => {
-    const tr = document.createElement('tr');
-
-    const mkCell = (key, ph='') => {
-      const td = document.createElement('td');
-      const div = document.createElement('div');
-      div.className = 'ce placeholder';
-      div.contentEditable = 'true';
-      div.dataset.key = key;
-      div.dataset.index = String(idx);
-      div.dataset.ph = ph;
-      div.innerHTML = key === 'description' ? row[key] : escapeHtml(row[key]);
-      div.addEventListener('input', onCellInput);
-      div.addEventListener('keydown', onCellKeydown);
-      td.appendChild(div);
-      return td;
-    };
-
-    tr.appendChild(mkCell('title','Título'));
-    tr.appendChild(mkCell('subtitle','Subtítulo'));
-    tr.appendChild(mkCell('reference','Referencia'));
-    // traits como coma o nueva línea separada
-    const tdTraits = document.createElement('td');
-    const ceTraits = document.createElement('div');
-    ceTraits.className = 'ce placeholder';
-    ceTraits.contentEditable = 'true';
-    ceTraits.dataset.key = 'traits';
-    ceTraits.dataset.index = String(idx);
-    ceTraits.dataset.ph = 'traits (coma o líneas)';
-    ceTraits.textContent = row.traits.join(', ');
-    ceTraits.addEventListener('input', onCellInput);
-    ceTraits.addEventListener('keydown', onCellKeydown);
-    tdTraits.appendChild(ceTraits);
-    tr.appendChild(tdTraits);
-
-    const tdDesc = document.createElement('td');
-    const ceDesc = document.createElement('div');
-    ceDesc.className = 'ce placeholder';
-    ceDesc.contentEditable = 'true';
-    ceDesc.dataset.key = 'description';
-    ceDesc.dataset.index = String(idx);
-    ceDesc.dataset.ph = 'Descripción (HTML básico permitido)';
-    ceDesc.innerHTML = row.description;
-    ceDesc.addEventListener('input', onCellInput);
-    ceDesc.addEventListener('keydown', onCellKeydown);
-    tdDesc.appendChild(ceDesc);
-    tr.appendChild(tdDesc);
-
-    const tdBul = document.createElement('td');
-    const ceBul = document.createElement('div');
-    ceBul.className = 'ce placeholder';
-    ceBul.contentEditable = 'true';
-    ceBul.dataset.key = 'bullets';
-    ceBul.dataset.index = String(idx);
-    ceBul.dataset.ph = 'viñetas (líneas)';
-    ceBul.textContent = row.bullets.join('\n');
-    ceBul.addEventListener('input', onCellInput);
-    ceBul.addEventListener('keydown', onCellKeydown);
-    tdBul.appendChild(ceBul);
-    tr.appendChild(tdBul);
-
-    const tdAct = document.createElement('td');
-    const box = document.createElement('div'); box.className='actions';
-    const bUp = btn('↑',()=>move(idx,-1));
-    const bDn = btn('↓',()=>move(idx, 1));
-    const bDup= btn('Dup',()=>duplicate(idx));
-    const bDel= btn('Del',()=>remove(idx));
-    box.append(bUp,bDn,bDup,bDel);
-    tdAct.appendChild(box);
-    tr.appendChild(tdAct);
-
-    tb.appendChild(tr);
-  });
-
+function writeForm(o){
+  $('#title').value = o.title||'';
+  $('#subtitle').value = o.subtitle||'';
+  $('#reference').value = o.reference||'';
+  $('#traits').value = (o.traits||[]).join(', ');
+  descEl.innerHTML = o.description||'';
+  $('#bullets').value = (o.bullets||[]).join('\n');
+}
+function clearForm(){
+  editingIndex = -1;
+  writeForm({title:'',subtitle:'',reference:'',traits:[],description:'',bullets:[]});
+  setStatus('Formulario limpio', true);
+}
+function addItem(){
+  const item = readForm();
+  if(!item.title) { setStatus('Falta el título', false); return; }
+  if(editingIndex>=0){
+    data[editingIndex] = item;
+    editingIndex = -1;
+    setStatus('Elemento actualizado', true);
+  }else{
+    data.push(item);
+    setStatus('Elemento agregado', true);
+  }
+  renderList();
   renderPreview();
-  markClean();
+  clearForm();
+}
+function editItem(i){
+  editingIndex = i;
+  writeForm(data[i]);
+  setStatus('Editando elemento #' + (i+1));
+}
+function deleteItem(i){
+  data.splice(i,1);
+  renderList();
+  renderPreview();
+  setStatus('Elemento eliminado', true);
+}
+function duplicateItem(i){
+  const copy = JSON.parse(JSON.stringify(data[i]));
+  data.splice(i+1,0,copy);
+  renderList();
+  renderPreview();
+  setStatus('Elemento duplicado', true);
 }
 
-function escapeHtml(s) {
-  return toStr(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-}
-
-function btn(text, handler){
-  const b = document.createElement('button'); b.textContent = text; b.addEventListener('click', handler); return b;
-}
-
-function renderPreview() {
-  const p = $('#preview'); p.innerHTML = '';
-  data.forEach(row => {
-    const card = document.createElement('div'); card.className='card';
-    const t = document.createElement('div'); t.className='title'; t.textContent = row.title || '—';
-    const st = document.createElement('div'); st.className='subtitle'; st.textContent = row.subtitle;
-    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = row.reference;
+// List y preview
+function renderList(){
+  const list = $('#list'); list.innerHTML = '';
+  data.forEach((o,i)=>{
+    const it = document.createElement('div'); it.className='item';
+    const head = document.createElement('div'); head.className='head';
+    head.innerHTML = `<div><strong>${escapeHtml(o.title||'—')}</strong> <span class="subtitle">${escapeHtml(o.subtitle||'')}</span></div>`;
+    const actions = document.createElement('div'); actions.className='actions';
+    const bEdit = document.createElement('button'); bEdit.textContent='Editar'; bEdit.addEventListener('click',()=>editItem(i));
+    const bDup = document.createElement('button'); bDup.textContent='Duplicar'; bDup.addEventListener('click',()=>duplicateItem(i));
+    const bDel = document.createElement('button'); bDel.textContent='Eliminar'; bDel.className='warn'; bDel.addEventListener('click',()=>deleteItem(i));
+    actions.append(bEdit,bDup,bDel);
+    head.appendChild(actions);
+    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = o.reference||'';
     const traits = document.createElement('div'); traits.className='chips';
-    row.traits.forEach(tr => { const c = document.createElement('span'); c.className='chip'; c.textContent = tr; traits.appendChild(c); });
-    const desc = document.createElement('div'); desc.className='desc'; desc.innerHTML = row.description;
-    const ul = document.createElement('ul'); ul.className='bullets';
-    row.bullets.forEach(b => { const li = document.createElement('li'); li.textContent = b; ul.appendChild(li); });
+    (o.traits||[]).forEach(t=>{ const s=document.createElement('span'); s.className='chip'; s.textContent=t; traits.appendChild(s); });
+    const desc = document.createElement('div'); desc.className='desc'; desc.innerHTML = o.description||'';
+    const ul = document.createElement('ul'); (o.bullets||[]).forEach(b=>{ const li=document.createElement('li'); li.textContent=b; ul.appendChild(li); });
+    it.append(head, ref, traits, desc, ul);
+    it.addEventListener('dblclick',()=>editItem(i));
+    list.appendChild(it);
+  });
+}
+function renderPreview(){
+  const p = $('#preview'); p.innerHTML = '';
+  data.forEach(o=>{
+    const card = document.createElement('div'); card.className='card';
+    const t = document.createElement('div'); t.className='title'; t.textContent = o.title||'—';
+    const st = document.createElement('div'); st.className='subtitle'; st.textContent = o.subtitle||'';
+    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = o.reference||'';
+    const traits = document.createElement('div'); traits.className='chips';
+    (o.traits||[]).forEach(tr=>{ const s=document.createElement('span'); s.className='chip'; s.textContent=tr; traits.appendChild(s); });
+    const desc = document.createElement('div'); desc.className='desc'; desc.innerHTML = o.description||'';
+    const ul = document.createElement('ul'); (o.bullets||[]).forEach(b=>{ const li=document.createElement('li'); li.textContent=b; ul.appendChild(li); });
     card.append(t, st, ref, traits, desc, ul);
     p.appendChild(card);
   });
 }
 
-// Cambios en celdas
-function onCellInput(e) {
-  const el = e.currentTarget;
-  const idx = +el.dataset.index;
-  const key = el.dataset.key;
-  let val = '';
-  if (key === 'description') {
-    val = sanitizeHtml(el.innerHTML);
-    data[idx][key] = val;
-  } else if (key === 'traits') {
-    val = normArray(el.textContent);
-    data[idx].traits = val;
-  } else if (key === 'bullets') {
-    val = normArray(el.textContent);
-    data[idx].bullets = val;
-  } else {
-    val = el.textContent;
-    data[idx][key] = toStr(val);
-  }
-  markDirty();
-  renderPreview();
-}
-
-function onCellKeydown(e) {
-  // Enter avanza; Shift+Enter salto de línea
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    focusNextEditable(e.currentTarget);
-  }
-  // Alt+D duplica; Alt+Backspace elimina fila
-  if (e.altKey && (e.key.toLowerCase() === 'd')) {
-    e.preventDefault();
-    const idx = +e.currentTarget.dataset.index;
-    duplicate(idx);
-    focusRow(idx+1);
-  }
-  if (e.altKey && (e.key === 'Backspace' || e.key === 'Delete')) {
-    e.preventDefault();
-    const idx = +e.currentTarget.dataset.index;
-    remove(idx);
-    focusRow(Math.max(0, idx-1));
-  }
-}
-
-function focusNextEditable(current) {
-  const list = $$('#tbody .ce');
-  const i = list.indexOf(current);
-  const next = list[i+1] || list[0];
-  next?.focus();
-}
-
-function focusRow(idx) {
-  const row = $$('#tbody tr')[idx];
-  row?.querySelector('.ce')?.focus();
-}
-
-function markDirty(){ dirty = true; setStatus('Cambios sin guardar', null);}
-function markClean(){ dirty = false; setStatus('Listo', true);}
-
-// Operaciones de filas
-function add(entry = {title:'',subtitle:'',reference:'',traits:[],description:'',bullets:[]}) {
-  data.push(normalizeEntry(entry)); render(); markDirty();
-}
-function duplicate(i) {
-  if (i<0 || i>=data.length) return;
-  const copy = JSON.parse(JSON.stringify(data[i]));
-  data.splice(i+1, 0, copy); render(); markDirty();
-}
-function remove(i) {
-  if (i<0 || i>=data.length) return;
-  data.splice(i,1); render(); markDirty();
-}
-function move(i, delta) {
-  const j = i + delta;
-  if (i<0||i>=data.length||j<0||j>=data.length) return;
-  const [it] = data.splice(i,1);
-  data.splice(j,0,it); render(); markDirty();
-}
-
-// Carga desde URL/archivo
-async function loadFromUrl(url) {
-  try {
-    setStatus('Cargando…');
-    const u = toRaw(url.trim());
-    const res = await fetch(u, {cache:'no-store'});
-    if (!res.ok) throw new Error('HTTP '+res.status);
-    const txt = cleanText(await res.text());
-    const ext = (new URL(u, location.href).pathname.split('.').pop() || '').toLowerCase();
-    await loadFromText(txt, ext);
-    setStatus('Cargado desde URL', true);
-  } catch (err) {
-    console.error(err);
-    setStatus('Error al cargar URL: ' + (err.message||err), false);
-  }
-}
-
-async function loadFromFile(file) {
-  try {
-    setStatus('Leyendo archivo…');
-    const txt = await file.text();
-    const ext = (file.name.split('.').pop()||'').toLowerCase();
-    await loadFromText(cleanText(txt), ext);
-    setStatus('Archivo cargado', true);
-  } catch (err) {
-    console.error(err);
-    setStatus('Error al leer archivo: ' + (err.message||err), false);
-  }
-}
-
-async function loadFromText(txt, extHint) {
-  let arr;
-  const looksJson = extHint === 'json' || /^[\s\n]*
-
-\[\s*[
-
-\[{]/.test(txt);
-  if (looksJson) {
-    arr = JSON.parse(txt);
-  } else {
-    // .js: intentamos extraer el literal del array
-    const literal = extractArrayLiteral(txt);
-    arr = evalArrayLiteral(literal);
-  }
-  if (!Array.isArray(arr)) throw new Error('El contenido no es un array');
-  data = arr.map(normalizeEntry);
-  render();
-}
-
-// Exportaciones
-function download(filename, content, type = 'application/json;charset=utf-8') {
+// Export
+function download(filename, content, type='application/json;charset=utf-8'){
   const blob = new Blob([content], {type});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -453,81 +329,38 @@ function download(filename, content, type = 'application/json;charset=utf-8') {
   a.click();
   setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
 }
-
-function exportJson() {
+function exportJson(){
   const pretty = JSON.stringify(data, null, 2);
   download('data.json', pretty, 'application/json;charset=utf-8');
   setStatus('Exportado JSON', true);
-  markClean();
 }
-
-function exportJs() {
-  const name = $('#varName').value.trim() || 'pf2eData';
-  if (!/^[A-Za-z$_][\w$]*$/.test(name)) {
-    setStatus('Nombre de variable inválido', false);
-    return;
-  }
-  const json = JSON.stringify(data, null, 2);
-  const js = `const ${name} = ${json};\n`;
+function exportJs(){
+  const name = ($('#varName').value.trim() || 'pf2eData');
+  if(!/^[A-Za-z$_][\w$]*$/.test(name)){ setStatus('Nombre de variable inválido', false); return; }
+  const js = `const ${name} = ${JSON.stringify(data, null, 2)};\n`;
   download(`${name}.js`, js, 'text/javascript;charset=utf-8');
   setStatus('Exportado JS', true);
-  markClean();
 }
 
-// Plantillas
-function templateAttack() {
-  add({
-    title:'Ataque',
-    subtitle:'Acción',
-    reference:'CRB p.XXX',
-    traits:['Acción','Arma'],
-    description:'<strong>Requisito:</strong> arma en mano.<br><strong>Efecto:</strong> Realizas un ataque.',
-    bullets:['Tira d20 + competencia + mod.','Aplica rasgos y penalizadores.']
-  });
-}
-function templateMove() {
-  add({
-    title:'Moverse',
-    subtitle:'Acción',
-    reference:'CRB p.XXX',
-    traits:['Acción','Movimiento'],
-    description:'Te desplazas hasta tu velocidad.',
-    bullets:['Provoca Reacciones si corresponde.','Considera terreno difícil.']
-  });
-}
-
-// Eventos UI
-$('#btnLoadUrl').addEventListener('click', () => {
-  const u = $('#url').value;
-  if (!u) return setStatus('Ingresa una URL', false);
-  loadFromUrl(u);
-});
-$('#file').addEventListener('change', e => {
-  const f = e.target.files?.[0];
-  if (f) loadFromFile(f);
-});
+// Eventos
+$('#btnAdd').addEventListener('click', addItem);
+$('#btnReset').addEventListener('click', clearForm);
 $('#btnExportJson').addEventListener('click', exportJson);
 $('#btnExportJs').addEventListener('click', exportJs);
-$('#btnAdd').addEventListener('click', () => add({}));
-$('#btnTemplateAttack').addEventListener('click', templateAttack);
-$('#btnTemplateMove').addEventListener('click', templateMove);
-
-// Confirmar al salir si hay cambios
-window.addEventListener('beforeunload', e => {
-  if (dirty) { e.preventDefault(); e.returnValue = ''; }
-});
-
-// Arranque con una fila vacía para comodidad
-add({});
-
-// Accesos rápidos globales
-window.addEventListener('keydown', e => {
-  if (e.ctrlKey || e.metaKey) {
-    if (e.key.toLowerCase() === 's') { e.preventDefault(); exportJson(); }
+window.addEventListener('keydown', e=>{
+  if(e.ctrlKey||e.metaKey){
+    if(e.key.toLowerCase()==='s'){ e.preventDefault(); exportJson(); }
+  }
+  if(e.altKey && (e.key.toLowerCase()==='d')){ // duplicar seleccionado si edita
+    if(editingIndex>=0) { duplicateItem(editingIndex); }
+  }
+  if(e.altKey && (e.key==='Backspace' || e.key==='Delete')){
+    if(editingIndex>=0) { deleteItem(editingIndex); editingIndex=-1; clearForm(); }
   }
 });
 
-// FIN
+// Inicio
+setStatus('Listo', true);
 </script>
 </body>
 </html>
