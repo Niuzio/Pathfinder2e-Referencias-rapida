@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Editor de Acciones PF2e (adaptado a data_*.js)</title>
+  <title>Editor PF2e – data_*.js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa4ad; --accent:#7cc4ff; --bad:#ff6b6b; --ok:#80e27e; }
@@ -13,7 +13,7 @@
     main { display:grid; grid-template-columns: 360px 1fr; gap:0; min-height:calc(100vh - 58px); }
     aside { border-right:1px solid #222831; padding:12px; overflow:auto;}
     section { padding:12px; overflow:auto;}
-    input[type="text"], select, textarea { width:100%; background:#12151b; color:var(--fg); border:1px solid #273041; border-radius:8px; padding:8px; }
+    input[type="text"], select, textarea { width:100%; background:#12151b; color:#e6e6e6; border:1px solid #273041; border-radius:8px; padding:8px; }
     textarea { min-height:140px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     button { background:#172033; color:#dfe8f4; border:1px solid #24314a; border-radius:8px; padding:8px 12px; cursor:pointer; }
     button.secondary { background:#12151b; color:#c7d2e1; }
@@ -31,15 +31,16 @@
     .split { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
     .preview { border:1px dashed #273041; border-radius:8px; padding:10px; background:#0e141d; }
     .ghost { opacity:0.65; font-style:italic; color:#9aa4ad; }
+    .drag { cursor:grab; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Editor de Acciones PF2e</h1>
-    <label class="pill">
-      <input id="fileInput" type="file" accept=".js" multiple />
-    </label>
-    <button id="exportBtn" class="pill">Exportar todos</button>
+    <h1>Editor PF2e – data_*.js</h1>
+    <label class="pill"><input id="fileInput" type="file" accept=".js" multiple /></label>
+    <input id="urlInput" class="pill" type="text" placeholder="Pega URL raw de GitHub (js/.../data_*.js)" style="min-width:320px" />
+    <button id="loadUrlBtn" class="pill">Cargar URL</button>
+    <button id="exportAllBtn" class="pill">Exportar todos</button>
     <span id="status" class="small"></span>
   </header>
 
@@ -53,19 +54,21 @@
             <option value="">Cualquier icon</option>
             <option>single_action</option>
             <option>two_actions</option>
+            <option>three_actions</option>
             <option>reaction</option>
+            <option>free_action</option>
             <option>exploration</option>
-            <option>leaf</option>
-            <option>paw</option>
-            <option>eye</option>
-            <option>church</option>
-            <option>university</option>
-            <option>compass</option>
             <option>campground</option>
             <option>bomb</option>
-            <option>lock-open</option>
+            <option>eye</option>
+            <option>leaf</option>
+            <option>paw</option>
             <option>hand-back-fist</option>
             <option>theater-masks</option>
+            <option>lock-open</option>
+            <option>compass</option>
+            <option>church</option>
+            <option>university</option>
           </select>
           <select v-model="filter.kind">
             <option value="">Todos</option>
@@ -119,15 +122,17 @@
         <table>
           <thead>
             <tr>
+              <th style="width:8%">#</th>
               <th style="width:10%">Tipo</th>
               <th>Título / Sección</th>
               <th style="width:16%">Icon</th>
-              <th style="width:16%">Rasgos (derivado)</th>
+              <th style="width:22%">Rasgos/Coste (derivado)</th>
               <th style="width:14%"></th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="(it, idx) in filtered" :key="idx" @click="selectItem(idx)" style="cursor:pointer;">
+          <tbody id="itemsTable">
+            <tr v-for="(it, idx) in filtered" :key="idx" @click="selectItem(idx)" class="drag" title="Arrastra para reordenar">
+              <td>{{ idx+1 }}</td>
               <td>{{ kindOf(it) }}</td>
               <td>
                 <span v-if="it.header"><strong>{{ it.header }}</strong></span>
@@ -138,17 +143,17 @@
               <td>
                 <div class="tags">
                   <span v-for="t in derivedTraits(it)" :key="t" class="tag">{{ t }}</span>
+                  <span v-if="derivedCost(it)" class="tag">{{ derivedCost(it) }}</span>
                 </div>
               </td>
               <td>
-                <button class="secondary" @click.stop="moveItem(idx, -1)">↑</button>
-                <button class="secondary" @click.stop="moveItem(idx, 1)">↓</button>
                 <button class="secondary" v-if="!it.header" @click.stop="duplicateItem(idx)">Duplicar</button>
                 <button class="danger" @click.stop="deleteItem(idx)">Borrar</button>
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="small ghost">Tip: arrastra filas para reordenar.</div>
       </div>
 
       <div v-if="selIndex !== null" class="split" style="margin-top:10px;">
@@ -166,7 +171,7 @@
             <div class="row">
               <div class="col">
                 <label>Icon</label>
-                <input v-model="current.icon" type="text" placeholder="single_action, two_actions, reaction, exploration..." />
+                <input v-model="current.icon" type="text" placeholder="single_action, reaction, exploration..." />
               </div>
               <div class="col">
                 <label>Subtitle</label>
@@ -177,16 +182,16 @@
             <input v-model="current.reference" type="text" />
             <label>Descripción</label>
             <textarea v-model="current.description" placeholder="Texto (HTML o simple)"></textarea>
+
             <div class="col" style="margin-top:8px;">
               <label>Bullets</label>
-              <div class="list">
+              <div class="list" id="bulletsList">
                 <div class="row" v-for="(b, bi) in (current.bullets || [])" :key="bi">
                   <input v-model="current.bullets[bi]" type="text" />
-                  <button class="secondary" @click.prevent="moveBullet(bi, -1)">↑</button>
-                  <button class="secondary" @click.prevent="moveBullet(bi, 1)">↓</button>
                   <button class="danger" @click.prevent="removeBullet(bi)">X</button>
                 </div>
                 <button @click.prevent="addBullet">Añadir bullet</button>
+                <div class="small ghost">Tip: arrastra bullets para reordenar.</div>
               </div>
             </div>
           </div>
@@ -200,18 +205,7 @@
                 {{ valErrors.length? (valErrors.length + ' errores'): 'Sin errores' }}
               </div>
             </div>
-            <div class="preview">
-              <div class="small">Resumen</div>
-              <div v-if="isHeader(current)"><strong>Sección:</strong> {{ current.header }}</div>
-              <div v-else>
-                <div><strong>{{ current.title }}</strong> <span class="small">({{ current.icon||'sin icon' }})</span></div>
-                <div class="small" v-if="current.subtitle">{{ current.subtitle }}</div>
-                <div style="margin-top:6px">{{ current.description }}</div>
-                <ul>
-                  <li v-for="(b, i) in (current.bullets||[])" :key="i">{{ b }}</li>
-                </ul>
-              </div>
-            </div>
+            <div class="preview" v-html="safePreview(current)"></div>
           </div>
           <div class="card">
             <div class="small">Objeto JSON</div>
@@ -223,7 +217,7 @@
 
     <section v-else class="col" style="align-content:center; justify-items:center;">
       <div class="card">
-        Carga uno o más archivos .js con el formato IDENTIFICADOR = [ { header }, { title, icon, subtitle, description, reference, bullets } ].
+        Carga uno o más archivos .js con el formato IDENT = [ { header }, { title, icon, subtitle, description, reference, bullets } ].
       </div>
     </section>
   </main>
@@ -237,77 +231,37 @@
   <!-- Prettier -->
   <script src="https://unpkg.com/prettier@3/standalone.js"></script>
   <script src="https://unpkg.com/prettier@3/parser-babel.js"></script>
+  <!-- DOMPurify -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
   <!-- FileSaver -->
   <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 
   <script>
   const { createApp, reactive } = Vue;
+  const AjvCtor = window.Ajv || window.ajv7 || window.ajv;
 
-  // Utils
+  // Discriminantes
   const isHeader = (it) => it && typeof it === 'object' && !!it.header && !it.title;
   const isAction = (it) => it && typeof it === 'object' && !!it.title;
-  const kindOf = (it) => isHeader(it) ? 'header' : 'action';
+  const kindOf   = (it) => isHeader(it) ? 'header' : 'action';
 
+  // Derivados (solo para filtros/preview)
   function derivedTraits(it){
     if (!isAction(it)) return [];
-    const b = (it.bullets || []).find(x => /^\\s*Rasgos\\s*:/i.test(x));
+    const b = (it.bullets || []).find(x => /^\s*Rasgos\s*:/i.test(x));
     if (!b) return [];
     return b.split(':').slice(1).join(':').split(',').map(s => s.trim()).filter(Boolean);
   }
-
-  function tryParseIdentifierArrayAssignment(code) {
-    // AST-first: IDENT = ArrayExpression
-    try {
-      const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: 'script' });
-      // 1) AssignmentExpression: IDENT = [ ... ]
-      for (const n of ast.body) {
-        if (n.type === 'ExpressionStatement' &&
-            n.expression &&
-            n.expression.type === 'AssignmentExpression' &&
-            n.expression.left.type === 'Identifier' &&
-            n.expression.right.type === 'ArrayExpression') {
-          const varName = n.expression.left.name;
-          const items = astToJs(n.expression.right);
-          return { varName, items };
-        }
-      }
-      // 2) VariableDeclaration const/let/var IDENT = [ ... ]
-      for (const n of ast.body) {
-        if (n.type === 'VariableDeclaration') {
-          for (const d of n.declarations) {
-            if (d.id.type === 'Identifier' && d.init && d.init.type === 'ArrayExpression') {
-              const varName = d.id.name;
-              const items = astToJs(d.init);
-              return { varName, items };
-            }
-          }
-        }
-      }
-    } catch (e) {
-      // fall through to regex
-    }
-    // Regex fallback: IDENT = [ ... ];
-    const m = code.match(/([A-Za-z_$][\\w$]*)\\s*=\\s*(\
-
-\[[\\s\\S]*\\]
-
-);?/);
-    if (m) {
-      const varName = m[1];
-      const arrText = m[2];
-      // Try via JSON-like conversion (best-effort, preserve strings/arrays/objects)
-      try {
-        // Crude but often effective for your dataset; avoid changing quotes inside strings unnecessarily.
-        const safe = arrText
-          .replace(/(\\w+)\\s*:/g, '"$1":')      // unquoted keys -> quoted
-          .replace(/'([^']*)'/g, (_,x)=> JSON.stringify(x)); // single -> double
-        const items = JSON.parse(safe);
-        return { varName, items };
-      } catch (e) { /* ignored */ }
-    }
-    throw new Error('No se encontró una asignación IDENT = [ ... ]');
+  function derivedCost(it){
+    if (!isAction(it)) return '';
+    const b = (it.bullets || []).find(x => /^\s*Coste\s*:/i.test(x));
+    if (!b) return '';
+    return b.split(':').slice(1).join(':').trim();
   }
 
+  // AST -> JS (subset seguro)
   function astToJs(node) {
     switch (node.type) {
       case 'ArrayExpression':
@@ -322,10 +276,7 @@
       case 'Literal':
         return node.value;
       case 'TemplateLiteral':
-        return node.quasis.map((q, i) => {
-          const expr = node.expressions[i] ? '' : '';
-          return q.value.cooked + expr;
-        }).join('');
+        return node.quasis.map(q => q.value.cooked).join('');
       case 'UnaryExpression':
         if (node.operator === '-') return -astToJs(node.argument);
         if (node.operator === '+') return +astToJs(node.argument);
@@ -335,6 +286,51 @@
     }
   }
 
+  // Detecta IDENT = [ ... ] y var/let/const IDENT = [ ... ]
+  function parseJsArrayAssignment(code) {
+    try {
+      const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: 'script' });
+      // AssignmentExpression
+      for (const n of ast.body) {
+        if (n.type === 'ExpressionStatement' &&
+            n.expression &&
+            n.expression.type === 'AssignmentExpression' &&
+            n.expression.left.type === 'Identifier' &&
+            n.expression.right.type === 'ArrayExpression') {
+          return { varName: n.expression.left.name, items: astToJs(n.expression.right) };
+        }
+      }
+      // VariableDeclaration
+      for (const n of ast.body) {
+        if (n.type === 'VariableDeclaration') {
+          for (const d of n.declarations) {
+            if (d.id.type === 'Identifier' && d.init && d.init.type === 'ArrayExpression') {
+              return { varName: d.id.name, items: astToJs(d.init) };
+            }
+          }
+        }
+      }
+    } catch(e) { /* fallback */ }
+    // Fallback regex
+    const m = code.match(/([A-Za-z_$][\w$]*)\s*=\s*(
+
+\[[\s\S]*\]
+
+);?/);
+    if (m) {
+      const varName = m[1];
+      const arrText = m[2];
+      try {
+        const safe = arrText
+          .replace(/(\w+)\s*:/g, '"$1":')
+          .replace(/'([^']*)'/g, (_,x)=> JSON.stringify(x));
+        return { varName, items: JSON.parse(safe) };
+      } catch(e) {}
+    }
+    throw new Error('No se encontró una asignación IDENT = [ ... ]');
+  }
+
+  // Esquema (header | action)
   function buildSchema() {
     const headerSchema = {
       type: 'object',
@@ -358,41 +354,34 @@
     return { type: 'array', items: { oneOf: [headerSchema, actionSchema] } };
   }
 
+  // Serializer estable (respeta claves conocidas por tipo)
   function jsString(s){ return JSON.stringify(s); }
-
+  function stringifyBullets(arr){
+    if (!Array.isArray(arr)) return '[]';
+    const lines = arr.map(s => `  ${jsString(s)}`).join(',\n');
+    return `[\n${lines}\n]`;
+  }
   function stringifyItem(it){
-    if (isHeader(it)) {
-      return `{ header: ${jsString(it.header)} }`;
-    }
-    // Acción: orden de claves preferido
+    if (isHeader(it)) return `{ header: ${jsString(it.header)} }`;
+    const knownOrder = ['title','icon','subtitle','description','reference','bullets'];
     const parts = [];
-    const pushIf = (k) => { if (it[k] !== undefined) parts.push(`${k}: ${k === 'bullets' ? stringifyBullets(it[k]) : jsString(it[k])}`); };
-    ['title','icon','subtitle','description','reference'].forEach(pushIf);
-    if (it.bullets !== undefined) parts.push(`bullets: ${stringifyBullets(it.bullets)}`);
+    for (const k of knownOrder) {
+      if (it[k] === undefined) continue;
+      if (k === 'bullets') parts.push(`bullets: ${stringifyBullets(it[k])}`);
+      else parts.push(`${k}: ${jsString(it[k])}`);
+    }
     // extras no listados
-    const known = new Set(['title','icon','subtitle','description','reference','bullets']);
+    const known = new Set(knownOrder);
     Object.keys(it).filter(k => !known.has(k) && k !== 'header').forEach(k=>{
       parts.push(`${k}: ${jsString(it[k])}`);
     });
     return `{ ${parts.join(', ')} }`;
   }
-
-  function stringifyBullets(arr){
-    if (!Array.isArray(arr)) return '[]';
-    const lines = arr.map(s => `  ${jsString(s)}`).join(',\\n');
-    return `[\\n${lines}\\n]`;
-  }
-
   function toAssignmentJs(varName, items){
-    const body = `${varName} = [\\n  ${items.map(stringifyItem).join(',\\n  ')}\\n];\\n`;
-    try {
-      return prettier.format(body, { parser:'babel', plugins:[prettierPlugins.babel] });
-    } catch {
-      return body;
-    }
+    const raw = `${varName} = [\n  ${items.map(stringifyItem).join(',\n  ')}\n];\n`;
+    try { return prettier.format(raw, { parser:'babel', plugins:[prettierPlugins.babel] }); }
+    catch { return raw; }
   }
-
-  const AjvCtor = window.Ajv || window.ajv7 || window.ajv; // CDN naming guard
 
   const app = createApp({
     data: () => ({
@@ -406,10 +395,7 @@
     computed: {
       totalCount(){ return this.datasets.reduce((a,d)=>a + d.items.length, 0); },
       errorsCount(){ return this.datasets.reduce((a,d)=>a + d.errors.length, 0); },
-      schemaPreview(){
-        if (this.active===null) return '';
-        return JSON.stringify(this.datasets[this.active].schema, null, 2);
-      },
+      schemaPreview(){ return this.active===null ? '' : JSON.stringify(this.datasets[this.active].schema, null, 2); },
       filtered(){
         if (this.active===null) return [];
         const ds = this.datasets[this.active];
@@ -417,13 +403,11 @@
         return ds.items.filter(it=>{
           const hayQ = !q || JSON.stringify(it).toLowerCase().includes(q);
           const okI = !this.filter.icon || (isAction(it) && (it.icon||'')===this.filter.icon);
-          const okK = !this.filter.kind || kindOf(it)===this.filter.kind;
+          const okK = !this.filter.kind || (isHeader(it)?'header':'action')===this.filter.kind;
           return hayQ && okI && okK;
         });
       },
-      currentJson(){
-        return JSON.stringify(this.current, null, 2);
-      },
+      currentJson(){ return JSON.stringify(this.current, null, 2); },
       valErrors(){
         if (this.active===null) return [];
         const ds = this.datasets[this.active];
@@ -436,54 +420,62 @@
       }
     },
     methods: {
-      isHeader, isAction, kindOf, derivedTraits,
-      selectDataset(i){ this.active = i; this.selIndex = null; this.current = {}; },
-      removeDataset(i){ if (this.active === i) { this.active = null; this.selIndex = null; this.current = {}; } this.datasets.splice(i,1); },
+      isHeader, isAction, kindOf, derivedTraits, derivedCost,
+      safePreview(it){
+        if (!it) return '';
+        let html = '';
+        if (isHeader(it)) {
+          html = `<h3>${DOMPurify.sanitize(it.header||'')}</h3>`;
+        } else {
+          const t = DOMPurify.sanitize(it.title||'');
+          const ic = DOMPurify.sanitize(it.icon||'');
+          const sub = DOMPurify.sanitize(it.subtitle||'');
+          const ref = DOMPurify.sanitize(it.reference||'');
+          const desc = DOMPurify.sanitize(it.description||'');
+          const bullets = (it.bullets||[]).map(b=>`<li>${DOMPurify.sanitize(b)}</li>`).join('');
+          html = `<div><strong>${t}</strong> <span class="small">(${ic||'sin icon'})</span></div>
+                  ${sub?`<div class="small">${sub}</div>`:''}
+                  ${ref?`<div class="small ghost">${ref}</div>`:''}
+                  <div style="margin-top:6px">${desc}</div>
+                  ${bullets?`<ul>${bullets}</ul>`:''}`;
+        }
+        return html;
+      },
+      selectDataset(i){ this.active = i; this.selIndex = null; this.current = {}; this.$nextTick(this.attachDnD); },
+      removeDataset(i){ if (this.active===i){ this.active=null; this.selIndex=null; this.current={}; } this.datasets.splice(i,1); },
       addHeader(){
         if (this.active===null) return;
-        const item = { header:'Nueva sección' };
-        this.datasets[this.active].items.push(item);
+        const it = { header:'Nueva sección' };
+        this.datasets[this.active].items.push(it);
         this.selectItem(this.datasets[this.active].items.length - 1);
       },
       addAction(){
         if (this.active===null) return;
-        const item = { title:'Nueva acción', icon:'', subtitle:'', description:'', reference:'', bullets:[] };
-        this.datasets[this.active].items.push(item);
+        const it = { title:'Nueva acción', icon:'', subtitle:'', description:'', reference:'', bullets:[] };
+        this.datasets[this.active].items.push(it);
         this.selectItem(this.datasets[this.active].items.length - 1);
       },
       selectItem(i){
         this.selIndex = i;
         const src = this.datasets[this.active].items[i];
         this.current = JSON.parse(JSON.stringify(src));
+        this.$nextTick(this.attachBulletsDnD);
       },
       duplicateItem(i){
-        const src = this.datasets[this.active].items[i];
-        if (isHeader(src)) return; // no duplico headers por defecto
+        const ds = this.datasets[this.active];
+        const src = ds.items[i];
+        if (isHeader(src)) return;
         const copy = JSON.parse(JSON.stringify(src));
         copy.title = (copy.title||'') + ' (copia)';
-        this.datasets[this.active].items.splice(i+1, 0, copy);
+        ds.items.splice(i+1, 0, copy);
       },
       deleteItem(i){
         if (!confirm('¿Borrar este elemento?')) return;
         this.datasets[this.active].items.splice(i,1);
         this.selIndex = null; this.current = {};
       },
-      moveItem(i, dir){
-        const ds = this.datasets[this.active];
-        const j = i + dir;
-        if (j < 0 || j >= ds.items.length) return;
-        const [it] = ds.items.splice(i,1);
-        ds.items.splice(j,0,it);
-        if (this.selIndex === i) this.selIndex = j;
-      },
-      addBullet(){ if (!this.current.bullets) this.current.bullets = []; this.current.bullets.push(''); },
+      addBullet(){ if (!this.current.bullets) this.current.bullets = []; this.current.bullets.push(''); this.$nextTick(this.attachBulletsDnD); },
       removeBullet(i){ this.current.bullets.splice(i,1); },
-      moveBullet(i, dir){
-        const j = i + dir;
-        if (j < 0 || j >= this.current.bullets.length) return;
-        const [b] = this.current.bullets.splice(i,1);
-        this.current.bullets.splice(j,0,b);
-      },
       commitCurrent(){
         if (this.active===null || this.selIndex===null) return;
         this.datasets[this.active].items[this.selIndex] = JSON.parse(JSON.stringify(this.current));
@@ -503,55 +495,110 @@
         const code = toAssignmentJs(ds.varName, ds.items);
         const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
         saveAs(blob, ds.fileName);
+      },
+      exportAll(){
+        this.commitCurrent();
+        this.datasets.forEach(ds => {
+          const code = toAssignmentJs(ds.varName, ds.items);
+          const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
+          saveAs(blob, ds.fileName);
+        });
+      },
+      // Drag and drop reordenar filas
+      attachDnD(){
+        const tbody = document.getElementById('itemsTable');
+        if (!tbody) return;
+        Sortable.create(tbody, {
+          handle: '.drag', animation: 150,
+          onEnd: (evt) => {
+            const ds = this.datasets[this.active];
+            const oldIdx = evt.oldIndex;
+            const newIdx = evt.newIndex;
+            if (oldIdx === newIdx) return;
+            const [it] = ds.items.splice(oldIdx,1);
+            ds.items.splice(newIdx,0,it);
+            if (this.selIndex === oldIdx) this.selIndex = newIdx;
+          }
+        });
+      },
+      // Drag and drop reordenar bullets
+      attachBulletsDnD(){
+        const list = document.getElementById('bulletsList');
+        if (!list) return;
+        const rows = list.querySelectorAll('.row');
+        if (!rows.length) return;
+        Sortable.create(list, {
+          animation: 150, draggable: '.row',
+          onEnd: (evt) => {
+            const oldIdx = evt.oldIndex;
+            const newIdx = evt.newIndex;
+            if (oldIdx === newIdx) return;
+            const [b] = this.current.bullets.splice(oldIdx,1);
+            this.current.bullets.splice(newIdx,0,b);
+          }
+        });
       }
     }
   });
 
   const vm = app.mount('#app');
 
+  // Carga desde archivos locales
   document.getElementById('fileInput').addEventListener('change', async (e) => {
     const files = Array.from(e.target.files || []);
     const status = document.getElementById('status');
     for (const f of files) {
       status.textContent = 'Cargando ' + f.name + '...';
       const text = await f.text();
-      try {
-        const { varName, items } = tryParseIdentifierArrayAssignment(text);
-        const schema = buildSchema();
-        // Validación inicial
-        const ajv = new (window.Ajv || window.ajv7 || window.ajv)({ allErrors: true, strict:false });
-        const validate = ajv.compile(schema);
-        const ok = validate(items);
-        vm.datasets.push({
-          fileName: f.name,
-          varName,
-          items,
-          schema,
-          errors: ok ? [] : (validate.errors || [])
-        });
-        if (vm.active === null) vm.active = vm.datasets.length - 1;
-      } catch (err) {
-        vm.datasets.push({
-          fileName: f.name,
-          varName: 'DATA',
-          items: [],
-          schema: buildSchema(),
-          errors: [{ message: 'Parseo fallido: ' + err.message }]
-        });
-      }
+      await loadTextAsDataset(text, f.name);
     }
     status.textContent = 'Listo';
     e.target.value = '';
   });
 
-  document.getElementById('exportBtn').addEventListener('click', () => {
-    vm.commitCurrent();
-    vm.datasets.forEach(ds => {
-      const code = toAssignmentJs(ds.varName, ds.items);
-      const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
-      saveAs(blob, ds.fileName);
-    });
+  // Carga desde URL raw de GitHub
+  document.getElementById('loadUrlBtn').addEventListener('click', async () => {
+    const input = document.getElementById('urlInput');
+    const url = (input.value || '').trim();
+    if (!url) return;
+    const status = document.getElementById('status');
+    status.textContent = 'Descargando ' + url + '...';
+    try {
+      const res = await fetch(url, { mode: 'cors' });
+      const text = await res.text();
+      const fileName = url.split('/').pop() || 'data.js';
+      await loadTextAsDataset(text, fileName);
+      status.textContent = 'Listo';
+      input.value = '';
+    } catch (e) {
+      status.textContent = 'Error al descargar';
+      alert('No se pudo descargar: ' + e.message);
+    }
   });
+
+  async function loadTextAsDataset(text, fileName){
+    try {
+      const { varName, items } = parseJsArrayAssignment(text);
+      const schema = buildSchema();
+      const ajv = new AjvCtor({ allErrors: true, strict:false });
+      const validate = ajv.compile(schema);
+      const ok = validate(items);
+      vm.datasets.push({
+        fileName, varName, items, schema, errors: ok ? [] : (validate.errors || [])
+      });
+      if (vm.active === null) vm.active = vm.datasets.length - 1;
+      vm.$nextTick(() => { vm.attachDnD(); });
+    } catch (err) {
+      vm.datasets.push({
+        fileName, varName: 'DATA', items: [],
+        schema: buildSchema(),
+        errors: [{ message: 'Parseo fallido: ' + err.message }]
+      });
+    }
+  }
+
+  // Exportar todos
+  document.getElementById('exportAllBtn').addEventListener('click', () => vm.exportAll());
   </script>
 </body>
 </html>
