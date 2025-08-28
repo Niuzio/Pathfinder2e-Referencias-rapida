@@ -410,37 +410,32 @@ p:first-child {
   position: relative;
 }
 
-.tag[data-tooltip]::after {
-    content: attr(data-tooltip);
+.tag {
+    position: relative;
+    display: inline-block;
+}
+
+.tag-tooltip {
+    display: none;
     position: absolute;
-    bottom: 110%;                 /* un poco más separado de la etiqueta */
+    bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.92);
     color: #fff;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: 6px;
-
-    /* ✅ Permitir varias líneas y limitar el ancho */
-    white-space: normal;
-    word-wrap: break-word;
-    max-width: 280px;
+    max-width: 320px;
     box-sizing: border-box;
-    text-align: left;
-
     font-size: 0.8em;
     line-height: 1.4;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease-in-out;
+    text-align: left;
     z-index: 10;
-
-    /* Sombra para mejor visibilidad */
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-.tag[data-tooltip]:hover::after {
-  opacity: 1;
+.tag:hover .tag-tooltip {
+    display: block;
 }
 .action-icon {
     height: 1.2em;
