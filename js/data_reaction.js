@@ -554,6 +554,7 @@ data_reaction = [
       "Rasgos: manipular, entrenado"
     ]
   } ,
+    { header: "Naturaleza (Sabiduria)" },
   {
     title : "Forrajear" ,
     icon : "leaf" ,
@@ -580,6 +581,7 @@ data_reaction = [
       "Rasgos: exploración, entrenado"
     ]
   } ,
+     { header: "Ocultismo (Inteligencia)" },
   {
     title : "Recordar conocimiento" ,
     icon : "eye" ,
@@ -593,6 +595,7 @@ data_reaction = [
       "Rasgos: concentración, secreto"
     ]
   } ,
+     { header: "Religión (Sabiduria)" },
   {
     title : "Recordar conocimiento" ,
     icon : "church" ,
@@ -606,6 +609,7 @@ data_reaction = [
       "Rasgos: concentración, secreto"
     ]
   } ,
+       { header: "Sociedad (inteligencia)" },
   {
     title : "Recordar conocimiento" ,
     icon : "university" ,
@@ -619,6 +623,7 @@ data_reaction = [
       "Rasgos: concentración, secreto"
     ]
   } ,
+       { header: "Sigilo (Destreza)" },
   {
     title : "Esconderse" ,
     icon : "eye-slash" ,
@@ -645,6 +650,7 @@ data_reaction = [
       "Rasgos: sigilo"
     ]
   } ,
+         { header: "Supervivencia (sabiduria)" },
   {
     title : "Sentir dirección" ,
     icon : "compass" ,
