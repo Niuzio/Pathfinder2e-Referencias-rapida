@@ -552,3 +552,31 @@ p:first-child {
   width: auto !important;
   height: auto !important;
 }
+/* Tarjeta tipo Nivel20 para tooltips HTML */
+.tooltip-card {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1b1b1b;
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 6px;
+    max-width: 340px;
+    min-width: 200px;
+    box-sizing: border-box;
+    font-size: 0.85em;
+    line-height: 1.4;
+    text-align: left;
+    z-index: 50;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    display: none;                  /* oculto por defecto */
+}
+
+.tag {
+    position: relative;
+}
+
+.tag:hover .tooltip-card {
+    display: block;
+}
