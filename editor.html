@@ -1,201 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Editor WYSIWYG — Pathfinder 2e</title>
-  <style>
-    :root {
-      --bg: #f4f5f6; --card: #fff; --ink: #19202d; --muted: #57606a;
-      --line: #dfe1e6; --accent: #2684ff; --warn: #de350b; --ok: #36b37e;
-    }
-    body.dark {
-      --bg: #17191e; --card: #22262e; --ink: #e6e7e9; --muted: #8b95a7;
-      --line: #2c333f; --accent: #4c9aff; --warn: #ff7452; --ok: #57d9a3;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font: 14px/1.5 ui-sans-serif, system-ui;
-      background: var(--bg); color: var(--ink);
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      grid-template-areas:
-        "hd"
-        "main"
-        "ft";
-    }
-    header {
-      grid-area: hd;
-      background: var(--card);
-      border-bottom: 1px solid var(--line);
-      position: sticky; top: 0; z-index: 10;
-      padding: 0 16px;
-    }
-    nav { display: flex; }
-    .menu { list-style: none; display: flex; }
-    .menu > li { position: relative; }
-    .menu > li > a {
-      display: block; padding: 12px 16px;
-      color: var(--ink); text-decoration: none;
-      cursor: pointer;
-    }
-    .menu > li:hover > a { background: hsla(210,80%,90%,.5); }
-    .submenu {
-      display: none;
-      position: absolute; top: 100%; left: 0;
-      background: var(--card); border: 1px solid var(--line);
-      min-width: 200px; list-style: none; padding: 4px 0;
-      z-index: 20;
-    }
-    .menu > li:hover > .submenu { display: block; }
-    .submenu li { padding: 0; margin: 0; }
-    .submenu li label,
-    .submenu li button {
-      display: block; width: 100%;
-      text-align: left; padding: 8px 12px;
-      background: none; border: none; font: inherit;
-      color: var(--ink); cursor: pointer;
-    }
-    .submenu li button:hover,
-    .submenu li label:hover { background: var(--line); }
-    .submenu li input[type="text"] {
-      width: calc(100% - 24px);
-      margin: 4px 12px; padding: 6px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: var(--bg); color: var(--ink);
-    }
-    #fileInput { display: none; }
-
-    .layout {
-      grid-area: main;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 12px;
-    }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-    }
-    .panel.split { height: calc(100vh - 230px); }
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 8px;
-      flex: 1; overflow: auto;
-    }
-    thead th {
-      position: sticky; top: 0;
-      background: var(--card);
-      padding: 8px; text-align: left;
-      color: var(--muted);
-      border-bottom: 1px solid var(--line);
-    }
-    tbody td { padding: 8px; vertical-align: top; }
-    .ce {
-      min-height: 28px; padding: 6px;
-      border: 1px dashed transparent;
-      border-radius: 4px;
-    }
-    .ce:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: hsla(210,100%,50%,.05);
-    }
-    .ce.placeholder:empty:before {
-      content: attr(data-ph); color: var(--muted);
-    }
-    .row-actions { display: flex; gap: 4px; }
-    .status {
-      margin: 8px 0; font-size: 13px;
-    }
-    .status.ok { color: var(--ok); }
-    .status.err { color: var(--warn); }
-
-    .preview {
-      overflow: auto; flex: 1;
-    }
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    .title { font-weight: 700; }
-    .subtitle { color: var(--muted); margin: 4px 0; }
-    .traits {
-      display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0;
-    }
-    .trait {
-      background: var(--line);
-      border-radius: 4px;
-      padding: 2px 6px;
-      font-size: 12px;
-    }
-    .desc { white-space: pre-wrap; margin: 4px 0; }
-    .bullets { margin: 0 0 0 16px; }
-
-    #toolbar {
-      position: fixed; bottom: 24px; right: 24px;
-      display: none; gap: 4px; padding: 6px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      box-shadow: 0 4px 8px rgba(0,0,0,.1);
-    }
-    #toolbar button { padding: 4px 6px; }
-    #toolbar .sep {
-      width: 1px; background: var(--line);
-      margin: 0 6px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Editor WYSIWYG — Pathfinder 2e</title>
+<style>
+  :root{
+    --bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;
+    --accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,Segoe UI,Roboto,Arial}
+  header{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
+  .menubar{display:flex;align-items:center;gap:8px;padding:8px 12px;flex-wrap:wrap}
+  .menu{position:relative}
+  .menu>button{background:transparent;border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:8px;cursor:pointer}
+  .menu>button:hover{border-color:var(--accent)}
+  .dropdown{position:absolute;top:100%;left:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;display:none;min-width:260px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .menu:hover>.dropdown{display:block}
+  .row{display:flex;gap:6px;align-items:center;margin:6px}
+  .row label{font-size:12px;color:var(--muted)}
+  input[type="text"],select,button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+  button.primary{background:var(--accent);color:#0b1420;border-color:transparent;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid var(--line);cursor:pointer}
+  .layout{display:grid;grid-template-columns: 1.2fr .8fr;gap:12px;padding:12px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column}
+  .panel.split{height:calc(100vh - 190px)}
+  table{width:100%;border-collapse:separate;border-spacing:0 8px}
+  thead th{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:8px;color:var(--muted);text-align:left}
+  tbody td{padding:8px;vertical-align:top}
+  .ce{min-height:32px;padding:8px;border:1px dashed transparent;border-radius:8px}
+  .ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
+  .ce.placeholder:empty:before{content:attr(data-ph);color:var(--muted)}
+  .row-actions{display:flex;gap:6px}
+  .status{margin:8px 0;font-size:12px;color:var(--muted)}
+  .status.ok{color:var(--ok)}
+  .status.err{color:var(--warn)}
+  .toolbar{position:fixed;inset:auto 24px 24px auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;display:none;gap:4px}
+  .toolbar button{padding:6px 8px}
+  .toolbar .sep{width:1px;background:var(--line);margin:0 4px}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .preview{overflow:auto;flex:1;display:grid;gap:10px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
+  .title{font-weight:700;font-size:16px}
+  .subtitle{color:var(--muted)}
+  .traits{display:flex;gap:6px;flex-wrap:wrap}
+  .trait{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+  .desc{white-space:pre-wrap}
+  .bullets{margin:0 0 0 18px}
+  .kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  @media (max-width:1000px){.layout{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
 <header>
-  <nav>
-    <ul class="menu">
-      <li>
-        <a>Archivo ▾</a>
-        <ul class="submenu">
-          <li><label for="fileInput">Abrir archivo…</label></li>
-          <li><input type="text" id="urlInput" placeholder="URL raw GitHub" /></li>
-          <li><button id="btnLoadUrl">Cargar URL</button></li>
-          <li><label>Variable: <input type="text" id="varName" placeholder="data_x" /></label></li>
-          <li><label>Salida .js: <input type="text" id="fileName" placeholder="data_x.js" /></label></li>
-          <li><button id="btnDownload">Descargar .js</button></li>
-        </ul>
-      </li>
-      <li>
-        <a>Editar ▾</a>
-        <ul class="submenu">
-          <li><button id="btnAdd">Añadir fila</button></li>
-          <li><button id="btnValidate">Validar</button></li>
-          <li><button id="btnClear">Vaciar todo</button></li>
-        </ul>
-      </li>
-      <li>
-        <a>Ver ▾</a>
-        <ul class="submenu">
-          <li><button id="btnDark">Modo oscuro</button></li>
-          <li><button id="btnRestore">Restaurar tema</button></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <input type="file" id="fileInput" accept=".js" />
+  <div class="menubar">
+    <div class="menu">
+      <button>Archivo ▾</button>
+      <div class="dropdown">
+        <div class="row"><label for="fileInput">Abrir archivo local</label><input type="file" id="fileInput" accept=".js" /></div>
+        <div class="row" style="flex-wrap:wrap">
+          <label>Desde repo js/: </label>
+          <button id="btnListRepo" class="ghost">Listar</button>
+          <select id="repoFiles" style="flex:1"></select>
+          <button id="btnLoadRepo" class="primary">Cargar</button>
+        </div>
+        <div class="row" style="flex-wrap:wrap">
+          <label>Desde URL raw:</label>
+          <input type="text" id="urlInput" placeholder="https://raw.githubusercontent.com/Niuzio/Pathfinder2e-Referencias-rapida/master/js/data_action.js" style="flex:1" />
+          <button id="btnLoadUrl" class="primary">Cargar URL</button>
+        </div>
+        <div class="row" style="flex-wrap:wrap">
+          <label>Variable:</label><input type="text" id="varName" placeholder="data_action" />
+          <label>Salida:</label><input type="text" id="fileName" placeholder="data_action.js" />
+        </div>
+        <div class="row"><button id="btnDownload" class="primary" style="width:100%">Descargar .js</button></div>
+      </div>
+    </div>
+
+    <div class="menu">
+      <button>Editar ▾</button>
+      <div class="dropdown">
+        <div class="row"><button id="btnAdd" class="primary" style="width:100%">Añadir fila</button></div>
+        <div class="row">
+          <button id="btnValidate" class="ghost" style="flex:1">Validar</button>
+          <button id="btnClear" class="ghost" style="flex:1">Vaciar todo</button>
+        </div>
+        <div class="row">
+          <input id="findInput" type="text" placeholder="Buscar (título/desc/bullets)" style="flex:1" />
+          <button id="btnFind" class="ghost">Buscar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu">
+      <button>Ver ▾</button>
+      <div class="dropdown">
+        <div class="row"><button id="btnDark" class="ghost" style="width:100%">Modo oscuro</button></div>
+        <div class="row"><span class="kbd">Ctrl/Cmd</span> + <span class="kbd">D</span> alterna tema</div>
+      </div>
+    </div>
+
+    <span id="status" class="status">Listo</span>
+  </div>
 </header>
 
 <div class="layout">
-
   <div class="panel split">
-    <div id="status" class="status err">
-      Sin datos. Abra un archivo o pegue una URL.
+    <div class="controls">
+      <button id="quickAddAttack" class="ghost">+ Plantilla: Ataque</button>
+      <button id="quickAddMove" class="ghost">+ Plantilla: Movimiento</button>
     </div>
     <table>
       <thead>
@@ -203,10 +118,10 @@
           <th style="width:16ch">title</th>
           <th style="width:16ch">subtitle</th>
           <th style="width:16ch">reference</th>
-          <th style="width:16ch">traits</th>
-          <th style="min-width:200px">description</th>
-          <th style="width:20ch">bullets</th>
-          <th style="width:14ch">Acciones</th>
+          <th style="width:18ch">traits</th>
+          <th>description</th>
+          <th style="width:22ch">bullets</th>
+          <th style="width:16ch">Acciones</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
@@ -214,295 +129,373 @@
   </div>
 
   <div class="panel">
-    <strong>Vista previa</strong>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Vista previa</strong>
+      <span class="status" id="hint">Se actualiza al editar</span>
+    </div>
     <div id="preview" class="preview"></div>
   </div>
-
 </div>
 
-<div id="toolbar">
+<!-- Barra flotante de formato -->
+<div id="toolbar" class="toolbar">
   <button data-cmd="bold"><strong>B</strong></button>
   <button data-cmd="italic"><em>I</em></button>
   <button data-cmd="underline"><u>U</u></button>
   <div class="sep"></div>
-  <button data-cmd="insertUnorderedList">• List</button>
-  <button data-cmd="insertOrderedList">1. List</button>
+  <button data-cmd="insertUnorderedList">• Lista</button>
+  <button data-cmd="insertOrderedList">1. Lista</button>
   <div class="sep"></div>
   <button id="btnLink">Link</button>
-  <button data-cmd="unlink">Unlink</button>
+  <button data-cmd="unlink">Quitar link</button>
   <div class="sep"></div>
-  <button id="btnClearFmt">Clear</button>
+  <button id="btnClearFmt">Limpiar</button>
 </div>
 
 <script>
+/* ================= Estado ================= */
 let dataset = [];
-let varNameDetected = null;
+let varNameDetected = '';
 let focusedCell = null;
+
 const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
 
-function setStatus(msg, ok = false) {
-  const st = $('#status');
-  st.textContent = msg;
-  st.className = 'status ' + (ok ? 'ok' : 'err');
+/* ================= Utilidades ================= */
+function setStatus(msg, ok=null){
+  const el = $('#status');
+  el.textContent = msg;
+  el.className = 'status' + (ok===true ? ' ok' : ok===false ? ' err' : '');
 }
 
-function toRawUrl(u) {
-  return u.includes('/blob/')
-    ? u.replace('github.com/', 'raw.githubusercontent.com/')
-        .replace('/blob/', '/')
-    : u;
+function toRawUrl(u){
+  if(!u) return u;
+  if(u.includes('github.com/') && u.includes('/blob/')){
+    return u.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/');
+  }
+  return u;
 }
 
-function parseVarJs(text) {
+function safeText(s){ return (s ?? '').toString(); }
+
+/* Sanear HTML permitido (simple) */
+function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']){
+  if(!html) return '';
+  const root = document.createElement('div'); root.innerHTML = html;
+  root.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove());
+  const walk = (node)=>{
+    if(node.nodeType===1){
+      if(!allowed.includes(node.tagName)){
+        const p=node.parentNode; while(node.firstChild){p.insertBefore(node.firstChild,node)} p.removeChild(node); return;
+      }
+      [...node.attributes].forEach(a=>{
+        const n=a.name.toLowerCase(), v=a.value;
+        if(node.tagName==='A' && n==='href'){
+          if(!/^https?:\/\//i.test(v) && !v.startsWith('#') && !v.startsWith('mailto:')) node.removeAttribute(a.name);
+        }else if(n==='style' || n.startsWith('on')) node.removeAttribute(a.name);
+      });
+    }
+    [...node.childNodes].forEach(walk);
+  };
+  [...root.childNodes].forEach(walk);
+  return root.innerHTML;
+}
+
+/* Bullets convertir */
+function getBulletsFromHtmlOrText(content){
+  // Acepta UL/OL o texto con \n
+  const tmp = document.createElement('div'); tmp.innerHTML = content || '';
+  const lis = tmp.querySelectorAll('li');
+  if(lis.length){
+    return [...lis].map(li => sanitizeHtml(li.innerHTML,['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']).trim()).filter(Boolean);
+  }
+  const txt = tmp.textContent.replace(/\r/g,'');
+  return txt.split('\n').map(x=>x.trim()).filter(Boolean);
+}
+function bulletsToHtml(bullets){
+  if(!Array.isArray(bullets) || !bullets.length) return '';
+  return '<ul>' + bullets.map(b => '<li>'+sanitizeHtml(b,['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN'])+'</li>').join('') + '</ul>';
+}
+
+/* ================= Carga y parseo ================= */
+/* Parseo robusto: detecta nombre y extrae el array por conteo de corchetes; evalúa sólo el literal [] */
+function parseVarJs(text){
+  // 1) localizar "nombre =" seguido de "["
   const nameRe = new RegExp('(?:^|\\W)([\\w$]+)\\s*=\\s*\
 
-\[');
-  const nameMatch = nameRe.exec(text);
-  if (!nameMatch) {
-    throw new Error('No se encontró asignación de variable a un array.');
+\['); // constructor: sin literales /.../
+  const m = nameRe.exec(text);
+  if(!m) throw new Error('No se encontró una asignación X = [ ... ] en el archivo.');
+  const varName = m[1];
+  // 2) encontrar el '[' inicial y su cierre correspondiente
+  const startEq = text.indexOf('=', m.index);
+  const brOpen  = text.indexOf('[', startEq);
+  if(brOpen < 0) throw new Error('No se encontró el inicio del array "[".');
+  let depth = 0, brClose = -1;
+  for(let i=brOpen;i<text.length;i++){
+    const ch = text[i];
+    if(ch==='[') depth++;
+    else if(ch===']'){ depth--; if(depth===0){ brClose = i; break; } }
   }
-  const varName = nameMatch[1];
-  const eqPos = text.indexOf('=', nameMatch.index);
-  const openPos = text.indexOf('[', eqPos);
-  if (openPos < 0) throw new Error('No se encontró "[" tras la asignación.');
-
-  let depth = 0, closePos = -1;
-  for (let i = openPos; i < text.length; i++) {
-    if (text[i] === '[') depth++;
-    else if (text[i] === ']') {
-      depth--;
-      if (depth === 0) { closePos = i; break; }
-    }
-  }
-  if (closePos < 0) {
-    throw new Error('No se encontró cierre "]" correspondiente.');
-  }
-
-  const jsArray = text.slice(openPos, closePos + 1);
+  if(brClose < 0) throw new Error('No se encontró el cierre del array "]".');
+  const arrayLiteral = text.slice(brOpen, brClose+1);
+  // 3) eval controlado del literal del array
   let arr;
-  try {
-    arr = (new Function('return ' + jsArray))();
-  } catch (e) {
-    throw new Error('Error al evaluar array: ' + e.message);
+  try{
+    arr = (new Function('"use strict"; return ('+arrayLiteral+')'))();
+  }catch(e){
+    // Mensaje con contexto
+    throw new Error('Error al evaluar el array: ' + e.message);
   }
-  if (!Array.isArray(arr)) {
-    throw new Error('La variable extraída no es un array.');
-  }
-
+  if(!Array.isArray(arr)) throw new Error('El contenido extraído no es un array.');
   varNameDetected = varName;
   return arr;
 }
 
-function downloadJs(name, arr) {
-  const safeName = name.match(/^[\w$]+$/) ? name : 'data_x';
-  const js = safeName + ' = ' + JSON.stringify(arr, null, 2) + ';\n';
-  const blob = new Blob([js], { type: 'application/javascript' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = $('#fileName').value.trim() || (safeName + '.js');
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+/* ================= Render de tabla y vista previa ================= */
+function ensure(i){
+  dataset[i] ||= { title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] };
 }
 
-function ensure(i) {
-  dataset[i] ||= {
-    title: '', subtitle: '', reference: '',
-    traits: [], description: '', bullets: []
-  };
-}
-
-function renderTable() {
+function renderTable(){
   const tbody = $('#tbody');
   tbody.innerHTML = '';
-  dataset.forEach((it, idx) => {
+  dataset.forEach((it, idx)=>{
     ensure(idx);
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><div class="ce" contenteditable data-idx="${idx}" data-field="title" data-ph="Título">${it.title}</div></td>
       <td><div class="ce" contenteditable data-idx="${idx}" data-field="subtitle" data-ph="Subtítulo">${it.subtitle}</div></td>
       <td><div class="ce" contenteditable data-idx="${idx}" data-field="reference" data-ph="Referencia">${it.reference}</div></td>
-      <td><div class="ce" contenteditable data-idx="${idx}" data-field="traits" data-ph="trait1, trait2">${(it.traits||[]).join(', ')}</div></td>
-      <td><div class="ce" contenteditable data-idx="${idx}" data-field="description" data-ph="Descripción…">${it.description}</div></td>
-      <td><div class="ce" contenteditable data-idx="${idx}" data-field="bullets" data-ph="Una línea = bullet">${(it.bullets||[]).join('\n')}</div></td>
+      <td><div class="ce" contenteditable data-idx="${idx}" data-field="traits" data-ph="rasgo1, rasgo2">${(it.traits||[]).join(', ')}</div></td>
+      <td><div class="ce" contenteditable data-idx="${idx}" data-field="description" data-ph="Descripción (acepta formato básico)">${it.description}</div></td>
+      <td><div class="ce" contenteditable data-idx="${idx}" data-field="bullets" data-ph="Una línea por bullet o usa viñetas">${bulletsToHtml(it.bullets)}</div></td>
       <td class="row-actions">
-        <button data-act="up"    data-idx="${idx}">↑</button>
-        <button data-act="down"  data-idx="${idx}">↓</button>
-        <button data-act="dup"   data-idx="${idx}">⎘</button>
-        <button data-act="del"   data-idx="${idx}" style="color:var(--warn)">🗑</button>
+        <button data-act="up" data-idx="${idx}">↑</button>
+        <button data-act="down" data-idx="${idx}">↓</button>
+        <button data-act="dup" data-idx="${idx}">⎘</button>
+        <button data-act="del" data-idx="${idx}" style="color:var(--warn)">🗑</button>
       </td>`;
     tbody.appendChild(tr);
   });
-  document.querySelectorAll('.ce').forEach(el =>
-    el.classList.toggle('placeholder', !el.textContent.trim())
-  );
+  $$('.ce').forEach(el=>el.classList.toggle('placeholder', !el.innerText.trim()));
   refreshPreview();
 }
 
-function refreshPreview() {
-  const pr = $('#preview');
-  pr.innerHTML = '';
-  dataset.forEach(it => {
-    const c = document.createElement('div'); c.className = 'card';
-    const t = Object.assign(document.createElement('div'), { className: 'title',    innerText: it.title });
-    const s = Object.assign(document.createElement('div'), { className: 'subtitle', innerText: it.subtitle });
-    const r = Object.assign(document.createElement('div'), { className: 'subtitle', innerText: it.reference });
-    const trts = document.createElement('div'); trts.className = 'traits';
-    (it.traits||[]).forEach(x => {
-      const sp = document.createElement('span'); sp.className = 'trait'; sp.innerText = x;
-      trts.appendChild(sp);
-    });
-    const d = document.createElement('div'); d.className = 'desc';
-    d.innerHTML = it.description.replace(/\n/g,'<br>');
-    const ul = document.createElement('ul'); ul.className = 'bullets';
-    (it.bullets||[]).forEach(x => {
-      const li = document.createElement('li'); li.innerText = x;
-      ul.appendChild(li);
-    });
-    c.append(t,s,trts,r,d,ul);
-    pr.appendChild(c);
+function refreshPreview(){
+  const wrap = $('#preview'); wrap.innerHTML = '';
+  dataset.forEach(it=>{
+    const card = document.createElement('div'); card.className='card';
+    const t = document.createElement('div'); t.className='title'; t.innerHTML = sanitizeHtml(it.title,['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
+    const s = document.createElement('div'); s.className='subtitle'; s.innerHTML = sanitizeHtml(it.subtitle,['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
+    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = safeText(it.reference);
+    const traits = document.createElement('div'); traits.className='traits';
+    (it.traits||[]).forEach(tr=>{ const sp=document.createElement('span'); sp.className='trait'; sp.textContent=tr; traits.appendChild(sp); });
+    const d = document.createElement('div'); d.className='desc'; d.innerHTML = sanitizeHtml(it.description,['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']);
+    const bl = document.createElement('div'); bl.innerHTML = bulletsToHtml(it.bullets);
+    bl.querySelectorAll('ul,ol').forEach(u=>u.classList.add('bullets'));
+    card.append(t); if(s.textContent.trim()) card.append(s);
+    if((it.traits||[]).length) card.append(traits);
+    if(ref.textContent.trim()) card.append(ref);
+    if(d.innerHTML.trim()) card.append(d);
+    if((it.bullets||[]).length) card.append(bl);
+    wrap.appendChild(card);
   });
 }
 
-document.addEventListener('input', e => {
-  const ce = e.target.closest('.ce');
-  if (!ce) return;
-  const i = +ce.dataset.idx, f = ce.dataset.field;
-  ensure(i);
-  const v = ce.innerText;
-  if (f === 'traits')       dataset[i][f] = v.split(',').map(x => x.trim()).filter(Boolean);
-  else if (f === 'bullets') dataset[i][f] = v.split('\n').map(x => x.trim()).filter(Boolean);
-  else                      dataset[i][f] = v;
+/* ================= Eventos de edición ================= */
+document.addEventListener('input', (e)=>{
+  const el = e.target.closest('.ce'); if(!el) return;
+  const idx = +el.dataset.idx, field = el.dataset.field;
+  ensure(idx);
+  if(field==='traits'){
+    const text = el.innerText;
+    dataset[idx].traits = text.split(',').map(x=>x.trim()).filter(Boolean);
+    el.textContent = dataset[idx].traits.join(', ');
+  }else if(field==='bullets'){
+    dataset[idx].bullets = getBulletsFromHtmlOrText(el.innerHTML);
+    el.innerHTML = bulletsToHtml(dataset[idx].bullets); // normaliza a UL
+  }else{
+    dataset[idx][field] = el.innerHTML; // preserva formato básico
+  }
+  el.classList.toggle('placeholder', !el.innerText.trim());
   saveLocal();
-  renderTable();
+  refreshPreview();
 });
 
-document.addEventListener('click', e => {
-  const b = e.target.closest('button[data-act]');
-  if (!b) return;
+/* Acciones por fila */
+document.addEventListener('click', (e)=>{
+  const b = e.target.closest('button[data-act]'); if(!b) return;
   const i = +b.dataset.idx, act = b.dataset.act;
-  if (act === 'del')   dataset.splice(i,1);
-  if (act === 'dup')   dataset.splice(i+1,0, JSON.parse(JSON.stringify(dataset[i])));
-  if (act === 'up'   && i>0)      dataset.splice(i-1,0, dataset.splice(i,1)[0]);
-  if (act === 'down' && i<dataset.length-1) dataset.splice(i+1,0, dataset.splice(i,1)[0]);
+  if(act==='del'){ dataset.splice(i,1); }
+  if(act==='dup'){ dataset.splice(i+1,0, JSON.parse(JSON.stringify(dataset[i]))); }
+  if(act==='up' && i>0){ const t=dataset[i-1]; dataset[i-1]=dataset[i]; dataset[i]=t; }
+  if(act==='down' && i<dataset.length-1){ const t=dataset[i+1]; dataset[i+1]=dataset[i]; dataset[i]=t; }
   saveLocal(); renderTable();
 });
 
-function showToolbar(el) {
+/* ================= Toolbar WYSIWYG ================= */
+function showToolbar(el){
   focusedCell = el;
-  const r = el.getBoundingClientRect(), tb = $('#toolbar');
-  tb.style.left = r.left + 'px';
-  tb.style.top  = (r.bottom + 6) + 'px';
+  const tb = $('#toolbar'); const r = el.getBoundingClientRect();
+  tb.style.left = Math.max(12, r.left + window.scrollX) + 'px';
+  tb.style.top = (r.bottom + window.scrollY + 8) + 'px';
   tb.style.display = 'flex';
 }
-function hideToolbar() { $('#toolbar').style.display = 'none'; }
-
-document.addEventListener('focusin', e => {
-  const ce = e.target.closest('.ce');
-  if (ce) showToolbar(ce);
+function hideToolbar(){ $('#toolbar').style.display = 'none'; }
+document.addEventListener('focusin', e=>{
+  const el = e.target.closest('.ce'); if(el) showToolbar(el);
 });
-document.addEventListener('click', e => {
-  if (!e.target.closest('.ce') && !e.target.closest('#toolbar')) hideToolbar();
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.ce') && !e.target.closest('#toolbar')) hideToolbar();
+});
+$('#toolbar').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button'); if(!btn) return;
+  if(btn.dataset.cmd){ document.execCommand(btn.dataset.cmd,false,null); }
+  else if(btn.id==='btnLink'){ const url=prompt('URL:'); if(url) document.execCommand('createLink',false,url); }
+  else if(btn.id==='btnClearFmt'){ document.execCommand('removeFormat',false,null); document.execCommand('unlink',false,null); }
+  if(focusedCell){ focusedCell.dispatchEvent(new Event('input',{bubbles:true})); }
 });
 
-$('#toolbar').addEventListener('click', e => {
-  const cmd = e.target.closest('button')?.dataset.cmd;
-  if (cmd) {
-    document.execCommand(cmd,false,null);
-    focusedCell.dispatchEvent(new Event('input'));
-  } else if (e.target.id === 'btnLink') {
-    const url = prompt('URL:');
-    if (url) {
-      document.execCommand('createLink',false,url);
-      focusedCell.dispatchEvent(new Event('input'));
-    }
-  } else if (e.target.id === 'btnClearFmt') {
-    document.execCommand('removeFormat',false,null);
-    document.execCommand('unlink',false,null);
-    focusedCell.dispatchEvent(new Event('input'));
+/* ================= Carga desde repo / URL / local ================= */
+const OWNER='Niuzio', REPO='Pathfinder2e-Referencias-rapida', DIR='js';
+
+async function listRepoFiles(){
+  setStatus('Listando archivos del repo…');
+  const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${DIR}`;
+  const res = await fetch(api,{cache:'no-store'});
+  if(!res.ok) throw new Error('No se pudo listar el repo (HTTP '+res.status+')');
+  const arr = await res.json();
+  const jsFiles = arr.filter(x=>x.type==='file' && /\.js$/i.test(x.name));
+  const sel = $('#repoFiles'); sel.innerHTML = '';
+  jsFiles.forEach(f=>{
+    const opt = document.createElement('option');
+    opt.value = f.download_url; opt.textContent = f.name;
+    sel.appendChild(opt);
+  });
+  setStatus(`Encontrados ${jsFiles.length} archivos`);
+}
+
+async function loadFromUrl(url){
+  const res = await fetch(url,{cache:'no-store'});
+  if(!res.ok) throw new Error('No se pudo cargar (HTTP '+res.status+')');
+  const text = await res.text();
+  const data = parseVarJs(text);
+  dataset = data;
+  $('#varName').value = varNameDetected || '';
+  $('#fileName').value = (new URL(url)).pathname.split('/').pop() || (varNameDetected+'.js');
+  setStatus(`Cargado ${$('#fileName').value}`, true);
+  renderTable();
+  saveLocal();
+}
+
+/* Botones repo */
+$('#btnListRepo').addEventListener('click', async ()=>{
+  try{ await listRepoFiles(); }catch(e){ setStatus(e.message,false); }
+});
+$('#btnLoadRepo').addEventListener('click', async ()=>{
+  const sel = $('#repoFiles'); if(!sel.value) return setStatus('Primero lista y selecciona un archivo',false);
+  try{ await loadFromUrl(sel.value); }catch(e){ setStatus(e.message,false); }
+});
+
+/* Botones URL/local */
+$('#btnLoadUrl').addEventListener('click', async ()=>{
+  const u = toRawUrl($('#urlInput').value.trim()); if(!u) return setStatus('URL vacía',false);
+  try{ await loadFromUrl(u); }catch(e){ setStatus(e.message,false); }
+});
+$('#fileInput').addEventListener('change', async (ev)=>{
+  const f = ev.target.files[0]; if(!f) return;
+  const text = await f.text();
+  try{
+    dataset = parseVarJs(text);
+    $('#varName').value = varNameDetected || f.name.replace(/\.js$/i,'');
+    $('#fileName').value = f.name;
+    setStatus(`Cargado ${f.name}`, true);
+    renderTable(); saveLocal();
+  }catch(e){ setStatus(e.message,false); }
+});
+
+/* ================= Validación, búsqueda, plantillas ================= */
+$('#btnValidate').addEventListener('click', ()=>{
+  const issues=[];
+  if(!Array.isArray(dataset)) issues.push('El dataset no es un array');
+  dataset.forEach((o,i)=>{
+    if(!safeText(o.title).trim()) issues.push(`#${i+1} falta title`);
+    if(o.traits && !Array.isArray(o.traits)) issues.push(`#${i+1} traits no es array`);
+    if(o.bullets && !Array.isArray(o.bullets)) issues.push(`#${i+1} bullets no es array`);
+  });
+  setStatus(issues.length? issues.join(' | ') : 'OK ✔', issues.length===0);
+});
+
+$('#btnFind').addEventListener('click', ()=>{
+  const q = ($('#findInput').value||'').toLowerCase().trim();
+  if(!q){ setStatus('Escribe un término de búsqueda',false); return; }
+  const hits = [];
+  dataset.forEach((o,i)=>{
+    const blob = [o.title,o.subtitle,o.reference,o.description,...(o.bullets||[])].join('\n').toLowerCase();
+    if(blob.includes(q)) hits.push(i+1);
+  });
+  setStatus(hits.length? `Coincidencias en filas: ${hits.join(', ')}` : 'Sin coincidencias', hits.length>0);
+});
+
+$('#btnAdd').addEventListener('click', ()=>{
+  dataset.push({ title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] });
+  renderTable(); saveLocal();
+});
+
+$('#btnClear').addEventListener('click', ()=>{
+  if(confirm('¿Vaciar todo?')){ dataset=[]; renderTable(); saveLocal(); setStatus('Dataset vacío'); }
+});
+
+/* Plantillas rápidas */
+function addTemplate(t){
+  const base = { title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] };
+  if(t==='attack'){
+    base.title='Golpear'; base.subtitle='Ataque'; base.traits=['Ataque'];
+    base.description='Realizas un ataque con tu arma o hechizo.';
+    base.bullets=['Usa tu modificador de ataque','Puede provocar efectos según el arma'];
+  }else if(t==='move'){
+    base.title='Zancada'; base.subtitle='Movimiento'; base.traits=['Movimiento'];
+    base.description='Te desplazas hasta tu velocidad.';
+    base.bullets=['No provoca ataques de oportunidad (según criatura)','Se puede repetir varias veces'];
   }
+  dataset.push(base); renderTable(); saveLocal();
+}
+$('#quickAddAttack').addEventListener('click', ()=>addTemplate('attack'));
+$('#quickAddMove').addEventListener('click', ()=>addTemplate('move'));
+
+/* ================= Exportar ================= */
+$('#btnDownload').addEventListener('click', ()=>{
+  const name = ($('#varName').value || varNameDetected || 'data_action').replace(/[^\w$]/g,'_');
+  const file = ($('#fileName').value || (name+'.js')).replace(/[^A-Za-z0-9._-]/g,'_');
+  const js = name + ' = ' + JSON.stringify(dataset, null, 2) + ';\n';
+  const blob = new Blob([js], {type:'application/javascript'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file; document.body.appendChild(a); a.click(); a.remove();
+  setStatus(`Descargado ${file}`, true);
 });
 
-$('#fileInput').addEventListener('change', e => {
-  const f = e.target.files[0];
-  if (!f) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      dataset = parseVarJs(reader.result);
-      $('#varName').value = varNameDetected;
-      setStatus(`Cargado ${f.name}`, true);
-      renderTable();
-    } catch (err) {
-      setStatus(err.message, false);
-    }
-  };
-  reader.readAsText(f);
-});
-
-$('#btnLoadUrl').onclick = async () => {
-  const u = toRawUrl($('#urlInput').value.trim());
-  if (!u) return setStatus('URL vacía', false);
-  try {
-    const res = await fetch(u);
-    if (!res.ok) throw new Error(res.statusText);
-    const txt = await res.text();
-    dataset = parseVarJs(txt);
-    $('#varName').value = varNameDetected;
-    setStatus('Cargado desde URL', true);
-    renderTable();
-  } catch (err) {
-    setStatus(err.message, false);
-  }
-};
-
-$('#btnAdd').onclick      = () => { dataset.push({}); saveLocal(); renderTable(); };
-$('#btnClear').onclick    = () => { if (confirm('¿Vaciar todo?')) { dataset = []; saveLocal(); renderTable(); } };
-$('#btnValidate').onclick = () => {
-  const errs = [];
-  if (!Array.isArray(dataset)) errs.push('No es un array');
-  dataset.forEach((o,i) => { if (!o.title?.trim()) errs.push(`#${i+1} falta title`); });
-  setStatus(errs.length ? errs.join(' | ') : 'OK ✔', errs.length === 0);
-};
-
-$('#btnDark').onclick    = () => {
+/* ================= Tema y autosave ================= */
+$('#btnDark').addEventListener('click', ()=>{
   document.body.classList.toggle('dark');
-  localStorage.setItem('pf2e_theme', document.body.classList.contains('dark'));
-};
-$('#btnRestore').onclick = () => {
-  document.body.classList.remove('dark');
-  localStorage.removeItem('pf2e_theme');
-};
-if (localStorage.getItem('pf2e_theme') === 'true') {
-  document.body.classList.add('dark');
-}
+  localStorage.setItem('pf2e_theme', document.body.classList.contains('dark')?'1':'');
+});
+document.addEventListener('keydown', (e)=>{
+  if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='d'){ e.preventDefault(); $('#btnDark').click(); }
+});
 
-function saveLocal() {
-  localStorage.setItem('pf2e_editor', JSON.stringify({ dataset }));
+function saveLocal(){ localStorage.setItem('pf2e_editor_state', JSON.stringify({dataset,varName:$('#varName').value,fileName:$('#fileName').value})); }
+function loadLocal(){
+  try{
+    const st = JSON.parse(localStorage.getItem('pf2e_editor_state')||'null');
+    if(st){ dataset = st.dataset||[]; $('#varName').value = st.varName||''; $('#fileName').value = st.fileName||''; }
+  }catch{}
+  if(localStorage.getItem('pf2e_theme')) document.body.classList.add('dark');
 }
-function loadLocal() {
-  try {
-    const st = JSON.parse(localStorage.getItem('pf2e_editor'));
-    if (st?.dataset) {
-      dataset = st.dataset;
-      $('#varName').value = varNameDetected || '';
-      setStatus('Datos restaurados', true);
-    }
-  } catch {}
-}
-window.onload = () => {
+window.addEventListener('load', ()=>{
   loadLocal();
-  if (dataset.length) renderTable();
-  else setStatus('Sin datos. Abra un archivo o pegue una URL.', false);
-};
-
-$('#btnDownload').onclick = () => {
-  if (!varNameDetected && !$('#varName').value.trim()) {
-    varNameDetected = prompt('Nombre de variable:', 'data_x');
-  }
-  downloadJs($('#varName').value.trim() || varNameDetected, dataset);
-};
+  renderTable();
+  setStatus(dataset.length? 'Datos restaurados de sesión' : 'Listo');
+});
 </script>
-
 </body>
 </html>
