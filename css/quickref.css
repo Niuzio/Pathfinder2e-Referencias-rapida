@@ -403,44 +403,39 @@ p:first-child {
 .tag:hover {
   background-color: #8f2629;
   border-color: #d2c8b8;
-}
-/* Tooltip tipo tarjeta estilo Nivel20 */
-.tag[data-tooltip] {
+/* Tooltip tipo tarjeta estilo Nivel20 con HTML */
+.tag {
     position: relative;
 }
 
-.tag[data-tooltip]::after {
-    content: attr(data-tooltip);
+.tooltip-card {
     position: absolute;
     bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
     background: #1b1b1b;
     color: #fff;
-    padding: 12px 14px;
+    padding: 14px 16px;
     border-radius: 6px;
-    max-width: 340px;
-    width: max-content;
-    min-width: 200px;
+    max-width: 420px; /* más ancho que antes */
+    min-width: 240px;
     box-sizing: border-box;
     font-size: 0.85em;
-    line-height: 1.4;
+    line-height: 1.45;
     text-align: left;
     z-index: 50;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.5);
 
-    /* multilínea */
+    /* multilínea y contenido HTML fluido */
     white-space: normal;
     word-wrap: break-word;
 
     /* oculto por defecto */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease-in-out;
+    display: none;
 }
 
-.tag[data-tooltip]:hover::after {
-    opacity: 1;
+.tag:hover .tooltip-card {
+    display: block;
 }
 .action-icon {
     height: 1.2em;
@@ -551,30 +546,6 @@ p:first-child {
 .itemsize {
   width: auto !important;
   height: auto !important;
-}
-/* Tarjeta tipo Nivel20 para tooltips HTML */
-.tooltip-card {
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1b1b1b;
-    color: #fff;
-    padding: 12px 14px;
-    border-radius: 6px;
-    max-width: 340px;
-    min-width: 200px;
-    box-sizing: border-box;
-    font-size: 0.85em;
-    line-height: 1.4;
-    text-align: left;
-    z-index: 50;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.45);
-    display: none;                  /* oculto por defecto */
-}
-
-.tag {
-    position: relative;
 }
 
 .tag:hover .tooltip-card {
