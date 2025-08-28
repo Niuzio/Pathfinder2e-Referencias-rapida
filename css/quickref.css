@@ -496,14 +496,14 @@ p:first-child {
   flex-wrap: wrap;           /* permite que el texto baje a 2ª línea */
   margin-bottom: 0.75rem;    /* separa filas de ítems */
 }
-
-/* 2. Ajuste de icono fijo y margen claro */
+/* ------------------------------------- 
+   2) Icono siempre encima del texto 
+   ------------------------------------- */
 .item-icon {
-  flex: 0 0 48px;            /* ancho fijo */
-  width: 48px;
-  height: 48px;
-  margin-right: 0.75rem;
-  margin-bottom: 0.25rem;    /* separa icono de texto si hay wrap */
+  display: block;          /* icono en bloque separado */
+  margin: 0 auto 0.5rem;   /* auto-centrado + espacio abajo */
+  width: 48px;             /* tamaño fijo */
+  height: 48px;            /* tamaño fijo */
 }
 
 /* 3. Contenedor de texto con base flexible */
