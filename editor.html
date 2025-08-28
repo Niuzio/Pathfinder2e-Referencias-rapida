@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Editor WYSIWYG — Pathfinder 2e</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#111; --muted:#667085; --line:#e5e7eb;
+    --accent:#5b8def; --accent-ink:#fff; --warn:#b42318; --ok:#027a48;
+  }
+  body.dark{
+    --bg:#0e1116; --card:#11151c; --ink:#e6e7e9; --muted:#9aa4b2; --line:#1f2733;
+    --accent:#7aa2ff; --accent-ink:#0b1220; --warn:#ff7766; --ok:#4cd18d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,Segoe UI,Roboto,Arial}
+  header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px}
+  header h1{margin:0;font-size:16px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+  input[type="text"],input[type="file"],select,button{
+    background:var(--card);color:var(--ink);border:1px solid var(--line);
+    padding:8px 10px;border-radius:8px
+  }
+  button{cursor:pointer}
+  button.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+  button.ghost{background:transparent}
+  .chip{padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .layout{display:grid;grid-template-columns: minmax(360px, 1fr) 1fr; gap:12px; padding:12px}
+  @media (max-width: 1000px){.layout{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .split{display:grid;grid-template-rows:auto 1fr;gap:10px;height:calc(100vh - 140px)}
+  .scroll{overflow:auto}
+  table{width:100%;border-collapse:separate;border-spacing:0 8px}
+  thead th{position:sticky;top:0;background:var(--card);z-index:2;padding:8px;color:var(--muted);text-align:left;border-bottom:1px solid var(--line)}
+  tbody td{vertical-align:top;padding:0 8px}
+  tr.data-row{background:var(--bg);border:1px solid var(--line)}
+  tr.data-row td{padding:8px}
+  .ce{
+    min-height:36px;padding:8px;background:#0000;border:1px dashed transparent;border-radius:8px;
+  }
+  .ce:focus{outline:none;border-color:var(--accent);background:color-mix(in oklab, var(--accent) 8%, transparent)}
+  .ce.placeholder:empty:before{content:attr(data-ph);color:var(--muted)}
+  .cell-sm .ce{min-height:32px}
+  .cell-tags .ce{white-space:nowrap;overflow:auto}
+  .row-actions{display:flex;gap:6px;flex-wrap:wrap}
+  .hint{color:var(--muted);font-size:12px;margin-top:4px}
+  .status{margin-top:6px}
+  .status.ok{color:var(--ok)}
+  .status.err{color:var(--warn)}
+  .toolbar{
+    position:fixed;inset:auto auto 24px 24px;z-index:10;background:var(--card);
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.15);display:flex;gap:4px;padding:6px
+  }
+  .toolbar button{padding:6px 8px}
+  .toolbar .sep{width:1px;background:var(--line);margin:0 4px}
+  .toolbar.hidden{display:none}
+  .preview{display:grid;gap:8px}
+  .card{
+    border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);
+    display:grid;gap:8px
+  }
+  .title{font-weight:700;font-size:16px}
+  .subtitle{color:var(--muted)}
+  .traits{display:flex;gap:6px;flex-wrap:wrap}
+  .trait{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+  .desc{white-space:pre-wrap}
+  .bullets{margin:0 0 0 18px}
+  .controls{display:flex;gap:8px;flex-wrap:wrap}
+  .kbd{font:12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:2px 6px}
+  .row-handle{display:flex;gap:4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Editor WYSIWYG — Pathfinder 2e</h1>
+  <div class="bar">
+    <input type="file" id="fileInput" />
+    <input type="text" id="urlInput" placeholder="URL raw de GitHub (raw.githubusercontent.com/...)" style="min-width:320px"/>
+    <button id="btnLoadUrl" class="primary">Cargar</button>
+    <span class="chip">Autosave</span>
+    <button id="btnDark" class="ghost" title="Alternar tema">Modo oscuro</button>
+  </div>
+  <div class="bar">
+    <input type="text" id="varName" placeholder="Nombre de variable" value="data_action"/>
+    <input type="text" id="fileName" placeholder="Nombre de archivo" value="data_action.js"/>
+    <span class="chip">Exportación</span>
+    <label><input type="checkbox" id="optHtmlTitle"> HTML en title</label>
+    <label><input type="checkbox" id="optHtmlSubtitle"> HTML en subtitle</label>
+    <label><input type="checkbox" id="optHtmlBullets"> HTML en bullets</label>
+    <button id="btnDownload" class="primary">Descargar .js</button>
+    <span class="hint">Atajo: <span class="kbd">Ctrl</span> + <span class="kbd">D</span> tema</span>
+  </div>
+</header>
+
+<div class="layout">
+  <div class="panel split">
+    <div>
+      <div class="controls">
+        <button id="btnAdd" class="primary">Añadir</button>
+        <button id="btnValidate">Validar</button>
+        <button id="btnClear" class="ghost">Vaciar</button>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16ch">title</th>
+            <th style="width:14ch">subtitle</th>
+            <th style="width:16ch">reference</th>
+            <th style="width:16ch">traits</th>
+            <th>description</th>
+            <th style="width:22ch">bullets</th>
+            <th style="width:16ch">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="controls" style="justify-content:space-between;align-items:center">
+      <strong>Vista previa</strong>
+      <span class="hint">Se actualiza al editar</span>
+    </div>
+    <div id="preview" class="preview" style="margin-top:8px; max-height:calc(100vh - 170px); overflow:auto"></div>
+  </div>
+</div>
+
+<!-- Barra de formato flotante -->
+<div id="toolbar" class="toolbar hidden" role="toolbar" aria-label="Formato">
+  <button data-cmd="bold"><strong>B</strong></button>
+  <button data-cmd="italic"><em>I</em></button>
+  <button data-cmd="underline"><u>U</u></button>
+  <div class="sep"></div>
+  <button data-cmd="insertUnorderedList">• Lista</button>
+  <button data-cmd="insertOrderedList">1. Lista</button>
+  <div class="sep"></div>
+  <button id="btnLink">Enlace</button>
+  <button data-cmd="unlink">Quitar enlace</button>
+  <div class="sep"></div>
+  <button id="btnClearFmt">Limpiar formato</button>
+</div>
+
+<script>
+/* ====== Estado ====== */
+let dataset = [];
+let focusedCell = null;
+let varNameDetected = null;
+
+/* ====== Utilidades ====== */
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+function toRawUrl(url){
+  // Convierte URL de GitHub a raw si es necesario
+  try{
+    if(/github\\.com\\/.+\\/blob\\//.test(url)){
+      return url.replace('github.com','raw.githubusercontent.com').replace('/blob/','/');
+    }
+    return url;
+  }catch{ return url }
+}
+
+function setStatus(msg, ok=false){
+  const el = $('#status');
+  el.textContent = msg;
+  el.className = 'status ' + (ok ? 'ok' : 'err');
+}
+
+function safeText(s){ return (s??'').toString() }
+
+function stripTags(html){
+  const tmp = document.createElement('div'); tmp.innerHTML = html || '';
+  return tmp.textContent || tmp.innerText || '';
+}
+
+function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']){
+  if(!html) return '';
+  const root = document.createElement('div'); root.innerHTML = html;
+  // Eliminar scripts y atributos peligrosos
+  root.querySelectorAll('script, style, iframe, object, embed').forEach(n => n.remove());
+  const walker = (node)=>{
+    if(node.nodeType === 1){ // Element
+      if(!allowed.includes(node.tagName)){
+        const parent = node.parentNode;
+        while(node.firstChild){ parent.insertBefore(node.firstChild, node) }
+        parent.removeChild(node);
+        return;
+      }
+      // Sanitizar atributos
+      [...node.attributes].forEach(attr=>{
+        const name = attr.name.toLowerCase();
+        const val = attr.value;
+        if(node.tagName === 'A' && name === 'href'){
+          if(!/^https?:\\/\\//i.test(val) && !val.startsWith('#') && !val.startsWith('mailto:')) node.removeAttribute(attr.name);
+        }else if(name === 'style' || name.startsWith('on')){
+          node.removeAttribute(attr.name);
+        }
+      });
+    }
+    [...node.childNodes].forEach(walker);
+  };
+  [...root.childNodes].forEach(walker);
+  return root.innerHTML;
+}
+
+function getBulletsFromHtml(html){
+  // Soporta <ul><li>…</li></ul>, <br>, o líneas simples
+  const tmp = document.createElement('div'); tmp.innerHTML = html || '';
+  const lis = tmp.querySelectorAll('li');
+  if(lis.length){
+    return [...lis].map(li => sanitizeHtml(li.innerHTML, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']).trim()).filter(Boolean);
+  }
+  const text = tmp.textContent.replace(/\\r/g,'');
+  return text.split('\\n').map(s=>s.trim()).filter(Boolean);
+}
+
+function bulletsToHtml(arr, allowHtml=false){
+  if(!Array.isArray(arr) || !arr.length) return '';
+  if(allowHtml){
+    return '<ul>' + arr.map(x=>'<li>'+ sanitizeHtml(x, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']) + '</li>').join('') + '</ul>';
+  }
+  return '<ul>' + arr.map(x=>'<li>'+ stripTags(x) + '</li>').join('') + '</ul>';
+}
+
+function ensureItem(i){
+  dataset[i] ||= {};
+  const d = dataset[i];
+  d.title ??= '';
+  d.subtitle ??= '';
+  d.reference ??= '';
+  d.traits ??= [];
+  d.description ??= '';
+  d.bullets ??= [];
+}
+
+function saveLocal(){
+  const state = {
+    dataset, varName: $('#varName').value, fileName: $('#fileName').value,
+    opt: {
+      htmlTitle: $('#optHtmlTitle').checked,
+      htmlSubtitle: $('#optHtmlSubtitle').checked,
+      htmlBullets: $('#optHtmlBullets').checked
+    },
+    theme: document.body.classList.contains('dark') ? 'dark' : 'light'
+  };
+  localStorage.setItem('pf2e_editor_state', JSON.stringify(state));
+}
+
+function loadLocal(){
+  const raw = localStorage.getItem('pf2e_editor_state');
+  if(!raw) return;
+  try{
+    const state = JSON.parse(raw);
+    dataset = state.dataset || [];
+    $('#varName').value = state.varName || 'data_action';
+    $('#fileName').value = state.fileName || 'data_action.js';
+    $('#optHtmlTitle').checked = !!(state.opt?.htmlTitle);
+    $('#optHtmlSubtitle').checked = !!(state.opt?.htmlSubtitle);
+    $('#optHtmlBullets').checked = !!(state.opt?.htmlBullets);
+    if(state.theme === 'dark') document.body.classList.add('dark');
+  }catch{}
+}
+
+/* ====== Render tabla ====== */
+function renderTable(){
+  const tbody = $('#tbody');
+  tbody.innerHTML = '';
+  dataset.forEach((it, idx)=>{
+    ensureItem(idx);
+    const tr = document.createElement('tr'); tr.className = 'data-row';
+    tr.innerHTML = `
+      <td class="cell-sm">
+        <div class="ce" contenteditable data-ph="Título"
+             data-idx="${idx}" data-field="title">${it.title}</div>
+        <div class="hint">Texto libre; control HTML en exportación</div>
+      </td>
+      <td class="cell-sm">
+        <div class="ce" contenteditable data-ph="Subtítulo"
+             data-idx="${idx}" data-field="subtitle">${it.subtitle}</div>
+      </td>
+      <td class="cell-sm">
+        <div class="ce" contenteditable data-ph="Referencia (pág., libro, etc.)"
+             data-idx="${idx}" data-field="reference">${it.reference}</div>
+      </td>
+      <td class="cell-sm cell-tags">
+        <div class="ce" contenteditable data-ph="rasgo1, rasgo2, …"
+             data-idx="${idx}" data-field="traits">${(it.traits||[]).join(', ')}</div>
+        <div class="hint">Separar por comas</div>
+      </td>
+      <td>
+        <div class="ce" contenteditable data-ph="Descripción (acepta HTML seguro)"
+             data-idx="${idx}" data-field="description">${it.description}</div>
+      </td>
+      <td>
+        <div class="ce" contenteditable data-ph="Una línea por bullet o usa viñetas"
+             data-idx="${idx}" data-field="bullets">${bulletsToHtml(it.bullets, true)}</div>
+        <div class="hint">Se exporta como array</div>
+      </td>
+      <td>
+        <div class="row-actions">
+          <div class="row-handle">
+            <button data-act="up" data-idx="${idx}" title="Subir">↑</button>
+            <button data-act="down" data-idx="${idx}" title="Bajar">↓</button>
+          </div>
+          <button data-act="dup" data-idx="${idx}" title="Duplicar">⎘</button>
+          <button data-act="del" data-idx="${idx}" title="Eliminar">🗑</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+  // placeholders
+  $$('.ce').forEach(el=>{
+    el.classList.toggle('placeholder', !el.innerHTML.trim());
+  });
+  refreshPreview();
+}
+
+/* ====== Vista previa ====== */
+function refreshPreview(){
+  const wrap = $('#preview'); wrap.innerHTML = '';
+  dataset.forEach(it=>{
+    const card = document.createElement('div'); card.className = 'card';
+    // Title & subtitle
+    const t = document.createElement('div'); t.className = 'title';
+    t.innerHTML = sanitizeHtml(it.title, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
+    const s = document.createElement('div'); s.className = 'subtitle';
+    s.innerHTML = sanitizeHtml(it.subtitle, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
+    // Traits
+    const traits = document.createElement('div'); traits.className = 'traits';
+    (it.traits||[]).forEach(tr=>{
+      const span = document.createElement('span'); span.className = 'trait'; span.textContent = tr;
+      traits.appendChild(span);
+    });
+    // Reference
+    const ref = document.createElement('div'); ref.className = 'subtitle';
+    ref.textContent = safeText(it.reference||'');
+    // Description
+    const desc = document.createElement('div'); desc.className = 'desc';
+    desc.innerHTML = sanitizeHtml(it.description, ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']);
+    // Bullets
+    const bl = document.createElement('div');
+    bl.innerHTML = bulletsToHtml(it.bullets, true);
+    bl.querySelectorAll('ul,ol').forEach(ul=>{ul.classList.add('bullets')});
+    card.appendChild(t);
+    if(s.textContent.trim()) card.appendChild(s);
+    if((it.traits||[]).length) card.appendChild(traits);
+    if(ref.textContent.trim()) card.appendChild(ref);
+    if(desc.innerHTML.trim()) card.appendChild(desc);
+    if((it.bullets||[]).length) card.appendChild(bl);
+    wrap.appendChild(card);
+  });
+}
+
+/* ====== Eventos de edición ====== */
+document.addEventListener('input', (e)=>{
+  const el = e.target.closest('.ce');
+  if(!el) return;
+  const idx = +el.dataset.idx, field = el.dataset.field;
+  ensureItem(idx);
+  if(field === 'bullets'){
+    dataset[idx].bullets = getBulletsFromHtml(el.innerHTML);
+  }else if(field === 'traits'){
+    const text = stripTags(el.innerHTML);
+    dataset[idx].traits = text.split(',').map(s=>s.trim()).filter(Boolean);
+    // reflejar texto limpio
+    el.textContent = dataset[idx].traits.join(', ');
+  }else{
+    dataset[idx][field] = el.innerHTML;
+  }
+  el.classList.toggle('placeholder', !el.innerHTML.trim());
+  saveLocal();
+  refreshPreview();
+});
+
+document.addEventListener('click', (e)=>{
+  // Acciones de fila
+  const btn = e.target.closest('button[data-act]');
+  if(btn){
+    const idx = +btn.dataset.idx;
+    if(btn.dataset.act === 'del'){
+      if(confirm('¿Eliminar este elemento?')){ dataset.splice(idx,1); renderTable(); saveLocal(); }
+    }
+    if(btn.dataset.act === 'dup'){
+      const clone = JSON.parse(JSON.stringify(dataset[idx]||{}));
+      dataset.splice(idx+1, 0, clone); renderTable(); saveLocal();
+    }
+    if(btn.dataset.act === 'up'){
+      if(idx>0){ const t=dataset[idx-1]; dataset[idx-1]=dataset[idx]; dataset[idx]=t; renderTable(); saveLocal(); }
+    }
+    if(btn.dataset.act === 'down'){
+      if(idx<dataset.length-1){ const t=dataset[idx+1]; dataset[idx+1]=dataset[idx]; dataset[idx]=t; renderTable(); saveLocal(); }
+    }
+  }
+});
+
+/* ====== Toolbar WYSIWYG ====== */
+function showToolbarFor(el){
+  focusedCell = el;
+  const tb = $('#toolbar');
+  const rect = el.getBoundingClientRect();
+  // Colocar barra cerca del elemento (esquina inferior-izquierda) pero con margen
+  tb.style.left = Math.max(12, rect.left + window.scrollX) + 'px';
+  tb.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+  tb.classList.remove('hidden');
+}
+function hideToolbar(){ $('#toolbar').classList.add('hidden'); }
+
+document.addEventListener('focusin', (e)=>{
+  const el = e.target.closest('.ce');
+  if(!el) return;
+  showToolbarFor(el);
+});
+
+document.addEventListener('scroll', ()=>{
+  if(focusedCell && document.activeElement === focusedCell){
+    showToolbarFor(focusedCell);
+  }
+}, true);
+
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('.ce') && !e.target.closest('#toolbar')){
+    hideToolbar();
+  }
+});
+
+$('#toolbar').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  if(btn.dataset.cmd){
+    document.execCommand(btn.dataset.cmd, false, null);
+  }else if(btn.id === 'btnLink'){
+    const url = prompt('URL del enlace (https://...)');
+    if(url){ document.execCommand('createLink', false, url); }
+  }else if(btn.id === 'btnClearFmt'){
+    document.execCommand('removeFormat', false, null);
+    // quitar enlaces
+    document.execCommand('unlink', false, null);
+  }
+  // Disparar input para guardar/preview
+  if(focusedCell){
+    focusedCell.dispatchEvent(new Event('input', {bubbles:true}));
+  }
+});
+
+/* ====== Cargar datos ====== */
+function parseVarJs(text){
+  const re = /var\\s+(\\w+)\\s*=\\s*(\
+
+\[[\\s\\S]*\\]
+
+);?\\s*$/m;
+  const m = text.match(re);
+  if(!m) throw new Error('No se encontró asignación var NOMBRE = [ ... ];');
+  varNameDetected = m[1];
+  const json = m[2];
+  const arr = JSON.parse(json);
+  if(!Array.isArray(arr)) throw new Error('El contenido no es un array.');
+  return arr;
+}
+
+$('#fileInput').addEventListener('change', (e)=>{
+  const file = e.target.files?.[0]; if(!file) return;
+  const fr = new FileReader();
+  fr.onload = ()=>{
+    try{
+      dataset = parseVarJs(fr.result);
+      setStatus(`Cargado: ${file.name}. Variable detectada: ${varNameDetected}`, true);
+      if(varNameDetected) $('#varName').value = varNameDetected;
+      renderTable(); saveLocal();
+    }catch(err){
+      setStatus('Error: ' + err.message);
+    }
+  };
+  fr.readAsText(file);
+});
+
+$('#btnLoadUrl').addEventListener('click', async ()=>{
+  const url = toRawUrl($('#urlInput').value.trim());
+  if(!url){ setStatus('Ingresa una URL', false); return; }
+  try{
+    const res = await fetch(url, {cache:'no-store'});
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const txt = await res.text();
+    dataset = parseVarJs(txt);
+    setStatus(`Cargado desde URL. Variable: ${varNameDetected}`, true);
+    if(varNameDetected) $('#varName').value = varNameDetected;
+    renderTable(); saveLocal();
+  }catch(err){
+    setStatus('Error al cargar: ' + err.message);
+  }
+});
+
+/* ====== Validación ====== */
+$('#btnValidate').addEventListener('click', ()=>{
+  const problems = [];
+  if(!Array.isArray(dataset)) problems.push('El dataset no es un array.');
+  dataset.forEach((it, i)=>{
+    if(!stripTags(it.title||'').trim()) problems.push(`[#${i+1}] title vacío`);
+    if(it.bullets && !Array.isArray(it.bullets)) problems.push(`[#${i+1}] bullets no es array`);
+    if(it.traits && !Array.isArray(it.traits)) problems.push(`[#${i+1}] traits no es array`);
+  });
+  if(problems.length) setStatus('Problemas: ' + problems.join(' | '), false);
+  else setStatus('Estructura OK ✔', true);
+});
+
+/* ====== Añadir/Vaciar ====== */
+$('#btnAdd').addEventListener('click', ()=>{
+  dataset.push({ title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] });
+  renderTable(); saveLocal();
+});
+
+$('#btnClear').addEventListener('click', ()=>{
+  if(confirm('¿Vaciar todos los elementos?')){
+    dataset = []; renderTable(); saveLocal();
+  }
+});
+
+/* ====== Tema ====== */
+$('#btnDark').addEventListener('click', ()=>{
+  document.body.classList.toggle('dark'); saveLocal();
+});
+document.addEventListener('keydown', (e)=>{
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'd'){
+    e.preventDefault(); document.body.classList.toggle('dark'); saveLocal();
+  }
+});
+
+/* ====== Exportar ====== */
+$('#btnDownload').addEventListener('click', ()=>{
+  // Construir dataset de exportación con opciones
+  const allowTitle = $('#optHtmlTitle').checked;
+  const allowSubtitle = $('#optHtmlSubtitle').checked;
+  const allowBullets = $('#optHtmlBullets').checked;
+
+  const out = dataset.map(it=>{
+    const title = allowTitle ? sanitizeHtml(it.title, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']) : stripTags(it.title);
+    const subtitle = allowSubtitle ? sanitizeHtml(it.subtitle, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']) : stripTags(it.subtitle);
+    const reference = stripTags(it.reference);
+    const traits = Array.isArray(it.traits) ? it.traits : [];
+    const description = sanitizeHtml(it.description, ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']);
+    const bullets = (Array.isArray(it.bullets)? it.bullets : getBulletsFromHtml(it.bullets))
+      .map(b => allowBullets ? sanitizeHtml(b, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']) : stripTags(b));
+
+    return { title, subtitle, reference, traits, description, bullets };
+  });
+
+  const vname = ($('#varName').value || 'data_action').replace(/[^A-Za-z0-9_]/g,'_');
+  const fname = ($('#fileName').value || (vname + '.js')).replace(/[^A-Za-z0-9._-]/g,'_');
+  const content = 'var ' + vname + ' = ' + JSON.stringify(out, null, 2) + ';\\n';
+
+  const blob = new Blob([content], {type:'application/javascript'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname;
+  document.body.appendChild(a); a.click(); a.remove();
+});
+
+/* ====== Inicio ====== */
+window.addEventListener('load', ()=>{
+  loadLocal();
+  renderTable();
+  if(dataset.length){
+    setStatus('Datos restaurados de la última sesión', true);
+  }else{
+    setStatus('Sin datos. Carga un archivo o añade elementos.', false);
+  }
+});
+</script>
+</body>
+</html>
