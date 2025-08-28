@@ -8,12 +8,12 @@
   #sidebar { width: 250px; background: #f0f0f0; overflow-y: auto; padding: 0.5rem; }
   #main { flex: 1; display: flex; flex-direction: column; padding: 0.5rem; }
   label { font-weight: bold; margin-top: 0.5rem; display: block; }
-  input, select, textarea, button { width: 100%; margin-top: 0.25rem; }
+  input, select, button { width: 100%; margin-top: 0.25rem; }
   #objectList button { display: block; width: 100%; text-align: left; margin: 0.25rem 0; }
   #toolbar { margin-top: auto; }
 </style>
-<!-- CKEditor 5 Classic (no API key) -->
-<script src="https://cdn.tiny.cloud/1/qe3f7v8bujhuadtcma64eqwamf3blurvgio33jnckjo0ur2w/tinymce/6/tinymce.min.js"></script>
+<!-- CKEditor 5 Classic -->
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>
 <body>
 
@@ -32,11 +32,11 @@
   <input id="subtitleInput">
   <label>Referencia</label>
   <input id="referenceInput">
-  <label>Traits (separados por coma)</label>
+  <label>Traits (coma)</label>
   <input id="traitsInput">
   <label>Descripción</label>
   <div id="descriptionEditor"></div>
-  <label>Bullets (uno por línea)</label>
+  <label>Bullets</label>
   <div id="bulletsEditor"></div>
   <div id="toolbar">
     <button id="saveBtn">💾 Descargar archivo</button>
@@ -45,58 +45,41 @@
 
 <script>
 const files = [
-  "data_Action_Starfinder2e.js",
-  "data_action.js",
-  "data_bonusaction.js",
-  "data_condition.js",
-  "data_environment.js",
-  "data_exploration_general.js",
-  "data_exploration_skill.js",
-  "data_movement.js",
-  "data_optional.js",
-  "data_reaction.js",
-  "data_rest.js",
-  "quickref.js"
+  "data_action.js","data_bonusaction.js","data_condition.js","data_environment.js",
+  "data_exploration_general.js","data_exploration_skill.js","data_movement.js",
+  "data_optional.js","data_reaction.js","data_rest.js","quickref.js"
 ];
 const repoBase = "https://raw.githubusercontent.com/Niuzio/Pathfinder2e-Referencias-rapida/master/js/";
 
-let currentData = [];
-let currentIndex = -1;
+let currentData = [], currentIndex = -1;
 let descEditor, bulletsEditor;
 
 const fileSelect = document.getElementById('fileSelect');
 files.forEach(f => {
   const opt = document.createElement('option');
-  opt.value = f;
-  opt.textContent = f;
+  opt.value = f; opt.textContent = f;
   fileSelect.appendChild(opt);
 });
-
 fileSelect.addEventListener('change', loadFile);
 
 async function loadFile() {
   const url = repoBase + fileSelect.value;
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-    // Extraer JSON del archivo JS (asume formato const data = [...];)
-    const jsonMatch = text.match(/
+  const res = await fetch(url);
+  const text = await res.text();
+  const match = text.match(/=\\s*(\
 
-\[([\\s\\S]*)\]
+\[.*\\]
 
-/);
-    if (!jsonMatch) throw new Error("No se encontró un array en el archivo");
-    currentData = JSON.parse("[" + jsonMatch[1] + "]");
-    renderObjectList();
-  } catch (err) {
-    alert("Error al cargar: " + err.message);
-  }
+);?$/s);
+  if (!match) { alert("No se encontró array en el archivo"); return; }
+  currentData = JSON.parse(match[1]);
+  renderList();
 }
 
-function renderObjectList() {
+function renderList() {
   const list = document.getElementById('objectList');
   list.innerHTML = '';
-  currentData.forEach((obj, i) => {
+  currentData.forEach((obj,i) => {
     const btn = document.createElement('button');
     btn.textContent = obj.title || "(sin título)";
     btn.onclick = () => loadObject(i);
@@ -104,10 +87,55 @@ function renderObjectList() {
   });
 }
 
-function loadObject(index) {
-  currentIndex = index;
-  const obj = currentData[index];
-  document.getElementById('titleInput').value = obj.title || '';
-  document.getElementById('subtitleInput').value = obj.subtitle || '';
-  document.getElementById('referenceInput').value = obj.reference || '';
-  document.getElementById('traitsInput').value
+function loadObject(i) {
+  currentIndex = i;
+  const o = currentData[i];
+  document.getElementById('titleInput').value = o.title || '';
+  document.getElementById('subtitleInput').value = o.subtitle || '';
+  document.getElementById('referenceInput').value = o.reference || '';
+  document.getElementById('traitsInput').value = (o.traits||[]).join(', ');
+  descEditor.setData(o.description || '');
+  bulletsEditor.setData((o.bullets||[]).join('<br>'));
+}
+
+document.getElementById('addObjectBtn').onclick = () => {
+  currentData.push({title:'',subtitle:'',reference:'',traits:[],description:'',bullets:[]});
+  renderList();
+};
+
+document.getElementById('saveBtn').onclick = () => {
+  if (currentIndex >= 0) saveCurrent();
+  const js = "var " + fileSelect.value.replace('.js','') + " = " + JSON.stringify(currentData,null,2) + ";";
+  const blob = new Blob([js], {type:"application/javascript"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fileSelect.value;
+  a.click();
+};
+
+function saveCurrent() {
+  const o = currentData[currentIndex];
+  o.title = document.getElementById('titleInput').value;
+  o.subtitle = document.getElementById('subtitleInput').value;
+  o.reference = document.getElementById('referenceInput').value;
+  o.traits = document.getElementById('traitsInput').value.split(',').map(t=>t.trim()).filter(Boolean);
+  o.description = descEditor.getData();
+  o.bullets = bulletsEditor.getData().split(/<br\\s*\\/?>/).map(b=>b.trim()).filter(Boolean);
+}
+
+// Inicializar CKEditor
+ClassicEditor.create(document.querySelector('#descriptionEditor'), {
+  toolbar: ['bold','italic','underline','fontColor','highlight','link','insertImage','bulletedList','numberedList','blockQuote','insertTable','undo','redo']
+}).then(ed => descEditor = ed);
+
+ClassicEditor.create(document.querySelector('#bulletsEditor'), {
+  toolbar: ['bold','italic','underline','fontColor','highlight','link','bulletedList','numberedList','undo','redo']
+}).then(ed => bulletsEditor = ed);
+
+// Cargar primero
+fileSelect.value = files[0];
+loadFile();
+</script>
+
+</body>
+</html>
