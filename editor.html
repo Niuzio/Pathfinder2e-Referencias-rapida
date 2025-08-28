@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Editor de Acciones PF2e</title>
+  <title>Editor de Acciones PF2e (adaptado a data_*.js)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa4ad; --accent:#7cc4ff; --bad:#ff6b6b; --ok:#80e27e; }
-    body { background:var(--bg); color:var(--fg); font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; }
+    body { background:var(--bg); color:var(--fg); font:14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; }
     header { padding:14px 18px; border-bottom:1px solid #222831; display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
     header h1 { font-size:16px; margin:0 12px 0 0; }
     .pill { padding:6px 10px; border:1px solid #222831; border-radius:8px; background:#12151b; color:var(--muted);}
-    main { display:grid; grid-template-columns: 340px 1fr; gap:0; min-height:calc(100vh - 58px); }
+    main { display:grid; grid-template-columns: 360px 1fr; gap:0; min-height:calc(100vh - 58px); }
     aside { border-right:1px solid #222831; padding:12px; overflow:auto;}
     section { padding:12px; overflow:auto;}
     input[type="text"], select, textarea { width:100%; background:#12151b; color:var(--fg); border:1px solid #273041; border-radius:8px; padding:8px; }
@@ -30,6 +30,7 @@
     .tag { background:#172033; border:1px solid #24314a; color:#9cc7ff; padding:3px 6px; border-radius:999px; font-size:12px;}
     .split { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
     .preview { border:1px dashed #273041; border-radius:8px; padding:10px; background:#0e141d; }
+    .ghost { opacity:0.65; font-style:italic; color:#9aa4ad; }
   </style>
 </head>
 <body>
@@ -38,7 +39,7 @@
     <label class="pill">
       <input id="fileInput" type="file" accept=".js" multiple />
     </label>
-    <button id="exportBtn" class="pill">Exportar archivos .js</button>
+    <button id="exportBtn" class="pill">Exportar todos</button>
     <span id="status" class="small"></span>
   </header>
 
@@ -46,22 +47,33 @@
     <aside>
       <div class="col card">
         <label>Buscar</label>
-        <input v-model="q" type="text" placeholder="nombre, rasgo, rareza..." />
+        <input v-model="q" type="text" placeholder="título, header, subtitle, bullet..." />
         <div class="row">
-          <select v-model="filter.rarity">
-            <option value="">Cualquier rareza</option>
-            <option>common</option><option>uncommon</option><option>rare</option><option>unique</option>
+          <select v-model="filter.icon">
+            <option value="">Cualquier icon</option>
+            <option>single_action</option>
+            <option>two_actions</option>
+            <option>reaction</option>
+            <option>exploration</option>
+            <option>leaf</option>
+            <option>paw</option>
+            <option>eye</option>
+            <option>church</option>
+            <option>university</option>
+            <option>compass</option>
+            <option>campground</option>
+            <option>bomb</option>
+            <option>lock-open</option>
+            <option>hand-back-fist</option>
+            <option>theater-masks</option>
           </select>
-          <select v-model="filter.cost">
-            <option value="">Cualquier coste</option>
-            <option value="free">free</option>
-            <option value="one">one</option>
-            <option value="two">two</option>
-            <option value="three">three</option>
-            <option value="reaction">reaction</option>
+          <select v-model="filter.kind">
+            <option value="">Todos</option>
+            <option value="header">Secciones</option>
+            <option value="action">Acciones</option>
           </select>
         </div>
-        <div class="small">Archivos cargados: {{ datasets.length }} | Registros: {{ totalCount }} | Errores: <span :class="errorsCount? 'bad':'ok'">{{ errorsCount }}</span></div>
+        <div class="small">Archivos: {{ datasets.length }} | Ítems: {{ totalCount }} | Errores: <span :class="errorsCount? 'bad':'ok'">{{ errorsCount }}</span></div>
       </div>
 
       <div class="list">
@@ -91,13 +103,14 @@
               <input :value="datasets[active].fileName + ' ('+datasets[active].varName+')'" disabled />
             </div>
             <div class="col">
-              <label>Esquema inferido</label>
+              <label>Esquema</label>
               <textarea :value="schemaPreview" disabled></textarea>
             </div>
           </div>
         </div>
         <div class="row" style="gap:8px;">
-          <button @click="addItem">Nueva acción</button>
+          <button @click="addHeader">Nueva sección</button>
+          <button @click="addAction">Nueva acción</button>
           <button class="secondary" @click="exportOne">Exportar este .js</button>
         </div>
       </div>
@@ -106,27 +119,31 @@
         <table>
           <thead>
             <tr>
-              <th style="width:22%">Nombre</th>
-              <th>Rasgos</th>
-              <th style="width:10%">Rareza</th>
-              <th style="width:10%">Coste</th>
-              <th style="width:10%">Slug</th>
-              <th style="width:10%"></th>
+              <th style="width:10%">Tipo</th>
+              <th>Título / Sección</th>
+              <th style="width:16%">Icon</th>
+              <th style="width:16%">Rasgos (derivado)</th>
+              <th style="width:14%"></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(it, idx) in filtered" :key="idx" @click="selectItem(idx)" style="cursor:pointer;">
-              <td>{{ it.name }}</td>
+              <td>{{ kindOf(it) }}</td>
+              <td>
+                <span v-if="it.header"><strong>{{ it.header }}</strong></span>
+                <span v-else>{{ it.title }}</span>
+                <div class="small ghost" v-if="!it.header && it.subtitle">{{ it.subtitle }}</div>
+              </td>
+              <td>{{ it.icon || '' }}</td>
               <td>
                 <div class="tags">
-                  <span v-for="t in (it.traits||[])" :key="t" class="tag">{{ t }}</span>
+                  <span v-for="t in derivedTraits(it)" :key="t" class="tag">{{ t }}</span>
                 </div>
               </td>
-              <td>{{ it.rarity || '' }}</td>
-              <td>{{ it.actionCost || '' }}</td>
-              <td class="small">{{ slugify(it.name) }}</td>
               <td>
-                <button class="secondary" @click.stop="duplicateItem(idx)">Duplicar</button>
+                <button class="secondary" @click.stop="moveItem(idx, -1)">↑</button>
+                <button class="secondary" @click.stop="moveItem(idx, 1)">↓</button>
+                <button class="secondary" v-if="!it.header" @click.stop="duplicateItem(idx)">Duplicar</button>
                 <button class="danger" @click.stop="deleteItem(idx)">Borrar</button>
               </td>
             </tr>
@@ -136,34 +153,41 @@
 
       <div v-if="selIndex !== null" class="split" style="margin-top:10px;">
         <div class="col">
-          <div class="card">
-            <label>Nombre</label>
-            <input v-model="current.name" type="text" />
-            <label>Rasgos (separados por coma)</label>
-            <input v-model="traitsText" type="text" placeholder="manipulate, attack, move..." />
+          <div class="card" v-if="isHeader(current)">
+            <div class="small">Editando: Sección</div>
+            <label>Header</label>
+            <input v-model="current.header" type="text" placeholder="Nombre de la sección" />
+          </div>
+
+          <div class="card" v-else>
+            <div class="small">Editando: Acción</div>
+            <label>Título</label>
+            <input v-model="current.title" type="text" />
             <div class="row">
-              <div class="col"><label>Rareza</label>
-                <select v-model="current.rarity">
-                  <option value="">—</option><option>common</option><option>uncommon</option><option>rare</option><option>unique</option>
-                </select>
+              <div class="col">
+                <label>Icon</label>
+                <input v-model="current.icon" type="text" placeholder="single_action, two_actions, reaction, exploration..." />
               </div>
-              <div class="col"><label>Coste</label>
-                <select v-model="current.actionCost">
-                  <option value="">—</option>
-                  <option value="free">free</option><option value="one">one</option><option value="two">two</option><option value="three">three</option><option value="reaction">reaction</option>
-                </select>
+              <div class="col">
+                <label>Subtitle</label>
+                <input v-model="current.subtitle" type="text" />
               </div>
             </div>
-            <label>Requisitos</label><input v-model="current.requirements" type="text" />
-            <label>Desencadenante</label><input v-model="current.trigger" type="text" />
-            <label>Frecuencia</label><input v-model="current.frequency" type="text" />
-            <label>Fuente</label><input v-model="current.source" type="text" />
-            <label>Icono</label><input v-model="current.icon" type="text" placeholder="ruta/icon.svg" />
+            <label>Reference</label>
+            <input v-model="current.reference" type="text" />
             <label>Descripción</label>
-            <textarea v-model="current.description" placeholder="Texto en HTML o Markdown"></textarea>
-            <div class="row">
-              <label><input type="checkbox" v-model="asMarkdown" /> Editar como Markdown</label>
-              <span class="small">Slug: #{{ slugify(current.name) }}</span>
+            <textarea v-model="current.description" placeholder="Texto (HTML o simple)"></textarea>
+            <div class="col" style="margin-top:8px;">
+              <label>Bullets</label>
+              <div class="list">
+                <div class="row" v-for="(b, bi) in (current.bullets || [])" :key="bi">
+                  <input v-model="current.bullets[bi]" type="text" />
+                  <button class="secondary" @click.prevent="moveBullet(bi, -1)">↑</button>
+                  <button class="secondary" @click.prevent="moveBullet(bi, 1)">↓</button>
+                  <button class="danger" @click.prevent="removeBullet(bi)">X</button>
+                </div>
+                <button @click.prevent="addBullet">Añadir bullet</button>
+              </div>
             </div>
           </div>
         </div>
@@ -171,13 +195,26 @@
         <div class="col">
           <div class="card">
             <div class="row" style="justify-content:space-between;">
-              <div class="small">Vista previa</div>
-              <div class="small" :class="valErrors.length?'bad':'ok'">{{ valErrors.length? (valErrors.length + ' errores de validación'): 'Sin errores' }}</div>
+              <div class="small">Validación</div>
+              <div class="small" :class="valErrors.length?'bad':'ok'">
+                {{ valErrors.length? (valErrors.length + ' errores'): 'Sin errores' }}
+              </div>
             </div>
-            <div class="preview" v-html="rendered"></div>
+            <div class="preview">
+              <div class="small">Resumen</div>
+              <div v-if="isHeader(current)"><strong>Sección:</strong> {{ current.header }}</div>
+              <div v-else>
+                <div><strong>{{ current.title }}</strong> <span class="small">({{ current.icon||'sin icon' }})</span></div>
+                <div class="small" v-if="current.subtitle">{{ current.subtitle }}</div>
+                <div style="margin-top:6px">{{ current.description }}</div>
+                <ul>
+                  <li v-for="(b, i) in (current.bullets||[])" :key="i">{{ b }}</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="card">
-            <div class="small">JSON del elemento</div>
+            <div class="small">Objeto JSON</div>
             <textarea :value="currentJson" disabled></textarea>
           </div>
         </div>
@@ -186,7 +223,7 @@
 
     <section v-else class="col" style="align-content:center; justify-items:center;">
       <div class="card">
-        Carga uno o más archivos .js con acciones. Se mantendrán nombres de variables y formato en la exportación.
+        Carga uno o más archivos .js con el formato IDENTIFICADOR = [ { header }, { title, icon, subtitle, description, reference, bullets } ].
       </div>
     </section>
   </main>
@@ -197,8 +234,6 @@
   <script src="https://cdn.jsdelivr.net/npm/acorn@8/dist/acorn.min.js"></script>
   <!-- Ajv -->
   <script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv7.min.js"></script>
-  <!-- Showdown -->
-  <script src="https://cdn.jsdelivr.net/npm/showdown@2/dist/showdown.min.js"></script>
   <!-- Prettier -->
   <script src="https://unpkg.com/prettier@3/standalone.js"></script>
   <script src="https://unpkg.com/prettier@3/parser-babel.js"></script>
@@ -206,18 +241,71 @@
   <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 
   <script>
-  const { createApp, reactive, computed } = Vue;
+  const { createApp, reactive } = Vue;
 
-  // Utilidades
-  function slugify(s) {
-    return (s||'')
-      .toString()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
+  // Utils
+  const isHeader = (it) => it && typeof it === 'object' && !!it.header && !it.title;
+  const isAction = (it) => it && typeof it === 'object' && !!it.title;
+  const kindOf = (it) => isHeader(it) ? 'header' : 'action';
+
+  function derivedTraits(it){
+    if (!isAction(it)) return [];
+    const b = (it.bullets || []).find(x => /^\\s*Rasgos\\s*:/i.test(x));
+    if (!b) return [];
+    return b.split(':').slice(1).join(':').split(',').map(s => s.trim()).filter(Boolean);
+  }
+
+  function tryParseIdentifierArrayAssignment(code) {
+    // AST-first: IDENT = ArrayExpression
+    try {
+      const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: 'script' });
+      // 1) AssignmentExpression: IDENT = [ ... ]
+      for (const n of ast.body) {
+        if (n.type === 'ExpressionStatement' &&
+            n.expression &&
+            n.expression.type === 'AssignmentExpression' &&
+            n.expression.left.type === 'Identifier' &&
+            n.expression.right.type === 'ArrayExpression') {
+          const varName = n.expression.left.name;
+          const items = astToJs(n.expression.right);
+          return { varName, items };
+        }
+      }
+      // 2) VariableDeclaration const/let/var IDENT = [ ... ]
+      for (const n of ast.body) {
+        if (n.type === 'VariableDeclaration') {
+          for (const d of n.declarations) {
+            if (d.id.type === 'Identifier' && d.init && d.init.type === 'ArrayExpression') {
+              const varName = d.id.name;
+              const items = astToJs(d.init);
+              return { varName, items };
+            }
+          }
+        }
+      }
+    } catch (e) {
+      // fall through to regex
+    }
+    // Regex fallback: IDENT = [ ... ];
+    const m = code.match(/([A-Za-z_$][\\w$]*)\\s*=\\s*(\
+
+\[[\\s\\S]*\\]
+
+);?/);
+    if (m) {
+      const varName = m[1];
+      const arrText = m[2];
+      // Try via JSON-like conversion (best-effort, preserve strings/arrays/objects)
+      try {
+        // Crude but often effective for your dataset; avoid changing quotes inside strings unnecessarily.
+        const safe = arrText
+          .replace(/(\\w+)\\s*:/g, '"$1":')      // unquoted keys -> quoted
+          .replace(/'([^']*)'/g, (_,x)=> JSON.stringify(x)); // single -> double
+        const items = JSON.parse(safe);
+        return { varName, items };
+      } catch (e) { /* ignored */ }
+    }
+    throw new Error('No se encontró una asignación IDENT = [ ... ]');
   }
 
   function astToJs(node) {
@@ -235,7 +323,7 @@
         return node.value;
       case 'TemplateLiteral':
         return node.quasis.map((q, i) => {
-          const expr = node.expressions[i] ? `\${${astToJs(node.expressions[i])}}` : '';
+          const expr = node.expressions[i] ? '' : '';
           return q.value.cooked + expr;
         }).join('');
       case 'UnaryExpression':
@@ -243,104 +331,77 @@
         if (node.operator === '+') return +astToJs(node.argument);
         return null;
       default:
-        // No soportamos funciones ni expresiones complejas en datos
         return null;
     }
   }
 
-  function tryParseJsArrayVariable(code) {
-    // 1) Intento con Acorn
-    try {
-      const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: 'script' });
-      for (const n of ast.body) {
-        if (n.type === 'VariableDeclaration') {
-          for (const d of n.declarations) {
-            if (d.init && d.init.type === 'ArrayExpression') {
-              const varName = d.id.name || 'DATA';
-              const items = astToJs(d.init) || [];
-              return { varName, items };
-            }
-          }
-        }
-        if (n.type === 'ExportNamedDeclaration' && n.declaration && n.declaration.declarations) {
-          for (const d of n.declaration.declarations) {
-            if (d.init && d.init.type === 'ArrayExpression') {
-              const varName = d.id.name || 'DATA';
-              const items = astToJs(d.init) || [];
-              return { varName, items };
-            }
-          }
-        }
-      }
-    } catch(e) { /* fallback */ }
-
-    // 2) Fallback regex (simple)
-    const m = code.match(/(?:const|let|var)\s+(\w+)\s*=\s*(
-
-\[[\s\S]*\]
-
-);?/);
-    if (m) {
-      try {
-        const varName = m[1];
-        const jsonText = m[2]
-          .replace(/(\w+)\s*:/g, '"$1":') // claves sin comillas -> comillas
-          .replace(/'([^']*)'/g, (_,x)=> JSON.stringify(x)); // comillas simples -> dobles
-        const items = JSON.parse(jsonText);
-        return { varName, items };
-      } catch(e) {}
-    }
-    throw new Error('No se pudo parsear un array asignado a una variable.');
-  }
-
-  function stableStringify(obj) {
-    const seen = new WeakSet();
-    const stringify = (v) => {
-      if (v && typeof v === 'object') {
-        if (seen.has(v)) return null;
-        seen.add(v);
-        if (Array.isArray(v)) return '[' + v.map(stringify).join(',') + ']';
-        const keys = Object.keys(v).sort();
-        return '{' + keys.map(k => JSON.stringify(k) + ':' + stringify(v[k])).join(',') + '}';
-      }
-      return JSON.stringify(v);
+  function buildSchema() {
+    const headerSchema = {
+      type: 'object',
+      properties: { header: { type: 'string', minLength: 1 } },
+      required: ['header'],
+      additionalProperties: true
     };
-    return stringify(obj);
+    const actionSchema = {
+      type: 'object',
+      properties: {
+        title: { type: 'string', minLength: 1 },
+        icon: { type: 'string' },
+        subtitle: { type: 'string' },
+        description: { type: 'string' },
+        reference: { type: 'string' },
+        bullets: { type: 'array', items: { type: 'string' } }
+      },
+      required: ['title'],
+      additionalProperties: true
+    };
+    return { type: 'array', items: { oneOf: [headerSchema, actionSchema] } };
   }
 
-  function buildSchemaFrom(items) {
-    const typeOf = (v) => Array.isArray(v) ? 'array' : v === null ? 'null' : typeof v;
-    const keys = new Set();
-    for (const it of items) Object.keys(it||{}).forEach(k=>keys.add(k));
-    const schema = { type:'object', properties:{}, additionalProperties:true, required:[] };
-    for (const k of keys) schema.properties[k] = { anyOf: [ {type:'string'}, {type:'number'}, {type:'boolean'}, {type:'array'}, {type:'object'}, {type:'null'} ] };
-    // reglas mínimas
-    schema.properties.name = { type:'string', minLength:1 };
-    schema.properties.description = { type:'string' };
-    schema.properties.traits = { type:'array', items:{ type:'string' } };
-    schema.properties.rarity = { type:'string', enum:['common','uncommon','rare','unique',''] };
-    schema.properties.actionCost = { type:'string', enum:['free','one','two','three','reaction',''] };
-    schema.required = ['name','description'];
-    return { type:'array', items: schema };
-  }
+  function jsString(s){ return JSON.stringify(s); }
 
-  function renderMarkdownOrHtml(text, asMd) {
-    if (asMd) {
-      const conv = new showdown.Converter({ simpleLineBreaks:true, openLinksInNewWindow:true });
-      return conv.makeHtml(text || '');
+  function stringifyItem(it){
+    if (isHeader(it)) {
+      return `{ header: ${jsString(it.header)} }`;
     }
-    return (text || '');
+    // Acción: orden de claves preferido
+    const parts = [];
+    const pushIf = (k) => { if (it[k] !== undefined) parts.push(`${k}: ${k === 'bullets' ? stringifyBullets(it[k]) : jsString(it[k])}`); };
+    ['title','icon','subtitle','description','reference'].forEach(pushIf);
+    if (it.bullets !== undefined) parts.push(`bullets: ${stringifyBullets(it.bullets)}`);
+    // extras no listados
+    const known = new Set(['title','icon','subtitle','description','reference','bullets']);
+    Object.keys(it).filter(k => !known.has(k) && k !== 'header').forEach(k=>{
+      parts.push(`${k}: ${jsString(it[k])}`);
+    });
+    return `{ ${parts.join(', ')} }`;
   }
+
+  function stringifyBullets(arr){
+    if (!Array.isArray(arr)) return '[]';
+    const lines = arr.map(s => `  ${jsString(s)}`).join(',\\n');
+    return `[\\n${lines}\\n]`;
+  }
+
+  function toAssignmentJs(varName, items){
+    const body = `${varName} = [\\n  ${items.map(stringifyItem).join(',\\n  ')}\\n];\\n`;
+    try {
+      return prettier.format(body, { parser:'babel', plugins:[prettierPlugins.babel] });
+    } catch {
+      return body;
+    }
+  }
+
+  const AjvCtor = window.Ajv || window.ajv7 || window.ajv; // CDN naming guard
 
   const app = createApp({
     data: () => ({
-      datasets: [], // { fileName, varName, items, errors: [], schema }
+      datasets: [], // { fileName, varName, items, schema, errors: [] }
       active: null,
       q: '',
-      filter: reactive({ rarity:'', cost:'' }),
+      filter: reactive({ icon:'', kind:'' }),
       selIndex: null,
       current: {},
-      asMarkdown: false,
     }),
     computed: {
       totalCount(){ return this.datasets.reduce((a,d)=>a + d.items.length, 0); },
@@ -355,42 +416,38 @@
         const q = this.q.trim().toLowerCase();
         return ds.items.filter(it=>{
           const hayQ = !q || JSON.stringify(it).toLowerCase().includes(q);
-          const okR = !this.filter.rarity || (it.rarity||'')===this.filter.rarity;
-          const okC = !this.filter.cost || (it.actionCost||'')===this.filter.cost;
-          return hayQ && okR && okC;
+          const okI = !this.filter.icon || (isAction(it) && (it.icon||'')===this.filter.icon);
+          const okK = !this.filter.kind || kindOf(it)===this.filter.kind;
+          return hayQ && okI && okK;
         });
-      },
-      traitsText: {
-        get(){ return (this.current.traits||[]).join(', '); },
-        set(v){ this.current.traits = v.split(',').map(s=>s.trim()).filter(Boolean); }
       },
       currentJson(){
         return JSON.stringify(this.current, null, 2);
       },
-      rendered(){
-        return renderMarkdownOrHtml(this.current.description, this.asMarkdown);
-      },
       valErrors(){
-        if (this.active===null || this.selIndex===null) return [];
+        if (this.active===null) return [];
         const ds = this.datasets[this.active];
-        const ajv = new Ajv({ allErrors: true, strict:false });
+        const ajv = new AjvCtor({ allErrors: true, strict:false });
         const validate = ajv.compile(ds.schema);
-        const arrCopy = ds.items.slice();
-        arrCopy[this.selIndex] = this.current;
-        validate(arrCopy);
+        const items = ds.items.slice();
+        if (this.selIndex !== null) items[this.selIndex] = this.current;
+        validate(items);
         return validate.errors || [];
       }
     },
     methods: {
-      slugify,
+      isHeader, isAction, kindOf, derivedTraits,
       selectDataset(i){ this.active = i; this.selIndex = null; this.current = {}; },
-      removeDataset(i){ 
-        if (this.active === i) { this.active = null; this.selIndex = null; this.current = {}; }
-        this.datasets.splice(i,1); 
-      },
-      addItem(){
+      removeDataset(i){ if (this.active === i) { this.active = null; this.selIndex = null; this.current = {}; } this.datasets.splice(i,1); },
+      addHeader(){
         if (this.active===null) return;
-        const item = { name:'Nueva acción', description:'', traits:[], rarity:'', actionCost:'' };
+        const item = { header:'Nueva sección' };
+        this.datasets[this.active].items.push(item);
+        this.selectItem(this.datasets[this.active].items.length - 1);
+      },
+      addAction(){
+        if (this.active===null) return;
+        const item = { title:'Nueva acción', icon:'', subtitle:'', description:'', reference:'', bullets:[] };
         this.datasets[this.active].items.push(item);
         this.selectItem(this.datasets[this.active].items.length - 1);
       },
@@ -400,30 +457,32 @@
         this.current = JSON.parse(JSON.stringify(src));
       },
       duplicateItem(i){
-        const copy = JSON.parse(JSON.stringify(this.datasets[this.active].items[i]));
-        copy.name = copy.name + ' (copia)';
+        const src = this.datasets[this.active].items[i];
+        if (isHeader(src)) return; // no duplico headers por defecto
+        const copy = JSON.parse(JSON.stringify(src));
+        copy.title = (copy.title||'') + ' (copia)';
         this.datasets[this.active].items.splice(i+1, 0, copy);
       },
       deleteItem(i){
-        if (!confirm('¿Borrar esta acción?')) return;
+        if (!confirm('¿Borrar este elemento?')) return;
         this.datasets[this.active].items.splice(i,1);
         this.selIndex = null; this.current = {};
       },
-      exportOne(){
-        if (this.active===null) return;
-        this.commitCurrent();
+      moveItem(i, dir){
         const ds = this.datasets[this.active];
-        const code = this.toJsFile(ds.varName, ds.items);
-        const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
-        saveAs(blob, ds.fileName);
+        const j = i + dir;
+        if (j < 0 || j >= ds.items.length) return;
+        const [it] = ds.items.splice(i,1);
+        ds.items.splice(j,0,it);
+        if (this.selIndex === i) this.selIndex = j;
       },
-      toJsFile(varName, items){
-        const body = `const ${varName} = ${stableStringify(items)};\n`;
-        try {
-          return prettier.format(body, { parser:'babel', plugins:[prettierPlugins.babel] });
-        } catch {
-          return body;
-        }
+      addBullet(){ if (!this.current.bullets) this.current.bullets = []; this.current.bullets.push(''); },
+      removeBullet(i){ this.current.bullets.splice(i,1); },
+      moveBullet(i, dir){
+        const j = i + dir;
+        if (j < 0 || j >= this.current.bullets.length) return;
+        const [b] = this.current.bullets.splice(i,1);
+        this.current.bullets.splice(j,0,b);
       },
       commitCurrent(){
         if (this.active===null || this.selIndex===null) return;
@@ -432,15 +491,22 @@
       },
       revalidate(i){
         const ds = this.datasets[i];
-        const ajv = new Ajv({ allErrors: true, strict:false });
+        const ajv = new AjvCtor({ allErrors: true, strict:false });
         const validate = ajv.compile(ds.schema);
         const ok = validate(ds.items);
-        ds.errors = ok ? [] : validate.errors || [];
+        ds.errors = ok ? [] : (validate.errors || []);
+      },
+      exportOne(){
+        if (this.active===null) return;
+        this.commitCurrent();
+        const ds = this.datasets[this.active];
+        const code = toAssignmentJs(ds.varName, ds.items);
+        const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
+        saveAs(blob, ds.fileName);
       }
     }
   });
 
-  // Manejo de inputs y export global
   const vm = app.mount('#app');
 
   document.getElementById('fileInput').addEventListener('change', async (e) => {
@@ -450,10 +516,10 @@
       status.textContent = 'Cargando ' + f.name + '...';
       const text = await f.text();
       try {
-        const { varName, items } = tryParseJsArrayVariable(text);
-        const schema = buildSchemaFrom(items);
+        const { varName, items } = tryParseIdentifierArrayAssignment(text);
+        const schema = buildSchema();
         // Validación inicial
-        const ajv = new Ajv({ allErrors: true, strict:false });
+        const ajv = new (window.Ajv || window.ajv7 || window.ajv)({ allErrors: true, strict:false });
         const validate = ajv.compile(schema);
         const ok = validate(items);
         vm.datasets.push({
@@ -469,7 +535,7 @@
           fileName: f.name,
           varName: 'DATA',
           items: [],
-          schema: { type:'array', items:{ type:'object' } },
+          schema: buildSchema(),
           errors: [{ message: 'Parseo fallido: ' + err.message }]
         });
       }
@@ -481,7 +547,7 @@
   document.getElementById('exportBtn').addEventListener('click', () => {
     vm.commitCurrent();
     vm.datasets.forEach(ds => {
-      const code = vm.toJsFile(ds.varName, ds.items);
+      const code = toAssignmentJs(ds.varName, ds.items);
       const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
       saveAs(blob, ds.fileName);
     });
