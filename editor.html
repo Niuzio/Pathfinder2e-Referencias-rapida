@@ -132,37 +132,16 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
     alert(err.message);
   }
 });
-document.getElementById('exportBtn').addEventListener('click', async () => {
-  try {
-    // 1) Intentar con tu función actual (si devuelve Promesa, la esperamos)
-    let code = await Promise.resolve(toAssignmentJs(vm.varName, vm.items));
-
-    // 2) Si llegó aquí, code es string. Guardar.
-    const blob = new Blob([code], { type: 'text/javascript;charset=utf-8' });
-    saveAs(blob, vm.fileName || (vm.varName + '.js'));
-  } catch (err) {
-    console.warn('toAssignmentJs falló; usando fallback:', err);
-
-    // 3) Fallback seguro: serializar sin depender de toAssignmentJs/Prettier
-    const raw = `${vm.varName} = ${JSON.stringify(vm.items, null, 2)};`;
-
-    // 4) Intentar formatear si Prettier está disponible; si no, usar raw
-    let code = raw;
-    try {
-      if (window.prettier && typeof window.prettier.format === 'function') {
-        const opts = { parser: 'babel' };
-        if (window.prettierPlugins) opts.plugins = window.prettierPlugins;
-        code = window.prettier.format(raw, opts);
-      }
-    } catch (e2) {
-      console.warn('Prettier falló; exportando sin formatear:', e2);
-      code = raw;
-    }
-
-    // 5) Guardar el archivo
-    const blob = new Blob([code], { type: 'text/javascript;charset=utf-8' });
-    saveAs(blob, vm.fileName || (vm.varName + '.js'));
-  }
+document.getElementById('exportBtn').addEventListener('click', () => {
+  Promise.resolve(toAssignmentJs(vm.varName, vm.items))
+    .then(code => {
+      const blob = new Blob([code], { type: 'text/javascript;charset=utf-8' });
+      saveAs(blob, vm.fileName || (vm.varName + '.js'));
+    })
+    .catch(err => {
+      console.error("Error al generar código:", err);
+      alert("Hubo un problema al generar el archivo. Revisa la consola para más detalles.");
+    });
 });
 </script>
 </body>
