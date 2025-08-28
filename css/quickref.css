@@ -487,29 +487,43 @@ p:first-child {
 .item-icon {
   width: 48px;
   height: 48px;
-}
-/* 1. Elimina float y permite flex-wrap */
-.item {
-  float: none;               /* anula el float:left original */
-  display: flex;
-  align-items: flex-start;   /* alinea icono y texto al tope */
-  flex-wrap: wrap;           /* permite que el texto baje a 2ª línea */
-  margin-bottom: 0.75rem;    /* separa filas de ítems */
-}
-/* ------------------------------------- 
-   2) Icono siempre encima del texto 
-   ------------------------------------- */
-.item-icon {
-  display: block;          /* icono en bloque separado */
-  margin: 0 auto 0.5rem;   /* auto-centrado + espacio abajo */
-  width: 48px;             /* tamaño fijo */
-  height: 48px;            /* tamaño fijo */
+/* ---------------------------------------------------
+   1) Contenedor de acciones en fila
+   --------------------------------------------------- */
+.actions-list {
+  display: flex;            /* activa layout en fila */
+  flex-wrap: wrap;          /* permite que bajen a siguiente línea */
+  gap: 0.75rem;             /* separación entre botones */
+  padding: 0;
+  margin: 0;
+  list-style: none;         /* si es <ul> */
 }
 
-/* 3. Contenedor de texto con base flexible */
+/* ---------------------------------------------------
+   2) Cada botón/ítem como bloque flexible
+   --------------------------------------------------- */
+.actions-list .item {
+  float: none;              /* anula posibles floats */
+  display: flex;            /* icono + texto alineados en fila interna */
+  flex-direction: column;   /* icono encima del texto */
+  align-items: center;      /* centra horizontalmente */
+  justify-content: flex-start;
+  flex: 0 0 auto;           /* ni crece ni encoge */
+  width: auto;              /* se ajusta al contenido */
+  margin: 0;                /* el gap gestiona el espaciado */
+}
+
+/* ---------------------------------------------------
+   3) Icono y texto ya definidos
+   --------------------------------------------------- */
+.item-icon {
+  flex-shrink: 0;           /* no se encoja */
+  margin-bottom: 0.25rem;   /* espacio icono/texto */
+}
+
 .item-text-container {
-  flex: 1 1 0;
-  min-width: 0;              /* necesario para que overflow funcione */
+  text-align: center;       /* centrado multilineal */
+  white-space: normal;      /* saltos de línea */
 }
 
 /* 4. Títulos y descripciones multilinea */
