@@ -96,7 +96,17 @@ function show_modal(data, color, type) {
         '</div>';
     }
     $("#modal-subtitle").after(tagsHTML);
-
+    // 🔹 Convertir data-tooltip en tooltip HTML
+    $('#modal .tag[data-tooltip]').each(function() {
+        const raw = $(this).attr('data-tooltip');
+        if (raw) {
+            // Evitar duplicados si ya existe
+            if (!$(this).find('.tooltip-card').length) {
+                const div = $('<div class="tooltip-card"></div>').html(raw);
+                $(this).append(div);
+            }
+        }
+    });
     $("#modal-reference").text(reference);
 
     var bullets_html = bullets.map(function (item) { return "<p class=\"fonstsize\">" + item + "</p>"; }).join("\n<hr>\n");
