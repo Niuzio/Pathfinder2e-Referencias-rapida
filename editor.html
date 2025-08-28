@@ -13,9 +13,8 @@
       --bg: #17191e; --card: #22262e; --ink: #e6e7e9; --muted: #8b95a7;
       --line: #2c333f; --accent: #4c9aff; --warn: #ff7452; --ok: #57d9a3;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0; padding: 0;
       font: 14px/1.5 ui-sans-serif, system-ui;
       background: var(--bg); color: var(--ink);
       display: grid;
@@ -25,8 +24,6 @@
         "main"
         "ft";
     }
-
-    /* ===== Menú Nivel20 ===== */
     header {
       grid-area: hd;
       background: var(--card);
@@ -35,7 +32,7 @@
       padding: 0 16px;
     }
     nav { display: flex; }
-    .menu { list-style: none; margin: 0; padding: 0; display: flex; }
+    .menu { list-style: none; display: flex; }
     .menu > li { position: relative; }
     .menu > li > a {
       display: block; padding: 12px 16px;
@@ -44,18 +41,19 @@
     }
     .menu > li:hover > a { background: hsla(210,80%,90%,.5); }
     .submenu {
-      list-style: none; margin: 0; padding: 4px 0;
+      display: none;
       position: absolute; top: 100%; left: 0;
       background: var(--card); border: 1px solid var(--line);
-      min-width: 220px; display: none; z-index: 20;
+      min-width: 200px; list-style: none; padding: 4px 0;
+      z-index: 20;
     }
     .menu > li:hover > .submenu { display: block; }
-    .submenu li { margin: 0; padding: 0; }
-    .submenu li button,
-    .submenu li label {
-      width: 100%; text-align: left;
-      padding: 8px 12px; background: none;
-      border: none; font: inherit;
+    .submenu li { padding: 0; margin: 0; }
+    .submenu li label,
+    .submenu li button {
+      display: block; width: 100%;
+      text-align: left; padding: 8px 12px;
+      background: none; border: none; font: inherit;
       color: var(--ink); cursor: pointer;
     }
     .submenu li button:hover,
@@ -69,7 +67,6 @@
     }
     #fileInput { display: none; }
 
-    /* ===== Layout ===== */
     .layout {
       grid-area: main;
       display: grid;
@@ -87,8 +84,10 @@
     }
     .panel.split { height: calc(100vh - 230px); }
     table {
-      width: 100%; border-collapse: separate;
-      border-spacing: 0 8px; flex: 1; overflow: auto;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+      flex: 1; overflow: auto;
     }
     thead th {
       position: sticky; top: 0;
@@ -109,8 +108,7 @@
       background: hsla(210,100%,50%,.05);
     }
     .ce.placeholder:empty:before {
-      content: attr(data-ph);
-      color: var(--muted);
+      content: attr(data-ph); color: var(--muted);
     }
     .row-actions { display: flex; gap: 4px; }
     .status {
@@ -118,7 +116,10 @@
     }
     .status.ok { color: var(--ok); }
     .status.err { color: var(--warn); }
-    .preview { overflow: auto; flex: 1; }
+
+    .preview {
+      overflow: auto; flex: 1;
+    }
     .card {
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -128,8 +129,7 @@
     .title { font-weight: 700; }
     .subtitle { color: var(--muted); margin: 4px 0; }
     .traits {
-      display: flex; flex-wrap: wrap;
-      gap: 6px; margin: 4px 0;
+      display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0;
     }
     .trait {
       background: var(--line);
@@ -140,7 +140,6 @@
     .desc { white-space: pre-wrap; margin: 4px 0; }
     .bullets { margin: 0 0 0 16px; }
 
-    /* ===== Toolbar ===== */
     #toolbar {
       position: fixed; bottom: 24px; right: 24px;
       display: none; gap: 4px; padding: 6px;
@@ -161,8 +160,6 @@
 <header>
   <nav>
     <ul class="menu">
-
-      <!-- Archivo -->
       <li>
         <a>Archivo ▾</a>
         <ul class="submenu">
@@ -174,8 +171,6 @@
           <li><button id="btnDownload">Descargar .js</button></li>
         </ul>
       </li>
-
-      <!-- Editar -->
       <li>
         <a>Editar ▾</a>
         <ul class="submenu">
@@ -184,8 +179,6 @@
           <li><button id="btnClear">Vaciar todo</button></li>
         </ul>
       </li>
-
-      <!-- Ver -->
       <li>
         <a>Ver ▾</a>
         <ul class="submenu">
@@ -193,7 +186,6 @@
           <li><button id="btnRestore">Restaurar tema</button></li>
         </ul>
       </li>
-
     </ul>
   </nav>
   <input type="file" id="fileInput" accept=".js" />
@@ -201,7 +193,6 @@
 
 <div class="layout">
 
-  <!-- Panel edición -->
   <div class="panel split">
     <div id="status" class="status err">
       Sin datos. Abra un archivo o pegue una URL.
@@ -222,7 +213,6 @@
     </table>
   </div>
 
-  <!-- Panel vista previa -->
   <div class="panel">
     <strong>Vista previa</strong>
     <div id="preview" class="preview"></div>
@@ -230,7 +220,6 @@
 
 </div>
 
-<!-- Barra flotante de formato -->
 <div id="toolbar">
   <button data-cmd="bold"><strong>B</strong></button>
   <button data-cmd="italic"><em>I</em></button>
@@ -246,12 +235,9 @@
 </div>
 
 <script>
-/* — Estado global — */
 let dataset = [];
 let varNameDetected = null;
 let focusedCell = null;
-
-/* — Helpers — */
 const $ = s => document.querySelector(s);
 
 function setStatus(msg, ok = false) {
@@ -262,13 +248,12 @@ function setStatus(msg, ok = false) {
 
 function toRawUrl(u) {
   return u.includes('/blob/')
-    ? u.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/')
+    ? u.replace('github.com/', 'raw.githubusercontent.com/')
+        .replace('/blob/', '/')
     : u;
 }
 
-/* — parseVarJs sin literales regex — */
 function parseVarJs(text) {
-  // 1) Buscar nombre de variable antes del '='
   const nameRe = new RegExp('(?:^|\\W)([\\w$]+)\\s*=\\s*\
 
 \[');
@@ -277,29 +262,22 @@ function parseVarJs(text) {
     throw new Error('No se encontró asignación de variable a un array.');
   }
   const varName = nameMatch[1];
-
-  // 2) Localizar corchetes y hacer conteo manual
   const eqPos = text.indexOf('=', nameMatch.index);
   const openPos = text.indexOf('[', eqPos);
   if (openPos < 0) throw new Error('No se encontró "[" tras la asignación.');
 
-  let depth = 0;
-  let closePos = -1;
+  let depth = 0, closePos = -1;
   for (let i = openPos; i < text.length; i++) {
     if (text[i] === '[') depth++;
     else if (text[i] === ']') {
       depth--;
-      if (depth === 0) {
-        closePos = i;
-        break;
-      }
+      if (depth === 0) { closePos = i; break; }
     }
   }
   if (closePos < 0) {
     throw new Error('No se encontró cierre "]" correspondiente.');
   }
 
-  // 3) Extraer literal JS y evaluarlo
   const jsArray = text.slice(openPos, closePos + 1);
   let arr;
   try {
@@ -315,11 +293,9 @@ function parseVarJs(text) {
   return arr;
 }
 
-/* — Descarga — */
 function downloadJs(name, arr) {
   const safeName = name.match(/^[\w$]+$/) ? name : 'data_x';
-  const header = safeName + ' = ';
-  const js = header + JSON.stringify(arr, null, 2) + ';\n';
+  const js = safeName + ' = ' + JSON.stringify(arr, null, 2) + ';\n';
   const blob = new Blob([js], { type: 'application/javascript' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -329,13 +305,13 @@ function downloadJs(name, arr) {
   a.remove();
 }
 
-/* — Render tabla y preview — */
 function ensure(i) {
   dataset[i] ||= {
     title: '', subtitle: '', reference: '',
     traits: [], description: '', bullets: []
   };
 }
+
 function renderTable() {
   const tbody = $('#tbody');
   tbody.innerHTML = '';
@@ -362,6 +338,7 @@ function renderTable() {
   );
   refreshPreview();
 }
+
 function refreshPreview() {
   const pr = $('#preview');
   pr.innerHTML = '';
@@ -387,7 +364,6 @@ function refreshPreview() {
   });
 }
 
-/* — Sincronización inline — */
 document.addEventListener('input', e => {
   const ce = e.target.closest('.ce');
   if (!ce) return;
@@ -401,7 +377,6 @@ document.addEventListener('input', e => {
   renderTable();
 });
 
-/* — Botones de fila — */
 document.addEventListener('click', e => {
   const b = e.target.closest('button[data-act]');
   if (!b) return;
@@ -413,7 +388,6 @@ document.addEventListener('click', e => {
   saveLocal(); renderTable();
 });
 
-/* — Toolbar flotante — */
 function showToolbar(el) {
   focusedCell = el;
   const r = el.getBoundingClientRect(), tb = $('#toolbar');
@@ -422,6 +396,7 @@ function showToolbar(el) {
   tb.style.display = 'flex';
 }
 function hideToolbar() { $('#toolbar').style.display = 'none'; }
+
 document.addEventListener('focusin', e => {
   const ce = e.target.closest('.ce');
   if (ce) showToolbar(ce);
@@ -429,27 +404,25 @@ document.addEventListener('focusin', e => {
 document.addEventListener('click', e => {
   if (!e.target.closest('.ce') && !e.target.closest('#toolbar')) hideToolbar();
 });
+
 $('#toolbar').addEventListener('click', e => {
   const cmd = e.target.closest('button')?.dataset.cmd;
   if (cmd) {
-    document.execCommand(cmd, false, null);
+    document.execCommand(cmd,false,null);
     focusedCell.dispatchEvent(new Event('input'));
-  }
-  else if (e.target.id === 'btnLink') {
+  } else if (e.target.id === 'btnLink') {
     const url = prompt('URL:');
     if (url) {
-      document.execCommand('createLink', false, url);
+      document.execCommand('createLink',false,url);
       focusedCell.dispatchEvent(new Event('input'));
     }
-  }
-  else if (e.target.id === 'btnClearFmt') {
-    document.execCommand('removeFormat', false, null);
-    document.execCommand('unlink',       false, null);
+  } else if (e.target.id === 'btnClearFmt') {
+    document.execCommand('removeFormat',false,null);
+    document.execCommand('unlink',false,null);
     focusedCell.dispatchEvent(new Event('input'));
   }
 });
 
-/* — Carga de archivos y URLs — */
 $('#fileInput').addEventListener('change', e => {
   const f = e.target.files[0];
   if (!f) return;
@@ -473,7 +446,7 @@ $('#btnLoadUrl').onclick = async () => {
   try {
     const res = await fetch(u);
     if (!res.ok) throw new Error(res.statusText);
-    const txt = await res.text();     // <- CORREGIDO (antes era res.txt())
+    const txt = await res.text();
     dataset = parseVarJs(txt);
     $('#varName').value = varNameDetected;
     setStatus('Cargado desde URL', true);
@@ -483,7 +456,6 @@ $('#btnLoadUrl').onclick = async () => {
   }
 };
 
-/* — Menú Editar — */
 $('#btnAdd').onclick      = () => { dataset.push({}); saveLocal(); renderTable(); };
 $('#btnClear').onclick    = () => { if (confirm('¿Vaciar todo?')) { dataset = []; saveLocal(); renderTable(); } };
 $('#btnValidate').onclick = () => {
@@ -493,7 +465,6 @@ $('#btnValidate').onclick = () => {
   setStatus(errs.length ? errs.join(' | ') : 'OK ✔', errs.length === 0);
 };
 
-/* — Tema oscuro y restaurar — */
 $('#btnDark').onclick    = () => {
   document.body.classList.toggle('dark');
   localStorage.setItem('pf2e_theme', document.body.classList.contains('dark'));
@@ -506,7 +477,6 @@ if (localStorage.getItem('pf2e_theme') === 'true') {
   document.body.classList.add('dark');
 }
 
-/* — Autosave en localStorage — */
 function saveLocal() {
   localStorage.setItem('pf2e_editor', JSON.stringify({ dataset }));
 }
@@ -526,7 +496,6 @@ window.onload = () => {
   else setStatus('Sin datos. Abra un archivo o pegue una URL.', false);
 };
 
-/* — Descargar — */
 $('#btnDownload').onclick = () => {
   if (!varNameDetected && !$('#varName').value.trim()) {
     varNameDetected = prompt('Nombre de variable:', 'data_x');
@@ -534,5 +503,6 @@ $('#btnDownload').onclick = () => {
   downloadJs($('#varName').value.trim() || varNameDetected, dataset);
 };
 </script>
+
 </body>
 </html>
