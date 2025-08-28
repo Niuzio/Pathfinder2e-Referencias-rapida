@@ -536,25 +536,25 @@ p:first-child {
   overflow: visible;        /* permite desbordar verticalmente */
   text-overflow: clip;      /* sin puntos suspensivos forzados */
 }
-/* ---------------------------------------------------------
-   1) Grid global para cualquier sección de ítems (todas)
-   --------------------------------------------------------- */
-.section-content .items {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
-  gap: 0.75rem 1rem !important;
-  margin: 0;
-  padding: 0;
-}
-
-/* ---------------------------------------------------------
-   2) Elimina el float de cada ítem para que el grid funcione
-   --------------------------------------------------------- */
-.section-content .items .item {
-  float: none !important;
-}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
   height: auto !important;
+}
+/* ───────────────────────────────────────────────────────────
+   1) Activa grid en cada sección (incluyendo “Estados”)
+   ─────────────────────────────────────────────────────────── */
+.section-content .section-row {
+  display: grid !important;  
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 0.75rem 1rem !important;
+}
+
+/* ───────────────────────────────────────────────────────────
+   2) Anula float y anchos forzados de los ítems
+   ─────────────────────────────────────────────────────────── */
+.section-content .section-row .item,
+.section-content .section-row .itemsize {
+  float: none !important;
+  width: auto    !important;
 }
