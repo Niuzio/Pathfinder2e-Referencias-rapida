@@ -418,7 +418,7 @@ p:first-child {
     color: #fff;
     padding: 14px 16px;
     border-radius: 6px;
-    max-width: 420px; /* más ancho que antes */
+    max-width: 640px; /* más ancho que antes */
     min-width: 240px;
     box-sizing: border-box;
     font-size: 0.85em;
