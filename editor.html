@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Generador de datos — PF2e</title>
-<input id="file" type="file" accept=".json,.js">
-<input id="url" type="text" placeholder="URL .json o .js">
-<button id="btnLoadUrl">Cargar desde URL</button>
-<style>
-:root{--bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;--accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
-header,footer{background:var(--card);border-bottom:1px solid var(--line)}
-header .bar, .wrap{padding:12px} .wrap{display:grid;gap:12px;grid-template-columns:1.1fr .9fr}
-@media(max-width:1000px){.wrap{grid-template-columns:1fr}}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
-.row{display:grid;gap:8px} .row2{display:grid;gap:8px;grid-template-columns:1fr 1fr}
-label{font-size:12px;color:var(--muted)}
-input[type="text"], textarea{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
-textarea{min-height:90px}
-button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer}
-button.primary{background:var(--accent);color:#0b1420;border-color:transparent}
-button.warn{border-color:var(--warn);color:var(--warn)}
-.status{font-size:12px;color:var(--muted)}
-.list{display:grid;gap:8px;max-height:40vh;overflow:auto}
-.item{border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1320;display:grid;gap:6px}
-.item .head{display:flex;gap:8px;justify-content:space-between;align-items:center}
-.actions{display:flex;gap:6px;flex-wrap:wrap}
-.toolbar{display:flex;gap:6px;flex-wrap:wrap}
-.toolbar button{padding:6px 8px}
-.ce{min-height:120px;padding:8px;border:1px dashed transparent;border-radius:8px;background:#0e1320}
-.ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
-.preview{display:grid;gap:10px;max-height:60vh;overflow:auto}
-.card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
-.title{font-weight:700;font-size:16px}
-.subtitle{color:var(--muted)}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
-.desc{white-space:pre-wrap}
-.kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:#c7d1dd}
-</style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Generador/Editor — Pathfinder 2e</title>
+  <!-- Favicon inline para evitar 404 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+  <style>
+    :root{
+      --bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;
+      --accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
+    header,footer{background:var(--card);border-bottom:1px solid var(--line)}
+    header .bar, .wrap{padding:12px}
+    .wrap{display:grid;gap:12px;grid-template-columns:1.1fr .9fr}
+    @media(max-width:1000px){.wrap{grid-template-columns:1fr}}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+    .row{display:grid;gap:8px}
+    .row2{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+    label{font-size:12px;color:var(--muted)}
+    input[type="text"], textarea{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+    textarea{min-height:90px}
+    input[type="file"]{color:var(--ink)}
+    button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer}
+    button.primary{background:var(--accent);color:#0b1420;border-color:transparent}
+    button.warn{border-color:var(--warn);color:var(--warn)}
+    .status{font-size:12px;color:var(--muted)}
+    .list{display:grid;gap:8px;max-height:40vh;overflow:auto}
+    .item{border:1px solid var(--line);border-radius:10px;padding:10px;background:#0e1320;display:grid;gap:6px}
+    .item .head{display:flex;gap:8px;justify-content:space-between;align-items:center}
+    .actions{display:flex;gap:6px;flex-wrap:wrap}
+    .toolbar{display:flex;gap:6px;flex-wrap:wrap}
+    .toolbar button{padding:6px 8px}
+    .ce{min-height:120px;padding:8px;border:1px dashed transparent;border-radius:8px;background:#0e1320}
+    .ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
+    .preview{display:grid;gap:10px;max-height:60vh;overflow:auto}
+    .card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
+    .title{font-weight:700;font-size:16px}
+    .subtitle{color:var(--muted)}
+    .chips{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+    .desc{white-space:pre-wrap}
+    .kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:#c7d1dd}
+    .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .grow{flex:1}
+  </style>
 </head>
 <body>
 <header>
   <div class="bar">
-    <strong>Generador de datos para PF2e</strong>
+    <strong>Editor de acciones PF2e</strong>
     <span class="status" id="status">Listo</span>
+  </div>
+  <div class="bar">
+    <input id="file" type="file" accept=".json,.js,application/json,text/javascript">
+    <input id="url" class="grow" type="text" placeholder="URL .json o .js (GitHub raw o blob)">
+    <button id="btnLoadUrl">Cargar desde URL</button>
+    <button id="btnTemplateAttack">+ Plantilla: Ataque</button>
+    <button id="btnTemplateMove">+ Plantilla: Movimiento</button>
   </div>
 </header>
 
@@ -67,13 +83,13 @@ button.warn{border-color:var(--warn);color:var(--warn)}
         <input id="reference" type="text" placeholder="Ej. CRB p.XXX">
       </div>
       <div class="row">
-        <label>Traits (separados por coma)</label>
+        <label>Traits (separados por coma o nueva línea)</label>
         <input id="traits" type="text" placeholder="Acción, Arma">
       </div>
     </div>
 
     <div class="row">
-      <label>Descripción (formato permitido: <b>negrita</b>, <i>cursiva</i>, <u>subrayado</u>, <mark>resaltado</mark>, <code>code</code>, <a href='#'>link</a>, listas)</label>
+      <label>Descripción (formato: <b>negrita</b>, <i>cursiva</i>, <u>subrayado</u>, <mark>resaltado</mark>, <code>code</code>, <a href='#'>link</a>, listas)</label>
       <div class="toolbar">
         <button data-cmd="bold"><strong>B</strong></button>
         <button data-cmd="italic"><em>I</em></button>
@@ -85,7 +101,7 @@ button.warn{border-color:var(--warn);color:var(--warn)}
         <button id="btnClear">Limpiar formato</button>
       </div>
       <div id="description" class="ce" contenteditable="true" spellcheck="false" aria-label="Descripción"></div>
-      <span class="status">Sugerencias: Ctrl/Cmd+B/I/U · Selecciona texto y pulsa “Resaltar” o “Link”.</span>
+      <span class="status">Sugerencias: Ctrl/Cmd+B/I/U · Selecciona texto y usa Resaltar o Link</span>
     </div>
 
     <div class="row">
@@ -127,7 +143,7 @@ button.warn{border-color:var(--warn);color:var(--warn)}
     <div class="row">
       <label>Atajos</label>
       <span class="status">
-        Doble clic en un ítem para editar · Alt+D duplica · Alt+Backspace elimina · Ctrl/Cmd+S exporta JSON.
+        Doble clic en un ítem para editar · Alt+D duplica · Alt+Backspace elimina · Ctrl/Cmd+S exporta JSON
       </span>
     </div>
   </div>
@@ -141,18 +157,21 @@ button.warn{border-color:var(--warn);color:var(--warn)}
 
 <script>
 "use strict";
+
+/* ========== Utilidades básicas ========== */
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
-const setStatus = (m, ok=null) => { const el = $('#status'); el.textContent = m; el.style.color = ok===true ? 'var(--ok)' : ok===false ? 'var(--warn)' : 'var(--muted)'; };
+const setStatus = (m, ok=null) => {
+  const el = $('#status');
+  el.textContent = m;
+  el.style.color = ok===true ? 'var(--ok)' : ok===false ? 'var(--warn)' : 'var(--muted)';
+};
+const toStr = v => (v ?? '').toString();
+const normArray = v => Array.isArray(v)
+  ? v.map(x => toStr(x).trim()).filter(Boolean)
+  : toStr(v).split(/[,\n;]/).map(s => s.trim()).filter(Boolean);
 
-let data = [];
-let editingIndex = -1;
-
-function toStr(v){ return (v??'').toString(); }
-function normArray(v){
-  if(Array.isArray(v)) return v.map(x=>toStr(x).trim()).filter(Boolean);
-  return toStr(v).split(/[,\n]/).map(s=>s.trim()).filter(Boolean);
-}
+/* ========== Saneado HTML ========== */
 function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN','MARK','CODE']){
   if(!html) return '';
   const root = document.createElement('div'); root.innerHTML = html;
@@ -163,10 +182,10 @@ function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','
         const p=node.parentNode; while(node.firstChild)p.insertBefore(node.firstChild,node); p.removeChild(node); return;
       }
       [...node.attributes].forEach(a=>{
-        const n=a.name.toLowerCase(), v=a.value;
+        const n=a.name.toLowerCase(), v=a.value || '';
         if(node.tagName==='A' && n==='href'){
-          if(!/^https?:\/\//i.test(v) && !v.startsWith('#') && !v.startsWith('mailto:')) node.removeAttribute(a.name);
-        } else if(n==='style' || n.startsWith('on')) node.removeAttribute(a.name);
+          if(!/^(https?:\/\/|mailto:|#)/i.test(v)) node.removeAttribute(a.name);
+        }else if(n==='style' || n.startsWith('on')) node.removeAttribute(a.name);
       });
     }
     [...node.childNodes].forEach(walk);
@@ -174,14 +193,118 @@ function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','
   [...root.childNodes].forEach(walk);
   return root.innerHTML;
 }
-function bulletsFromTextarea(txt){
-  return toStr(txt).split(/\n/).map(s=>s.trim()).filter(Boolean);
+
+/* ========== Estado y helpers ========== */
+let data = [];
+let editingIndex = -1;
+
+function cleanText(txt){ return txt.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n'); }
+function toRaw(url){
+  if(url.includes('github.com/') && url.includes('/blob/')){
+    return url.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/');
+  }
+  return url;
 }
 function escapeHtml(s){
   return toStr(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-// Toolbar
+/* ========== Lectura de .js/.json ========== */
+// Extrae literal [ ... ] de "var|let|const NOMBRE = [ ... ]" con manejo de comentarios y strings
+function extractArrayLiteral(js){
+  const s = cleanText(js)
+    .replace(/\/\*[\s\S]*?\*\//g, '')     // /* ... */
+    .replace(/\/\/[^\n]*$/gm, '');        // // ...
+  const reAssign = /(var|let|const)\s+[A-Za-z$_][\w$]*\s*=\s*
+
+\[/m;
+  const m = reAssign.exec(s);
+  if(!m) throw new Error('No se encontró var/let/const NOMBRE = [ ... ]');
+  const start = s.indexOf('[', m.index);
+  let i = start, depth = 0, inStr=false, strCh='', esc=false;
+  for(; i < s.length; i++){
+    const ch = s[i];
+    if(inStr){
+      if(esc){ esc=false; continue; }
+      if(ch === '\\'){ esc=true; continue; }
+      if(ch === strCh){ inStr=false; strCh=''; }
+      continue;
+    }
+    if(ch === '"' || ch === "'" || ch === '`'){ inStr=true; strCh=ch; continue; }
+    if(ch === '[') depth++;
+    else if(ch === ']'){ depth--; if(depth===0){ i++; break; } }
+  }
+  if(depth !== 0) throw new Error('Array sin cierre ]');
+  return s.slice(start, i);
+}
+// Evalúa solamente el literal de array (no ejecuta el archivo completo)
+function evalArrayLiteral(lit){
+  // eslint-disable-next-line no-new-func
+  const fn = new Function('"use strict"; return (' + lit + ');');
+  const arr = fn();
+  if(!Array.isArray(arr)) throw new Error('El literal no es un Array');
+  return arr;
+}
+function normalizeEntry(o){
+  const traits = normArray(o?.traits ?? '');
+  const bullets = normArray(o?.bullets ?? '');
+  return {
+    title: toStr(o?.title).trim(),
+    subtitle: toStr(o?.subtitle).trim(),
+    reference: toStr(o?.reference).trim(),
+    traits,
+    description: sanitizeHtml(toStr(o?.description)),
+    bullets
+  };
+}
+async function loadFromFile(f){
+  try{
+    setStatus('Leyendo archivo…');
+    const txt = cleanText(await f.text());
+    const ext = (f.name.split('.').pop()||'').toLowerCase();
+    let arr;
+    if(ext === 'json'){
+      arr = JSON.parse(txt);
+    }else{
+      const lit = extractArrayLiteral(txt);
+      arr = evalArrayLiteral(lit);
+    }
+    if(!Array.isArray(arr)) throw new Error('Contenido no es un Array');
+    data = arr.map(normalizeEntry);
+    renderList(); renderPreview();
+    setStatus('Cargado ' + f.name, true);
+  }catch(err){
+    console.error(err);
+    setStatus('Error: ' + (err?.message || err), false);
+  }
+}
+async function loadFromUrl(){
+  const u = $('#url').value.trim();
+  if(!u) return setStatus('Ingresa una URL', false);
+  try{
+    setStatus('Cargando URL…');
+    const res = await fetch(toRaw(u), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const txt = cleanText(await res.text());
+    const ext = (new URL(toRaw(u), location.href).pathname.split('.').pop()||'').toLowerCase();
+    let arr;
+    if(ext === 'json'){
+      arr = JSON.parse(txt);
+    }else{
+      const lit = extractArrayLiteral(txt);
+      arr = evalArrayLiteral(lit);
+    }
+    if(!Array.isArray(arr)) throw new Error('Contenido no es un Array');
+    data = arr.map(normalizeEntry);
+    renderList(); renderPreview();
+    setStatus('Cargado desde URL', true);
+  }catch(err){
+    console.error(err);
+    setStatus('Error URL: ' + (err?.message || err), false);
+  }
+}
+
+/* ========== Toolbar de descripción ========== */
 const descEl = $('#description');
 $$('.toolbar [data-cmd]').forEach(b=>{
   b.addEventListener('click', ()=>{
@@ -190,42 +313,36 @@ $$('.toolbar [data-cmd]').forEach(b=>{
   });
 });
 $('#btnClear').addEventListener('click', ()=>{
-  const sel = window.getSelection();
-  if(sel && sel.rangeCount){ document.execCommand('removeFormat'); }
-  // Además, limpia enlaces seleccionados
+  document.execCommand('removeFormat');
   document.execCommand('unlink');
   descEl.focus();
 });
 $('#btnLink').addEventListener('click', ()=>{
-  let url = prompt('URL del enlace (https://...)');
+  let url = prompt('URL del enlace (https://, mailto:, #):','');
   if(!url) return;
-  if(!/^https?:\/\//i.test(url) && !url.startsWith('mailto:') && !url.startsWith('#')) url = 'https://' + url;
+  if(!/^(https?:\/\/|mailto:|#)/i.test(url)) url = 'https://' + url;
   document.execCommand('createLink', false, url);
   descEl.focus();
 });
 $('#btnMark').addEventListener('click', ()=>{
-  wrapSelectionWithTag('mark');
-  descEl.focus();
+  wrapSelectionWithTag('mark'); descEl.focus();
 });
 function wrapSelectionWithTag(tag){
   const sel = window.getSelection();
   if(!sel || sel.rangeCount===0) return;
   const range = sel.getRangeAt(0);
-  if(!descEl.contains(range.commonAncestorContainer)) return; // solo dentro de descripción
+  if(!descEl.contains(range.commonAncestorContainer)) return;
   const el = document.createElement(tag);
-  try{
-    range.surroundContents(el);
-  }catch(e){
-    // Si selección es discontinua o cruza nodos, inserta de forma segura
+  try{ range.surroundContents(el); }
+  catch{
     el.appendChild(range.extractContents());
     range.insertNode(el);
     sel.removeAllRanges();
-    const r = document.createRange(); r.selectNodeContents(el); r.collapse(false);
-    sel.addRange(r);
+    const r = document.createRange(); r.selectNodeContents(el); r.collapse(false); sel.addRange(r);
   }
 }
 
-// CRUD
+/* ========== CRUD de la lista ========== */
 function readForm(){
   return {
     title: toStr($('#title').value).trim(),
@@ -233,7 +350,7 @@ function readForm(){
     reference: toStr($('#reference').value).trim(),
     traits: normArray($('#traits').value),
     description: sanitizeHtml(descEl.innerHTML),
-    bullets: bulletsFromTextarea($('#bullets').value)
+    bullets: normArray($('#bullets').value)
   };
 }
 function writeForm(o){
@@ -251,7 +368,7 @@ function clearForm(){
 }
 function addItem(){
   const item = readForm();
-  if(!item.title) { setStatus('Falta el título', false); return; }
+  if(!item.title){ setStatus('Falta el título', false); return; }
   if(editingIndex>=0){
     data[editingIndex] = item;
     editingIndex = -1;
@@ -260,30 +377,21 @@ function addItem(){
     data.push(item);
     setStatus('Elemento agregado', true);
   }
-  renderList();
-  renderPreview();
-  clearForm();
+  renderList(); renderPreview(); clearForm();
 }
 function editItem(i){
-  editingIndex = i;
-  writeForm(data[i]);
+  editingIndex = i; writeForm(data[i]);
   setStatus('Editando elemento #' + (i+1));
 }
 function deleteItem(i){
-  data.splice(i,1);
-  renderList();
-  renderPreview();
-  setStatus('Elemento eliminado', true);
+  data.splice(i,1); renderList(); renderPreview(); setStatus('Elemento eliminado', true);
 }
 function duplicateItem(i){
   const copy = JSON.parse(JSON.stringify(data[i]));
-  data.splice(i+1,0,copy);
-  renderList();
-  renderPreview();
-  setStatus('Elemento duplicado', true);
+  data.splice(i+1,0,copy); renderList(); renderPreview(); setStatus('Elemento duplicado', true);
 }
 
-// List y preview
+/* ========== Render lista y preview ========== */
 function renderList(){
   const list = $('#list'); list.innerHTML = '';
   data.forEach((o,i)=>{
@@ -312,17 +420,17 @@ function renderPreview(){
     const card = document.createElement('div'); card.className='card';
     const t = document.createElement('div'); t.className='title'; t.textContent = o.title||'—';
     const st = document.createElement('div'); st.className='subtitle'; st.textContent = o.subtitle||'';
-    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = o.reference||'';
+    const rf = document.createElement('div'); rf.className='subtitle'; rf.textContent = o.reference||'';
     const traits = document.createElement('div'); traits.className='chips';
     (o.traits||[]).forEach(tr=>{ const s=document.createElement('span'); s.className='chip'; s.textContent=tr; traits.appendChild(s); });
     const desc = document.createElement('div'); desc.className='desc'; desc.innerHTML = o.description||'';
     const ul = document.createElement('ul'); (o.bullets||[]).forEach(b=>{ const li=document.createElement('li'); li.textContent=b; ul.appendChild(li); });
-    card.append(t, st, ref, traits, desc, ul);
+    card.append(t, st, rf, traits, desc, ul);
     p.appendChild(card);
   });
 }
 
-// Export
+/* ========== Exportación ========== */
 function download(filename, content, type='application/json;charset=utf-8'){
   const blob = new Blob([content], {type});
   const a = document.createElement('a');
@@ -345,95 +453,47 @@ function exportJs(){
   setStatus('Exportado JS', true);
 }
 
-// Eventos
+/* ========== Plantillas rápidas ========== */
+function templateAttack(){
+  addData({
+    title:'Ataque', subtitle:'Acción', reference:'CRB p.XXX',
+    traits:['Ataque'], description:'<b>Requisito:</b> arma en mano.<br><b>Efecto:</b> Realizas un ataque.',
+    bullets:['Tira d20 + competencia + modificador.','Aplica penalizadores por múltiples ataques.']
+  });
+}
+function templateMove(){
+  addData({
+    title:'Moverse', subtitle:'Acción', reference:'CRB p.XXX',
+    traits:['Movimiento'], description:'Te desplazas hasta tu velocidad.',
+    bullets:['Puede provocar Reacciones según criatura.','Considera terreno difícil.']
+  });
+}
+function addData(entry){
+  data.push(normalizeEntry(entry)); renderList(); renderPreview(); setStatus('Plantilla añadida', true);
+}
+
+/* ========== Wire events ========== */
+$('#file').addEventListener('change', e => { if(e.target.files?.[0]) loadFromFile(e.target.files[0]); });
+$('#btnLoadUrl').addEventListener('click', loadFromUrl);
+$('#btnTemplateAttack').addEventListener('click', templateAttack);
+$('#btnTemplateMove').addEventListener('click', templateMove);
+
 $('#btnAdd').addEventListener('click', addItem);
 $('#btnReset').addEventListener('click', clearForm);
 $('#btnExportJson').addEventListener('click', exportJson);
 $('#btnExportJs').addEventListener('click', exportJs);
+
 window.addEventListener('keydown', e=>{
   if(e.ctrlKey||e.metaKey){
     if(e.key.toLowerCase()==='s'){ e.preventDefault(); exportJson(); }
   }
-  if(e.altKey && (e.key.toLowerCase()==='d')){ // duplicar seleccionado si edita
-    if(editingIndex>=0) { duplicateItem(editingIndex); }
-  }
-  if(e.altKey && (e.key==='Backspace' || e.key==='Delete')){
-    if(editingIndex>=0) { deleteItem(editingIndex); editingIndex=-1; clearForm(); }
-  }
+  if(e.altKey && (e.key.toLowerCase()==='d')){ if(editingIndex>=0) { duplicateItem(editingIndex); } }
+  if(e.altKey && (e.key==='Backspace' || e.key==='Delete')){ if(editingIndex>=0) { deleteItem(editingIndex); editingIndex=-1; clearForm(); } }
 });
 
-// Inicio
+/* ========== Inicio ========== */
 setStatus('Listo', true);
 </script>
-}
-function cleanText(txt){ return txt.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n'); }
-function toRaw(url){
-  if(url.includes('github.com/') && url.includes('/blob/')){
-    return url.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/');
-  }
-  return url;
-}
-function extractArrayLiteral(js){
-  const s = cleanText(js);
-  const m = /(var|let|const)\s+[A-Za-z$_][\\w$]*\\s*=\\s*\
-
-\[/m.exec(s);
-  if(!m) throw new Error('No se encontró un array con var/let/const');
-  let i = s.indexOf('[', m.index), depth = 0, inStr=false, strCh='', esc=false;
-  for(; i < s.length; i++){
-    const ch = s[i];
-    if(inStr){
-      if(esc){ esc=false; continue; }
-      if(ch==='\\\\'){ esc=true; continue; }
-      if(ch===strCh){ inStr=false; strCh=''; }
-      continue;
-    }
-    if(ch==='"' || ch==="'" || ch==='`'){ inStr=true; strCh=ch; continue; }
-    if(ch==='[') depth++;
-    else if(ch===']'){ depth--; if(depth===0){ i++; break; } }
-  }
-  return s.slice(s.indexOf('[', m.index), i);
-}
-function evalArrayLiteral(lit){
-  const fn = new Function('"use strict";return (' + lit + ');');
-  const arr = fn();
-  if(!Array.isArray(arr)) throw new Error('No es un Array');
-  return arr;
-}
-async function loadFromFile(f){
-  const txt = cleanText(await f.text());
-  const ext = f.name.split('.').pop().toLowerCase();
-  let arr;
-  if(ext==='json'){ arr = JSON.parse(txt); }
-  else { arr = evalArrayLiteral(extractArrayLiteral(txt)); }
-  data = arr.map(o=>readFormFromObj(o));
-  renderList(); renderPreview();
-  setStatus('Cargado '+f.name,true);
-}
-async function loadFromUrl(){
-  const u = toRaw($('#url').value.trim());
-  const res = await fetch(u); if(!res.ok) throw new Error(res.status);
-  const txt = cleanText(await res.text());
-  const ext = u.split('.').pop().toLowerCase();
-  let arr;
-  if(ext==='json'){ arr = JSON.parse(txt); }
-  else { arr = evalArrayLiteral(extractArrayLiteral(txt)); }
-  data = arr.map(o=>readFormFromObj(o));
-  renderList(); renderPreview();
-  setStatus('Cargado desde URL',true);
-}
-function readFormFromObj(o){
-  return {
-    title: toStr(o.title),
-    subtitle: toStr(o.subtitle),
-    reference: toStr(o.reference),
-    traits: normArray(o.traits),
-    description: sanitizeHtml(toStr(o.description)),
-    bullets: normArray(o.bullets)
-  };
-}
-$('#file').addEventListener('change', e=>{ if(e.target.files[0]) loadFromFile(e.target.files[0]); });
-$('#btnLoadUrl').addEventListener('click', loadFromUrl);
-}
 </body>
 </html>
+```
