@@ -541,6 +541,12 @@ p:first-child {
   flex-wrap: wrap;           /* permite que el texto baje a 2ª línea */
   margin-bottom: 0.75rem;    /* separa filas de ítems */
 }
+
+/* 3. Contenedor de texto con base flexible */
+.item-text-container {
+  flex: 1 1 0;
+  min-width: 0;              /* necesario para que overflow funcione */
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
