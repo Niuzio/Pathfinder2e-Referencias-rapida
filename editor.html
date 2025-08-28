@@ -2,674 +2,532 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Editor — Pathfinder 2e</title>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
   <style>
     :root{
       --bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;
-      --accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72;--ink2:#0b1420
+      --accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72;--ink2:#c7d1dd
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
     header{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
-    .menubar{display:flex;align-items:center;gap:8px;padding:8px 12px;flex-wrap:wrap}
-    .menubar button,.menubar input{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-    .menubar button.primary{background:var(--accent);color:var(--ink2);border-color:transparent;cursor:pointer}
-    .menubar button.ghost{background:transparent;cursor:pointer}
+    .bar{display:flex;gap:8px;align-items:center;padding:8px 12px;flex-wrap:wrap}
+    input[type="text"], select, button{background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+    input[type="text"]{min-width:220px}
+    button{cursor:pointer}
+    .primary{background:var(--accent);color:#0b1420;border-color:transparent}
+    .ghost{background:transparent}
     .status{margin-left:auto;font-size:12px;color:var(--muted)}
-    .status.ok{color:var(--ok)}.status.err{color:var(--warn)}
-    .layout{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;padding:12px}
-    @media(max-width:1000px){.layout{grid-template-columns:1fr}}
-    .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;min-height:200px}
-    .panel.split{height:calc(100vh - 170px)}
+    .status.ok{color:var(--ok)} .status.err{color:var(--warn)}
+    .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;padding:12px}
+    @media(max-width:1000px){.wrap{grid-template-columns:1fr}}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;min-height:320px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
     table{width:100%;border-collapse:separate;border-spacing:0 8px}
     thead th{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:8px;color:var(--muted);text-align:left}
-    tbody td{padding:8px;vertical-align:top}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-    .row-actions{display:flex;gap:6px}
-    .ce{min-height:34px;padding:8px;border:1px dashed transparent;border-radius:8px;background:#0e1320}
+    tbody td{padding:6px;vertical-align:top}
+    .ce{min-height:34px;padding:8px;border:1px dashed transparent;border-radius:8px}
     .ce:focus{outline:none;border-color:var(--accent);background:rgba(121,192,255,.06)}
-    .ce.placeholder:empty:before{content:attr(data-ph);color:var(--muted)}
+    .placeholder:empty:before{content:attr(data-ph);color:var(--muted)}
+    .chips{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+    .actions{display:flex;gap:6px;flex-wrap:wrap}
     .preview{overflow:auto;flex:1;display:grid;gap:10px}
     .card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0e1320}
     .title{font-weight:700;font-size:16px}
     .subtitle{color:var(--muted)}
-    .traits{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
-    .trait{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
     .desc{white-space:pre-wrap}
     .bullets{margin:0 0 0 18px}
-    .toolbar{position:fixed;inset:auto 24px 24px auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;display:none;gap:4px}
-    .toolbar button{padding:6px 8px;background:#0e1320;color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer}
-    .toolbar .sep{width:1px;background:var(--line);margin:0 4px}
-    .nowrap{white-space:nowrap}
+    .note{color:var(--ink2);font-size:12px;margin-top:6px}
+    .kbd{font:12px/1 ui-monospace,Menlo,Consolas,monospace;background:#0e1320;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:var(--ink2)}
+    .split{gap:6px;display:grid;grid-template-columns:1fr 1fr}
   </style>
 </head>
 <body>
-  <header>
-    <div class="menubar">
-      <button id="btnAdd" class="primary">+ Nueva fila</button>
-      <button id="quickAddAttack" class="ghost">+ Plantilla: Ataque</button>
-      <button id="quickAddMove" class="ghost">+ Plantilla: Movimiento</button>
-      <span class="nowrap">
-        <button id="btnLoadUrl" class="ghost">Cargar URL</button>
-        <button id="btnPaste" class="ghost">Pegar</button>
-        <button id="btnCopyJSON" class="ghost">Copiar JSON</button>
-        <button id="btnCopyJS" class="ghost">Copiar JS</button>
-      </span>
-      <span id="status" class="status">Listo</span>
-    </div>
-  </header>
+<header>
+  <div class="bar">
+    <input id="url" type="text" placeholder="URL .json o .js (GitHub raw o blob)" />
+    <button id="btnLoadUrl">Cargar URL</button>
+    <input id="file" type="file" accept=".json,.js,application/json,text/javascript" />
+    <button id="btnAdd" class="ghost">+ Nueva entrada</button>
+    <button id="btnTemplateAttack" class="ghost">+ Plantilla: Ataque</button>
+    <button id="btnTemplateMove" class="ghost">+ Plantilla: Movimiento</button>
+    <span class="status" id="status">Listo</span>
+  </div>
+  <div class="bar">
+    <input id="varName" type="text" placeholder="Nombre de variable para exportar (p.ej. pf2eData)" />
+    <button id="btnExportJson" class="primary">Exportar JSON</button>
+    <button id="btnExportJs" class="primary">Exportar JS (const VAR = ...)</button>
+    <span class="note">Sugerencias: Edición rápida con Enter y Shift+Enter · Duplicar Alt+D · Eliminar Alt+Backspace</span>
+  </div>
+</header>
 
-  <div class="layout">
-    <div class="panel split">
-      <div class="controls"></div>
-      <table>
-        <thead>
-          <tr>
-            <th>title</th>
-            <th>subtitle</th>
-            <th>reference</th>
-            <th>traits</th>
-            <th>description</th>
-            <th>bullets</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
+<div class="wrap">
+  <div class="panel">
+    <div class="controls">
+      <span class="note">Campos: title · subtitle · reference · traits · description · bullets</span>
     </div>
-
-    <div class="panel">
-      <strong>Vista previa</strong>
-      <div id="preview" class="preview"></div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>subtitle</th>
+          <th>reference</th>
+          <th>traits</th>
+          <th>description</th>
+          <th>bullets</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
   </div>
 
-  <div id="toolbar" class="toolbar" aria-hidden="true">
-    <button data-cmd="bold"><strong>B</strong></button>
-    <button data-cmd="italic"><em>I</em></button>
-    <button data-cmd="underline"><u>U</u></button>
-    <div class="sep"></div>
-    <button data-cmd="insertUnorderedList">•</button>
-    <button data-cmd="insertOrderedList">1.</button>
-    <div class="sep"></div>
-    <button id="btnLink">Link</button>
-    <button data-cmd="unlink">Unlink</button>
-    <div class="sep"></div>
-    <button id="btnClearFmt">Clear</button>
+  <div class="panel">
+    <strong>Vista previa</strong>
+    <div id="preview" class="preview"></div>
   </div>
+</div>
 
-  <script>
-    "use strict";
+<script>
+"use strict";
 
-    // State
-    let dataset = [];
-    let varNameDetected = "";
-    let focusedCell = null;
+// Estado
+let data = []; // Array de objetos normalizados
+let dirty = false;
 
-    // Shortcuts
-    const $ = (s) => document.querySelector(s);
-    const $$ = (s) => Array.from(document.querySelectorAll(s));
+// Utilidades
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const setStatus = (msg, ok=null) => {
+  const el = $('#status');
+  el.textContent = msg;
+  el.className = 'status' + (ok===true ? ' ok' : ok===false ? ' err' : '');
+};
 
-    // UI helpers
-    function setStatus(msg, ok = null) {
-      const el = $("#status");
-      el.textContent = msg;
-      el.className = "status" + (ok === true ? " ok" : ok === false ? " err" : "");
-    }
+// Normaliza texto/arrays
+const toStr = v => (v ?? '').toString();
+const normArray = v => Array.isArray(v)
+  ? v.map(x => toStr(x).trim()).filter(Boolean)
+  : toStr(v).split(/[,\n;]/).map(s => s.trim()).filter(Boolean);
 
-    function toRawUrl(u) {
-      if (!u) return u;
-      if (u.includes("github.com/") && u.includes("/blob/")) {
-        return u.replace("github.com/", "raw.githubusercontent.com/").replace("/blob/", "/");
-      }
-      return u;
-    }
-
-    function safeText(s) {
-      return (s ?? "").toString();
-    }
-
-    function sanitizeHtml(html, allowed = ["B","STRONG","I","EM","U","A","BR","UL","OL","LI","SUP","SUB","SPAN"]) {
-      if (!html) return "";
-      const root = document.createElement("div");
-      root.innerHTML = html;
-
-      root.querySelectorAll("script,style,iframe,object,embed").forEach(n => n.remove());
-
-      const walk = (node) => {
-        if (node.nodeType === 1) {
-          if (!allowed.includes(node.tagName)) {
-            const p = node.parentNode;
-            while (node.firstChild) p.insertBefore(node.firstChild, node);
-            p.removeChild(node);
-            return;
-          }
-          [...node.attributes].forEach(a => {
-            const n = a.name.toLowerCase();
-            const v = a.value || "";
-            if (node.tagName === "A" && n === "href") {
-              if (!/^https?:\/\//i.test(v) && !v.startsWith("#") && !v.startsWith("mailto:")) {
-                node.removeAttribute(a.name);
-              }
-            } else if (n === "style" || n.startsWith("on")) {
-              node.removeAttribute(a.name);
-            }
-          });
-        }
-        [...node.childNodes].forEach(walk);
-      };
-      [...root.childNodes].forEach(walk);
-      return root.innerHTML;
-    }
-
-    function parseTraits(raw) {
-      const s = safeText(raw).trim();
-      if (!s) return [];
-      if (s.includes("[") && s.includes("]")) {
-        try {
-          const arr = Function("return " + s)();
-          return Array.isArray(arr) ? arr.map(x => safeText(x).trim()).filter(Boolean) : [];
-        } catch { /* fallthrough */ }
-      }
-      return s.split(/[,;]+/).map(x => x.trim()).filter(Boolean);
-    }
-
-    function bulletsFromEditable(html) {
-      const tmp = document.createElement("div");
-      tmp.innerHTML = html || "";
-
-      // Prefer explicit <li>
-      const lis = tmp.querySelectorAll("li");
-      if (lis.length) {
-        return [...lis].map(li => sanitizeHtml(li.innerHTML, ["B","STRONG","I","EM","U","A","BR","SUP","SUB","SPAN"]).trim()).filter(Boolean);
-      }
-
-      // Otherwise split by lines or bullet markers
-      const text = tmp.textContent || "";
-      const lines = text.split(/\r?\n/).map(s => s.replace(/^\s*[-•]\s*/, "").trim()).filter(Boolean);
-      return lines;
-    }
-
-    function bulletsToHtml(bullets) {
-      if (!bullets?.length) return "";
-      return "<ul>" + bullets.map(b => `<li>${sanitizeHtml(b)}</li>`).join("") + "</ul>";
-    }
-
-    function normalizeItem(it) {
-      return {
-        title: safeText(it.title).trim(),
-        subtitle: safeText(it.subtitle).trim(),
-        reference: safeText(it.reference).trim(),
-        traits: Array.isArray(it.traits) ? it.traits.map(t => safeText(t).trim()).filter(Boolean) : parseTraits(it.traits),
-        description: sanitizeHtml(it.description),
-        bullets: Array.isArray(it.bullets) ? it.bullets.map(b => sanitizeHtml(b).trim()).filter(Boolean) : bulletsFromEditable(it.bullets)
-      };
-    }
-
-    // Rendering
-    function renderTable() {
-      const tb = $("#tbody");
-      tb.innerHTML = "";
-      dataset.forEach((it, idx) => {
-        const tr = document.createElement("tr");
-
-        const makeCell = (field, ph = "") => {
-          const td = document.createElement("td");
-          const div = document.createElement("div");
-          div.className = "ce";
-          div.setAttribute("contenteditable", "true");
-          div.dataset.field = field;
-          if (ph) {
-            div.classList.add("placeholder");
-            div.dataset.ph = ph;
-          }
-          if (field === "traits") {
-            div.textContent = it.traits.join(", ");
-          } else if (field === "bullets") {
-            div.innerHTML = bulletsToHtml(it.bullets);
-          } else if (field === "description") {
-            div.innerHTML = it.description || "";
-          } else {
-            div.textContent = safeText(it[field]);
-          }
-          div.addEventListener("focus", onCellFocus);
-          div.addEventListener("blur", () => onCellBlur(idx, div));
-          div.addEventListener("input", () => onCellInput(idx, div));
-          td.appendChild(div);
-          return td;
-        };
-
-        tr.appendChild(makeCell("title", "Título"));
-        tr.appendChild(makeCell("subtitle", "Subtítulo"));
-        tr.appendChild(makeCell("reference", "Referencia"));
-        tr.appendChild(makeCell("traits", "rasgo, rasgo"));
-        tr.appendChild(makeCell("description", "Descripción con formato"));
-        tr.appendChild(makeCell("bullets", "• Punto 1"));
-
-        const actions = document.createElement("td");
-        actions.className = "row-actions";
-        actions.append(
-          makeBtn("↑", () => moveRow(idx, -1)),
-          makeBtn("↓", () => moveRow(idx, +1)),
-          makeBtn("⧉", () => duplicateRow(idx)),
-          makeBtn("🗑", () => deleteRow(idx))
-        );
-        tr.appendChild(actions);
-
-        tb.appendChild(tr);
-      });
-    }
-
-    function makeBtn(label, fn) {
-      const b = document.createElement("button");
-      b.className = "ghost";
-      b.type = "button";
-      b.textContent = label;
-      b.addEventListener("click", fn);
-      return b;
-    }
-
-    function renderPreview() {
-      const pv = $("#preview");
-      pv.innerHTML = "";
-      dataset.forEach((it) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        const title = document.createElement("div");
-        title.className = "title";
-        title.textContent = it.title;
-        const subtitle = document.createElement("div");
-        subtitle.className = "subtitle";
-        subtitle.textContent = [it.subtitle, it.reference].filter(Boolean).join(" • ");
-
-        const traits = document.createElement("div");
-        traits.className = "traits";
-        it.traits.forEach(t => {
-          const span = document.createElement("span");
-          span.className = "trait";
-          span.textContent = t;
-          traits.appendChild(span);
-        });
-
-        const desc = document.createElement("div");
-        desc.className = "desc";
-        desc.innerHTML = sanitizeHtml(it.description);
-
-        const bullets = document.createElement("ul");
-        bullets.className = "bullets";
-        it.bullets.forEach(b => {
-          const li = document.createElement("li");
-          li.innerHTML = sanitizeHtml(b);
-          bullets.appendChild(li);
-        });
-
-        card.append(title);
-        if (it.subtitle || it.reference) card.append(subtitle);
-        if (it.traits.length) card.append(traits);
-        if (it.description) card.append(desc);
-        if (it.bullets.length) card.append(bullets);
-
-        pv.appendChild(card);
-      });
-    }
-
-    function refreshAll(save = true) {
-      renderTable();
-      renderPreview();
-      if (save) saveLocal();
-    }
-
-    // Editing handlers
-    function onCellFocus(e) {
-      focusedCell = e.currentTarget;
-      showToolbarNear(focusedCell);
-    }
-
-    function onCellInput(idx, div) {
-      const field = div.dataset.field;
-      if (field === "title" || field === "subtitle" || field === "reference") {
-        dataset[idx][field] = div.textContent.trim();
-      } else if (field === "traits") {
-        dataset[idx].traits = parseTraits(div.textContent);
-      } else if (field === "description") {
-        dataset[idx].description = sanitizeHtml(div.innerHTML);
-      } else if (field === "bullets") {
-        dataset[idx].bullets = bulletsFromEditable(div.innerHTML);
-      }
-      renderPreview();
-      saveLocalDebounced();
-    }
-
-    function onCellBlur(idx, div) {
-      const field = div.dataset.field;
-      // Normalize content on blur
-      if (field === "traits") {
-        div.textContent = dataset[idx].traits.join(", ");
-      } else if (field === "description") {
-        div.innerHTML = sanitizeHtml(div.innerHTML);
-      } else if (field === "bullets") {
-        div.innerHTML = bulletsToHtml(dataset[idx].bullets);
-      } else {
-        div.textContent = safeText(dataset[idx][field]);
-      }
-      if (focusedCell === div) {
-        // Keep toolbar if moving inside same cell; otherwise hide with slight delay
-        setTimeout(() => {
-          if (document.activeElement !== div) hideToolbar();
-        }, 50);
-      }
-      saveLocalDebounced();
-    }
-
-    // Row actions
-    function addRow(template = null) {
-      const it = normalizeItem(template || {
-        title: "",
-        subtitle: "",
-        reference: "",
-        traits: [],
-        description: "",
-        bullets: []
-      });
-      dataset.push(it);
-      refreshAll();
-      setStatus("Fila añadida", true);
-    }
-
-    function duplicateRow(idx) {
-      dataset.splice(idx + 1, 0, JSON.parse(JSON.stringify(dataset[idx])));
-      refreshAll();
-      setStatus("Fila duplicada", true);
-    }
-
-    function deleteRow(idx) {
-      dataset.splice(idx, 1);
-      refreshAll();
-      setStatus("Fila eliminada", true);
-    }
-
-    function moveRow(idx, delta) {
-      const j = idx + delta;
-      if (j < 0 || j >= dataset.length) return;
-      const [it] = dataset.splice(idx, 1);
-      dataset.splice(j, 0, it);
-      refreshAll();
-    }
-
-    // Toolbar
-    const toolbar = $("#toolbar");
-
-    function showToolbarNear(target) {
-      const rect = target.getBoundingClientRect();
-      toolbar.style.display = "flex";
-      toolbar.style.left = Math.max(8, rect.right - toolbar.offsetWidth) + "px";
-      toolbar.style.top = rect.bottom + 8 + "px";
-      toolbar.setAttribute("aria-hidden", "false");
-    }
-    function hideToolbar() {
-      toolbar.style.display = "none";
-      toolbar.setAttribute("aria-hidden", "true");
-      focusedCell = null;
-    }
-
-    toolbar.addEventListener("mousedown", (e) => {
-      // Keep focus in editable
-      e.preventDefault();
-    });
-
-    toolbar.addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      const cmd = btn.dataset.cmd;
-      if (cmd) {
-        document.execCommand(cmd, false, null);
-        if (focusedCell?.dataset.field === "description" || focusedCell?.dataset.field === "bullets") {
-          // Update live
-          if (focusedCell.dataset.field === "description") {
-            focusedCell.innerHTML = sanitizeHtml(focusedCell.innerHTML);
-          }
-        }
-        focusedCell?.dispatchEvent(new Event("input"));
-        focusedCell?.focus();
-      }
-    });
-
-    $("#btnLink").addEventListener("click", () => {
-      if (!focusedCell) return;
-      const url = prompt("URL del enlace (https://… o mailto:…):", "");
-      if (!url) return;
-      if (!/^(https?:\/\/|mailto:|#)/i.test(url)) {
-        alert("URL no válida. Debe empezar por https://, http://, mailto:, o #");
+// Saneado HTML mínimo
+function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN','CODE']) {
+  if (!html) return '';
+  const root = document.createElement('div'); root.innerHTML = html;
+  root.querySelectorAll('script,style,iframe,object,embed').forEach(n => n.remove());
+  const walk = node => {
+    if (node.nodeType === 1) {
+      if (!allowed.includes(node.tagName)) {
+        const p = node.parentNode;
+        while (node.firstChild) p.insertBefore(node.firstChild, node);
+        p.removeChild(node);
         return;
       }
-      document.execCommand("createLink", false, url);
-      focusedCell?.dispatchEvent(new Event("input"));
-      focusedCell?.focus();
-    });
-
-    $("#btnClearFmt").addEventListener("click", () => {
-      if (!focusedCell) return;
-      document.execCommand("removeFormat");
-      // Remove links
-      document.execCommand("unlink");
-      // Sanitize everything
-      if (focusedCell.dataset.field === "bullets") {
-        const items = bulletsFromEditable(focusedCell.innerHTML);
-        focusedCell.innerHTML = bulletsToHtml(items);
-      } else if (focusedCell.dataset.field === "description") {
-        focusedCell.innerHTML = sanitizeHtml(focusedCell.innerHTML);
-      }
-      focusedCell?.dispatchEvent(new Event("input"));
-      focusedCell?.focus();
-    });
-
-    document.addEventListener("click", (e) => {
-      const inside = e.target.closest("#toolbar") || e.target.closest(".ce");
-      if (!inside) hideToolbar();
-    });
-
-    // Import / Export
-    function guessArrayFromText(text) {
-      // Try export default [...]
-      const expDef = text.match(/export\s+default\s+(
-
-\[[\s\S]*\]
-
-)\s*;?/);
-      if (expDef) return { name: "defaultExport", arrayCode: expDef[1] };
-
-      // Try named const/let/var
-      const named = text.match(/(?:export\s+)?(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*([\s\S]+)/);
-      if (named) {
-        const name = named[1];
-        const rest = named[2];
-        const start = rest.indexOf("[");
-        const end = rest.lastIndexOf("]");
-        if (start !== -1 && end !== -1 && end > start) {
-          return { name, arrayCode: rest.slice(start, end + 1) };
-        }
-      }
-
-      // Fallback: take first [...] block
-      const first = text.indexOf("[");
-      const last = text.lastIndexOf("]");
-      if (first !== -1 && last !== -1 && last > first) {
-        return { name: "", arrayCode: text.slice(first, last + 1) };
-      }
-      return null;
+      [...node.attributes].forEach(a => {
+        const n = a.name.toLowerCase(), v = a.value;
+        if (node.tagName === 'A' && n === 'href') {
+          if (!/^https?:\/\//i.test(v) && !v.startsWith('#') && !v.startsWith('mailto:')) node.removeAttribute(a.name);
+        } else if (n === 'style' || n.startsWith('on')) node.removeAttribute(a.name);
+      });
     }
+    [...node.childNodes].forEach(walk);
+  };
+  [...root.childNodes].forEach(walk);
+  return root.innerHTML;
+}
 
-    function parseDatasetText(text) {
-      text = text.trim();
-      // Try strict JSON first
-      try {
-        const j = JSON.parse(text);
-        if (Array.isArray(j)) return { name: "", data: j };
-      } catch { /* not JSON array */ }
+// Limpia BOM y normaliza unicode
+function cleanText(txt) {
+  return txt.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
+}
 
-      // Try to extract JS array literal
-      const guess = guessArrayFromText(text);
-      if (guess) {
-        try {
-          const data = Function("return (" + guess.arrayCode + ");")();
-          if (Array.isArray(data)) return { name: guess.name, data };
-        } catch { /* not evaluable */ }
-      }
+// Convierte URL GitHub "blob" a "raw"
+function toRaw(url) {
+  if (!url) return url;
+  if (url.includes('github.com/') && url.includes('/blob/')) {
+    return url.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
+  }
+  return url;
+}
 
-      // Try to evaluate full text (as last resort)
-      try {
-        const mod = {};
-        // emulate export default / named
-        const f = new Function("exports", "module", text + "\n;return module.exports||exports;");
-        const out = f({}, { exports: {} });
-        if (Array.isArray(out)) return { name: "defaultExport", data: out };
-        if (out && typeof out === "object") {
-          const firstArrKey = Object.keys(out).find(k => Array.isArray(out[k]));
-          if (firstArrKey) return { name: firstArrKey, data: out[firstArrKey] };
-        }
-      } catch { /* ignore */ }
+// Extrae literal de array JS: var/let/const NOMBRE = [ ... ];
+function extractArrayLiteral(js) {
+  const s = cleanText(js);
+  // Elimina comentarios para evitar confundir corchetes
+  const noComments = s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+  const assign = /(var|let|const)\s+([A-Za-z$_][\w$]*)\s*=\s*
 
-      throw new Error("No se pudo detectar un array válido en el texto.");
+\[/m;
+  const m = assign.exec(noComments);
+  if (!m) throw new Error('No encontré un array con var/let/const NOMBRE = [ ... ]');
+  const start = noComments.indexOf('[', m.index);
+  let i = start, depth = 0, inStr = false, strCh = '', esc = false;
+  for (; i < noComments.length; i++) {
+    const ch = noComments[i];
+    if (inStr) {
+      if (esc) { esc = false; continue; }
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === strCh) { inStr = false; strCh = ''; }
+      continue;
     }
+    if (ch === '"' || ch === "'" || ch === '`') { inStr = true; strCh = ch; continue; }
+    if (ch === '[') depth++;
+    else if (ch === ']') { depth--; if (depth === 0) { i++; break; } }
+  }
+  if (depth !== 0) throw new Error('Corchetes sin cerrar en el array');
+  const literal = noComments.slice(start, i);
+  return literal;
+}
 
-    async function loadFromUrl() {
-      const url = prompt("Pega la URL del archivo (admite GitHub /blob -> raw):", "");
-      if (!url) return;
-      setStatus("Cargando…");
-      try {
-        const res = await fetch(toRawUrl(url), { cache: "no-store" });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const text = await res.text();
-        const parsed = parseDatasetText(text);
-        varNameDetected = parsed.name || "";
-        dataset = parsed.data.map(normalizeItem);
-        refreshAll();
-        setStatus("Cargado " + dataset.length + " items" + (varNameDetected ? " de " + varNameDetected : ""), true);
-      } catch (err) {
-        console.error(err);
-        setStatus("Error al cargar: " + (err?.message || err), false);
-      }
-    }
+// Evalúa SOLO el literal de array aislado en modo estricto
+function evalArrayLiteral(literal) {
+  // Permite trailing commas y claves no-entrecomilladas (JS estándar)
+  // No ejecuta el archivo completo, sólo el literal "([...])"
+  // eslint-disable-next-line no-new-func
+  const fn = new Function('"use strict"; return (' + literal + ');');
+  const arr = fn();
+  if (!Array.isArray(arr)) throw new Error('El literal no resultó en un Array');
+  return arr;
+}
 
-    async function pasteText() {
-      const text = prompt("Pega aquí JSON o JS con el array:", "");
-      if (!text) return;
-      try {
-        const parsed = parseDatasetText(text);
-        varNameDetected = parsed.name || "";
-        dataset = parsed.data.map(normalizeItem);
-        refreshAll();
-        setStatus("Pegado " + dataset.length + " items", true);
-      } catch (err) {
-        console.error(err);
-        setStatus("No se pudo pegar: " + (err?.message || err), false);
-      }
-    }
+// Normaliza objeto a esquema esperado
+function normalizeEntry(x) {
+  const o = Object(x || {});
+  const traits = normArray(o.traits ?? '');
+  const bullets = normArray(o.bullets ?? '');
+  return {
+    title: toStr(o.title),
+    subtitle: toStr(o.subtitle),
+    reference: toStr(o.reference),
+    traits,
+    description: sanitizeHtml(toStr(o.description)),
+    bullets
+  };
+}
 
-    function toJSONText() {
-      const clean = dataset.map(normalizeItem);
-      return JSON.stringify(clean, null, 2);
-    }
+// UI: render
+function render() {
+  const tb = $('#tbody'); tb.innerHTML = '';
+  data.forEach((row, idx) => {
+    const tr = document.createElement('tr');
 
-    function toJSText() {
-      const name = varNameDetected || prompt("Nombre de la variable a exportar (const … = …):", "pf2eData") || "pf2eData";
-      const json = toJSONText();
-      return `export const ${name} = ${json};\n`;
-    }
+    const mkCell = (key, ph='') => {
+      const td = document.createElement('td');
+      const div = document.createElement('div');
+      div.className = 'ce placeholder';
+      div.contentEditable = 'true';
+      div.dataset.key = key;
+      div.dataset.index = String(idx);
+      div.dataset.ph = ph;
+      div.innerHTML = key === 'description' ? row[key] : escapeHtml(row[key]);
+      div.addEventListener('input', onCellInput);
+      div.addEventListener('keydown', onCellKeydown);
+      td.appendChild(div);
+      return td;
+    };
 
-    async function copyText(txt) {
-      try {
-        await navigator.clipboard.writeText(txt);
-        setStatus("Copiado al portapapeles", true);
-      } catch {
-        // Fallback: open a helper window
-        const w = window.open("", "_blank", "width=800,height=600");
-        if (w) {
-          w.document.write("<pre style='white-space:pre-wrap;font:12px/1.3 ui-monospace,Menlo,Consolas,monospace'>" +
-            txt.replace(/[&<>]/g, s => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[s])) +
-            "</pre>");
-          w.document.title = "Copiar";
-          setStatus("No se pudo copiar automáticamente. Abierto en nueva ventana.", false);
-        } else {
-          alert("No se pudo copiar. Copia manualmente desde aquí.\n\n" + txt.slice(0, 20000));
-        }
-      }
-    }
+    tr.appendChild(mkCell('title','Título'));
+    tr.appendChild(mkCell('subtitle','Subtítulo'));
+    tr.appendChild(mkCell('reference','Referencia'));
+    // traits como coma o nueva línea separada
+    const tdTraits = document.createElement('td');
+    const ceTraits = document.createElement('div');
+    ceTraits.className = 'ce placeholder';
+    ceTraits.contentEditable = 'true';
+    ceTraits.dataset.key = 'traits';
+    ceTraits.dataset.index = String(idx);
+    ceTraits.dataset.ph = 'traits (coma o líneas)';
+    ceTraits.textContent = row.traits.join(', ');
+    ceTraits.addEventListener('input', onCellInput);
+    ceTraits.addEventListener('keydown', onCellKeydown);
+    tdTraits.appendChild(ceTraits);
+    tr.appendChild(tdTraits);
 
-    // Local storage
-    const LS_KEY = "pf2e_editor_dataset_v1";
-    const LS_NAME = "pf2e_editor_varname_v1";
+    const tdDesc = document.createElement('td');
+    const ceDesc = document.createElement('div');
+    ceDesc.className = 'ce placeholder';
+    ceDesc.contentEditable = 'true';
+    ceDesc.dataset.key = 'description';
+    ceDesc.dataset.index = String(idx);
+    ceDesc.dataset.ph = 'Descripción (HTML básico permitido)';
+    ceDesc.innerHTML = row.description;
+    ceDesc.addEventListener('input', onCellInput);
+    ceDesc.addEventListener('keydown', onCellKeydown);
+    tdDesc.appendChild(ceDesc);
+    tr.appendChild(tdDesc);
 
-    function saveLocal() {
-      try {
-        localStorage.setItem(LS_KEY, JSON.stringify(dataset));
-        localStorage.setItem(LS_NAME, varNameDetected || "");
-      } catch {/* ignore */}
-    }
-    const saveLocalDebounced = debounce(saveLocal, 300);
+    const tdBul = document.createElement('td');
+    const ceBul = document.createElement('div');
+    ceBul.className = 'ce placeholder';
+    ceBul.contentEditable = 'true';
+    ceBul.dataset.key = 'bullets';
+    ceBul.dataset.index = String(idx);
+    ceBul.dataset.ph = 'viñetas (líneas)';
+    ceBul.textContent = row.bullets.join('\n');
+    ceBul.addEventListener('input', onCellInput);
+    ceBul.addEventListener('keydown', onCellKeydown);
+    tdBul.appendChild(ceBul);
+    tr.appendChild(tdBul);
 
-    function restoreLocal() {
-      try {
-        const t = localStorage.getItem(LS_KEY);
-        if (t) {
-          const arr = JSON.parse(t);
-          if (Array.isArray(arr)) dataset = arr.map(normalizeItem);
-        }
-        varNameDetected = localStorage.getItem(LS_NAME) || "";
-      } catch {/* ignore */}
-    }
+    const tdAct = document.createElement('td');
+    const box = document.createElement('div'); box.className='actions';
+    const bUp = btn('↑',()=>move(idx,-1));
+    const bDn = btn('↓',()=>move(idx, 1));
+    const bDup= btn('Dup',()=>duplicate(idx));
+    const bDel= btn('Del',()=>remove(idx));
+    box.append(bUp,bDn,bDup,bDel);
+    tdAct.appendChild(box);
+    tr.appendChild(tdAct);
 
-    function debounce(fn, ms) {
-      let id = 0;
-      return (...args) => {
-        clearTimeout(id);
-        id = setTimeout(() => fn(...args), ms);
-      };
-    }
+    tb.appendChild(tr);
+  });
 
-    // Templates
-    function templateAttack() {
-      return {
-        title: "Ataque",
-        subtitle: "Acción",
-        reference: "CRB p.XXX",
-        traits: ["ataque", "maniobra"],
-        description: "Realizas un ataque con tu arma o a puño limpio.",
-        bullets: ["Tira ataque contra CA.", "Aplica penalizadores por múltiples ataques."]
-      };
-    }
-    function templateMove() {
-      return {
-        title: "Movimiento",
-        subtitle: "Acción",
-        reference: "CRB p.XXX",
-        traits: ["movimiento"],
-        description: "Te desplazas hasta tu velocidad.",
-        bullets: ["Provoca reacciones si corresponde.", "No puedes atravesar espacios ocupados sin permiso."]
-      };
-    }
+  renderPreview();
+  markClean();
+}
 
-    // Event wiring
-    $("#btnAdd").addEventListener("click", () => addRow());
-    $("#quickAddAttack").addEventListener("click", () => addRow(templateAttack()));
-    $("#quickAddMove").addEventListener("click", () => addRow(templateMove()));
+function escapeHtml(s) {
+  return toStr(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
 
-    $("#btnLoadUrl").addEventListener("click", loadFromUrl);
-    $("#btnPaste").addEventListener("click", pasteText);
-    $("#btnCopyJSON").addEventListener("click", () => copyText(toJSONText()));
-    $("#btnCopyJS").addEventListener("click", () => copyText(toJSText()));
+function btn(text, handler){
+  const b = document.createElement('button'); b.textContent = text; b.addEventListener('click', handler); return b;
+}
 
-    // Init
-    (function init() {
-      restoreLocal();
-      if (dataset.length === 0) {
-        dataset = [normalizeItem(templateAttack())];
-      }
-      refreshAll(false);
-      setStatus("Listo", true);
-    })();
-  </script>
+function renderPreview() {
+  const p = $('#preview'); p.innerHTML = '';
+  data.forEach(row => {
+    const card = document.createElement('div'); card.className='card';
+    const t = document.createElement('div'); t.className='title'; t.textContent = row.title || '—';
+    const st = document.createElement('div'); st.className='subtitle'; st.textContent = row.subtitle;
+    const ref = document.createElement('div'); ref.className='subtitle'; ref.textContent = row.reference;
+    const traits = document.createElement('div'); traits.className='chips';
+    row.traits.forEach(tr => { const c = document.createElement('span'); c.className='chip'; c.textContent = tr; traits.appendChild(c); });
+    const desc = document.createElement('div'); desc.className='desc'; desc.innerHTML = row.description;
+    const ul = document.createElement('ul'); ul.className='bullets';
+    row.bullets.forEach(b => { const li = document.createElement('li'); li.textContent = b; ul.appendChild(li); });
+    card.append(t, st, ref, traits, desc, ul);
+    p.appendChild(card);
+  });
+}
+
+// Cambios en celdas
+function onCellInput(e) {
+  const el = e.currentTarget;
+  const idx = +el.dataset.index;
+  const key = el.dataset.key;
+  let val = '';
+  if (key === 'description') {
+    val = sanitizeHtml(el.innerHTML);
+    data[idx][key] = val;
+  } else if (key === 'traits') {
+    val = normArray(el.textContent);
+    data[idx].traits = val;
+  } else if (key === 'bullets') {
+    val = normArray(el.textContent);
+    data[idx].bullets = val;
+  } else {
+    val = el.textContent;
+    data[idx][key] = toStr(val);
+  }
+  markDirty();
+  renderPreview();
+}
+
+function onCellKeydown(e) {
+  // Enter avanza; Shift+Enter salto de línea
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    focusNextEditable(e.currentTarget);
+  }
+  // Alt+D duplica; Alt+Backspace elimina fila
+  if (e.altKey && (e.key.toLowerCase() === 'd')) {
+    e.preventDefault();
+    const idx = +e.currentTarget.dataset.index;
+    duplicate(idx);
+    focusRow(idx+1);
+  }
+  if (e.altKey && (e.key === 'Backspace' || e.key === 'Delete')) {
+    e.preventDefault();
+    const idx = +e.currentTarget.dataset.index;
+    remove(idx);
+    focusRow(Math.max(0, idx-1));
+  }
+}
+
+function focusNextEditable(current) {
+  const list = $$('#tbody .ce');
+  const i = list.indexOf(current);
+  const next = list[i+1] || list[0];
+  next?.focus();
+}
+
+function focusRow(idx) {
+  const row = $$('#tbody tr')[idx];
+  row?.querySelector('.ce')?.focus();
+}
+
+function markDirty(){ dirty = true; setStatus('Cambios sin guardar', null);}
+function markClean(){ dirty = false; setStatus('Listo', true);}
+
+// Operaciones de filas
+function add(entry = {title:'',subtitle:'',reference:'',traits:[],description:'',bullets:[]}) {
+  data.push(normalizeEntry(entry)); render(); markDirty();
+}
+function duplicate(i) {
+  if (i<0 || i>=data.length) return;
+  const copy = JSON.parse(JSON.stringify(data[i]));
+  data.splice(i+1, 0, copy); render(); markDirty();
+}
+function remove(i) {
+  if (i<0 || i>=data.length) return;
+  data.splice(i,1); render(); markDirty();
+}
+function move(i, delta) {
+  const j = i + delta;
+  if (i<0||i>=data.length||j<0||j>=data.length) return;
+  const [it] = data.splice(i,1);
+  data.splice(j,0,it); render(); markDirty();
+}
+
+// Carga desde URL/archivo
+async function loadFromUrl(url) {
+  try {
+    setStatus('Cargando…');
+    const u = toRaw(url.trim());
+    const res = await fetch(u, {cache:'no-store'});
+    if (!res.ok) throw new Error('HTTP '+res.status);
+    const txt = cleanText(await res.text());
+    const ext = (new URL(u, location.href).pathname.split('.').pop() || '').toLowerCase();
+    await loadFromText(txt, ext);
+    setStatus('Cargado desde URL', true);
+  } catch (err) {
+    console.error(err);
+    setStatus('Error al cargar URL: ' + (err.message||err), false);
+  }
+}
+
+async function loadFromFile(file) {
+  try {
+    setStatus('Leyendo archivo…');
+    const txt = await file.text();
+    const ext = (file.name.split('.').pop()||'').toLowerCase();
+    await loadFromText(cleanText(txt), ext);
+    setStatus('Archivo cargado', true);
+  } catch (err) {
+    console.error(err);
+    setStatus('Error al leer archivo: ' + (err.message||err), false);
+  }
+}
+
+async function loadFromText(txt, extHint) {
+  let arr;
+  const looksJson = extHint === 'json' || /^[\s\n]*
+
+\[\s*[
+
+\[{]/.test(txt);
+  if (looksJson) {
+    arr = JSON.parse(txt);
+  } else {
+    // .js: intentamos extraer el literal del array
+    const literal = extractArrayLiteral(txt);
+    arr = evalArrayLiteral(literal);
+  }
+  if (!Array.isArray(arr)) throw new Error('El contenido no es un array');
+  data = arr.map(normalizeEntry);
+  render();
+}
+
+// Exportaciones
+function download(filename, content, type = 'application/json;charset=utf-8') {
+  const blob = new Blob([content], {type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+}
+
+function exportJson() {
+  const pretty = JSON.stringify(data, null, 2);
+  download('data.json', pretty, 'application/json;charset=utf-8');
+  setStatus('Exportado JSON', true);
+  markClean();
+}
+
+function exportJs() {
+  const name = $('#varName').value.trim() || 'pf2eData';
+  if (!/^[A-Za-z$_][\w$]*$/.test(name)) {
+    setStatus('Nombre de variable inválido', false);
+    return;
+  }
+  const json = JSON.stringify(data, null, 2);
+  const js = `const ${name} = ${json};\n`;
+  download(`${name}.js`, js, 'text/javascript;charset=utf-8');
+  setStatus('Exportado JS', true);
+  markClean();
+}
+
+// Plantillas
+function templateAttack() {
+  add({
+    title:'Ataque',
+    subtitle:'Acción',
+    reference:'CRB p.XXX',
+    traits:['Acción','Arma'],
+    description:'<strong>Requisito:</strong> arma en mano.<br><strong>Efecto:</strong> Realizas un ataque.',
+    bullets:['Tira d20 + competencia + mod.','Aplica rasgos y penalizadores.']
+  });
+}
+function templateMove() {
+  add({
+    title:'Moverse',
+    subtitle:'Acción',
+    reference:'CRB p.XXX',
+    traits:['Acción','Movimiento'],
+    description:'Te desplazas hasta tu velocidad.',
+    bullets:['Provoca Reacciones si corresponde.','Considera terreno difícil.']
+  });
+}
+
+// Eventos UI
+$('#btnLoadUrl').addEventListener('click', () => {
+  const u = $('#url').value;
+  if (!u) return setStatus('Ingresa una URL', false);
+  loadFromUrl(u);
+});
+$('#file').addEventListener('change', e => {
+  const f = e.target.files?.[0];
+  if (f) loadFromFile(f);
+});
+$('#btnExportJson').addEventListener('click', exportJson);
+$('#btnExportJs').addEventListener('click', exportJs);
+$('#btnAdd').addEventListener('click', () => add({}));
+$('#btnTemplateAttack').addEventListener('click', templateAttack);
+$('#btnTemplateMove').addEventListener('click', templateMove);
+
+// Confirmar al salir si hay cambios
+window.addEventListener('beforeunload', e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
+
+// Arranque con una fila vacía para comodidad
+add({});
+
+// Accesos rápidos globales
+window.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey) {
+    if (e.key.toLowerCase() === 's') { e.preventDefault(); exportJson(); }
+  }
+});
+
+// FIN
+</script>
 </body>
 </html>
