@@ -4,26 +4,46 @@
 <meta charset="UTF-8">
 <title>Editor JS - Pathfinder 2e</title>
 <style>
-  body { font-family: sans-serif; padding: 1rem; background: #f8f8f8; }
-  select, textarea, button { margin: 0.5rem 0; width: 100%; }
-  textarea { height: 70vh; font-family: monospace; white-space: pre; }
+  body { font-family: sans-serif; margin: 0; display: flex; height: 100vh; }
+  #sidebar { width: 250px; background: #f0f0f0; overflow-y: auto; padding: 0.5rem; }
+  #main { flex: 1; display: flex; flex-direction: column; padding: 0.5rem; }
+  label { font-weight: bold; margin-top: 0.5rem; display: block; }
+  input, select, textarea, button { width: 100%; margin-top: 0.25rem; }
+  #objectList button { display: block; width: 100%; text-align: left; margin: 0.25rem 0; }
+  #toolbar { margin-top: auto; }
 </style>
-<!-- TinyMCE con tu API key -->
-<script src="https://cdn.tiny.cloud/1/qe3f7v8bujhuadtcma64eqwamf3blurvgio33jnckjo0ur2w/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- CKEditor 5 Classic (no API key) -->
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>
 <body>
 
-<h1>Editor de archivos JS</h1>
+<div id="sidebar">
+  <h3>Archivos JS</h3>
+  <select id="fileSelect"></select>
+  <h3>Objetos</h3>
+  <div id="objectList"></div>
+  <button id="addObjectBtn">➕ Añadir objeto</button>
+</div>
 
-<label for="fileSelect">Selecciona un archivo:</label>
-<select id="fileSelect"></select>
-
-<textarea id="editor"></textarea>
-
-<button id="downloadBtn">Descargar cambios</button>
+<div id="main">
+  <label>Título</label>
+  <input id="titleInput">
+  <label>Subtítulo</label>
+  <input id="subtitleInput">
+  <label>Referencia</label>
+  <input id="referenceInput">
+  <label>Traits (separados por coma)</label>
+  <input id="traitsInput">
+  <label>Descripción</label>
+  <div id="descriptionEditor"></div>
+  <label>Bullets (uno por línea)</label>
+  <div id="bulletsEditor"></div>
+  <div id="toolbar">
+    <button id="saveBtn">💾 Descargar archivo</button>
+  </div>
+</div>
 
 <script>
-// Lista de archivos JS en tu carpeta 'js'
 const files = [
   "data_Action_Starfinder2e.js",
   "data_action.js",
@@ -38,14 +58,13 @@ const files = [
   "data_rest.js",
   "quickref.js"
 ];
-
 const repoBase = "https://raw.githubusercontent.com/Niuzio/Pathfinder2e-Referencias-rapida/master/js/";
 
-const fileSelect = document.getElementById('fileSelect');
-const editor = document.getElementById('editor');
-const downloadBtn = document.getElementById('downloadBtn');
+let currentData = [];
+let currentIndex = -1;
+let descEditor, bulletsEditor;
 
-// Rellenar combo
+const fileSelect = document.getElementById('fileSelect');
 files.forEach(f => {
   const opt = document.createElement('option');
   opt.value = f;
@@ -53,34 +72,42 @@ files.forEach(f => {
   fileSelect.appendChild(opt);
 });
 
-// Cargar archivo seleccionado
-fileSelect.addEventListener('change', async () => {
+fileSelect.addEventListener('change', loadFile);
+
+async function loadFile() {
   const url = repoBase + fileSelect.value;
-  editor.value = "Cargando...";
   try {
     const res = await fetch(url);
-    if (!res.ok) throw new Error(res.statusText);
     const text = await res.text();
-    editor.value = text;
+    // Extraer JSON del archivo JS (asume formato const data = [...];)
+    const jsonMatch = text.match(/
+
+\[([\\s\\S]*)\]
+
+/);
+    if (!jsonMatch) throw new Error("No se encontró un array en el archivo");
+    currentData = JSON.parse("[" + jsonMatch[1] + "]");
+    renderObjectList();
   } catch (err) {
-    editor.value = "Error al cargar: " + err.message;
+    alert("Error al cargar: " + err.message);
   }
-});
+}
 
-// Botón para descargar el archivo editado
-downloadBtn.addEventListener('click', () => {
-  const blob = new Blob([editor.value], { type: "text/javascript" });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = fileSelect.value;
-  a.click();
-  URL.revokeObjectURL(a.href);
-});
+function renderObjectList() {
+  const list = document.getElementById('objectList');
+  list.innerHTML = '';
+  currentData.forEach((obj, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = obj.title || "(sin título)";
+    btn.onclick = () => loadObject(i);
+    list.appendChild(btn);
+  });
+}
 
-// Cargar el primero por defecto
-fileSelect.value = files[0];
-fileSelect.dispatchEvent(new Event('change'));
-</script>
-
-</body>
-</html>
+function loadObject(index) {
+  currentIndex = index;
+  const obj = currentData[index];
+  document.getElementById('titleInput').value = obj.title || '';
+  document.getElementById('subtitleInput').value = obj.subtitle || '';
+  document.getElementById('referenceInput').value = obj.reference || '';
+  document.getElementById('traitsInput').value
