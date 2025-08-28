@@ -541,30 +541,3 @@ p:first-child {
   width: auto !important;
   height: auto !important;
 }
-/* ──────────────────────────────────────────────────────────
-   FLEX-WRAP PARA ITEMS: evita floats, conserva tamaños
-   ────────────────────────────────────────────────────────── */
-
-/* 1) convierte el row de sección en contenedor flex con wrap */
-.section-content .section-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.5rem 1rem;  /* 0.5rem entre filas, 1rem entre columnas */
-  margin: 0;
-  padding: 0;
-}
-
-/* 2) quita floats y márgenes adicionales en cada item */
-.section-content .section-row .item {
-  float: none;
-  margin: 0;         /* el espacio lo gestiona el gap del flex */
-}
-
-/* 3) permite wrap de textos en título y descripción */
-.section-content .section-row .item-text-container,
-.section-content .section-row .item-title,
-.section-content .section-row .item-desc {
-  white-space: normal;
-  overflow-wrap: break-word;
-}
