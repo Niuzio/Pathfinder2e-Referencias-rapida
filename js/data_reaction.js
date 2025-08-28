@@ -71,13 +71,41 @@ data_reaction = [
     title: "Aprender un conjuro",
     icon: "single_action",
     subtitle: "Arcanos (Inteligencia) – Entrenado",
-    description: "Incorporas un conjuro arcano conocido a tu repertorio o libro de conjuros.",
+    description: "Si eres un lanzador de conjuros, puedes utilizar la habilidad correspondiente a tu tradición mágica para aprender un nuevo conjuro de dicha tradición. La Tabla 4-1: Aprender un conjuro, indica el Precio de los materiales necesarios para Aprender un conjuro de cada nivel.",
     reference: "Pantalla del Director – Acciones de Habilidad",
     bullets: [
-      "Coste: 1 acción",
-      "Tirada: Arcanos contra la CD del nivel del conjuro",
-      "Éxito: agregas el conjuro; Fracaso: pierdes materiales",
-      "Rasgos: concentración, exploración, tiempo libre, entrenado"
+      "Requisito: Tienes un rasgo de clase de lanzamiento de conjuros, y el  conjuro que quieres aprender está en la lista de conjuros de tu tra dición mágica.",
+      "**APRENDER UN CONJURO**",
+      " Puedes obtener acceso a un nuevo conjuro de tu tradición a partir de 
+alguien que lo conoce o a partir de escritura mágica, como un libro 
+de conjuros o un pergamino. Si puedes lanzar conjuros de tradiciones 
+múltiples, puedes Aprender un conjuro de cualquiera de ellas, pero 
+para hacerlo deberás utilizar la habilidad correspondiente. Por ejem
+plo, si eres un clérigo con el arquetipo multiclase bardo, no puedes 
+utilizar Religión para añadir un conjuro de ocultismo a tu repertorio 
+de conjuros de bardo.
+ 234
+Para aprender el conjuro, debes hacer lo siguiente:
+
+*  • Invertir 1 hora por nivel del conjuro, durante la cual debes permanecer en conversación con una persona que conoce el conjuro o disponer de la escritura mágica
+
+*  • Disponer de los materiales con el Precio indicado en la Tabla 4-1.
+ 
+*  • Hacer una prueba de habilidad para la habilidad correspondiente a tu tradición (la CD la determina el DJ, a menudo parecida a la CD de la Tabla 4-1). Los conjuros poco comunes o raros tienen CD superiores; las directrices completas para el DJ aparecen en la pág. 503.
+
+ Si tienes un libro de conjuros, Aprender un conjuro te permite aña
+dirlo a tu libro; si preparas conjuros de una lista, se añade a tu lista; si 
+tienes un repertorio de conjuros, puedes seleccionarlo cuando añades 
+o intercambias conjuros.
+
+*  **Éxito crítico** Gastas la mitad de los materiales y aprendes el conjuro.
+*  **Éxito** Gastas los materiales y aprendes el conjuro.
+*  **Fallo** No consigues aprender el conjuro pero podrás intentarlo de nue
+* vo una vez subas de nivel Los materiales no se gastan.
+*  **Fallo crítico** Como en un fallo, y además gastas la mitad de los materiales.
+
+**TABLA 4-1: APRENDER UN CONJURO**
+![Tabla 4-1](https://i.postimg.cc/jdfxtw0V/Captura-de-pantalla-2025-03-15-052729.png)",
     ]
   },
   {
