@@ -1,45 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Editor PF2e con librería</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editor PF2e con librerías</title>
+
+  <!-- Tabulator CSS -->
   <link href="https://unpkg.com/tabulator-tables@5.6.0/dist/css/tabulator.min.css" rel="stylesheet">
+  <!-- Quill CSS -->
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+  <style>
+    body {
+      background:#0f1115; color:#e6edf3;
+      font:14px/1.45 ui-sans-serif,system-ui;
+      margin:0; padding:20px;
+    }
+    h1,h3 { color:#79c0ff; }
+    #acciones { background:#151924; border-radius:8px; padding:10px; }
+    #editor { background:#fff; color:#000; }
+    button {
+      background:#79c0ff; color:#0b1420;
+      border:none; border-radius:6px;
+      padding:8px 12px; margin-top:10px;
+      cursor:pointer;
+    }
+    button:hover { background:#58a6ff; }
+  </style>
 </head>
 <body>
   <h1>Acciones PF2e</h1>
   <div id="acciones"></div>
-  <h3>Descripción</h3>
+
+  <h3>Descripción seleccionada</h3>
   <div id="editor" style="height:150px;"></div>
-  <button id="export">Exportar JSON</button>
 
+  <div style="margin-top:15px;">
+    <button id="addRow">Añadir fila</button>
+    <button id="delRow">Eliminar fila seleccionada</button>
+    <button id="exportJson">Exportar JSON</button>
+    <input type="file" id="importFile" accept=".json" />
+  </div>
+
+  <!-- Tabulator JS -->
   <script src="https://unpkg.com/tabulator-tables@5.6.0/dist/js/tabulator.min.js"></script>
+  <!-- Quill JS -->
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
   <script>
-    const table = new Tabulator("#acciones", {
-      layout:"fitColumns",
-      reactiveData:true,
-      columns:[
-        {title:"Título", field:"title", editor:"input"},
-        {title:"Subtítulo", field:"subtitle", editor:"input"},
-        {title:"Referencia", field:"reference", editor:"input"},
-        {title:"Traits", field:"traits", editor:"input"},
-      ],
-      data: []
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+      const quill = new Quill('#editor', { theme: 'snow' });
 
-    const quill = new Quill('#editor', { theme: 'snow' });
+      // Datos iniciales (puedes dejarlo vacío)
+      let tableData = [
+        {title:"Ataque", subtitle:"Acción", reference:"CRB p.XXX", traits:"Ataque", description:"<p>Requisito: arma en mano.</p>"}
+      ];
 
-    document.getElementById('export').addEventListener('click', () => {
-      const datos = table.getData().map(row => ({
-        ...row,
-        description: quill.root.innerHTML
-      }));
-      const blob = new Blob([JSON.stringify(datos, null, 2)], {type:"application/json"});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = "acciones.json";
-      a.click();
+      // Crear tabla Tabulator
+      const table = new Tabulator("#acciones", {
+        layout:"fitColumns",
+        reactiveData:true,
+        selectable:1,
+        columns:[
+          {title:"Título", field:"title", editor:"input"},
+          {title:"Subtítulo", field:"subtitle", editor:"input"},
+          {title:"Referencia", field:"reference", editor:"input"},
+          {title:"Traits", field:"traits", editor:"input"},
+        ],
+        data: tableData,
+        rowSelectionChanged:function(data, rows){
+          if(data.length){
+            quill.root.innerHTML = data[0].description || "";
+          } else {
+            quill.root.innerHTML = "";
+          }
+        },
+        cellEdited:function(cell){
+          const rowData = cell.getRow().getData();
+          rowData.description = quill.root.innerHTML;
+        }
+      });
+
+      // Añadir fila
+      document.getElementById('addRow').addEventListener('click', () => {
+        table.addRow({title:"", subtitle:"", reference:"", traits:"", description:""});
+      });
+
+      // Eliminar fila seleccionada
+      document.getElementById('delRow').addEventListener('click', () => {
+        const selected = table.getSelectedRows();
+        if(selected.length) selected[0].delete();
+      });
+
+      // Exportar JSON
+      document.getElementById('exportJson').addEventListener('click', () => {
+        // Actualizar la descripción en la fila seleccionada antes de exportar
+        const sel = table.getSelectedData();
+        if(sel.length){
+          sel[0].description = quill.root.innerHTML;
+        }
+        const blob = new Blob([JSON.stringify(table.getData(), null, 2)], {type:"application/json"});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = "acciones.json";
+        a.click();
+      });
+
+      // Importar JSON
+      document.getElementById('importFile').addEventListener('change', async (e) => {
+        if(!e.target.files.length) return;
+        const text = await e.target.files[0].text();
+        try {
+          const json = JSON.parse(text);
+          if(Array.isArray(json)){
+            table.replaceData(json);
+          } else {
+            alert("El archivo no contiene un array válido");
+          }
+        } catch(err){
+          alert("Error al leer JSON: " + err.message);
+        }
+        e.target.value = "";
+      });
+
+      // Guardar descripción cuando pierde foco
+      quill.on('text-change', () => {
+        const sel = table.getSelectedData();
+        if(sel.length){
+          sel[0].description = quill.root.innerHTML;
+        }
+      });
     });
   </script>
 </body>
