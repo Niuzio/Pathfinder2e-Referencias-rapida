@@ -1,184 +1,491 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Editor de acciones PF2e</title>
-
-<!-- Tabulator CSS -->
-<link href="https://unpkg.com/tabulator-tables@5.6.0/dist/css/tabulator.min.css" rel="stylesheet">
-<!-- Quill CSS -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
-<style>
-body { background:#0f1115; color:#e6edf3; font:14px/1.45 ui-sans-serif,system-ui; margin:0; padding:20px;}
-h1,h3 { color:#79c0ff; }
-#acciones { background:#151924; border-radius:8px; padding:10px;}
-#editor { background:#fff; color:#000;}
-button { background:#79c0ff; color:#0b1420; border:none; border-radius:6px; padding:8px 12px; margin-top:10px; cursor:pointer;}
-button:hover { background:#58a6ff; }
-input, textarea {border-radius:6px; padding:6px;}
-.controls {margin-top:10px; display:flex; flex-wrap:wrap; gap:10px;}
-</style>
+  <meta charset="utf-8" />
+  <title>Editor de Acciones PF2e</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa4ad; --accent:#7cc4ff; --bad:#ff6b6b; --ok:#80e27e; }
+    body { background:var(--bg); color:var(--fg); font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; }
+    header { padding:14px 18px; border-bottom:1px solid #222831; display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
+    header h1 { font-size:16px; margin:0 12px 0 0; }
+    .pill { padding:6px 10px; border:1px solid #222831; border-radius:8px; background:#12151b; color:var(--muted);}
+    main { display:grid; grid-template-columns: 340px 1fr; gap:0; min-height:calc(100vh - 58px); }
+    aside { border-right:1px solid #222831; padding:12px; overflow:auto;}
+    section { padding:12px; overflow:auto;}
+    input[type="text"], select, textarea { width:100%; background:#12151b; color:var(--fg); border:1px solid #273041; border-radius:8px; padding:8px; }
+    textarea { min-height:140px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    button { background:#172033; color:#dfe8f4; border:1px solid #24314a; border-radius:8px; padding:8px 12px; cursor:pointer; }
+    button.secondary { background:#12151b; color:#c7d2e1; }
+    button.danger { background:#2b1518; border-color:#5a1f27; color:#ffb3ba; }
+    .row { display:flex; gap:8px; align-items:center; }
+    .col { display:flex; flex-direction:column; gap:6px; }
+    .list { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+    .card { border:1px solid #222831; border-radius:10px; padding:10px; background:#0f131a; }
+    .small { font-size:12px; color:var(--muted); }
+    .ok { color:var(--ok); } .bad { color:var(--bad); }
+    table { width:100%; border-collapse: collapse; }
+    th, td { border-bottom:1px solid #1a2130; padding:8px; text-align:left; vertical-align:top; }
+    .tags { display:flex; gap:6px; flex-wrap:wrap;}
+    .tag { background:#172033; border:1px solid #24314a; color:#9cc7ff; padding:3px 6px; border-radius:999px; font-size:12px;}
+    .split { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .preview { border:1px dashed #273041; border-radius:8px; padding:10px; background:#0e141d; }
+  </style>
 </head>
 <body>
-<h1>Editor de Acciones PF2e</h1>
+  <header>
+    <h1>Editor de Acciones PF2e</h1>
+    <label class="pill">
+      <input id="fileInput" type="file" accept=".js" multiple />
+    </label>
+    <button id="exportBtn" class="pill">Exportar archivos .js</button>
+    <span id="status" class="small"></span>
+  </header>
 
-<div class="controls">
-  <input type="file" id="fileInput" accept=".js,.json">
-  <input type="text" id="urlInput" placeholder="URL raw GitHub .js/.json" size="50">
-  <button id="loadUrlBtn">Cargar URL</button>
-  <button id="addRowBtn">Añadir fila</button>
-  <button id="deleteRowBtn">Eliminar fila seleccionada</button>
-  <button id="exportJsBtn">Exportar JS</button>
-  <input type="text" id="varNameInput" placeholder="Nombre de variable en JS">
-</div>
+  <main id="app">
+    <aside>
+      <div class="col card">
+        <label>Buscar</label>
+        <input v-model="q" type="text" placeholder="nombre, rasgo, rareza..." />
+        <div class="row">
+          <select v-model="filter.rarity">
+            <option value="">Cualquier rareza</option>
+            <option>common</option><option>uncommon</option><option>rare</option><option>unique</option>
+          </select>
+          <select v-model="filter.cost">
+            <option value="">Cualquier coste</option>
+            <option value="free">free</option>
+            <option value="one">one</option>
+            <option value="two">two</option>
+            <option value="three">three</option>
+            <option value="reaction">reaction</option>
+          </select>
+        </div>
+        <div class="small">Archivos cargados: {{ datasets.length }} | Registros: {{ totalCount }} | Errores: <span :class="errorsCount? 'bad':'ok'">{{ errorsCount }}</span></div>
+      </div>
 
-<div id="acciones"></div>
+      <div class="list">
+        <div v-for="(ds, i) in datasets" :key="i" class="card">
+          <div class="row" style="justify-content:space-between">
+            <div>
+              <div><strong>{{ ds.fileName }}</strong></div>
+              <div class="small">var: {{ ds.varName }} | items: {{ ds.items.length }}</div>
+              <div class="small" v-if="ds.errors.length"><span class="bad">errores: {{ ds.errors.length }}</span></div>
+              <div class="small" v-else><span class="ok">válido</span></div>
+            </div>
+            <div class="row">
+              <button class="secondary" @click="selectDataset(i)">Abrir</button>
+              <button class="danger" @click="removeDataset(i)">Quitar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-<h3>Descripción seleccionada</h3>
-<div id="editor" style="height:200px;"></div>
+    <section v-if="active !== null">
+      <div class="row" style="justify-content:space-between; align-items:flex-end;">
+        <div class="col" style="max-width:60%">
+          <div class="row" style="gap:12px;">
+            <div class="col">
+              <label>Dataset</label>
+              <input :value="datasets[active].fileName + ' ('+datasets[active].varName+')'" disabled />
+            </div>
+            <div class="col">
+              <label>Esquema inferido</label>
+              <textarea :value="schemaPreview" disabled></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="gap:8px;">
+          <button @click="addItem">Nueva acción</button>
+          <button class="secondary" @click="exportOne">Exportar este .js</button>
+        </div>
+      </div>
 
-<!-- Tabulator JS -->
-<script src="https://unpkg.com/tabulator-tables@5.6.0/dist/js/tabulator.min.js"></script>
-<!-- Quill JS -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <div class="card" style="margin-top:10px;">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:22%">Nombre</th>
+              <th>Rasgos</th>
+              <th style="width:10%">Rareza</th>
+              <th style="width:10%">Coste</th>
+              <th style="width:10%">Slug</th>
+              <th style="width:10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(it, idx) in filtered" :key="idx" @click="selectItem(idx)" style="cursor:pointer;">
+              <td>{{ it.name }}</td>
+              <td>
+                <div class="tags">
+                  <span v-for="t in (it.traits||[])" :key="t" class="tag">{{ t }}</span>
+                </div>
+              </td>
+              <td>{{ it.rarity || '' }}</td>
+              <td>{{ it.actionCost || '' }}</td>
+              <td class="small">{{ slugify(it.name) }}</td>
+              <td>
+                <button class="secondary" @click.stop="duplicateItem(idx)">Duplicar</button>
+                <button class="danger" @click.stop="deleteItem(idx)">Borrar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
-  const quill = new Quill('#editor', { theme: 'snow' });
-  let varName = "";
-  let tableData = [];
+      <div v-if="selIndex !== null" class="split" style="margin-top:10px;">
+        <div class="col">
+          <div class="card">
+            <label>Nombre</label>
+            <input v-model="current.name" type="text" />
+            <label>Rasgos (separados por coma)</label>
+            <input v-model="traitsText" type="text" placeholder="manipulate, attack, move..." />
+            <div class="row">
+              <div class="col"><label>Rareza</label>
+                <select v-model="current.rarity">
+                  <option value="">—</option><option>common</option><option>uncommon</option><option>rare</option><option>unique</option>
+                </select>
+              </div>
+              <div class="col"><label>Coste</label>
+                <select v-model="current.actionCost">
+                  <option value="">—</option>
+                  <option value="free">free</option><option value="one">one</option><option value="two">two</option><option value="three">three</option><option value="reaction">reaction</option>
+                </select>
+              </div>
+            </div>
+            <label>Requisitos</label><input v-model="current.requirements" type="text" />
+            <label>Desencadenante</label><input v-model="current.trigger" type="text" />
+            <label>Frecuencia</label><input v-model="current.frequency" type="text" />
+            <label>Fuente</label><input v-model="current.source" type="text" />
+            <label>Icono</label><input v-model="current.icon" type="text" placeholder="ruta/icon.svg" />
+            <label>Descripción</label>
+            <textarea v-model="current.description" placeholder="Texto en HTML o Markdown"></textarea>
+            <div class="row">
+              <label><input type="checkbox" v-model="asMarkdown" /> Editar como Markdown</label>
+              <span class="small">Slug: #{{ slugify(current.name) }}</span>
+            </div>
+          </div>
+        </div>
 
-  // Crear tabla
-  const table = new Tabulator("#acciones",{
-    layout:"fitColumns",
-    reactiveData:true,
-    selectable:1,
-    columns:[
-      {title:"Título", field:"title", editor:"input"},
-      {title:"Subtítulo", field:"subtitle", editor:"input"},
-      {title:"Referencia", field:"reference", editor:"input"},
-      {title:"Traits", field:"traits", editor:"input"},
-      {title:"Bullets", field:"bullets", editor:"input"},
-    ],
-    data: tableData,
-    rowSelectionChanged:(data)=>{
-      if(data.length){
-        quill.root.innerHTML = data[0].description || "";
-      } else {
-        quill.root.innerHTML = "";
+        <div class="col">
+          <div class="card">
+            <div class="row" style="justify-content:space-between;">
+              <div class="small">Vista previa</div>
+              <div class="small" :class="valErrors.length?'bad':'ok'">{{ valErrors.length? (valErrors.length + ' errores de validación'): 'Sin errores' }}</div>
+            </div>
+            <div class="preview" v-html="rendered"></div>
+          </div>
+          <div class="card">
+            <div class="small">JSON del elemento</div>
+            <textarea :value="currentJson" disabled></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section v-else class="col" style="align-content:center; justify-items:center;">
+      <div class="card">
+        Carga uno o más archivos .js con acciones. Se mantendrán nombres de variables y formato en la exportación.
+      </div>
+    </section>
+  </main>
+
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- Acorn -->
+  <script src="https://cdn.jsdelivr.net/npm/acorn@8/dist/acorn.min.js"></script>
+  <!-- Ajv -->
+  <script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv7.min.js"></script>
+  <!-- Showdown -->
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2/dist/showdown.min.js"></script>
+  <!-- Prettier -->
+  <script src="https://unpkg.com/prettier@3/standalone.js"></script>
+  <script src="https://unpkg.com/prettier@3/parser-babel.js"></script>
+  <!-- FileSaver -->
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+  <script>
+  const { createApp, reactive, computed } = Vue;
+
+  // Utilidades
+  function slugify(s) {
+    return (s||'')
+      .toString()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+  }
+
+  function astToJs(node) {
+    switch (node.type) {
+      case 'ArrayExpression':
+        return node.elements.map(el => astToJs(el));
+      case 'ObjectExpression':
+        const obj = {};
+        for (const p of node.properties) {
+          const key = p.key.type === 'Identifier' ? p.key.name : p.key.value;
+          obj[key] = astToJs(p.value);
+        }
+        return obj;
+      case 'Literal':
+        return node.value;
+      case 'TemplateLiteral':
+        return node.quasis.map((q, i) => {
+          const expr = node.expressions[i] ? `\${${astToJs(node.expressions[i])}}` : '';
+          return q.value.cooked + expr;
+        }).join('');
+      case 'UnaryExpression':
+        if (node.operator === '-') return -astToJs(node.argument);
+        if (node.operator === '+') return +astToJs(node.argument);
+        return null;
+      default:
+        // No soportamos funciones ni expresiones complejas en datos
+        return null;
+    }
+  }
+
+  function tryParseJsArrayVariable(code) {
+    // 1) Intento con Acorn
+    try {
+      const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: 'script' });
+      for (const n of ast.body) {
+        if (n.type === 'VariableDeclaration') {
+          for (const d of n.declarations) {
+            if (d.init && d.init.type === 'ArrayExpression') {
+              const varName = d.id.name || 'DATA';
+              const items = astToJs(d.init) || [];
+              return { varName, items };
+            }
+          }
+        }
+        if (n.type === 'ExportNamedDeclaration' && n.declaration && n.declaration.declarations) {
+          for (const d of n.declaration.declarations) {
+            if (d.init && d.init.type === 'ArrayExpression') {
+              const varName = d.id.name || 'DATA';
+              const items = astToJs(d.init) || [];
+              return { varName, items };
+            }
+          }
+        }
+      }
+    } catch(e) { /* fallback */ }
+
+    // 2) Fallback regex (simple)
+    const m = code.match(/(?:const|let|var)\s+(\w+)\s*=\s*(
+
+\[[\s\S]*\]
+
+);?/);
+    if (m) {
+      try {
+        const varName = m[1];
+        const jsonText = m[2]
+          .replace(/(\w+)\s*:/g, '"$1":') // claves sin comillas -> comillas
+          .replace(/'([^']*)'/g, (_,x)=> JSON.stringify(x)); // comillas simples -> dobles
+        const items = JSON.parse(jsonText);
+        return { varName, items };
+      } catch(e) {}
+    }
+    throw new Error('No se pudo parsear un array asignado a una variable.');
+  }
+
+  function stableStringify(obj) {
+    const seen = new WeakSet();
+    const stringify = (v) => {
+      if (v && typeof v === 'object') {
+        if (seen.has(v)) return null;
+        seen.add(v);
+        if (Array.isArray(v)) return '[' + v.map(stringify).join(',') + ']';
+        const keys = Object.keys(v).sort();
+        return '{' + keys.map(k => JSON.stringify(k) + ':' + stringify(v[k])).join(',') + '}';
+      }
+      return JSON.stringify(v);
+    };
+    return stringify(obj);
+  }
+
+  function buildSchemaFrom(items) {
+    const typeOf = (v) => Array.isArray(v) ? 'array' : v === null ? 'null' : typeof v;
+    const keys = new Set();
+    for (const it of items) Object.keys(it||{}).forEach(k=>keys.add(k));
+    const schema = { type:'object', properties:{}, additionalProperties:true, required:[] };
+    for (const k of keys) schema.properties[k] = { anyOf: [ {type:'string'}, {type:'number'}, {type:'boolean'}, {type:'array'}, {type:'object'}, {type:'null'} ] };
+    // reglas mínimas
+    schema.properties.name = { type:'string', minLength:1 };
+    schema.properties.description = { type:'string' };
+    schema.properties.traits = { type:'array', items:{ type:'string' } };
+    schema.properties.rarity = { type:'string', enum:['common','uncommon','rare','unique',''] };
+    schema.properties.actionCost = { type:'string', enum:['free','one','two','three','reaction',''] };
+    schema.required = ['name','description'];
+    return { type:'array', items: schema };
+  }
+
+  function renderMarkdownOrHtml(text, asMd) {
+    if (asMd) {
+      const conv = new showdown.Converter({ simpleLineBreaks:true, openLinksInNewWindow:true });
+      return conv.makeHtml(text || '');
+    }
+    return (text || '');
+  }
+
+  const app = createApp({
+    data: () => ({
+      datasets: [], // { fileName, varName, items, errors: [], schema }
+      active: null,
+      q: '',
+      filter: reactive({ rarity:'', cost:'' }),
+      selIndex: null,
+      current: {},
+      asMarkdown: false,
+    }),
+    computed: {
+      totalCount(){ return this.datasets.reduce((a,d)=>a + d.items.length, 0); },
+      errorsCount(){ return this.datasets.reduce((a,d)=>a + d.errors.length, 0); },
+      schemaPreview(){
+        if (this.active===null) return '';
+        return JSON.stringify(this.datasets[this.active].schema, null, 2);
+      },
+      filtered(){
+        if (this.active===null) return [];
+        const ds = this.datasets[this.active];
+        const q = this.q.trim().toLowerCase();
+        return ds.items.filter(it=>{
+          const hayQ = !q || JSON.stringify(it).toLowerCase().includes(q);
+          const okR = !this.filter.rarity || (it.rarity||'')===this.filter.rarity;
+          const okC = !this.filter.cost || (it.actionCost||'')===this.filter.cost;
+          return hayQ && okR && okC;
+        });
+      },
+      traitsText: {
+        get(){ return (this.current.traits||[]).join(', '); },
+        set(v){ this.current.traits = v.split(',').map(s=>s.trim()).filter(Boolean); }
+      },
+      currentJson(){
+        return JSON.stringify(this.current, null, 2);
+      },
+      rendered(){
+        return renderMarkdownOrHtml(this.current.description, this.asMarkdown);
+      },
+      valErrors(){
+        if (this.active===null || this.selIndex===null) return [];
+        const ds = this.datasets[this.active];
+        const ajv = new Ajv({ allErrors: true, strict:false });
+        const validate = ajv.compile(ds.schema);
+        const arrCopy = ds.items.slice();
+        arrCopy[this.selIndex] = this.current;
+        validate(arrCopy);
+        return validate.errors || [];
       }
     },
-    cellEdited:(cell)=>{
-      const rowData = cell.getRow().getData();
-      if(table.getSelectedData()[0] === rowData){
-        rowData.description = quill.root.innerHTML;
+    methods: {
+      slugify,
+      selectDataset(i){ this.active = i; this.selIndex = null; this.current = {}; },
+      removeDataset(i){ 
+        if (this.active === i) { this.active = null; this.selIndex = null; this.current = {}; }
+        this.datasets.splice(i,1); 
+      },
+      addItem(){
+        if (this.active===null) return;
+        const item = { name:'Nueva acción', description:'', traits:[], rarity:'', actionCost:'' };
+        this.datasets[this.active].items.push(item);
+        this.selectItem(this.datasets[this.active].items.length - 1);
+      },
+      selectItem(i){
+        this.selIndex = i;
+        const src = this.datasets[this.active].items[i];
+        this.current = JSON.parse(JSON.stringify(src));
+      },
+      duplicateItem(i){
+        const copy = JSON.parse(JSON.stringify(this.datasets[this.active].items[i]));
+        copy.name = copy.name + ' (copia)';
+        this.datasets[this.active].items.splice(i+1, 0, copy);
+      },
+      deleteItem(i){
+        if (!confirm('¿Borrar esta acción?')) return;
+        this.datasets[this.active].items.splice(i,1);
+        this.selIndex = null; this.current = {};
+      },
+      exportOne(){
+        if (this.active===null) return;
+        this.commitCurrent();
+        const ds = this.datasets[this.active];
+        const code = this.toJsFile(ds.varName, ds.items);
+        const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
+        saveAs(blob, ds.fileName);
+      },
+      toJsFile(varName, items){
+        const body = `const ${varName} = ${stableStringify(items)};\n`;
+        try {
+          return prettier.format(body, { parser:'babel', plugins:[prettierPlugins.babel] });
+        } catch {
+          return body;
+        }
+      },
+      commitCurrent(){
+        if (this.active===null || this.selIndex===null) return;
+        this.datasets[this.active].items[this.selIndex] = JSON.parse(JSON.stringify(this.current));
+        this.revalidate(this.active);
+      },
+      revalidate(i){
+        const ds = this.datasets[i];
+        const ajv = new Ajv({ allErrors: true, strict:false });
+        const validate = ajv.compile(ds.schema);
+        const ok = validate(ds.items);
+        ds.errors = ok ? [] : validate.errors || [];
       }
     }
   });
 
-  // Cargar desde archivo
-  document.getElementById('fileInput').addEventListener('change', async (e)=>{
-    if(!e.target.files.length) return;
-    const text = await e.target.files[0].text();
-    loadFromText(text, e.target.files[0].name.split('.').pop());
-    e.target.value="";
-  });
+  // Manejo de inputs y export global
+  const vm = app.mount('#app');
 
-  // Cargar desde URL
-  document.getElementById('loadUrlBtn').addEventListener('click', async ()=>{
-    const url = toRaw(document.getElementById('urlInput').value.trim());
-    if(!url) return alert("Introduce URL");
-    const res = await fetch(url);
-    if(!res.ok) return alert("Error HTTP "+res.status);
-    const text = await res.text();
-    loadFromText(text, url.split('.').pop());
-  });
-
-  function toRaw(u){
-    if(u.includes('github.com/') && u.includes('/blob/')){
-      return u.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/');
-    }
-    return u;
-  }
-
-  function loadFromText(text, ext){
-    text = text.replace(/^\uFEFF/,'');
-    let arr;
-    if(ext==="json"){
-      arr = JSON.parse(text);
-    } else {
-      const m = /(var|let|const)\s+([A-Za-z$_][\w$]*)\s*=\s*
-
-\[/.exec(text);
-      if(!m) return alert("No se encontró asignación de array en JS");
-      varName = m[2];
-      const start = text.indexOf('[', m.index);
-      let depth = 0, end=-1;
-      for(let i=start;i<text.length;i++){
-        if(text[i]=='[') depth++;
-        else if(text[i]==']'){ depth--; if(depth===0){ end=i; break; } }
+  document.getElementById('fileInput').addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    const status = document.getElementById('status');
+    for (const f of files) {
+      status.textContent = 'Cargando ' + f.name + '...';
+      const text = await f.text();
+      try {
+        const { varName, items } = tryParseJsArrayVariable(text);
+        const schema = buildSchemaFrom(items);
+        // Validación inicial
+        const ajv = new Ajv({ allErrors: true, strict:false });
+        const validate = ajv.compile(schema);
+        const ok = validate(items);
+        vm.datasets.push({
+          fileName: f.name,
+          varName,
+          items,
+          schema,
+          errors: ok ? [] : (validate.errors || [])
+        });
+        if (vm.active === null) vm.active = vm.datasets.length - 1;
+      } catch (err) {
+        vm.datasets.push({
+          fileName: f.name,
+          varName: 'DATA',
+          items: [],
+          schema: { type:'array', items:{ type:'object' } },
+          errors: [{ message: 'Parseo fallido: ' + err.message }]
+        });
       }
-      if(end<0) return alert("No se cerró el array");
-      const literal = text.slice(start, end+1);
-      arr = (new Function("return "+literal))();
     }
-    if(!Array.isArray(arr)) return alert("El archivo no contiene un array válido");
-    tableData.length=0;
-    arr.forEach(o=>{
-      tableData.push({
-        title:o.title||"",
-        subtitle:o.subtitle||"",
-        reference:o.reference||"",
-        traits:Array.isArray(o.traits)?o.traits.join(", "):(o.traits||""),
-        description:o.description||"",
-        bullets:Array.isArray(o.bullets)?o.bullets.join(" | "):(o.bullets||"")
-      });
+    status.textContent = 'Listo';
+    e.target.value = '';
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    vm.commitCurrent();
+    vm.datasets.forEach(ds => {
+      const code = vm.toJsFile(ds.varName, ds.items);
+      const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
+      saveAs(blob, ds.fileName);
     });
-    table.replaceData(tableData);
-    document.getElementById('varNameInput').value = varName;
-  }
-
-  // Añadir fila
-  document.getElementById('addRowBtn').addEventListener('click',()=>{
-    table.addRow({title:"",subtitle:"",reference:"",traits:"",description:"",bullets:""});
   });
-
-  // Eliminar fila
-  document.getElementById('deleteRowBtn').addEventListener('click',()=>{
-    const sel = table.getSelectedRows();
-    if(sel.length) sel[0].delete();
-  });
-
-  // Sincronizar descripción
-  quill.on('text-change',()=>{
-    const sel = table.getSelectedData();
-    if(sel.length){
-      sel[0].description = quill.root.innerHTML;
-    }
-  });
-
-  // Exportar JS
-  document.getElementById('exportJsBtn').addEventListener('click',()=>{
-    const name = document.getElementById('varNameInput').value.trim() || varName || "pf2eData";
-    const arr = table.getData().map(o=>({
-      title:o.title,
-      subtitle:o.subtitle,
-      reference:o.reference,
-      traits:o.traits.split(',').map(s=>s.trim()).filter(Boolean),
-      description:o.description,
-      bullets:o.bullets.split('|').map(s=>s.trim()).filter(Boolean)
-    }));
-    const js = `const ${name} = ${JSON.stringify(arr,null,2)};\n`;
-    const blob = new Blob([js], {type:'text/javascript'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name+".js";
-    a.click();
-  });
-
-});
-</script>
+  </script>
 </body>
 </html>
