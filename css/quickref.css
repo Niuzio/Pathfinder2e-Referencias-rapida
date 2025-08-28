@@ -536,11 +536,6 @@ p:first-child {
   overflow: visible;        /* permite desbordar verticalmente */
   text-overflow: clip;      /* sin puntos suspensivos forzados */
 }
-/* Al final de quickref.css */
-.itemsize {
-  width: auto !important;
-  height: auto !important;
-}
 /* ---------------------------------------------------------
    1) Grid global para cualquier sección de ítems (todas)
    --------------------------------------------------------- */
@@ -557,4 +552,9 @@ p:first-child {
    --------------------------------------------------------- */
 .section-content .items .item {
   float: none !important;
+}
+/* Al final de quickref.css */
+.itemsize {
+  width: auto !important;
+  height: auto !important;
 }
