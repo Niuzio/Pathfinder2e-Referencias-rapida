@@ -405,40 +405,43 @@ p:first-child {
   border-color: #d2c8b8;
 }
 
-/* Tooltip */
-.tag[data-tooltip] {
-  position: relative;
-}
-
+/* Tooltip tipo tarjeta para .tag[data-tooltip] */
 .tag[data-tooltip] {
     position: relative;
 }
 
-.tag[data-tooltip]::after {
+.tag[data-tooltip]:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 110%;
+    bottom: 110%;                   /* separarlo un poco de la etiqueta */
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.92);
+    background: #1b1b1b;            /* fondo oscuro tipo Nivel20 */
     color: #fff;
-    padding: 10px 12px;
+    padding: 12px 14px;
     border-radius: 6px;
-    max-width: 320px;
+    max-width: 340px;
     box-sizing: border-box;
-    font-size: 0.8em;
+    font-size: 0.85em;
     line-height: 1.4;
     text-align: left;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    z-index: 50;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.45);
 
-    white-space: normal;
+    white-space: normal;            /* permitir varias líneas */
     word-wrap: break-word;
+
+    opacity: 1;
+}
+
+/* Estado inicial oculto */
+.tag[data-tooltip]::after {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s ease-in-out;
 }
 
+/* Animación al mostrar */
 .tag[data-tooltip]:hover::after {
     opacity: 1;
 }
