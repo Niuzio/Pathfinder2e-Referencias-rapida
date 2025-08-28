@@ -462,7 +462,6 @@ p:first-child {
 .item {
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
 /* Fondo claro y elevación al pasar el ratón */
 .item:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -489,53 +488,34 @@ p:first-child {
   width: 48px;
   height: 48px;
 }
-/* ------------------------------------- 
-   1) Cada ítem como bloque vertical 
-   ------------------------------------- */
+/* 1. Elimina float y permite flex-wrap */
 .item {
-  float: none;             /* anula cualquier float previo */
-  display: block;          /* cada item ocupa su propio bloque */
-  margin: 0 0 1rem;        /* separa verticalmente unos de otros */
-  text-align: center;      /* centra icono y texto */
+  float: none;               /* anula el float:left original */
+  display: flex;
+  margin-bottom: 0.75rem;    /* separa filas de ítems */
 }
 
-/* ------------------------------------- 
-   2) Icono siempre encima del texto 
-   ------------------------------------- */
+/* 2. Ajuste de icono fijo y margen claro */
 .item-icon {
-  display: block;          /* icono en bloque separado */
-  margin: 0 auto 0.5rem;   /* auto-centrado + espacio abajo */
-  width: 48px;             /* tamaño fijo */
-  height: 48px;            /* tamaño fijo */
+  flex: 0 0 48px;            /* ancho fijo */
+  width: 48px;
+  height: 48px;
+  margin-right: 0.75rem;
+  margin-bottom: 0.25rem;    /* separa icono de texto si hay wrap */
 }
 
-/* ------------------------------------- 
-   3) Texto en bloque y multilínea 
-   ------------------------------------- */
+/* 3. Contenedor de texto con base flexible */
 .item-text-container {
-  display: block;
-  white-space: normal;     /* permite salto de línea */
+  flex: 1 1 0;
+  min-width: 0;              /* necesario para que overflow funcione */
 }
 
-/* ------------------------------------- 
-   4) Ajustes de título y descripción 
-   ------------------------------------- */
-.item-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
-}
-
+/* 4. Títulos y descripciones multilinea */
+.item-title,
 .item-desc {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* ------------------------------------- 
-   5) Opcional: ancho máximo de cada ítem 
-   ------------------------------------- */
-.itemsize {
-  max-width: 200px;        /* ajusta a tu gusto */
-  width: 100%;
+  white-space: normal;       /* permite varias líneas */
+  overflow: hidden;          /* recorta el texto que desborda */
+  text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
 }
 /* Al final de quickref.css */
 .itemsize {
