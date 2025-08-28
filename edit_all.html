@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Editor de Descripciones</title>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
+<style>
+  body { font-family: sans-serif; max-width: 900px; margin: auto; }
+  section { border: 1px solid #ccc; padding: 1rem; margin-bottom: 2rem; }
+</style>
+</head>
+<body>
+
+<h1>Editor de Descripciones</h1>
+
+<label>Elegir archivo JS:
+<select id="fileSelect">
+  <option value="data_action.js">data_action.js</option>
+  <option value="data_bonusaction.js">data_bonusaction.js</option>
+  <option value="data_movement.js">data_movement.js</option>
+  <option value="data_reaction.js">data_reaction.js</option>
+  <!-- agrega aquí todos tus JS -->
+</select>
+</label>
+
+<div id="container"></div>
+<button id="saveBtn">💾 Descargar archivo actualizado</button>
+
+<script>
+let currentFile = '';
+let dataVarName = '';
+
+document.getElementById('fileSelect').onchange = loadFile;
+
+function loadFile() {
+  currentFile = document.getElementById('fileSelect').value;
+  // Limpia editores anteriores
+  tinymce.remove();
+  document.getElementById('container').innerHTML = '';
+
+  const script = document.createElement('script');
+  script.src = 'js/' + currentFile;
+  script.onload = () => {
+    // Detecta el nombre de la variable global (por convención: var data_action = [...];)
+    dataVarName = Object.keys(window).find(k => k.startsWith('data_') && Array.isArray(window[k]));
+    const arr = window[dataVarName];
+
+    arr.forEach((item, idx) => {
+      if (item.description !== undefined) {
+        const sec = document.createElement('section');
+        sec.innerHTML = `<h3>${item.title || '(sin título)'}</h3>
+                         <textarea id="desc-${idx}">${item.description}</textarea>`;
+        document.getElementById('container').appendChild(sec);
+        tinymce.init({
+          selector: `#desc-${idx}`,
+          menubar: false,
+          plugins: 'link image lists',
+          toolbar: 'bold italic blockquote | bullist numlist | link image',
+          branding: false,
+          height: 200
+        });
+      }
+    });
+  };
+  document.body.appendChild(script);
+}
+
+document.getElementById('saveBtn').onclick = () => {
+  tinymce.triggerSave();
+  const arr = window[dataVarName];
+  arr.forEach((item, idx) => {
+    if (item.description !== undefined) {
+      item.description = document.getElementById(`desc-${idx}`).value;
+    }
+  });
+  const code = `var ${dataVarName} = ${JSON.stringify(arr, null, 2)};`;
+  const blob = new Blob([code], { type: 'application/javascript' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = currentFile;
+  a.click();
+};
+
+// carga inicial
+loadFile();
+</script>
+</body>
+</html>
