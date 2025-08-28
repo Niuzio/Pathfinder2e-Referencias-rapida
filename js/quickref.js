@@ -95,7 +95,7 @@ function show_modal(data, color, type) {
             }).join('') +
         '</div>';
     }
-    $("#modal-subtitle").after(tagsHTML);
+    $("#modal-subtitle").html(tagsHTML);
 
     $("#modal-reference").text(reference);
 
