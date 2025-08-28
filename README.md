@@ -3,7 +3,7 @@ Pathfinder2e-referencia (en proceso)
 
 Referencia Rápida para Pathfinder 2e remaster (en proceso)
 
-[https://cylira.github.io/dnd5e-referencia/](https://pathfinder2e-referencias-rapida.netlify.app/)
+https://niuzio.github.io/Pathfinder2e-Referencias-rapida/
 
 Icons
 ==============
