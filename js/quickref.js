@@ -43,8 +43,6 @@ if (parent !== lastParent) {
   // 2) Ítem normal: icono, título, descripción
   var icon     = data.icon     || "perspective-dice-six-faces-one";
   var subtitle = replaceMarkers(data.subtitle || "");
-// COPIAR ↓ fuerza salto de línea en el guión
-subtitle = subtitle.replace(/ – /g, "<br>– ");
   var title    = replaceMarkers(data.title    || "[no title]");
 
   var item = document.createElement("div");
