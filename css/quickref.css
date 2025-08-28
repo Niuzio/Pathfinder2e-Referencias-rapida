@@ -403,6 +403,7 @@ p:first-child {
 .tag:hover {
   background-color: #8f2629;
   border-color: #d2c8b8;
+}
 /* Tooltip tipo tarjeta estilo Nivel20 con HTML */
 .tag {
     position: relative;
