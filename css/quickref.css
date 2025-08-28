@@ -558,3 +558,36 @@ p:first-child {
   float: none !important;
   width: auto    !important;
 }
+/* ──────────────────────────────────────────────────────────
+   OVERRIDE FINAL: GRID + RESPONSIVE WRAP PARA TODAS LAS SECCIONES
+   ────────────────────────────────────────────────────────── */
+
+/* 1) convierte cada fila de sección en grid de tarjetas */
+.section-content .section-row {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 1rem !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) anula floats y tamaños fijos de las tarjetas */
+.section-content .section-row .item,
+.section-content .section-row .itemsize {
+  float: none !important;
+  width: auto    !important;
+  height: auto   !important;
+  min-width: 0   !important; /* clave para que el texto no fuerce ancho */
+  box-sizing: border-box;
+}
+
+/* 3) permite que títulos y descripciones hagan wrap libremente */
+.section-content .section-row .item-text-container,
+.section-content .section-row .item-title,
+.section-content .section-row .item-desc {
+  white-space: normal       !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word    !important;
+  overflow: visible         !important;
+  text-overflow: clip       !important;
+}
