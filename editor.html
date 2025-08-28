@@ -21,7 +21,7 @@
       grid-template-areas:"hd" "main" "ft";
     }
 
-    /* ====== MENÚ TIPO Nivel20 ====== */
+    /* ===== Menú Nivel20 ===== */
     header {
       grid-area:hd; background:var(--card);
       border-bottom:1px solid var(--line); position:sticky;
@@ -39,12 +39,10 @@
       list-style:none; margin:0; padding:4px 0;
       position:absolute; top:100%; left:0;
       background:var(--card); border:1px solid var(--line);
-      min-width:200px; display:none; z-index:20;
+      min-width:220px; display:none; z-index:20;
     }
     .menu>li:hover>.submenu { display:block; }
-    .submenu li {
-      margin:0; padding:0;
-    }
+    .submenu li { margin:0; padding:0; }
     .submenu li button,
     .submenu li label {
       width:100%; text-align:left; padding:8px 12px;
@@ -59,10 +57,9 @@
       border-radius:4px; background:var(--bg);
       color:var(--ink);
     }
-    /* Ocultar input file y usar label */
     #fileInput { display:none; }
 
-    /* ========== LAYOUT ========= */
+    /* ========== LAYOUT ========== */
     .layout {
       grid-area:main; display:grid;
       grid-template-columns:1fr 1fr; gap:12px; padding:12px;
@@ -118,7 +115,8 @@
     }
     .desc { white-space:pre-wrap; margin:4px 0; }
     .bullets { margin:0 0 0 16px; }
-    /* ========== TOOLBAR ========== */
+
+    /* ===== Barra de formato ===== */
     #toolbar {
       position:fixed; bottom:24px; right:24px;
       display:none; gap:4px; padding:6px;
@@ -134,40 +132,51 @@
 <header>
   <nav>
     <ul class="menu">
+
+      <!-- Archivo -->
       <li>
-        <a>Archivo ▾</a>
+        <a href="#">Archivo ▾</a>
         <ul class="submenu">
-          <li><label for="fileInput">Abrir Archivo…</label></li>
-          <li>
-            <input type="text" id="urlInput" placeholder="URL raw GitHub" />
-          </li>
+          <li><label for="fileInput">Abrir archivo…</label></li>
+          <li><input type="text" id="urlInput" placeholder="URL raw GitHub" /></li>
           <li><button id="btnLoadUrl">Cargar URL</button></li>
+          <li><label>Variable: <input type="text" id="varName" placeholder="data_x" /></label></li>
+          <li><label>Salida .js: <input type="text" id="fileName" placeholder="data_x.js" /></label></li>
           <li><button id="btnDownload">Descargar .js</button></li>
         </ul>
       </li>
+
+      <!-- Editar -->
       <li>
-        <a>Editar ▾</a>
+        <a href="#">Editar ▾</a>
         <ul class="submenu">
           <li><button id="btnAdd">Añadir fila</button></li>
           <li><button id="btnValidate">Validar</button></li>
           <li><button id="btnClear">Vaciar todo</button></li>
         </ul>
       </li>
+
+      <!-- Ver -->
       <li>
-        <a>Ver ▾</a>
+        <a href="#">Ver ▾</a>
         <ul class="submenu">
           <li><button id="btnDark">Modo oscuro</button></li>
+          <li><button id="btnRestore">Restaurar tema</button></li>
         </ul>
       </li>
+
     </ul>
   </nav>
   <input type="file" id="fileInput" accept=".js" />
 </header>
 
 <div class="layout">
-  <!-- PANEL EDICIÓN -->
+
+  <!-- Panel de edición -->
   <div class="panel split">
-    <div id="status" class="status err">Sin datos. Abra un archivo o pegue una URL.</div>
+    <div id="status" class="status err">
+      Sin datos. Abra un archivo o pegue una URL.
+    </div>
     <table>
       <thead>
         <tr>
@@ -184,14 +193,15 @@
     </table>
   </div>
 
-  <!-- PANEL VISTA PREVIA -->
+  <!-- Panel de vista previa -->
   <div class="panel">
     <strong>Vista previa</strong>
     <div id="preview" class="preview"></div>
   </div>
+
 </div>
 
-<!-- BARRA DE FORMATO -->
+<!-- Barra flotante de formato -->
 <div id="toolbar">
   <button data-cmd="bold"><strong>B</strong></button>
   <button data-cmd="italic"><em>I</em></button>
@@ -207,65 +217,75 @@
 </div>
 
 <script>
-/* — Estado global — */
+/* Estado global */
 let dataset = [], varNameDetected = null, focusedCell = null;
 
-/* — Helpers — */
-const $ = s=>document.querySelector(s);
-function setStatus(msg, ok=false){
+/* Helpers */
+const $ = s => document.querySelector(s);
+function setStatus(msg, ok = false) {
   const st = $('#status');
   st.textContent = msg;
-  st.className = 'status ' + (ok?'ok':'err');
+  st.className = 'status ' + (ok ? 'ok' : 'err');
 }
-function toRawUrl(u){
-  return u.includes('/blob/') 
-    ? u.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/') 
+function toRawUrl(u) {
+  return u.includes('/blob/')
+    ? u.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/')
     : u;
 }
 
-/* — Parseo robusto: busca varName = [ ... ] con conteo de corchetes — */
-function parseVarJs(text){
-  const nameMatch = text.match(/(?:var|let|const)?\s*([\w$]+)\s*=/);
-  if(!nameMatch) throw new Error('No se encontró ninguna asignación de variable.');
+/* Parseo robusto de array JS (sin JSON.parse) */
+function parseVarJs(text) {
+  // Detecta nombre de variable antes del '='
+  const nameMatch = text.match(/(?:^|\W)([\w$]+)\s*=\s*
+
+\[/);
+  if (!nameMatch) throw new Error('No se encontró ninguna asignación de variable a un array.');
   const varName = nameMatch[1];
-  // busca el primer '[' tras el '='
-  const eqPos = text.indexOf('=', nameMatch.index + nameMatch[0].length);
+  // Índice del primer '[' tras el '='
+  const eqPos = text.indexOf('=', nameMatch.index);
   const brOpen = text.indexOf('[', eqPos);
-  if(brOpen < 0) throw new Error('No se encontró "[" tras la asignación.');
-  // conteo de corchetes
-  let depth = 0, end = -1;
-  for(let i = brOpen; i < text.length; i++){
-    if(text[i] === '[') depth++;
-    else if(text[i] === ']'){
+  if (brOpen < 0) throw new Error('No se encontró "[" tras la asignación.');
+  // Busca cierre correspondiente contando corchetes
+  let depth = 0, brClose = -1;
+  for (let i = brOpen; i < text.length; i++) {
+    if (text[i] === '[') depth++;
+    else if (text[i] === ']') {
       depth--;
-      if(depth === 0){ end = i; break; }
+      if (depth === 0) { brClose = i; break; }
     }
   }
-  if(end < 0) throw new Error('No se encontró cierre "]" correspondiente.');
-  const arrText = text.slice(brOpen, end + 1);
-  const arr = JSON.parse(arrText);
-  if(!Array.isArray(arr)) throw new Error('El contenido extraído no es un array.');
+  if (brClose < 0) throw new Error('No se encontró cierre "]" correspondiente.');
+  // Extrae literal JS y evalúa
+  const jsArray = text.slice(brOpen, brClose + 1);
+  let arr;
+  try {
+    arr = (new Function('return ' + jsArray))();
+  } catch (e) {
+    throw new Error('Error al parsear array: ' + e.message);
+  }
+  if (!Array.isArray(arr)) throw new Error('La variable extraída no es un array.');
   varNameDetected = varName;
   return arr;
 }
 
-/* — Serializar y descargar — */
-function downloadJs(name, arr){
-  const content = name + ' = ' + JSON.stringify(arr, null, 2) + ';\n';
+/* Serializar y descargar */
+function downloadJs(name, arr) {
+  const header = /^\w/.test(name) ? name : 'data_x';
+  const content = header + ' = ' + JSON.stringify(arr, null, 2) + ';\n';
   const blob = new Blob([content], { type: 'application/javascript' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = (name + '.js');
+  a.download = ($('#fileName').value.trim() || (header + '.js'));
   document.body.appendChild(a);
   a.click();
   a.remove();
 }
 
-/* — Ensures y renderTable (idénticas a antes) — */
-function ensure(i){
+/* Ensure y renderización */
+function ensure(i) {
   dataset[i] ||= { title:'', subtitle:'', reference:'', traits:[], description:'', bullets:[] };
 }
-function renderTable(){
+function renderTable() {
   const tbody = $('#tbody');
   tbody.innerHTML = '';
   dataset.forEach((it, idx) => {
@@ -286,62 +306,64 @@ function renderTable(){
       </td>`;
     tbody.appendChild(tr);
   });
-  $$('.ce').forEach(el => el.classList.toggle('placeholder', !el.textContent.trim()));
+  document.querySelectorAll('.ce').forEach(el =>
+    el.classList.toggle('placeholder', !el.textContent.trim())
+  );
   refreshPreview();
 }
 
-/* — Preview idéntico — */
-function refreshPreview(){
+/* Vista previa */
+function refreshPreview() {
   const pr = $('#preview');
   pr.innerHTML = '';
-  dataset.forEach(it=>{
-    const c = document.createElement('div'); c.className='card';
-    const t = Object.assign(document.createElement('div'),{className:'title', innerText:it.title});
-    const s = Object.assign(document.createElement('div'),{className:'subtitle', innerText:it.subtitle});
-    const r = Object.assign(document.createElement('div'),{className:'subtitle', innerText:it.reference});
-    const trts = document.createElement('div'); trts.className='traits';
-    (it.traits||[]).forEach(x=>{
-      const sp = document.createElement('span'); sp.className='trait'; sp.innerText=x;
+  dataset.forEach(it => {
+    const c = document.createElement('div'); c.className = 'card';
+    const t = Object.assign(document.createElement('div'), { className:'title', innerText: it.title });
+    const s = Object.assign(document.createElement('div'), { className:'subtitle', innerText: it.subtitle });
+    const r = Object.assign(document.createElement('div'), { className:'subtitle', innerText: it.reference });
+    const trts = document.createElement('div'); trts.className = 'traits';
+    (it.traits||[]).forEach(x => {
+      const sp = document.createElement('span'); sp.className = 'trait'; sp.innerText = x;
       trts.appendChild(sp);
     });
-    const d = document.createElement('div'); d.className='desc';
+    const d = document.createElement('div'); d.className = 'desc';
     d.innerHTML = it.description.replace(/\n/g,'<br>');
-    const ul = document.createElement('ul'); ul.className='bullets';
-    (it.bullets||[]).forEach(x=>{
-      const li=document.createElement('li'); li.innerText=x; ul.appendChild(li);
+    const ul = document.createElement('ul'); ul.className = 'bullets';
+    (it.bullets||[]).forEach(x => {
+      const li = document.createElement('li'); li.innerText = x; ul.appendChild(li);
     });
-    c.append(t,s,trts,r,d,ul);
+    c.append(t, s, trts, r, d, ul);
     pr.appendChild(c);
   });
 }
 
-/* — Sincronización de edits — */
-document.addEventListener('input', e=>{
+/* Sincronizar edición */
+document.addEventListener('input', e => {
   const ce = e.target.closest('.ce');
-  if(!ce) return;
+  if (!ce) return;
   const i = +ce.dataset.idx, f = ce.dataset.field;
   ensure(i);
   let v = ce.innerText;
-  if(f==='traits') dataset[i][f] = v.split(',').map(x=>x.trim()).filter(Boolean);
-  else if(f==='bullets') dataset[i][f] = v.split('\n').map(x=>x.trim()).filter(Boolean);
-  else dataset[i][f] = v;
+  if (f === 'traits')         dataset[i][f] = v.split(',').map(x=>x.trim()).filter(Boolean);
+  else if (f === 'bullets')   dataset[i][f] = v.split('\n').map(x=>x.trim()).filter(Boolean);
+  else                         dataset[i][f] = v;
   saveLocal(); renderTable();
 });
 
-/* — Botones de fila — */
-document.addEventListener('click', e=>{
+/* Acciones en fila */
+document.addEventListener('click', e => {
   const b = e.target.closest('button[data-act]');
-  if(!b) return;
+  if (!b) return;
   const i = +b.dataset.idx, act = b.dataset.act;
-  if(act==='del') dataset.splice(i,1);
-  if(act==='dup') dataset.splice(i+1,0, JSON.parse(JSON.stringify(dataset[i])));
-  if(act==='up'  && i>0) dataset.splice(i-1,0, dataset.splice(i,1)[0]);
-  if(act==='down'&& i<dataset.length-1) dataset.splice(i+1,0, dataset.splice(i,1)[0]);
+  if (act === 'del')   dataset.splice(i,1);
+  if (act === 'dup')   dataset.splice(i+1,0, JSON.parse(JSON.stringify(dataset[i])));
+  if (act === 'up'   && i>0)      dataset.splice(i-1,0, dataset.splice(i,1)[0]);
+  if (act === 'down' && i<dataset.length-1) dataset.splice(i+1,0, dataset.splice(i,1)[0]);
   saveLocal(); renderTable();
 });
 
-/* — Toolbar formatting — */
-function showToolbar(el){
+/* Formateo flotante */
+function showToolbar(el) {
   focusedCell = el;
   const r = el.getBoundingClientRect(), tb = $('#toolbar');
   tb.style.left = r.left + 'px';
@@ -349,105 +371,114 @@ function showToolbar(el){
   tb.style.display = 'flex';
 }
 function hideToolbar(){ $('#toolbar').style.display='none'; }
-document.addEventListener('focusin', e=>{
+document.addEventListener('focusin', e => {
   const ce = e.target.closest('.ce');
-  if(ce) showToolbar(ce);
+  if (ce) showToolbar(ce);
 });
-document.addEventListener('click', e=>{
-  if(!e.target.closest('.ce') && !e.target.closest('#toolbar')) hideToolbar();
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ce') && !e.target.closest('#toolbar')) hideToolbar();
 });
-$('#toolbar').addEventListener('click', e=>{
+$('#toolbar').addEventListener('click', e => {
   const cmd = e.target.closest('button')?.dataset.cmd;
-  if(cmd){
+  if (cmd) {
     document.execCommand(cmd,false,null);
     focusedCell.dispatchEvent(new Event('input'));
   }
-  else if(e.target.id==='btnLink'){
+  else if (e.target.id === 'btnLink') {
     const url = prompt('URL:');
-    if(url){
-      document.execCommand('createLink',false,url);
-      focusedCell.dispatchEvent(new Event('input'));
-    }
+    if (url) document.execCommand('createLink',false,url),
+             focusedCell.dispatchEvent(new Event('input'));
   }
-  else if(e.target.id==='btnClearFmt'){
+  else if (e.target.id === 'btnClearFmt') {
     document.execCommand('removeFormat',false,null);
     document.execCommand('unlink',false,null);
     focusedCell.dispatchEvent(new Event('input'));
   }
 });
 
-/* — Carga archivo / URL — */
-$('#fileInput').addEventListener('change', e=>{
-  const f = e.target.files[0]; if(!f) return;
+/* Carga archivo / URL */
+$('#fileInput').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
-  r.onload = ()=>{
+  r.onload = () => {
     try {
       dataset = parseVarJs(r.result);
+      $('#varName').value = varNameDetected;
       setStatus(`Cargado ${f.name}`, true);
       renderTable();
-    } catch(err){
+    } catch (err) {
       setStatus(err.message, false);
     }
   };
   r.readAsText(f);
 });
-$('#btnLoadUrl').addEventListener('click', async ()=>{
+$('#btnLoadUrl').onclick = async () => {
   const u = toRawUrl($('#urlInput').value.trim());
-  if(!u) return setStatus('URL vacía', false);
+  if (!u) return setStatus('URL vacía', false);
   try {
     const res = await fetch(u);
-    if(!res.ok) throw new Error(res.statusText);
+    if (!res.ok) throw new Error(res.statusText);
     const txt = await res.text();
     dataset = parseVarJs(txt);
+    $('#varName').value = varNameDetected;
     setStatus('Cargado desde URL', true);
     renderTable();
-  } catch(err){
+  } catch (err) {
     setStatus(err.message, false);
   }
-});
+};
 
-/* — Acciones menú Editar — */
+/* Menú Editar */
 $('#btnAdd').onclick      = ()=>{ dataset.push({}); saveLocal(); renderTable(); };
 $('#btnClear').onclick    = ()=>{ if(confirm('¿Vaciar todo?')){ dataset=[]; saveLocal(); renderTable(); } };
 $('#btnValidate').onclick = ()=>{
   const errs = [];
-  if(!Array.isArray(dataset)) errs.push('No es un array');
-  dataset.forEach((o,i)=>{
-    if(!o.title?.trim()) errs.push(`#${i+1} falta title`);
-  });
-  setStatus(errs.length? errs.join(' | ') : 'OK ✔', errs.length===0);
+  if (!Array.isArray(dataset)) errs.push('No es un array');
+  dataset.forEach((o,i)=>{ if (!o.title?.trim()) errs.push(`#${i+1} falta title`); });
+  setStatus(errs.length ? errs.join(' | ') : 'OK ✔', errs.length===0);
 };
 
-/* — Autosave en localStorage — */
-function saveLocal(){
-  localStorage.setItem('pf2e_editor', JSON.stringify({ dataset }));
-}
-function loadLocal(){
-  try {
-    const st = JSON.parse(localStorage.getItem('pf2e_editor'));
-    if(st?.dataset){
-      dataset = st.dataset;
-      setStatus('Datos restaurados', true);
-    }
-  } catch{}
-}
-window.onload = ()=>{
-  loadLocal();
-  if(dataset.length) renderTable();
-  else setStatus('Sin datos. Abra un archivo o pegue una URL.', false);
-};
-
-/* — Descargar y tema — */
-$('#btnDownload').onclick = ()=>{
-  if(!varNameDetected) varNameDetected = prompt('Variable name:', 'data_x');
-  downloadJs(varNameDetected, dataset);
-};
-$('#btnDark').onclick = ()=>{
+/* Tema */
+$('#btnDark').onclick    = ()=>{
   document.body.classList.toggle('dark');
   localStorage.setItem('pf2e_theme', document.body.classList.contains('dark'));
 };
-/* Restaura tema */
-if(localStorage.getItem('pf2e_theme')==='true') document.body.classList.add('dark');
+$('#btnRestore').onclick = ()=>{
+  document.body.classList.remove('dark');
+  localStorage.removeItem('pf2e_theme');
+};
+/* Restaura tema al cargar */
+if (localStorage.getItem('pf2e_theme') === 'true') {
+  document.body.classList.add('dark');
+}
+
+/* Autosave en localStorage */
+function saveLocal() {
+  localStorage.setItem('pf2e_editor', JSON.stringify({dataset}));
+}
+function loadLocal() {
+  try {
+    const st = JSON.parse(localStorage.getItem('pf2e_editor'));
+    if (st?.dataset) {
+      dataset = st.dataset;
+      $('#varName').value = varNameDetected || '';
+      setStatus('Datos restaurados', true);
+    }
+  } catch {}
+}
+window.onload = () => {
+  loadLocal();
+  if (dataset.length) renderTable();
+  else setStatus('Sin datos. Abra un archivo o pegue una URL.', false);
+};
+
+/* Descargar */
+$('#btnDownload').onclick = ()=>{
+  if (!varNameDetected && !$('#varName').value.trim()) {
+    varNameDetected = prompt('Nombre de variable:', 'data_x');
+  }
+  downloadJs($('#varName').value.trim() || varNameDetected, dataset);
+};
 </script>
 </body>
 </html>
