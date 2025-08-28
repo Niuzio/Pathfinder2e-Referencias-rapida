@@ -156,9 +156,8 @@ const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
 function toRawUrl(url){
-  // Convierte URL de GitHub a raw si es necesario
   try{
-    if(/github\\.com\\/.+\\/blob\\//.test(url)){
+    if(/github\.com\/.+\/blob\//.test(url)){
       return url.replace('github.com','raw.githubusercontent.com').replace('/blob/','/');
     }
     return url;
@@ -181,22 +180,20 @@ function stripTags(html){
 function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']){
   if(!html) return '';
   const root = document.createElement('div'); root.innerHTML = html;
-  // Eliminar scripts y atributos peligrosos
   root.querySelectorAll('script, style, iframe, object, embed').forEach(n => n.remove());
   const walker = (node)=>{
-    if(node.nodeType === 1){ // Element
+    if(node.nodeType === 1){
       if(!allowed.includes(node.tagName)){
         const parent = node.parentNode;
         while(node.firstChild){ parent.insertBefore(node.firstChild, node) }
         parent.removeChild(node);
         return;
       }
-      // Sanitizar atributos
       [...node.attributes].forEach(attr=>{
         const name = attr.name.toLowerCase();
         const val = attr.value;
         if(node.tagName === 'A' && name === 'href'){
-          if(!/^https?:\\/\\//i.test(val) && !val.startsWith('#') && !val.startsWith('mailto:')) node.removeAttribute(attr.name);
+          if(!/^https?:\/\//i.test(val) && !val.startsWith('#') && !val.startsWith('mailto:')) node.removeAttribute(attr.name);
         }else if(name === 'style' || name.startsWith('on')){
           node.removeAttribute(attr.name);
         }
@@ -209,14 +206,13 @@ function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','
 }
 
 function getBulletsFromHtml(html){
-  // Soporta <ul><li>…</li></ul>, <br>, o líneas simples
   const tmp = document.createElement('div'); tmp.innerHTML = html || '';
   const lis = tmp.querySelectorAll('li');
   if(lis.length){
     return [...lis].map(li => sanitizeHtml(li.innerHTML, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']).trim()).filter(Boolean);
   }
-  const text = tmp.textContent.replace(/\\r/g,'');
-  return text.split('\\n').map(s=>s.trim()).filter(Boolean);
+  const text = tmp.textContent.replace(/\r/g,'');
+  return text.split('\n').map(s=>s.trim()).filter(Boolean);
 }
 
 function bulletsToHtml(arr, allowHtml=false){
@@ -314,7 +310,6 @@ function renderTable(){
     `;
     tbody.appendChild(tr);
   });
-  // placeholders
   $$('.ce').forEach(el=>{
     el.classList.toggle('placeholder', !el.innerHTML.trim());
   });
@@ -326,24 +321,19 @@ function refreshPreview(){
   const wrap = $('#preview'); wrap.innerHTML = '';
   dataset.forEach(it=>{
     const card = document.createElement('div'); card.className = 'card';
-    // Title & subtitle
     const t = document.createElement('div'); t.className = 'title';
     t.innerHTML = sanitizeHtml(it.title, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
     const s = document.createElement('div'); s.className = 'subtitle';
     s.innerHTML = sanitizeHtml(it.subtitle, ['B','STRONG','I','EM','U','A','BR','SUP','SUB','SPAN']);
-    // Traits
     const traits = document.createElement('div'); traits.className = 'traits';
     (it.traits||[]).forEach(tr=>{
       const span = document.createElement('span'); span.className = 'trait'; span.textContent = tr;
       traits.appendChild(span);
     });
-    // Reference
     const ref = document.createElement('div'); ref.className = 'subtitle';
     ref.textContent = safeText(it.reference||'');
-    // Description
     const desc = document.createElement('div'); desc.className = 'desc';
     desc.innerHTML = sanitizeHtml(it.description, ['B','STRONG','I','EM','U','A','BR','UL','OL','LI','SUP','SUB','SPAN']);
-    // Bullets
     const bl = document.createElement('div');
     bl.innerHTML = bulletsToHtml(it.bullets, true);
     bl.querySelectorAll('ul,ol').forEach(ul=>{ul.classList.add('bullets')});
@@ -368,7 +358,6 @@ document.addEventListener('input', (e)=>{
   }else if(field === 'traits'){
     const text = stripTags(el.innerHTML);
     dataset[idx].traits = text.split(',').map(s=>s.trim()).filter(Boolean);
-    // reflejar texto limpio
     el.textContent = dataset[idx].traits.join(', ');
   }else{
     dataset[idx][field] = el.innerHTML;
@@ -379,7 +368,6 @@ document.addEventListener('input', (e)=>{
 });
 
 document.addEventListener('click', (e)=>{
-  // Acciones de fila
   const btn = e.target.closest('button[data-act]');
   if(btn){
     const idx = +btn.dataset.idx;
@@ -404,7 +392,6 @@ function showToolbarFor(el){
   focusedCell = el;
   const tb = $('#toolbar');
   const rect = el.getBoundingClientRect();
-  // Colocar barra cerca del elemento (esquina inferior-izquierda) pero con margen
   tb.style.left = Math.max(12, rect.left + window.scrollX) + 'px';
   tb.style.top = (rect.bottom + window.scrollY + 8) + 'px';
   tb.classList.remove('hidden');
@@ -439,10 +426,8 @@ $('#toolbar').addEventListener('click', (e)=>{
     if(url){ document.execCommand('createLink', false, url); }
   }else if(btn.id === 'btnClearFmt'){
     document.execCommand('removeFormat', false, null);
-    // quitar enlaces
     document.execCommand('unlink', false, null);
   }
-  // Disparar input para guardar/preview
   if(focusedCell){
     focusedCell.dispatchEvent(new Event('input', {bubbles:true}));
   }
@@ -450,11 +435,11 @@ $('#toolbar').addEventListener('click', (e)=>{
 
 /* ====== Cargar datos ====== */
 function parseVarJs(text){
-  const re = /var\\s+(\\w+)\\s*=\\s*(\
+  const re = /var\s+(\w+)\s*=\s*(
 
-\[[\\s\\S]*\\]
+\[[\s\S]*\]
 
-);?\\s*$/m;
+);?\s*$/m;
   const m = text.match(re);
   if(!m) throw new Error('No se encontró asignación var NOMBRE = [ ... ];');
   varNameDetected = m[1];
@@ -533,7 +518,6 @@ document.addEventListener('keydown', (e)=>{
 
 /* ====== Exportar ====== */
 $('#btnDownload').addEventListener('click', ()=>{
-  // Construir dataset de exportación con opciones
   const allowTitle = $('#optHtmlTitle').checked;
   const allowSubtitle = $('#optHtmlSubtitle').checked;
   const allowBullets = $('#optHtmlBullets').checked;
@@ -552,7 +536,7 @@ $('#btnDownload').addEventListener('click', ()=>{
 
   const vname = ($('#varName').value || 'data_action').replace(/[^A-Za-z0-9_]/g,'_');
   const fname = ($('#fileName').value || (vname + '.js')).replace(/[^A-Za-z0-9._-]/g,'_');
-  const content = 'var ' + vname + ' = ' + JSON.stringify(out, null, 2) + ';\\n';
+  const content = 'var ' + vname + ' = ' + JSON.stringify(out, null, 2) + ';\n';
 
   const blob = new Blob([content], {type:'application/javascript'});
   const a = document.createElement('a');
