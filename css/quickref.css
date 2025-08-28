@@ -411,21 +411,26 @@ p:first-child {
 }
 
 .tag[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-0.5em);
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
-  font-size: 0.75em;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease-in-out;
-  z-index: 10;
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-0.5em);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+
+    white-space: normal;     /* ✅ Permite saltos de línea */
+    word-wrap: break-word;   /* ✅ Rompe palabras largas */
+    max-width: 250px;        /* ✅ Limita el ancho del cuadro */
+
+    font-size: 0.8em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
+    z-index: 10;
+    text-align: left;        /* ✅ Alinea el texto como párrafo */
 }
 
 .tag[data-tooltip]:hover::after {
