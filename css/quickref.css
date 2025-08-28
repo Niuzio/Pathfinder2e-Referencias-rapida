@@ -410,13 +410,12 @@ p:first-child {
   position: relative;
 }
 
-.tag {
+.tag[data-tooltip] {
     position: relative;
-    display: inline-block;
 }
 
-.tag-tooltip {
-    display: none;
+.tag[data-tooltip]::after {
+    content: attr(data-tooltip);
     position: absolute;
     bottom: 110%;
     left: 50%;
@@ -432,10 +431,16 @@ p:first-child {
     text-align: left;
     z-index: 10;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+
+    white-space: normal;
+    word-wrap: break-word;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
 }
 
-.tag:hover .tag-tooltip {
-    display: block;
+.tag[data-tooltip]:hover::after {
+    opacity: 1;
 }
 .action-icon {
     height: 1.2em;
