@@ -541,53 +541,20 @@ p:first-child {
   width: auto !important;
   height: auto !important;
 }
-/* ───────────────────────────────────────────────────────────
-   1) Activa grid en cada sección (incluyendo “Estados”)
-   ─────────────────────────────────────────────────────────── */
-.section-content .section-row {
-  display: grid !important;  
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
-  gap: 0.75rem 1rem !important;
-}
-
-/* ───────────────────────────────────────────────────────────
-   2) Anula float y anchos forzados de los ítems
-   ─────────────────────────────────────────────────────────── */
-.section-content .section-row .item,
-.section-content .section-row .itemsize {
-  float: none !important;
-  width: auto    !important;
-}
-/* ──────────────────────────────────────────────────────────
-   OVERRIDE FINAL: GRID + RESPONSIVE WRAP PARA TODAS LAS SECCIONES
-   ────────────────────────────────────────────────────────── */
-
-/* 1) convierte cada fila de sección en grid de tarjetas */
-.section-content .section-row {
+/* ------------------------------------------
+   1) Grid específico para la sección “Estados”
+   ------------------------------------------ */
+#section-condition .items {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
-  gap: 1rem !important;
+  gap: 0.75rem 1rem !important;
+  /* elimina márgenes o padding extra */
   margin: 0;
   padding: 0;
 }
-
-/* 2) anula floats y tamaños fijos de las tarjetas */
-.section-content .section-row .item,
-.section-content .section-row .itemsize {
+/* ------------------------------------------
+   2) Quita float para que el grid funcione
+   ------------------------------------------ */
+#section-condition .items .item {
   float: none !important;
-  width: auto    !important;
-  height: auto   !important;
-  min-width: 0   !important; /* clave para que el texto no fuerce ancho */
-  box-sizing: border-box;
-}
-
-/* 3) permite que títulos y descripciones hagan wrap libremente */
-.section-content .section-row .item-text-container,
-.section-content .section-row .item-title,
-.section-content .section-row .item-desc {
-  white-space: normal       !important;
-  overflow-wrap: break-word !important;
-  word-break: break-word    !important;
-  overflow: visible         !important;
-  text-overflow: clip       !important;
 }
