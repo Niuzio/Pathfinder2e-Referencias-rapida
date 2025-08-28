@@ -2,87 +2,83 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Editor de Descripciones</title>
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
+<title>Editor JS - Pathfinder 2e</title>
 <style>
-  body { font-family: sans-serif; max-width: 900px; margin: auto; }
-  section { border: 1px solid #ccc; padding: 1rem; margin-bottom: 2rem; }
+  body { font-family: sans-serif; padding: 1rem; background: #f8f8f8; }
+  select, textarea, button { margin: 0.5rem 0; width: 100%; }
+  textarea { height: 70vh; font-family: monospace; white-space: pre; }
 </style>
 </head>
 <body>
 
-<h1>Editor de Descripciones</h1>
+<h1>Editor de archivos JS</h1>
 
-<label>Elegir archivo JS:
-<select id="fileSelect">
-  <option value="data_action.js">data_action.js</option>
-  <option value="data_bonusaction.js">data_bonusaction.js</option>
-  <option value="data_movement.js">data_movement.js</option>
-  <option value="data_reaction.js">data_reaction.js</option>
-  <!-- agrega aquí todos tus JS -->
-</select>
-</label>
+<label for="fileSelect">Selecciona un archivo:</label>
+<select id="fileSelect"></select>
 
-<div id="container"></div>
-<button id="saveBtn">💾 Descargar archivo actualizado</button>
+<textarea id="editor"></textarea>
+
+<button id="downloadBtn">Descargar cambios</button>
 
 <script>
-let currentFile = '';
-let dataVarName = '';
+// Lista de archivos JS en tu carpeta 'js'
+const files = [
+  "data_Action_Starfinder2e.js",
+  "data_action.js",
+  "data_bonusaction.js",
+  "data_condition.js",
+  "data_environment.js",
+  "data_exploration_general.js",
+  "data_exploration_skill.js",
+  "data_movement.js",
+  "data_optional.js",
+  "data_reaction.js",
+  "data_rest.js",
+  "quickref.js"
+];
 
-document.getElementById('fileSelect').onchange = loadFile;
+const repoBase = "https://raw.githubusercontent.com/Niuzio/Pathfinder2e-Referencias-rapida/master/js/";
 
-function loadFile() {
-  currentFile = document.getElementById('fileSelect').value;
-  // Limpia editores anteriores
-  tinymce.remove();
-  document.getElementById('container').innerHTML = '';
+const fileSelect = document.getElementById('fileSelect');
+const editor = document.getElementById('editor');
+const downloadBtn = document.getElementById('downloadBtn');
 
-  const script = document.createElement('script');
-  script.src = 'js/' + currentFile;
-  script.onload = () => {
-    // Detecta el nombre de la variable global (por convención: var data_action = [...];)
-    dataVarName = Object.keys(window).find(k => k.startsWith('data_') && Array.isArray(window[k]));
-    const arr = window[dataVarName];
+// Rellenar combo
+files.forEach(f => {
+  const opt = document.createElement('option');
+  opt.value = f;
+  opt.textContent = f;
+  fileSelect.appendChild(opt);
+});
 
-    arr.forEach((item, idx) => {
-      if (item.description !== undefined) {
-        const sec = document.createElement('section');
-        sec.innerHTML = `<h3>${item.title || '(sin título)'}</h3>
-                         <textarea id="desc-${idx}">${item.description}</textarea>`;
-        document.getElementById('container').appendChild(sec);
-        tinymce.init({
-          selector: `#desc-${idx}`,
-          menubar: false,
-          plugins: 'link image lists',
-          toolbar: 'bold italic blockquote | bullist numlist | link image',
-          branding: false,
-          height: 200
-        });
-      }
-    });
-  };
-  document.body.appendChild(script);
-}
+// Cargar archivo seleccionado
+fileSelect.addEventListener('change', async () => {
+  const url = repoBase + fileSelect.value;
+  editor.value = "Cargando...";
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.statusText);
+    const text = await res.text();
+    editor.value = text;
+  } catch (err) {
+    editor.value = "Error al cargar: " + err.message;
+  }
+});
 
-document.getElementById('saveBtn').onclick = () => {
-  tinymce.triggerSave();
-  const arr = window[dataVarName];
-  arr.forEach((item, idx) => {
-    if (item.description !== undefined) {
-      item.description = document.getElementById(`desc-${idx}`).value;
-    }
-  });
-  const code = `var ${dataVarName} = ${JSON.stringify(arr, null, 2)};`;
-  const blob = new Blob([code], { type: 'application/javascript' });
+// Botón para descargar el archivo editado
+downloadBtn.addEventListener('click', () => {
+  const blob = new Blob([editor.value], { type: "text/javascript" });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = currentFile;
+  a.download = fileSelect.value;
   a.click();
-};
+  URL.revokeObjectURL(a.href);
+});
 
-// carga inicial
-loadFile();
+// Cargar el primero por defecto
+fileSelect.value = files[0];
+fileSelect.dispatchEvent(new Event('change'));
 </script>
+
 </body>
 </html>
