@@ -487,17 +487,19 @@ p:first-child {
 .item-icon {
   width: 48px;
   height: 48px;
+}
 /* ---------------------------------------------------
    1) Contenedor de acciones en fila
    --------------------------------------------------- */
 .actions-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;  /* reparte espacio extra uniformemente */
-    gap: 1rem;                       /* espacio mínimo entre acciones */
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* reparte espacio extra */
+  align-items: flex-start;       /* alinea todas las tarjetas por su parte superior */
+  gap: 1rem;                     /* separación homogénea fila/columna */
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 /* ---------------------------------------------------
@@ -523,17 +525,16 @@ p:first-child {
 }
 
 .item-text-container {
-    white-space: normal;     /* permite varias líneas */
-    word-break: break-word;  /* evita desbordes largos */
-    text-align: center;
+  white-space: normal;      /* varias líneas permitidas */
+  word-break: break-word;
+  text-align: center;
 }
 
-/* 4. Títulos y descripciones multilinea */
 .item-title,
 .item-desc {
-  white-space: normal;       /* permite varias líneas */
-  overflow: hidden;          /* recorta el texto que desborda */
-  text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
+  white-space: normal;
+  overflow: visible;        /* permite desbordar verticalmente */
+  text-overflow: clip;      /* sin puntos suspensivos forzados */
 }
 /* Al final de quickref.css */
 .itemsize {
