@@ -143,8 +143,8 @@
   <button data-cmd="italic"><em>I</em></button>
   <button data-cmd="underline"><u>U</u></button>
   <div class="sep"></div>
-  <button data-cmd="insertUnorderedList">• Lista</button>
-  <button data-cmd="insertOrderedList">1. Lista</button>
+  <button data-cmd="insertUnorderedList">Lista</button>
+  <button data-cmd="insertOrderedList">Lista 1.</button>
   <div class="sep"></div>
   <button id="btnLink">Link</button>
   <button data-cmd="unlink">Quitar link</button>
@@ -266,10 +266,10 @@ function renderTable(){
       <td><div class="ce" contenteditable data-idx="${idx}" data-field="description" data-ph="Descripción (acepta formato básico)">${it.description}</div></td>
       <td><div class="ce" contenteditable data-idx="${idx}" data-field="bullets" data-ph="Una línea por bullet o usa viñetas">${bulletsToHtml(it.bullets)}</div></td>
       <td class="row-actions">
-        <button data-act="up" data-idx="${idx}">↑</button>
-        <button data-act="down" data-idx="${idx}">↓</button>
-        <button data-act="dup" data-idx="${idx}">⎘</button>
-        <button data-act="del" data-idx="${idx}" style="color:var(--warn)">🗑</button>
+        <button data-act="up" data-idx="${idx}">Up</button>
+        <button data-act="down" data-idx="${idx}">Down</button>
+        <button data-act="dup" data-idx="${idx}">Dup</button>
+        <button data-act="del" data-idx="${idx}" style="color:var(--warn)">Del</button>
       </td>`;
     tbody.appendChild(tr);
   });
@@ -415,9 +415,9 @@ $('#btnValidate').addEventListener('click', ()=>{
   const issues=[];
   if(!Array.isArray(dataset)) issues.push('El dataset no es un array');
   dataset.forEach((o,i)=>{
-    if(!safeText(o.title).trim()) issues.push(`#${i+1} falta title`);
-    if(o.traits && !Array.isArray(o.traits)) issues.push(`#${i+1} traits no es array`);
-    if(o.bullets && !Array.isArray(o.bullets)) issues.push(`#${i+1} bullets no es array`);
+    if(!safeText(o.title).trim()) issues.push('#'+(i+1)+' falta title');
+    if(o.traits && !Array.isArray(o.traits)) issues.push('#'+(i+1)+' traits no es array');
+    if(o.bullets && !Array.isArray(o.bullets)) issues.push('#'+(i+1)+' bullets no es array');
   });
   setStatus(issues.length? issues.join(' | ') : 'OK ✔', issues.length===0);
 });
@@ -430,7 +430,7 @@ $('#btnFind').addEventListener('click', ()=>{
     const blob = [o.title,o.subtitle,o.reference,o.description,...(o.bullets||[])].join('\n').toLowerCase();
     if(blob.includes(q)) hits.push(i+1);
   });
-  setStatus(hits.length? `Coincidencias en filas: ${hits.join(', ')}` : 'Sin coincidencias', hits.length>0);
+  setStatus(hits.length? 'Coincidencias en filas: '+hits.join(', ') : 'Sin coincidencias', hits.length>0);
 });
 
 $('#btnAdd').addEventListener('click', ()=>{
@@ -466,7 +466,7 @@ $('#btnDownload').addEventListener('click', ()=>{
   const js = name + ' = ' + JSON.stringify(dataset, null, 2) + ';\n';
   const blob = new Blob([js], {type:'application/javascript'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file; document.body.appendChild(a); a.click(); a.remove();
-  setStatus(`Descargado ${file}`, true);
+  setStatus('Descargado '+file, true);
 });
 
 /* ================= Tema y autosave ================= */
@@ -483,7 +483,7 @@ function loadLocal(){
   try{
     const st = JSON.parse(localStorage.getItem('pf2e_editor_state')||'null');
     if(st){ dataset = st.dataset||[]; $('#varName').value = st.varName||''; $('#fileName').value = st.fileName||''; }
-  }catch{}
+  }catch(e){}
   if(localStorage.getItem('pf2e_theme')) document.body.classList.add('dark');
 }
 window.addEventListener('load', ()=>{
