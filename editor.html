@@ -203,7 +203,6 @@ function sanitizeHtml(html, allowed = ['B','STRONG','I','EM','U','A','BR','UL','
 
 /* Bullets convertir */
 function getBulletsFromHtmlOrText(content){
-  // Acepta UL/OL o texto con \n
   const tmp = document.createElement('div'); tmp.innerHTML = content || '';
   const lis = tmp.querySelectorAll('li');
   if(lis.length){
@@ -220,14 +219,12 @@ function bulletsToHtml(bullets){
 /* ================= Carga y parseo ================= */
 /* Parseo robusto: detecta nombre y extrae el array por conteo de corchetes; evalúa sólo el literal [] */
 function parseVarJs(text){
-  // 1) localizar "nombre =" seguido de "["
   const nameRe = new RegExp('(?:^|\\W)([\\w$]+)\\s*=\\s*\
 
-\['); // constructor: sin literales /.../
+\[');
   const m = nameRe.exec(text);
   if(!m) throw new Error('No se encontró una asignación X = [ ... ] en el archivo.');
   const varName = m[1];
-  // 2) encontrar el '[' inicial y su cierre correspondiente
   const startEq = text.indexOf('=', m.index);
   const brOpen  = text.indexOf('[', startEq);
   if(brOpen < 0) throw new Error('No se encontró el inicio del array "[".');
@@ -239,12 +236,10 @@ function parseVarJs(text){
   }
   if(brClose < 0) throw new Error('No se encontró el cierre del array "]".');
   const arrayLiteral = text.slice(brOpen, brClose+1);
-  // 3) eval controlado del literal del array
   let arr;
   try{
     arr = (new Function('"use strict"; return ('+arrayLiteral+')'))();
   }catch(e){
-    // Mensaje con contexto
     throw new Error('Error al evaluar el array: ' + e.message);
   }
   if(!Array.isArray(arr)) throw new Error('El contenido extraído no es un array.');
@@ -314,9 +309,9 @@ document.addEventListener('input', (e)=>{
     el.textContent = dataset[idx].traits.join(', ');
   }else if(field==='bullets'){
     dataset[idx].bullets = getBulletsFromHtmlOrText(el.innerHTML);
-    el.innerHTML = bulletsToHtml(dataset[idx].bullets); // normaliza a UL
+    el.innerHTML = bulletsToHtml(dataset[idx].bullets);
   }else{
-    dataset[idx][field] = el.innerHTML; // preserva formato básico
+    dataset[idx][field] = el.innerHTML;
   }
   el.classList.toggle('placeholder', !el.innerText.trim());
   saveLocal();
@@ -361,7 +356,7 @@ $('#toolbar').addEventListener('click', (e)=>{
 const OWNER='Niuzio', REPO='Pathfinder2e-Referencias-rapida', DIR='js';
 
 async function listRepoFiles(){
-  setStatus('Listando archivos del repo…');
+  setStatus('Listando archivos del repo...');
   const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${DIR}`;
   const res = await fetch(api,{cache:'no-store'});
   if(!res.ok) throw new Error('No se pudo listar el repo (HTTP '+res.status+')');
