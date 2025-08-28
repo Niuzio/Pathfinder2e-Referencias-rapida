@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Generador de datos — PF2e</title>
+<input id="file" type="file" accept=".json,.js">
+<input id="url" type="text" placeholder="URL .json o .js">
+<button id="btnLoadUrl">Cargar desde URL</button>
 <style>
 :root{--bg:#0f1115;--card:#151924;--ink:#e6edf3;--muted:#8b95a7;--line:#222b3a;--accent:#79c0ff;--ok:#3fb950;--warn:#ff7b72}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui}
@@ -362,5 +365,75 @@ window.addEventListener('keydown', e=>{
 // Inicio
 setStatus('Listo', true);
 </script>
+}
+function cleanText(txt){ return txt.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n'); }
+function toRaw(url){
+  if(url.includes('github.com/') && url.includes('/blob/')){
+    return url.replace('github.com/','raw.githubusercontent.com/').replace('/blob/','/');
+  }
+  return url;
+}
+function extractArrayLiteral(js){
+  const s = cleanText(js);
+  const m = /(var|let|const)\s+[A-Za-z$_][\\w$]*\\s*=\\s*\
+
+\[/m.exec(s);
+  if(!m) throw new Error('No se encontró un array con var/let/const');
+  let i = s.indexOf('[', m.index), depth = 0, inStr=false, strCh='', esc=false;
+  for(; i < s.length; i++){
+    const ch = s[i];
+    if(inStr){
+      if(esc){ esc=false; continue; }
+      if(ch==='\\\\'){ esc=true; continue; }
+      if(ch===strCh){ inStr=false; strCh=''; }
+      continue;
+    }
+    if(ch==='"' || ch==="'" || ch==='`'){ inStr=true; strCh=ch; continue; }
+    if(ch==='[') depth++;
+    else if(ch===']'){ depth--; if(depth===0){ i++; break; } }
+  }
+  return s.slice(s.indexOf('[', m.index), i);
+}
+function evalArrayLiteral(lit){
+  const fn = new Function('"use strict";return (' + lit + ');');
+  const arr = fn();
+  if(!Array.isArray(arr)) throw new Error('No es un Array');
+  return arr;
+}
+async function loadFromFile(f){
+  const txt = cleanText(await f.text());
+  const ext = f.name.split('.').pop().toLowerCase();
+  let arr;
+  if(ext==='json'){ arr = JSON.parse(txt); }
+  else { arr = evalArrayLiteral(extractArrayLiteral(txt)); }
+  data = arr.map(o=>readFormFromObj(o));
+  renderList(); renderPreview();
+  setStatus('Cargado '+f.name,true);
+}
+async function loadFromUrl(){
+  const u = toRaw($('#url').value.trim());
+  const res = await fetch(u); if(!res.ok) throw new Error(res.status);
+  const txt = cleanText(await res.text());
+  const ext = u.split('.').pop().toLowerCase();
+  let arr;
+  if(ext==='json'){ arr = JSON.parse(txt); }
+  else { arr = evalArrayLiteral(extractArrayLiteral(txt)); }
+  data = arr.map(o=>readFormFromObj(o));
+  renderList(); renderPreview();
+  setStatus('Cargado desde URL',true);
+}
+function readFormFromObj(o){
+  return {
+    title: toStr(o.title),
+    subtitle: toStr(o.subtitle),
+    reference: toStr(o.reference),
+    traits: normArray(o.traits),
+    description: sanitizeHtml(toStr(o.description)),
+    bullets: normArray(o.bullets)
+  };
+}
+$('#file').addEventListener('change', e=>{ if(e.target.files[0]) loadFromFile(e.target.files[0]); });
+$('#btnLoadUrl').addEventListener('click', loadFromUrl);
+}
 </body>
 </html>
