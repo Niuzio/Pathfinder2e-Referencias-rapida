@@ -408,18 +408,21 @@ p:first-child {
 .tag {
     position: relative;
 }
-
+/* Tooltip tipo tarjeta más ancho y estable */
 .tooltip-card {
     position: absolute;
-    bottom: 110%;
+    top: 120%; /* crece hacia abajo en vez de hacia arriba */
     left: 50%;
     transform: translateX(-50%);
+    
     background: #1b1b1b;
     color: #fff;
-    padding: 14px 16px;
+    padding: 14px 20px; /* + espacio lateral */
     border-radius: 6px;
-    max-width: 340px; /* más ancho que antes */
-    min-width: 240px;
+    
+    max-width: 480px; /* antes 340px → más ancho */
+    min-width: 280px;
+    
     box-sizing: border-box;
     font-size: 0.85em;
     line-height: 1.45;
@@ -427,11 +430,9 @@ p:first-child {
     z-index: 50;
     box-shadow: 0 2px 14px rgba(0,0,0,0.5);
 
-    /* multilínea y contenido HTML fluido */
     white-space: normal;
     word-wrap: break-word;
 
-    /* oculto por defecto */
     display: none;
 }
 
