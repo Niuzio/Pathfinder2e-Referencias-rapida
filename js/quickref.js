@@ -80,7 +80,7 @@ function show_modal(data, color, type) {
     $("#modal").addClass("modal-visible");
     $("#modal-backdrop").css("height", window.innerHeight + "px");
     $("#modal-container").css("background-color", color).css("border-color", color);
-    $("#modal-title").text(title).append("<span class=\"float-right\">" + type + "</span>");
+    $("#modal-title").html(title).append("<span class=\"float-right\">" + type + "</span>");
     $("#modal-subtitle").html(subtitle);
 	// — INSERTAR TAGS EN EL MODAL —
 // 2. Construir HTML de etiquetas
