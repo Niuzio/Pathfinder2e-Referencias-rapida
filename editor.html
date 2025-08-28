@@ -121,6 +121,7 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
   const file = e.target.files[0];
   if (!file) return;
   const text = await file.text();
+    vm.fileName = file.name; // Guarda el nombre original
   try {
     const { varName, items } = parseJsArrayAssignment(text);
     vm.varName = varName;
@@ -134,7 +135,7 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
 document.getElementById('exportBtn').addEventListener('click', ()=>{
   const code = toAssignmentJs(vm.varName, vm.items);
   const blob = new Blob([code], { type:'text/javascript;charset=utf-8' });
-  saveAs(blob, vm.varName + '.js');
+    saveAs(blob, vm.fileName || (vm.varName + '.js'));
 });
 </script>
 </body>
