@@ -533,6 +533,10 @@ p:first-child {
   overflow: hidden;          /* recorta el texto que desborda */
   text-overflow: ellipsis;   /* añade “…” si pasa de X líneas */
 }
+.actions-list .item {
+  /* ... */
+  max-width: 150px; /* o el ancho que necesites */
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
