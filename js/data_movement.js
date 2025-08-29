@@ -3,14 +3,12 @@ data_movement = [
     "title": "Zancada (Stride) [one-action]",
     "icon": "run",
     "subtitle": " Moverte hasta tu  Velocidad.",
-    "description": "<p>Te mueves una distancia igual a tu velocidad usando el mismo tipo de movimiento que ya estés empleando. Puedes cambiar de dirección durante la Zancada siempre que se mantenga el mismo tipo de movimiento.</p>",
+    "description": "Te mueves hasta tu Velocidad (pág. 420).",
     "reference": "Manual de juego p.421",
     "tags": [ { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." } 
             ],
     "bullets": [
-      "Puedes realizar múltiples Zancadas en tu turno, cada una gastando una acción.",
-      "Si dispones de varias velocidades, puedes elegir cuál usar para esta acción.",
-      "No puedes Moverte si tu velocidad es 0."
+      "Puedes realizar múltiples Zancadas en tu turno, cada una gastando una acción."
     ]
   },
   {
