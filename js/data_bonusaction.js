@@ -53,21 +53,21 @@
     "bullets": []
   },
   {
-    "title": "Volar",
-    "icon": "wingfoot",
-    "subtitle": "Salta",
-    "description": "<p>&nbsp;Das un salto corto horizontal o vertical. Saltar una distancia mayor requiere el uso de la habilidad Atletismo para un Salto de altura o un Salto de longitud (pág. 236). </p><p><br></p><ul><li><strong>Horizontal</strong> Saltas hasta 10 pies (3 m) en horizontal si tu Velocidad es por lo menos 15 pies (4,5 m) o hasta 15 pies (4,5 m) en horizontal si tu Velocidad es por lo menos 30 pies (9 m). Aterrizas en el espacio en el que acaba tu Salto, lo que significa que típicamente puedes salvar una brecha de 5 pies (1,5 m) o de 10 pies (3 m) si tu Velocidad es 30 pies (9 m) o más. No puedes dar un Salto en horizontal si tu Velocidad es menor de 15 pies (4,5 m). </li><li><strong>Vertical</strong> Saltas hasta 3 pies (90 cm) verticalmente y 5 pies (1,5 m) horizontalmente hasta una superficie elevada.</li></ul>",
-    "reference": "Manual de jugador p.418",
+    "title": "Volar [one-action]",
+    "icon": "Feathered-wing",
+    "subtitle": " Muévete hasta tu  Velocidad de Vuelo.",
+    "description": "<p><strong>Requisitos </strong>Tienes Velocidad de vuelo </p><p><br></p><p>Te mueves por el aire como máximo a tu Velocidad de vuelo. Moverse hacia arriba (en vertical o en diagonal) utiliza las reglas de movi miento a través de terreno difícil. Puedes descender 10 pies (3 m) por cada 5 pies (1,5 m) de movimiento que gastas. Si bajas volando hasta el suelo, no sufres daño por caída. Puedes utilizar una acción para Volar 0 pies y mantenerte flotando en el mismo sitio. Si al final de tu turno estás en el aire y no has utilizado una acción de Volar en el mismo, caes</p>",
+    "reference": "Manual de jugador p.419",
     "traits": [
       "movimiento"
     ],
     "bullets": []
   },
   {
-    "title": "Detener una caída",
-    "icon": "two-shadows",
-    "subtitle": "Revelar una criatura no detectada.",
-    "description": "<p><strong>Requisitos</strong> Una criatura no ha sido detectada por uno o más de tus aliados, pero sí por ti.</p><p><br></p><p>Indicas a uno o más de tus aliados dónde está una criatura a la que puedes ver, haciendo gestos en una dirección y describiendo verbal mente la distancia. Dicha criatura pasa a estar escondida de tus alia dos, en lugar de no detectada (pág. 434). Esto sólo funciona para los aliados que pueden verte y están en una posición en la que podrían potencialmente detectar al objetivo. Si tus aliados no pueden oírte o entenderte, tienen que tener éxito en una prueba de Percepción contra la CD de Sigilo de la criatura o te entienden mal y creen que el objetivo está en un lugar diferente.</p>",
+    "title": "Detener una caída [reaction]",
+    "icon": "Icarus",
+    "subtitle": "ralentizar tu caída mientras vuelas.",
+    "description": "<p><strong>Desencadenante </strong>Te caes. </p><p><strong>Requisitos </strong>Tener Velocidad de vuelo </p><p><br></p><p>Puedes elegir entre hacer una prueba de Acrobacias y una salvación de Reflejos para hacer que tu caída sea más lenta. La CD suele ser 15, pero podría ser mayor debido a turbulencias en el aire u otras circunstancias. </p><p><br></p><p><strong>Éxito</strong> No sufres daño alguno debido a la caída.</p>",
     "reference": "Manual de jugador p.419",
     "traits": [
       "manipular"
@@ -75,10 +75,10 @@
     "bullets": []
   },
   {
-    "title": "Excavar",
-    "icon": "magnifying-glass",
-    "subtitle": "Examinar un aérea",
-    "description": "<p>Puedes examinar un área en busca de signos de criaturas o de objetos, posiblemente incluyendo puertas secretas o peligros. Elige el área a examinar. El DJ determina qué área puedes examinar con una acción de Buscar; casi siempre de 30 pies (9 m) o menos en cualquier&nbsp;dimensión. El DJ podría imponer un penalizador si te vas muy lejos o ajustar el número de acciones requeridas para Buscar en un área particularmente atestada. </p><p><br></p><p>El DJ hace una sola prueba secreta de Percepción en tu nombre y compara el resultado con la CD de Sigilo de cualquier criatura no detectada o escondida en el área, o la CD para detectar cada objeto en el área (ya sea determinado por el DJ o por alguien que ha Ocultado el objeto). Una criatura que detectas podría permanecer escondida, en lugar de quedar observada, si estás utilizando un sentido impreciso o si algún efecto (como invisibilidad) evita que el sujeto sea observado. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Cualquier criatura no detectada o escondida contra la que obtienes un éxito crítico queda observada por ti. Averiguas la ubicación de los objetos contra los que obtienes un éxito crítico que hay dentro del área. </li><li><strong>Éxito </strong>Cualquier criatura no detectada contra la que tienes éxito que da escondida de ti en lugar de no detectada, y cualquier criatura escondida contra la que tienes éxito queda observada por ti. Ave riguas la ubicación de cualquier objeto u obtienes una pista sobre su paradero, a determinar por el DJ.</li></ul>",
+    "title": "Excavar [one-action]",
+    "icon": "Mole",
+    "subtitle": " Muévete a tu velocidad  de excavar.",
+    "description": "<p><strong>Requisitos </strong>Tienes Velocidad de excavar. </p><p><br></p><p>Te abres camino excavando a través de tierra, arena o un material suelto similar, a un ritmo máximo igual a tu Velocidad de excavar. No puedes excavar a través de roca o de otras sustancias más densas que la tierra si no dispones de una aptitud que te lo permite.</p>",
     "reference": "Manual de jugador p.416",
     "traits": [
       "concentración",
