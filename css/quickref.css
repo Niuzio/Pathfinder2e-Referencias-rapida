@@ -411,7 +411,7 @@ p:first-child {
 /* Tooltip tipo tarjeta más ancho y estable */
 .tooltip-card {
     position: absolute;
-    bottom: 110%; /* crece hacia abajo en vez de hacia arriba */
+    bottom: 130%; /* crece hacia abajo en vez de hacia arriba */
     left: 50%;
     transform: translateX(-50%);
     
@@ -420,11 +420,11 @@ p:first-child {
     padding: 14px 28px; /* + espacio lateral */
     border-radius: 6px;
     
-    max-width: 500px; /* antes 340px → más ancho */
-    min-width: 300px;
+    max-width: 600px; /* antes 340px → más ancho */
+    min-width: 280px;
     
     box-sizing: border-box;
-    font-size: 0.85em;
+    font-size: 0.60em;
     line-height: 1.45;
     text-align: left;
     z-index: 50;
