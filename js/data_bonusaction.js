@@ -54,7 +54,7 @@
   },
   {
     "title": "Volar [one-action]",
-    "icon": "Feathered-wing",
+    "icon": "feathered-wing",
     "subtitle": " Muévete hasta tu  Velocidad de Vuelo.",
     "description": "<p><strong>Requisitos </strong>Tienes Velocidad de vuelo </p><p><br></p><p>Te mueves por el aire como máximo a tu Velocidad de vuelo. Moverse hacia arriba (en vertical o en diagonal) utiliza las reglas de movi miento a través de terreno difícil. Puedes descender 10 pies (3 m) por cada 5 pies (1,5 m) de movimiento que gastas. Si bajas volando hasta el suelo, no sufres daño por caída. Puedes utilizar una acción para Volar 0 pies y mantenerte flotando en el mismo sitio. Si al final de tu turno estás en el aire y no has utilizado una acción de Volar en el mismo, caes</p>",
     "reference": "Manual de jugador p.419",
@@ -65,7 +65,7 @@
   },
   {
     "title": "Detener una caída [reaction]",
-    "icon": "Icarus",
+    "icon": "icarus",
     "subtitle": "ralentizar tu caída mientras vuelas.",
     "description": "<p><strong>Desencadenante </strong>Te caes. </p><p><strong>Requisitos </strong>Tener Velocidad de vuelo </p><p><br></p><p>Puedes elegir entre hacer una prueba de Acrobacias y una salvación de Reflejos para hacer que tu caída sea más lenta. La CD suele ser 15, pero podría ser mayor debido a turbulencias en el aire u otras circunstancias. </p><p><br></p><p><strong>Éxito</strong> No sufres daño alguno debido a la caída.</p>",
     "reference": "Manual de jugador p.419",
@@ -76,7 +76,7 @@
   },
   {
     "title": "Excavar [one-action]",
-    "icon": "Mole",
+    "icon": "mole",
     "subtitle": " Muévete a tu velocidad  de excavar.",
     "description": "<p><strong>Requisitos </strong>Tienes Velocidad de excavar. </p><p><br></p><p>Te abres camino excavando a través de tierra, arena o un material suelto similar, a un ritmo máximo igual a tu Velocidad de excavar. No puedes excavar a través de roca o de otras sustancias más densas que la tierra si no dispones de una aptitud que te lo permite.</p>",
     "reference": "Manual de jugador p.416",
