@@ -8,11 +8,7 @@
     "traits": [
       "manipular"
     ],
-    "bullets": [
-      "El número de acciones depende de las instrucciones del objeto.",
-      "Puede activar efectos mágicos o mecánicos.",
-      "Algunas activaciones requieren cumplir requisitos previos."
-    ]
+    "bullets": []
   },
   {
     "title": "Prestar ayuda [reaction]",
@@ -69,7 +65,7 @@
   },
   {
     "title": "Preparar [two-actions]",
-    "icon": "two_actions",
+    "icon": "stopwatch",
     "subtitle": "Prepárate un desencadenante que designes.",
     "description": "<p>Te preparas para utilizar una acción que tendrá lugar fuera de tu tur no. Elige una acción individual o acción gratuita que puedes utilizar y designa un desencadenante. A continuación se acaba tu turno. Si el desencadenante designado se cumple antes del inicio de tu siguiente turno, puedes utilizar la acción elegida como una reacción (si aún cumples los requisitos para utilizarla). No puedes Preparar una acción gratuita que ya tiene desencadenante. </p><p>Si tienes un penalizador por ataque múltiple y tu acción preparada es una acción de ataque, tu ataque preparado sufrirá el penalizador por ataque múltiple que correspondiera en el momento en el que utilizaste Preparar. Esta es una de las pocas veces en las que se aplica el penalizador por ataque múltiple cuando no es tu turno.</p>",
     "reference": "Manual de juego p.417",
@@ -91,7 +87,7 @@
   },
   {
     "title": "Mantener [one-action]",
-    "icon": "embrassed-energy",
+    "icon": "magic-swirl",
     "subtitle": "Extender el efecto de un conjuro/objeto",
     "description": "<p>Elige uno de tus efectos con una duración mantenida o que indica un beneficio especial cuando lo Mantienes. La mayoría de dichos efectos proceden de conjuros o de activaciones de objetos mágicos. Si el efecto tiene una duración mantenida, se prolonga hasta el final de tu siguiente turno (mantener más de una vez en el mismo tur no no prolonga la duración a turnos subsiguientes). Si una aptitud&nbsp;puede ser mantenida pero no indica cuánto tiempo, puede serlo hasta 10 minutos. </p><p><br></p><p>Un efecto podría indicar un beneficio adicional que tiene lugar cuando lo Mantienes, y esto puede incluso aparecer en efectos que no tienen una duración mantenida. Si el efecto tiene a la vez un beneficio especial y una duración mantenida, tu acción de Mantener prolonga la duración así como el hecho de disponer del beneficio especial.</p><p> </p><p>Si tu acción de Mantener es perturbada, la aptitud se acaba.</p>",
     "reference": "Manual de juego p.419",
