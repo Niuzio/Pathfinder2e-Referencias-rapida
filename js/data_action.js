@@ -36,8 +36,8 @@
     "subtitle": "Acabas un efecto de un conjuro o de un objeto mágico.",
     "description": "<p>&nbsp;Acabas con un efecto que indica que puedes Disiparlo. Disipar acaba con el efecto completo si no se indica lo contrario.</p>",
     "reference": "Manual de juego p.419",
-    "traits": [
-      "concentración"
+    "tags": [
+      { name: "concentrar", info: " (rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental." }
     ],
     "bullets": []
   },
@@ -47,8 +47,8 @@
     "subtitle": "Manipular un objeto o el terreno",
     "description": "<p>Utilizas tu mano o tus manos para manipular un objeto o el terreno. Puedes hacerte con un objeto desatendido o almacenado, desenvainar un arma, intercambiar por otro un objeto sostenido (pág. 268), abrir una puerta o conseguir un efecto similar. En raras ocasiones, podrías tener que hacer una prueba de habilidad para determinar si tu acción de Interactuar tiene éxito</p>",
     "reference": "Manual de juego p.417",
-    "traits": [
-      "manipular"
+    "tags": [
+      { name: "Manipular", info: "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones." }
     ],
     "bullets": []
   },
@@ -58,8 +58,8 @@
     "subtitle": "Subirte a una criatura o desmontarla",
     "description": "<p>&nbsp;<strong>Requisitos </strong>Estás adyacente a una criatura por lo menos un tamaño mayor que tú, que está dispuesta a dejarse montar. </p><p><br></p><p>Te mueves hasta la criatura y la montas. Si ya estás montado, en su lugar puedes utilizar esta acción para desmontar, abandonando la montura en un espacio adyacente a la misma.</p>",
     "reference": "Manual de juego p.417",
-    "traits": [
-      "movimiento"
+    "tags": [
+      { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." }
     ],
     "bullets": []
   },
@@ -69,8 +69,8 @@
     "subtitle": "Prepárate un desencadenante que designes.",
     "description": "<p>Te preparas para utilizar una acción que tendrá lugar fuera de tu tur no. Elige una acción individual o acción gratuita que puedes utilizar y designa un desencadenante. A continuación se acaba tu turno. Si el desencadenante designado se cumple antes del inicio de tu siguiente turno, puedes utilizar la acción elegida como una reacción (si aún cumples los requisitos para utilizarla). No puedes Preparar una acción gratuita que ya tiene desencadenante. </p><p>Si tienes un penalizador por ataque múltiple y tu acción preparada es una acción de ataque, tu ataque preparado sufrirá el penalizador por ataque múltiple que correspondiera en el momento en el que utilizaste Preparar. Esta es una de las pocas veces en las que se aplica el penalizador por ataque múltiple cuando no es tu turno.</p>",
     "reference": "Manual de juego p.417",
-    "traits": [
-      "concentración"
+    "tags": [
+      { name: "concentrar", info: " (rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental." }
     ],
     "bullets": []
   },
@@ -80,8 +80,8 @@
     "subtitle": "Suelta algo que estés sujetando",
     "description": "<p>Sueltas algo que sostienes en una o ambas manos. Esto podría significar que dejas caer un objeto, quitas una mano de tu arma pero continúas empuñándola con la otra, dejas ir una cuerda de la que cuelga un candelabro o llevas a cabo una acción similar. A diferencia de la mayoría de acciones de manipular, Soltar no desencadena reacciones que pueden verse activadas por acciones con el rasgo manipular (por ejemplo, Golpe reactivo). </p><p>Si quieres prepararte para Soltar algo fuera de tu turno, usa la actividad Preparar.</p>",
     "reference": "Manual de juego p.418",
-    "traits": [
-      "manipular"
+    "tags": [
+      { name: "Manipular", info: "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones." }
     ],
     "bullets": []
   },
@@ -91,8 +91,8 @@
     "subtitle": "Extender el efecto de un conjuro/objeto",
     "description": "<p>Elige uno de tus efectos con una duración mantenida o que indica un beneficio especial cuando lo Mantienes. La mayoría de dichos efectos proceden de conjuros o de activaciones de objetos mágicos. Si el efecto tiene una duración mantenida, se prolonga hasta el final de tu siguiente turno (mantener más de una vez en el mismo tur no no prolonga la duración a turnos subsiguientes). Si una aptitud&nbsp;puede ser mantenida pero no indica cuánto tiempo, puede serlo hasta 10 minutos. </p><p><br></p><p>Un efecto podría indicar un beneficio adicional que tiene lugar cuando lo Mantienes, y esto puede incluso aparecer en efectos que no tienen una duración mantenida. Si el efecto tiene a la vez un beneficio especial y una duración mantenida, tu acción de Mantener prolonga la duración así como el hecho de disponer del beneficio especial.</p><p> </p><p>Si tu acción de Mantener es perturbada, la aptitud se acaba.</p>",
     "reference": "Manual de juego p.419",
-    "traits": [
-      "concentración"
+    "tags": [
+      { name: "concentrar", info: " (rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental." }
     ],
     "bullets": []
   },
