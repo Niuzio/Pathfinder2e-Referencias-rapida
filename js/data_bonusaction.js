@@ -109,4 +109,34 @@
     ],
     "bullets": []
   }
+      "title": "Volar",
+    "icon": "strong",
+    "subtitle": "Te levantas del suelo.",
+    "description": "<p>&nbsp;Te pones de pie estando tumbado.&nbsp;</p>",
+    "reference": "Manual de jugador p.417",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
+  }
+        "title": "Detener una caída",
+    "icon": "strong",
+    "subtitle": "Te levantas del suelo.",
+    "description": "<p>&nbsp;Te pones de pie estando tumbado.&nbsp;</p>",
+    "reference": "Manual de jugador p.417",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
+  }
+          "title": "Excavar",
+    "icon": "strong",
+    "subtitle": "Te levantas del suelo.",
+    "description": "<p>&nbsp;Te pones de pie estando tumbado.&nbsp;</p>",
+    "reference": "Manual de jugador p.417",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
+  }
 ];
