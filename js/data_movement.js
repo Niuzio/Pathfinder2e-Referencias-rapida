@@ -5,7 +5,8 @@ data_movement = [
     "subtitle": " Moverte hasta tu  Velocidad.",
     "description": "<p>Te mueves una distancia igual a tu velocidad usando el mismo tipo de movimiento que ya estés empleando. Puedes cambiar de dirección durante la Zancada siempre que se mantenga el mismo tipo de movimiento.</p>",
     "reference": "Manual de juego p.421",
-    "tags": [ { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." } ],
+    "tags": [ { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." } 
+            ],
     "bullets": [
       "Puedes realizar múltiples Zancadas en tu turno, cada una gastando una acción.",
       "Si dispones de varias velocidades, puedes elegir cuál usar para esta acción.",
@@ -46,7 +47,7 @@ data_movement = [
     "subtitle": "Moverse 5 pies sin desencadenar reacciones.",
     "description": "<p>&nbsp;<strong>Requisitos </strong>Tu Velocidad es por lo menos 10 pies (3 m). </p><p><br></p><p>Te mueves cuidadosamente 5 pies (1,5 m). A diferencia de la mayoría de tipos de movimiento, dar un Paso no desencadena reacciones (del tipo Golpe reactivo) que pueden ser desencadenadas por acciones de movimiento o por entrar o salir de una casilla. No puedes dar un Paso en terreno difícil (pág. 423) ni darlo utilizando una Velocidad diferente a tu Velocidad terrestre</p>",
     "reference": "Manual de juego p.417",
-    "tags": [ { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." } ],
+    "tags": [ { name: "Movimiento", info: "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro." } 
     ],
     "bullets": []
   },
