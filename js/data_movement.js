@@ -5,8 +5,8 @@ data_movement = [
     "subtitle": " Moverte hasta tu  Velocidad.",
     "description": "<p>Te mueves una distancia igual a tu velocidad usando el mismo tipo de movimiento que ya estés empleando. Puedes cambiar de dirección durante la Zancada siempre que se mantenga el mismo tipo de movimiento.</p>",
     "reference": "Manual de juego p.421",
-    "traits": [
-      "movimiento"
+    "tags": [
+      "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
     ],
     "bullets": [
       "Puedes realizar múltiples Zancadas en tu turno, cada una gastando una acción.",
@@ -21,7 +21,7 @@ data_movement = [
     "description": "<p>Atacas con un arma que empuñas o con un ataque sin armas, de signando como objetivo a una criatura a tu alcance (para un ataque cuerpo a cuerpo) o dentro del rango de distancia (para un ataque a distancia). Haz una tirada de ataque utilizando el modificador al ataque para el arma o ataque sin armas que estás utilizando, y compara el resultado con la CA de la criatura objetivo para determinar el efecto. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Haz una tirada de daño según el arma o el ataque sin armas, infligiendo doble daño (ver pág. 407 para las reglas sobre cómo se dobla el daño). </li><li><strong>Éxito </strong>Haz una tirada de daño según el arma o el ataque sin armas, infligiendo daño normal</li></ul>",
     "reference": "Manual de juego p.419",
     "tags": [
-      { name: "Ataque", info: "<p>Atacas con un arma que empuñas o con un ataque sin armas, de signando como objetivo a una criatura a tu alcance (para un ataque cuerpo a cuerpo) o dentro del rango de distancia (para un ataque a distancia). Haz una tirada de ataque utilizando el modificador al ataque para el arma o ataque sin armas que estás utilizando, y compara el resultado con la CA de la criatura objetivo para determinar el efecto. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Haz una tirada de daño según el arma o el ataque sin armas, infligiendo doble daño (ver pág. 407 para las reglas sobre cómo se dobla el daño). </li><li><strong>Éxito </strong>Haz una tirada de daño según el arma o el ataque sin armas, infligiendo daño normal</li></ul>" }
+      { name: "Ataque", info: "<p>Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403 ataque de conjuros 403 ataque no letal 407 ataque sin armas 275, impactos críticos 401, 407 penalizador por ataque múltiple <strong>(-5 a tu segundo ataque, -10 a ataques posteriores)</strong> 402 a 403</p>" }
     ],
     "bullets": [
       "tu objetivo tiene que  estar a tu alcance (pág. 426)",
@@ -48,8 +48,8 @@ data_movement = [
     "subtitle": "Moverse 5 pies sin desencadenar reacciones.",
     "description": "<p>&nbsp;<strong>Requisitos </strong>Tu Velocidad es por lo menos 10 pies (3 m). </p><p><br></p><p>Te mueves cuidadosamente 5 pies (1,5 m). A diferencia de la mayoría de tipos de movimiento, dar un Paso no desencadena reacciones (del tipo Golpe reactivo) que pueden ser desencadenadas por acciones de movimiento o por entrar o salir de una casilla. No puedes dar un Paso en terreno difícil (pág. 423) ni darlo utilizando una Velocidad diferente a tu Velocidad terrestre</p>",
     "reference": "Manual de juego p.417",
-    "traits": [
-      "movimiento"
+    "tags": [
+      "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
     ],
     "bullets": []
   },
