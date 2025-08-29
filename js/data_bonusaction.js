@@ -1,122 +1,112 @@
-data_bonusaction = [
+ data_bonusaction = [
   {
-    title: "Desviar la mirada",
-    icon: "single_action",
-    subtitle: "Evitar efectos visuales",
-    description: "Apartas la vista para evitar el contacto visual directo con un efecto o criatura, ganando un bonificador circunstancial a salvaciones contra efectos con el rasgo visual.",
-    reference: "Pathfinder 2e SRD p.472",
-    traits: [],
-    bullets: [
-      "Otorga +2 de circunstancia a la tirada de salvación.",
-      "Puede impedirte percibir otros detalles mientras lo haces."
-    ]
+    "title": "Desviar la mirada [one-action]",
+    "icon": "semi-closed-eye",
+    "subtitle": "Evitar efectos visuales",
+    "description": "<p>Desvías la mirada de un peligro, como por ejemplo los ojos de una medusa. Obtienes un bonificador +2 por circunstancia a las salva ciones contra las aptitudes visuales que requieren que mires a una criatura u objeto, como por ejemplo la mirada petrificante de una medusa. Tu mirada permanece desviada hasta el inicio de tu siguien te turno.</p>",
+    "reference": "Manual de jugador p.419",
+    "traits": [],
+    "bullets": []
   },
   {
-    title: "Gatear",
-    icon: "single_action",
-    subtitle: "Movimiento",
-    description: "Te desplazas 5 pies mientras estás tumbado, manteniéndote bajo y fuera de vista cuando es posible.",
-    reference: "Pathfinder 2e SRD p.470",
-    traits: ["movimiento"],
-    bullets: [
-      "Usa tu velocidad de gateo si la tienes; en caso contrario, velocidad reducida.",
-      "No puedes Gatear a través de un espacio de enemigo salvo reglas específicas."
-    ]
+    "title": "Gatear [one-action]",
+    "icon": "crawl",
+    "subtitle": " Moverse mientras estás tumbado.",
+    "description": "<p><strong>Requisitos </strong>Estás tumbado y tu Velocidad es de por lo menos 10 pies (3 m). </p><p><br></p><p>Te mueves 5 pies (1,5 m) gateando y continúas tumbado</p>",
+    "reference": "Manual de jugador p.416",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
   },
   {
-    title: "Tumbarse",
-    icon: "single_action",
-    subtitle: "Movimiento",
-    description: "Te dejas caer voluntariamente al suelo, adoptando la condición Prono.",
-    reference: "Pathfinder 2e SRD p.471",
-    traits: ["movimiento"],
-    bullets: [
-      "Tumbarse puede otorgar beneficios defensivos contra ataques a distancia.",
-      "Recuperar la posición requiere Ponerse de pie."
-    ]
+    "title": "Tumbarse [one-action]",
+    "icon": "falling",
+    "subtitle": "Caerse al suelo.",
+    "description": "<p>Te dejas caer al suelo.</p>",
+    "reference": "Manual de jugador p.418",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
   },
   {
-    title: "Huir",
-    icon: "single_action",
-    subtitle: "Ataque o habilidad",
-    description: "Intentas liberarte de estar agarrado, inmovilizado o neutralizado usando la mejor opción disponible para ti.",
-    reference: "Pathfinder 2e SRD p.470",
-    traits: ["ataque"],
-    bullets: [
-      "Puedes usar Atletismo, Acrobacias o tu modificador de ataque sin armas.",
-      "La CD es la Fortaleza del efecto o criatura que te retiene."
-    ]
+    "title": "Huir [one-action]",
+    "icon": "revolt",
+    "subtitle": "huir de haber sido agarrado, neutralizado, o inmovilizado.",
+    "description": "<p>Tratas de huir de haber sido agarrado, inmovilizado o neutralizado. Elige una criatura, objeto, efecto de conjuro, peligro u otro impedimento que te impone cualquiera de estos estados. Haz una prueba utilizando tu modificador al ataque sin armas contra la CD del efecto, que normalmente suele ser la CD de Atletismo de una criatura&nbsp;que te está agarrando, la CD de Latrocinio de una criatura que te ha atado, la CD de conjuros para un efecto de conjuro o la CD de Huir indicada para un objeto, peligro u otro impedimento. Si lo prefieres, en lugar de utilizar tu modificador al ataque puedes hacer una prueba de Acrobacias o de Atletismo (pero la acción sigue teniendo el rasgo ataque). </p><p><br></p><ul><li><strong>Éxito crítico</strong> Quedas libre y eliminas los estados agarrado, inmovilizado y neutralizado impuestos por el objetivo elegido. A continuación, puedes dar una Zancada de hasta 5 pies (1,5 m) </li><li><strong>Éxito</strong> Quedas libre y eliminas los estados agarrado, inmovilizado y neutralizado impuestos por el objetivo elegido. </li><li><strong>Fallo crítico</strong> No te liberas y no puedes volver a intentar Huir hasta tu siguiente turno.</li></ul>",
+    "reference": "Manual de jugador p.416",
+    "traits": [
+      "ataque"
+    ],
+    "bullets": []
   },
   {
-    title: "Agarrar una saliente",
-    icon: "reaction",
-    subtitle: "Manipular",
-    description: "Intentas agarrar algo para evitar una caída cuando te desplazas fuera de una superficie estable.",
-    reference: "Pathfinder 2e SRD p.471",
-    traits: ["manipular"],
-    bullets: [
-      "Normalmente requiere una tirada de Atletismo.",
-      "Si tienes éxito, detienes tu caída pero puedes quedar colgando."
-    ]
+    "title": "Agarrar una saliente [reaction]",
+    "icon": "palm",
+    "subtitle": "Intentar agarrar algo para detener una caída.",
+    "description": "<p><strong>Desencadenante</strong> Caes de un saliente o asidero o pasas al lado mientras caes. </p><p><strong>Requisitos</strong> No tienes las manos atadas a la espalda ni estás neutralizado de alguna otra forma.</p><p><br></p><p>Cuando caes de un saliente u otro asidero o pasas al lado mientras caes, puedes intentar agarrarte para, potencialmente, detener tu caída. Tienes que tener éxito, o bien en una prueba de Acrobacias, o bien en una salvación de Reflejos (tú eliges), por lo general con la CD de Trepar. Si consigues agarrarte al saliente, después puedes Trepar usando Atletismo.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Te agarras al saliente, tanto si tienes una mano libre como si no, usando por lo general un objeto sostenido adecuado (por ejemplo, clavando un hacha de batalla en el saliente). Sigues sufriendo daño debido a la distancia caída hasta ese momento, pero la tratas como si fuera 30 pies (9 m) más corta. </li><li><strong>Éxito</strong> Si por lo menos tienes una mano libre, te agarras al saliente, deteniendo tu caída. Sigues sufriendo daño debido a la distancia caída hasta ese momento, pero la tratas como si fuera 20 pies (6 m) más corta. Si no tienes ninguna mano libre, sigues cayendo como si hubieras fallado la prueba. </li><li><strong>Fallo crítico</strong> Continúas cayendo y, si has caído 20 pies (6 m) o más antes de usar esta reacción, sufres 10 daño contundente debido al impacto por cada 20 pies (6 m) caídos</li></ul>",
+    "reference": "Manual de jugador p.419",
+    "traits": [
+      "manipular"
+    ],
+    "bullets": []
   },
   {
-    title: "Saltar",
-    icon: "single_action",
-    subtitle: "Movimiento",
-    description: "Realizas un salto horizontal o vertical según tus capacidades y velocidad.",
-    reference: "Pathfinder 2e SRD p.471",
-    traits: ["movimiento"],
-    bullets: [
-      "Horizontal: 10 pies (15 si tu velocidad es 30 pies o más).",
-      "Vertical: 3 pies hacia arriba y 5 pies hacia adelante."
-    ]
+    "title": "Saltar [one-action]",
+    "icon": "wingfoot",
+    "subtitle": "Salta",
+    "description": "<p>&nbsp;Das un salto corto horizontal o vertical. Saltar una distancia mayor requiere el uso de la habilidad Atletismo para un Salto de altura o un Salto de longitud (pág. 236). </p><p><br></p><ul><li><strong>Horizontal</strong> Saltas hasta 10 pies (3 m) en horizontal si tu Velocidad es por lo menos 15 pies (4,5 m) o hasta 15 pies (4,5 m) en horizontal si tu Velocidad es por lo menos 30 pies (9 m). Aterrizas en el espacio en el que acaba tu Salto, lo que significa que típicamente puedes salvar una brecha de 5 pies (1,5 m) o de 10 pies (3 m) si tu Velocidad es 30 pies (9 m) o más. No puedes dar un Salto en horizontal si tu Velocidad es menor de 15 pies (4,5 m). </li><li><strong>Vertical</strong> Saltas hasta 3 pies (90 cm) verticalmente y 5 pies (1,5 m) horizontalmente hasta una superficie elevada.</li></ul>",
+    "reference": "Manual de jugador p.418",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
   },
   {
-    title: "Señalar",
-    icon: "single_action",
-    subtitle: "Manipular",
-    description: "Revelas la ubicación de una criatura no detectada para que tus aliados puedan enfocarla.",
-    reference: "Pathfinder 2e SRD p.472",
-    traits: ["manipular"],
-    bullets: [
-      "Señalar una criatura elimina su condición No detectado para los aliados.",
-      "Debes tener una línea de efecto clara hacia el objetivo."
-    ]
+    "title": "Señalar [one-action]",
+    "icon": "two-shadows",
+    "subtitle": "Revelar una criatura no detectada.",
+    "description": "<p><strong>Requisitos</strong> Una criatura no ha sido detectada por uno o más de tus aliados, pero sí por ti.</p><p><br></p><p>Indicas a uno o más de tus aliados dónde está una criatura a la que puedes ver, haciendo gestos en una dirección y describiendo verbal mente la distancia. Dicha criatura pasa a estar escondida de tus alia dos, en lugar de no detectada (pág. 434). Esto sólo funciona para los aliados que pueden verte y están en una posición en la que podrían potencialmente detectar al objetivo. Si tus aliados no pueden oírte o entenderte, tienen que tener éxito en una prueba de Percepción contra la CD de Sigilo de la criatura o te entienden mal y creen que el objetivo está en un lugar diferente.</p>",
+    "reference": "Manual de jugador p.419",
+    "traits": [
+      "manipular"
+    ],
+    "bullets": []
   },
   {
-    title: "Buscar",
-    icon: "single_action",
-    subtitle: "Percepción",
-    description: "Examinar un área o criatura para encontrar objetivos ocultos, trampas, pistas o cualquier detalle no evidente.",
-    reference: "Pathfinder 2e SRD p.470",
-    traits: ["concentración", "secreto"],
-    bullets: [
-      "Tirada de Percepción contra la CD de Sigilo u ocultación.",
-      "Alcance habitual: cono de 30 pies o esfera de 15 pies."
-    ]
+    "title": "Buscar [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "Examinar un aérea",
+    "description": "<p>Puedes examinar un área en busca de signos de criaturas o de objetos, posiblemente incluyendo puertas secretas o peligros. Elige el área a examinar. El DJ determina qué área puedes examinar con una acción de Buscar; casi siempre de 30 pies (9 m) o menos en cualquier&nbsp;dimensión. El DJ podría imponer un penalizador si te vas muy lejos o ajustar el número de acciones requeridas para Buscar en un área particularmente atestada. </p><p><br></p><p>El DJ hace una sola prueba secreta de Percepción en tu nombre y compara el resultado con la CD de Sigilo de cualquier criatura no detectada o escondida en el área, o la CD para detectar cada objeto en el área (ya sea determinado por el DJ o por alguien que ha Ocultado el objeto). Una criatura que detectas podría permanecer escondida, en lugar de quedar observada, si estás utilizando un sentido impreciso o si algún efecto (como invisibilidad) evita que el sujeto sea observado. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Cualquier criatura no detectada o escondida contra la que obtienes un éxito crítico queda observada por ti. Averiguas la ubicación de los objetos contra los que obtienes un éxito crítico que hay dentro del área. </li><li><strong>Éxito </strong>Cualquier criatura no detectada contra la que tienes éxito que da escondida de ti en lugar de no detectada, y cualquier criatura escondida contra la que tienes éxito queda observada por ti. Ave riguas la ubicación de cualquier objeto u obtienes una pista sobre su paradero, a determinar por el DJ.</li></ul>",
+    "reference": "Manual de jugador p.416",
+    "traits": [
+      "concentración",
+      "secreto"
+    ],
+    "bullets": []
   },
   {
-    title: "Averiguar intenciones",
-    icon: "single_action",
-    subtitle: "Percepción social",
-    description: "Intentas discernir si el comportamiento de una criatura es inusual, engañoso o guiado por una emoción intensa.",
-    reference: "Pathfinder 2e SRD p.469",
-    traits: ["concentración", "secreto"],
-    bullets: [
-      "Se realiza contra la CD de Engaño o diplomacia de la criatura.",
-      "Puede revelar motivaciones, nerviosismo o mentiras."
-    ]
+    "title": "Averiguar intenciones [one-action]",
+    "icon": "semi-closed-eye",
+    "subtitle": "Ver si una criatura está mintiendo.",
+    "description": "<p>Tratas de determinar si el comportamiento de una criatura es anormal. Elige una criatura y evalúa si su lenguaje corporal es extraño, si pre senta síntomas de nerviosismo y otros indicadores de que podría estar tratando de engañar a alguien. El DJ hace una sola prueba secreta de Percepción en tu nombre y compara el resultado con la CD de Engaño de la criatura, la CD de un conjuro que afecta al estado mental de la misma u otra CD apropiada, determinada por él. Normalmente, no puedes intentar Averiguar intenciones de la misma criatura de nuevo hasta que la situación cambia significativamente. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Determinas las verdaderas intenciones de la criatura y obtienes una idea clara de cualquier magia mental que la afecta. </li><li><strong>Éxito </strong>Puedes decir si la criatura se comporta normalmente o no, pero no conoces sus intenciones exactas ni qué magia puede estar afectándola. </li><li><strong>Fallo </strong>Detectas lo que una criatura engañosa quiere que creas. Si no está siendo engañosa, crees que se comporta con normalidad. </li><li><strong>Fallo crítico</strong> Obtienes una percepción falsa de las intenciones de la criatura.</li></ul>",
+    "reference": "Manual de jugador p.416",
+    "traits": [
+      "concentración",
+      "secreto"
+    ],
+    "bullets": []
   },
   {
-    title: "Ponerse de pie",
-    icon: "single_action",
-    subtitle: "Movimiento",
-    description: "Recuperas la posición erguida desde el estado Prono.",
-    reference: "Pathfinder 2e SRD p.471",
-    traits: ["movimiento"],
-    bullets: [
-      "Puede provocar reacciones de enemigos si estás amenazado.",
-      "Devuelve tu velocidad normal."
-    ]
+    "title": "Ponerse de pie [one-action]",
+    "icon": "strong",
+    "subtitle": "Te levantas del suelo.",
+    "description": "<p>&nbsp;Te pones de pie estando tumbado.&nbsp;</p>",
+    "reference": "Manual de jugador p.417",
+    "traits": [
+      "movimiento"
+    ],
+    "bullets": []
   }
 ];
