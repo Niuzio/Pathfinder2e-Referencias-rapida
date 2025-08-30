@@ -128,6 +128,54 @@ data_condition = [
     "bullets": []
   },
   {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
+    "title": "Escondido",
+    "icon": "hidden",
+    "subtitle": "Estas escondido",
+    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
+    "reference": "Reglas básicas – Estado Escondido",
+    "bullets": []
+  },
+  {
     "title": "Inadvertido",
     "icon": "hidden",
     "subtitle": "Estas inadvertido",
