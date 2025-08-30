@@ -1,17 +1,11 @@
-data_optional = [
+ data_optional = [
   {
-    title: "Puntos de Héroe[one-action]",
-    icon: "star",
-    subtitle: "Recursos heroicos[one-action]",
-    description: "Tus logros heroicos te garantizan buena fortuna. Puedes tener un máximo de 3 puntos de héroe.[one-action] [two-actions] [three-actions] [reaction]",
-    reference: "Pantalla del Director – Puntos de Héroe",
-    tags       : [],
-    bullets: [
-      "Ganas 1 punto de héroe al inicio de la sesión.",
-      "Ganas 1 punto de héroe por hora de juego o al realizar un acto heroico.",
-      "Gastas 1 punto de héroe para [one-action] repetir una tirada y usar el segundo resultado (efecto de Fortuna).",
-      "Gastas 3 puntos de héroe para eliminar la condición de moribundo y estabilizarte con 0 PS (Recuperación Heroica).",
-      "Pierdes todos tus puntos de héroe al final de la sesión."
-    ]
+    "title": "Puntos de Héroe",
+    "icon": "embrassed-energy",
+    "subtitle": "Recursos heroicos",
+    "description": "<p>&nbsp;El DJ es quien concede los Puntos de Héroe. Por lo general, cada PJ obtiene 1 Punto de Héroe al inicio de la sesión y después puede obtener más llevando a cabo gestas heroicas; algo altruista, arrojado o más allá de las expectativas normales. Puedes tener un máximo de 3 Puntos de Héroe a la vez y pierdes cualquier punto restante al final de una sesión.</p><p><br></p><p>Puedes gastar tus Puntos de Héroe de una de dos formas. Nin guna de ellas se considera una acción y puedes gastarlos incluso si no eres capaz de actuar. Puedes gastar 1 Punto de Héroe por cuenta de tu familiar o de tu compañero animal.</p><p><br></p><ul><li><strong>Gastas 1 Punto de Héroe para repetir una prueba.</strong> Tienes que usar el nuevo resultado. Éste es un efecto de fortuna (lo que significa que no puedes usar más que 1 Punto de Héroe en una prueba). </li><li><strong>Gastas todos tus Puntos de Héroe (mínimo 1) para evitar la muerte.</strong> Puedes hacer esto cuando tu estado de moribundo aumentaría. Pierdes por completo el estado moribundo y te estabilizas a 0 Puntos de Golpe. No sufres el estado herido ni incrementas su valor debido a perder de esta forma el estado moribundo pero, si ya lo tenías, no lo pierdes ni disminuye su valor.</li></ul><p><br></p><p><strong>Cómo describir las gestas heroicas</strong></p><p><br></p><p>Como quiera que gastar Puntos de Héroe refleja gestas heroicas o tareas que sobrepasan las expectativas normales, cuando gastes 1 Punto de Héroe deberías describir a los demás jugadores la gesta o la tarea que tu PJ consigue con ello.</p><p><br></p><p>La gesta de tu jugador podría invocar una lección aprendida en una aventura pasada, podría verse espoleada por la determinación de salvar a alguien o podría depender de un objeto que acabó en su persona debido a un éxito anterior. Si no quieres describir la gesta o no tienes ninguna idea interesante acerca de cómo hacerlo, pide al DJ que se invente algo por ti, lo que también puede ser un proceso colaborativo. El DJ te podría recordar algún suceso largo tiempo olvidado de la campaña y todo lo que tienes que hacer es encajar cómo dicho suceso que te viene a la mente en el momento justo, motivándote para superar tus límites.</p>",
+    "reference": "Pantalla del Director – Puntos de Héroe",
+    "tags": [],
+    "bullets": []
   }
 ];
