@@ -1,7 +1,4 @@
 data_optional = [
-  /* …tus otras reglas… */,
-  // --------------------------------------------------
-  // REGLAS DE PUNTOS DE HÉROE (añadido)
   {
     title: "Puntos de Héroe",
     icon: "star",
