@@ -1,4 +1,4 @@
-data_condition = [
+ data_condition = [
   {
     "title": "Acelerado",
     "icon": "wingfoot",
@@ -128,51 +128,59 @@ data_condition = [
     "bullets": []
   },
   {
-    "title": "Escondido",
-    "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "title": "Ensordecido",
+    "icon": "elf-ear",
+    "subtitle": "No puedes oir",
+    "description": "<p>No puedes oír. Fallas críticamente de forma automática las pruebas de Percepción que requieren la capacidad de oír. Sufres un penalizador -2 por estatus a las pruebas de Percepción para la iniciativa y para toda prueba que implica sonido pero que también se basa en otros sentidos. Si llevas a cabo una acción con el rasgo auditivo, debes tener éxito en una prueba plana CD 5 o la acción se pierde; haz la prueba una vez invertida la acción, pero antes de aplicar ningún efecto. Eres inmune a los efectos auditivos.</p>",
+    "reference": "Reglas básicas – Estado Ensordecido",
     "bullets": []
   },
   {
-    "title": "Escondido",
-    "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "title": "Fascinado",
+    "icon": "smitten",
+    "subtitle": "Estas Fascinado",
+    "description": "<p>Te ves obligado a centrar tu atención en algo, lo que te distrae de todo lo demás que sucede a tu alrededor. Sufres un penalizador -2 por estatus a la Percepción y a las pruebas de habilidad, y no puedes utilizar acciones con el rasgo concentrar si ellas mismas o las consecuencias que pretenden no están relacionadas con el sujeto de tu fascinación (a determinar por el DJ). Por ejemplo, podrías ser capaz de Buscar y Recordar conocimiento acerca del sujeto, pero probablemente no podrías lanzar un conjuro designando como objetivo a una criatura diferente. Este estado se acaba si una criatura emprende acciones hostiles contra ti o cualquiera de tus aliados.</p>",
+    "reference": "Reglas básicas – Estado Fascinado",
     "bullets": []
   },
   {
-    "title": "Escondido",
-    "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "title": "Fatigado",
+    "icon": "crawl",
+    "subtitle": "Estas fatigado",
+    "description": "<p>Estas cansado y no puedes reunir mucha energía. Sufres un penalizador -1 por estatus a la CA y a las tiradas de salvación. Mientras exploras, no puedes elegir una actividad de exploración.</p><p><br></p><p>Te recuperas de la fatiga después de una noche completa de descanso.</p>",
+    "reference": "Reglas básicas – Estado Fatigado",
     "bullets": []
   },
   {
-    "title": "Escondido",
-    "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "title": "Herido",
+    "icon": "arm-sling",
+    "subtitle": "Estas herido",
+    "description": "<p>Has sufrido una herida grave. Si pierdes el estado moribundo y no tienes ya el de herido, sufres herido 1. Si ya tienes el estado herido cuando pierdes el estado de moribundo, el valor de tu estado de herido se incrementa en 1. Si sufres el estado moribundo cuando estás herido, incrementa el valor de tu estado de moribundo en tu valor de herido.</p><p><br></p><p>El estado herido acaba si alguien te restablece con éxito Puntos de Golpe mediante Tratar heridas o bien si te restablecen a tus Puntos de Golpe completos y descansas durante 10 minutos.</p>",
+    "reference": "Reglas básicas – Estado Herido",
     "bullets": []
   },
   {
-    "title": "Escondido",
+    "title": "Hostil",
     "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "subtitle": "Hostil a alguien en particular",
+    "description": "<p>Este estado refleja la disposición de una criatura hacia un personaje en particular, y sólo efectos sobrenaturales (como un conjuro) pueden imponerlo a un PJ. Una criatura hostil a un personaje busca activamente dañarle. No necesariamente le atacará, pero no aceptará Petición alguna del personaje.</p>",
+    "reference": "Reglas básicas – Estado Hostil",
     "bullets": []
   },
   {
-    "title": "Escondido",
+    "title": "Huyendo",
     "icon": "hidden",
-    "subtitle": "Estas escondido",
-    "description": "<p>Mientras estás escondido de una criatura, dicha criatura conoce el espacio en el que estás, pero no puede determinar con precisión dónde. Lo normal es que te escondas utilizando Sigilo o Esconderse. Cuando estás Buscando a una criatura utilizando tan sólo sentidos imprecisos, está escondida en lugar de observada. La criatura de la que estás escondido está desprevenida ante ti y debe tener éxito en una prueba plana CD 11 para designarte como objetivo de un ataque, conjuro u otro efecto, o no consigue afectarte. Los efectos de área no están sujetos a esta prueba plana.</p><p><br></p><p>Una criatura podría ser capaz de utilizar la acción Buscar para intentar observarte, tal y como se describe en la pág. 470.</p>",
-    "reference": "Reglas básicas – Estado Escondido",
+    "subtitle": "Estas huyendo",
+    "description": "<p>Te ves obligado a huir debido al miedo o alguna otra compulsión. En tu turno, debes invertir todas tus acciones intentando huir del origen del estado de la forma más expeditiva posible (como utilizar acciones de movimiento para huir, o abrir puertas que te impiden la huida). El origen suele ser el efecto o lanzador que ha impuesto el estado, aunque algunos efectos podrían definir alguna otra cosa como origen. No puedes Retrasar ni Preparar mientras huyes.</p>",
+    "reference": "Reglas básicas – Estado Huyendo",
+    "bullets": []
+  },
+  {
+    "title": "Impedido",
+    "icon": "despair",
+    "subtitle": "Estas Impedido",
+    "description": "<p>Llevas más peso del que puedes acarrear. Mientras estás impedido, estás torpe 1 y sufres un penalizador -10 pies (-3 m) a todas tus velocidades. Igual que con todos los penalizadores a tu Velocidad, este estado no puede reducirla por debajo de 5 pies (1,5 m).</p>",
+    "reference": "Reglas básicas – Estado Impedido",
     "bullets": []
   },
   {
