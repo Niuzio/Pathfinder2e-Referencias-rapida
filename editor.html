@@ -23,6 +23,9 @@ button.danger { background:#c62828; color:white; }
 <header>
   <input type="file" id="fileInput" accept=".js" multiple>
   <button id="exportBtn" class="primary">Exportar</button>
+  <select v-if="datasets.length > 1" v-model="selectedDataset" @change="loadDataset" style="max-width:260px;">
+  <option v-for="d in datasets" :value="d.name">{{ d.name }}</option>
+</select>
   <span id="status"></span>
 </header>
 <main id="app">
@@ -119,9 +122,25 @@ async function toAssignmentJs ( varName , items ) {
     console.error("Error al formatear con Prettier:", err);
     return raw;
   }
+  // Nuevo parser: detecta múltiples arrays en un mismo archivo
+function parseJsArrayAssignmentsMulti(code) {
+  const ast = acorn.parse(code, { ecmaVersion: 2020 });
+  const results = [];
+  for (const n of ast.body) {
+    if (n.type === 'ExpressionStatement'
+        && n.expression.type === 'AssignmentExpression'
+        && n.expression.right.type === 'ArrayExpression') {
+      results.push({
+        varName: n.expression.left.name,
+        items: astToJs(n.expression.right)
+      });
+    }
+  }
+  if (!results.length) throw new Error('No se encontró ningún array asignado');
+  return results;
 }
 const app = createApp({
-  data:()=>({ items:[], varName:'', current:null, quill:null }),
+  data:()=>({ items:[], varName:'', current:null, quill:null,datasets : [ ],selectedDataset : }),
   methods:{
     selectItem(i){
       this.current = this.items[i];
@@ -179,7 +198,15 @@ const app = createApp({
       if (!this.current) return;
       if (!this.current.tags) this.current.tags = [];
       this.current.tags.push({ name: "", info: "" });
-    }
+    },
+loadDataset(){
+  const ds = this.datasets.find(d => d.name === this.selectedDataset);
+  if (!ds) return;
+  this.varName = ds.name;
+  this.items = ds.items;
+  this.current = null;
+  if (this.quill) this.quill.root.innerHTML = '';
+}
   }
 });
 const vm = app.mount('#app');
@@ -188,15 +215,17 @@ document.getElementById('fileInput').addEventListener('change', async e=>{
   if (!file) return;
   vm.fileName = file.name; // guardar nombre original para exportar
   const text = await file.text();
-  try {
-    const { varName, items } = parseJsArrayAssignment(text);
-    vm.varName = varName;
-    vm.items = items;
-    vm.current = null;
-    document.getElementById('status').textContent = 'Archivo cargado';
-  } catch(err) {
-    alert(err.message);
-  }
+try {
+  const all = parseJsArrayAssignmentsMulti(text);
+  vm.datasets = all.map(d => ({ name: d.varName, items: d.items }));
+  vm.selectedDataset = vm.datasets[0].name; // el primero por defecto
+  vm.loadDataset();
+  document.getElementById('status').textContent =
+    'Archivo cargado: ' + file.name +
+    (vm.datasets.length > 1 ? ' (' + vm.datasets.length + ' datasets)' : '');
+} catch (err) {
+  alert(err.message);
+}
 });
 document.getElementById('exportBtn').addEventListener('click', async () => {
   try {
