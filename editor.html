@@ -20,17 +20,15 @@ button.danger { background:#c62828; color:white; }
 </style>
 </head>
 <body>
-<header>
-  <input type="file" id="fileInput" accept=".js" multiple>
-  <button id="exportBtn" class="primary">Exportar</button>
-<select v-if="datasets.length > 1"
-        v-model="selectedDataset"
-        @change="loadDataset"
-        style="max-width:260px;">
-  <option v-for="d in datasets" :value="d.name">{{ d.name }}</option>
-</select>
-  <span id="status"></span>
-</header>
+<div id="app">
+  <header>
+    <input type="file" id="fileInput" accept=".js" multiple>
+    <button id="exportBtn" class="primary">Exportar</button>
+    <select v-if="datasets.length > 1" v-model="selectedDataset" @change="loadDataset" style="max-width:260px;">
+      <option v-for="d in datasets" :value="d.name">{{ d.name }}</option>
+    </select>
+    <span id="status"></span>
+  </header>
 <main id="app">
   <aside>
     <div v-for="(item, idx) in items" :key="idx" class="card" @click="selectItem(idx)" style="cursor:pointer">
