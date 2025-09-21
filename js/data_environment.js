@@ -56,7 +56,6 @@ data_environment_light = [
       "Percibe criaturas e ilusiones de forma auténtica.",
       "No es afectada por invisibilidad ni ilusiones."
         ]
-    }
 ];
 
 data_environment_vision = [
@@ -81,7 +80,6 @@ data_environment_vision = [
       "Detecta criaturas u objetos en contacto con la superficie.",
       "No revela detalles finos ni posición exacta."
         ]
-    }
 ];
 
 data_environment_cover = [
@@ -138,5 +136,4 @@ data_environment_cover = [
       "Cada 5 pies de movimiento requiere 1 pie adicional de movimiento.",
       "No puedes correr ni saltar en terreno difícil."
     ]
-  }
 ];
