@@ -125,7 +125,7 @@ const app = createApp({
   methods:{
     selectItem(i){
       this.current = this.items[i];
-      if (!this.current.tags) this.current.tags = [];  // <- añade esto
+      if (!this.current.tags) this.current.tags = [];
       if (!this.current.header) {
         this.$nextTick(()=>{
           if (!this.quill) {
@@ -146,8 +146,8 @@ const app = createApp({
         subtitle: "",
         reference: "",
         description: "",
-        bullets: []
-        tags: []   // <- añadido
+        bullets: [],
+    tags: []   // <- añadido
       };
       this.items.push(blank);
       this.selectItem(this.items.length - 1);
@@ -174,12 +174,11 @@ const app = createApp({
       const moved = this.items.splice(idx, 1)[0];
       this.items.splice(newIdx, 0, moved);
       this.selectItem(newIdx);
-        },
-
-    addTag ( ) {
-      if ( ! this . current ) return ;
-      if ( ! this . current . tags ) this . current . tags = [ ] ;
-      this . current . tags . push ( { name : "" , info : "" } ) ;
+    },
+        addTag(){
+      if (!this.current) return;
+      if (!this.current.tags) this.current.tags = [];
+      this.current.tags.push({ name: "", info: "" });
     }
   }
 });
