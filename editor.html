@@ -61,6 +61,13 @@ button.danger { background:#c62828; color:white; }
   <button @click.prevent="moveCurrent(1)">Mover ↓</button>
   <button class="danger" @click.prevent="deleteCurrent">Eliminar</button>
 </div>
+<h3>Tags</h3>
+<div v-for="(tag, tIdx) in (current.tags || [])" :key="tIdx" style="margin-bottom:6px;">
+  <input v-model="tag.name" placeholder="Nombre del tag" style="width:30%; margin-right:4px;">
+  <input v-model="tag.info" placeholder="Descripción del tag" style="width:65%;">
+  <button class="danger" @click.prevent="current.tags.splice(tIdx,1)">Eliminar</button>
+</div>
+<button @click.prevent="addTag">Añadir tag</button>
     </div>
   </section>
 </main>
@@ -118,6 +125,7 @@ const app = createApp({
   methods:{
     selectItem(i){
       this.current = this.items[i];
+      if (!this.current.tags) this.current.tags = [];  // <- añade esto
       if (!this.current.header) {
         this.$nextTick(()=>{
           if (!this.quill) {
@@ -139,6 +147,7 @@ const app = createApp({
         reference: "",
         description: "",
         bullets: []
+        tags: []   // <- añadido
       };
       this.items.push(blank);
       this.selectItem(this.items.length - 1);
@@ -165,6 +174,12 @@ const app = createApp({
       const moved = this.items.splice(idx, 1)[0];
       this.items.splice(newIdx, 0, moved);
       this.selectItem(newIdx);
+        },
+
+    addTag ( ) {
+      if ( ! this . current ) return ;
+      if ( ! this . current . tags ) this . current . tags = [ ] ;
+      this . current . tags . push ( { name : "" , info : "" } ) ;
     }
   }
 });
