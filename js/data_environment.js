@@ -32,7 +32,7 @@ data_environment_obscurance = [
       "Antes de atacar, la criatura debe superar una prueba plana CD 10 para determinar tu posición."
         ]
     }
-]
+];
 
 data_environment_light = [
     {
@@ -57,7 +57,7 @@ data_environment_light = [
       "No es afectada por invisibilidad ni ilusiones."
         ]
     }
-]
+];
 
 data_environment_vision = [
     {
@@ -82,7 +82,7 @@ data_environment_vision = [
       "No revela detalles finos ni posición exacta."
         ]
     }
-]
+];
 
 data_environment_cover = [
     {
