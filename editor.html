@@ -54,12 +54,6 @@ button.danger { background:#c62828; color:white; }
         <button class="danger" @click.prevent="current.bullets.splice(bi,1)">X</button>
       </div>
       <button @click.prevent="current.bullets.push('')">Añadir bullet</button>
-      <!-- Botonera de gestión de acciones -->
-<div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-  <button class="primary" @click.prevent="addItem">Añadir acción</button>
-  <button @click.prevent="moveCurrent(-1)">Mover ↑</button>
-  <button @click.prevent="moveCurrent(1)">Mover ↓</button>
-  <button class="danger" @click.prevent="deleteCurrent">Eliminar</button>
     </div>
   </section>
 </main>
@@ -128,40 +122,8 @@ const app = createApp({
           this.quill.root.innerHTML = this.current.description || '';
         });
       }
-      },
-
-    addItem(){
-      const blank = {
-        title: "Nueva acción",
-        icon: "",
-        subtitle: "",
-        reference: "",
-        description: "",
-        bullets: []
-      };
-      this.items.push(blank);
-      this.selectItem(this.items.length - 1);
-    },
-
-    deleteCurrent(){
-      if (!this.current) return;
-      const idx = this.items.indexOf(this.current);
-      if (idx >= 0) {
-        this.items.splice(idx, 1);
-        this.current = this.items[Math.max(0, idx - 1)] || null;
-      }
-    },
-
-    moveCurrent(dir){
-      if (!this.current) return;
-      const idx = this.items.indexOf(this.current);
-      const newIdx = idx + dir;
-      if (newIdx < 0 || newIdx >= this.items.length) return;
-      const tmp = this.items[idx];
-      this.items[idx] = this.items[newIdx];
-      this.items[newIdx] = tmp;
-      this.selectItem(newIdx);
     }
+  }
 });
 const vm = app.mount('#app');
 document.getElementById('fileInput').addEventListener('change', async e=>{
