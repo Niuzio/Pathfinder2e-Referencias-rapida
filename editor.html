@@ -110,19 +110,16 @@ function parseJsArrayAssignment(code) {
   }
   throw new Error('No se encontró array asignado');
 }
-async function toAssignmentJs ( varName , items ) {
-  const raw = ` ${ varName } = ${ JSON.stringify ( items , null , 2 ) } ;` ;
+function toAssignmentJs(varName, items) {
+  const raw = `${varName} = ${JSON.stringify(items, null, 2)};`;
   try {
-    const formatted = await prettier.format(raw, {
-      parser: 'babel',
-      plugins: prettierPlugins // esta variable la inyectan los <script> que añadiste arriba
-    });
-    return formatted;
-  } catch (err) {
-    console.error("Error al formatear con Prettier:", err);
+    return prettier.format(raw, { parser:'babel', plugins:[prettierPlugins.babel] });
+  } catch {
     return raw;
   }
-  // Nuevo parser: detecta múltiples arrays en un mismo archivo
+}
+
+// Nuevo parser: detecta múltiples arrays en un mismo archivo
 function parseJsArrayAssignmentsMulti(code) {
   const ast = acorn.parse(code, { ecmaVersion: 2020 });
   const results = [];
@@ -140,7 +137,14 @@ function parseJsArrayAssignmentsMulti(code) {
   return results;
 }
 const app = createApp({
-  data:()=>({ items:[], varName:'', current:null, quill:null,datasets : [ ],selectedDataset : }),
+data:()=>({
+  items: [],
+  varName: '',
+  current: null,
+  quill: null,
+  datasets: [],
+  selectedDataset: ''
+}),
   methods:{
     selectItem(i){
       this.current = this.items[i];
