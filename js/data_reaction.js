@@ -261,163 +261,210 @@ data_reaction = [
     "header": "Atletismo (Fuerza)"
   },
   {
-    "title": "Presa",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Agarras y sujetas a una criatura usando tu fuerza.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD de la criatura (Fortaleza)",
-      "Éxito: la criatura queda agarrada; Fracaso: no la sujetas",
-      "Rasgos: ataque"
+    "title": "Abrir a la fuerza [one-action]",
+    "icon": "revolt",
+    "subtitle": "No entrenado",
+    "description": "<p>Utilizando tu cuerpo, una palanca o alguna otra herramienta, tratas de abrir por la fuerza una puerta, ventana, recipiente o portón. Con un resultado lo suficientemente alto, puedes incluso atravesar paredes. Sin una palanqueta, la prueba de Atletismo para abrir por la Fuerza sufre un penalizador -2 por objeto. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Abres la puerta, ventana, recipiente o portón, evitando dañarlo en el proceso. </li><li><strong>Éxito </strong>Abres por la fuerza la puerta, ventana, recipiente o portón, que pasa al estado roto. Si el objeto es especialmente recio, el DJ podría hacer que sufriera daño, pero no quedara roto. </li><li><strong>Fallo crítico</strong> Tu intento atasca la puerta, ventana, recipiente o portón, imponiendo un penalizador -2 por circunstancia a los futuros intentos de Abrirlo por la fuerza. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Abrir por la fuerza</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> tela, vidrio fino Entrenado hielo, vidrio grueso </li><li><strong>Experto </strong>puerta de madera endeble, rastrillo de madera </li><li><strong>Maestro </strong>puerta de madera recia, rastrillo de hierro, barra de metal </li><li><strong>Legendario </strong>puerta de piedra o de hierro</li></ul>",
+    "reference": "Manual de jugador p.235",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
-    "title": "Salto de altura",
-    "icon": "two_actions",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Saltas verticalmente para superar un obstáculo.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 2 acciones",
-      "Tirada: Atletismo contra la CD definida por el obstáculo",
-      "Éxito: saltas la altura completa; Fracaso: saltas la mitad",
-      "Rasgos: movimiento"
+    "title": "Derribar [one-action]",
+    "icon": "falling",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes por lo menos una mano libre. El objetivo no puede ser más de una categoría de tamaño mayor que tú. </p><p><br></p><p>Tratas de tirar al suelo a una criatura. Haz una prueba de Atletismo&nbsp;contra la CD de Reflejos del objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> El objetivo cae al suelo, queda tumbado y sufre 1d6 daño contundente. </li><li><strong>Éxito </strong>El objetivo cae y queda tumbado. </li><li><strong>Fallo crítico</strong> Pierdes el equilibrio, caes y acabas tumbado.</li></ul>",
+    "reference": "Manual de jugador p.235",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
-    "title": "Salto de longitud",
-    "icon": "two_actions",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Saltas horizontalmente para atravesar distancias.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 2 acciones",
-      "Tirada: Atletismo contra la CD definida por el obstáculo",
-      "Éxito: cubres la distancia completa; Fracaso: cubres la mitad",
-      "Rasgos: movimiento"
+    "title": "Empujar  [one-action]",
+    "icon": "palm",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes por lo menos una mano libre. El objetivo no puede ser más de una categoría de tamaño mayor que tú. </p><p><br></p><p>Apartas de ti a una criatura de un empujón. Haz una prueba de Atletismo contra la CD de Fortaleza de tu objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Apartas de ti a tu objetivo hasta 10 pies (3 m). Después puedes dar una Zancada, pero debes mover la misma distancia y en la misma dirección. </li><li><strong>Éxito </strong>Apartas de ti a tu objetivo hasta 5 pies (1,5 m). Después puedes dar una Zancada, pero debes mover la misma distancia y en la mis ma dirección. </li><li><strong>Fallo crítico</strong> Pierdes el equilibrio, caes y acabas tumbado.</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
-    "title": "Trepar",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Escalas una superficie vertical o inclinada.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD del terreno",
-      "Éxito: asciendes tu velocidad; Fracaso: asciendes la mitad o caes",
-      "Rasgos: movimiento"
+    "title": "Nadar [one-action]",
+    "icon": "water-splash",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Haces una prueba de Atletismo para moverte una distancia máxima de 10 pies (3 m) a través del agua. El DJ es quien determina la CD, basada en la turbulencia o el peligro de las aguas; en la mayoría de casos de aguas en calma, obtienes un éxito crítico automático. Si tu Velocidad terrestre es 40 pies (12 m) o mayor, incrementa la distancia máxima posible en 5 pies (1,5 m) por cada 20 pies (6 m) de Velocidad por encima de 20 pies (6 m). </p><p>Si acabas tu turno en el agua y no has conseguido llevar a cabo una acción de Nadar dicho turno, te hundes 10 pies (3 m) o te arrastra la corriente, a discreción del DJ. Esto no aplica si la última acción de tu turno fue entrar en el agua. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Te mueves atravesando el agua, incrementando en 5 pies (1,5 m) la distancia máxima.&nbsp;</li><li><strong>Éxito </strong>Te mueves atravesando el agua. </li><li><strong>Fallo crítico</strong> No consigues avanzar. Si estas conteniendo el aliento (pág. 437), pierdes 1 asalto de aire. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Nadar</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> lago u otras aguas tranquilas </li><li><strong>Entrenado</strong> agua que fluye, como un río </li><li><strong>Experto </strong>río que fluye rápidamente Maestro mar tormentoso </li><li><strong>Legendario </strong>remolino, catarata</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    "title": "Derribar",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Haces que una criatura pierda el equilibrio y caiga prone.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD de la criatura (Fortaleza)",
-      "Éxito: derribas al objetivo; Fracaso: no lo derribas",
-      "Rasgos: ataque"
+    "title": "Presa [one-action]",
+    "icon": "palm",
+    "subtitle": "No entrenado",
+    "description": "<p><strong>Requisitos </strong>Tienes por lo menos una mano libre y tu objetivo no es más de una categoría de tamaño mayor que tú. </p><p><br></p><p>Pretendes apresar a una criatura u objeto con la mano libre. Haz una prueba de Atletismo contra la CD de Fortaleza del objetivo. Puedes hacer una Presa a un objetivo que ya has agarrado o neutralizado sin tener una mano libre. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Tu objetivo queda neutralizado hasta el final de tu siguiente turno si no te mueves o tu objetivo Huye (pág. 416). </li><li><strong>Éxito </strong>Tu objetivo queda agarrado hasta el final de tu siguiente turno si no te mueves o tu objetivo Huye. </li><li><strong>Fallo </strong>No consigues agarrar a tu objetivo. Si ya tenías a tu objetivo agarrado o neutralizado utilizando una Presa, dichos estados so bre la criatura se acaban. </li><li><strong>Fallo crítico</strong> Si ya tenías al objetivo agarrado o neutralizado, se suelta. Tu objetivo puede, o bien agarrarte, como si hubiera tenido éxito en utilizar contra ti la acción de Presa, o bien obligarte a caer tumbado.</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
-    "title": "Empujar",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Desplazas a una criatura u objeto en una dirección específica.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD de la criatura u objeto",
-      "Éxito: desplazas 1,5 m; Fracaso: no lo mueves",
-      "Rasgos: ataque"
+    "title": "Reposicionar [one-action]",
+    "icon": "palm",
+    "subtitle": "No entrenado",
+    "reference": "Manual de jugador p.236",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes por lo menos una mano libre o estás agarrando o neutralizando al objetivo. El objetivo no puede ser más de una categoría de tamaño mayor que tú. </p><p><br></p><p>Mueves a la fuerza una criatura u objeto. Haz una prueba de Atletismo contra la CD de Fortaleza del objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Mueves la criatura hasta 10 pies (3 m). Debe permanecer dentro de tu alcance durante este movimiento y no puedes hacer que mueva contra un obstáculo o a través del mismo. </li><li><strong>Éxito </strong>Mueves la criatura hasta 5 pies (1,5 m). Debe permanecer dentro de tu alcance durante este movimiento y no puedes hacer que mue va contra un obstáculo o a través del mismo. </li><li><strong>Fallo crítico </strong>El objetivo puede moverte hasta 5 pies (1,5 m) como si te hubiera reposicionado a ti con éxito.</li></ul>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
-    "title": "Abrir a la fuerza",
-    "icon": "two_actions",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Fuerzas una puerta, cofre u otro objeto cerrado.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 2 acciones",
-      "Tirada: Atletismo contra la CD del objeto",
-      "Éxito: lo abres; Fracaso: no lo abres",
-      "Rasgos: ataque"
+    "title": "Salto de altura [two-actions]",
+    "icon": "wingfoot",
+    "subtitle": "No entrenado",
+    "description": "<p>Das una Zancada y después haces una prueba de Atletismo CD 30 para saltar en vertical. Si tu Zancada no es de por lo menos 10 pies (3 m), fallas automáticamente. Esta CD podrá aumentar o disminuir debido a la situación, a discreción del DJ. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Saltas hasta 8 pies (2,4 m) verticalmente y 10 pies (3 m) horizontalmente. </li><li><strong>Éxito </strong>Saltas hasta 5 pies (1,5 m) verticalmente y 5 pies (1,5 m) horizontalmente. </li><li><strong>Fallo </strong>Saltas normalmente. </li><li><strong>Fallo crítico</strong> Caes tumbado en tu espacio</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": []
+  },
+  {
+    "title": "Salto de longitud [two-actions]",
+    "icon": "wingfoot",
+    "subtitle": "No entrenado",
+    "description": "<p>Das una Zancada y después haces una prueba de Atletismo CD 15 para dar un Salto de longitud en la dirección en la que das la Zancada. Si tu Zancada no es de por lo menos 10 pies (3 m), fallas automáticamente la prueba. El DJ puede aumentar o disminuir esta CD dependiendo de la situación. </p><p><br></p><ul><li><strong>Éxito</strong> Saltas hasta una distancia igual al resultado de tu prueba redondeado hacia abajo hasta los 5 pies (1,5 m) más próximos. No puedes saltar más lejos que tu Velocidad terrestre. </li><li><strong>Fallo </strong>Das un salto de longitud normal. </li><li><strong>Fallo crítico</strong> Das un Salto de longitud normal, pero después caes y acabas tumbado.</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": []
+  },
+  {
+    "title": "Trepar [one-action]",
+    "icon": "palm",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes libres las dos manos </p><p><br></p><p>Haces una prueba de Atletismo para moverte una distancia máxima de 5 pies (1,5 m) hacia arriba, hacia abajo o atravesando una pendiente. Mientras trepas estás desprevenido si no tienes Velocidad de trepar. El DJ es quien determina la CD basándose en la naturaleza de la pen diente y en las circunstancias ambientales; podrías obtener éxito críti co automático en una pendiente de inclinación trivial. Si tu Velocidad terrestre es 40 pies (12 m) o mayor, incrementa la distancia máxima en 5 pies (1,5 m) por cada 20 pies (6 m) de Velocidad por encima de 20 pies (6 m). </p><p><br></p><ul><li><strong>Éxito crítico</strong> Te mueves por la pendiente, incrementando en 5 pies (1,5 m) la distancia máxima. </li><li><strong>Éxito </strong>Te mueves por la pendiente. </li><li><strong>Fallo crítico</strong> Te caes. Si empezaste a moverte sobre terreno estable, te caes y quedas tumbado. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Trepar </strong></p><p><br></p><ul><li><strong>No entrenado</strong> escala, fuerte pendiente, árbol de ramas bajas Entrenado jarcias, soga, árbol típico </li><li><strong>Experto </strong>muro con pequeños asideros y puntos de apoyo </li><li><strong>Maestro </strong>techo con asideros y puntos de apoyo, pared de roca </li><li><strong>Legendario </strong>superficie lisa</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    "title": "Nadar",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – No entrenado",
-    "description": "Te desplazas por el agua usando tu fuerza y resistencia.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD definida por la corriente/profundidad",
-      "Éxito: avanzas tu velocidad; Fracaso: avanzas la mitad",
-      "Rasgos: movimiento"
-    ]
-  },
-  {
-    "title": "Desarmar",
-    "icon": "single_action",
-    "subtitle": "Atletismo (Fuerza) – Entrenado",
-    "description": "Quitas un objeto empuñado por una criatura o dispositivo.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Atletismo contra la CD de la criatura o del mecanismo",
-      "Éxito: desarmas; Fracaso: no lo desarmas",
-      "Rasgos: manipular, entrenado"
+    "title": "Desarmar [one-action]",
+    "icon": "snatch",
+    "subtitle": "Entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes por lo menos una mano libre. El objetivo no puede ser más de una categoría de tamaño mayor que tú. </p><p><br></p><p>Tratas de desalojar un objeto del agarre de una criatura. Haz una prueba de Atletismo contra la CD de Reflejos del objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Desalojas el objeto del agarre del objetivo. Cae al suelo en el espacio de éste. </li><li><strong>Éxito </strong>Debilitas el agarre del objetivo sobre el objeto. Intentos posteriores de Desarmar al objetivo de dicho objeto obtienen un bonificador +2 por circunstancia y el objetivo sufre un penalizador -2 por circunstancia a los ataques con el objeto u otras pruebas que requieren un agarre firme del mismo. La criatura puede acabar con el efecto Interactuando para cambiar su agarre sobre el objeto; de lo contrario, dura mientras la criatura empuña el mismo. </li><li><strong>Fallo crítico</strong> Pierdes el equilibrio y quedas desprevenido hasta el inicio de tu siguiente turno.</li></ul>",
+    "reference": "Manual de jugador p.236",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Ataque",
+        "info": "Cuando una criatura trata de dañar a otra, da un Golpe o utiliza otra acción de ataque. La mayor parte de ataques requiere una tirada de ataque y designa como objetivo la Clase de armadura. Modificador a la tirada de ataque cuerpo a cuerpo = modificador por Fue (opcionalmente modificador por Des para un arma sutil) + bonificador por competencia + otros bonificadores + penalizadores; modificador a la tirada de ataque a distancia = modificador por Des + bonificador por competencia + otros bonificadores + penalizadores. 10, 26, 275, 402 a 403ataque de conjuros 403ataque no letal 407ataque sin armas 275Golpe (acción) 416 impactos críticos 401, 407 penalizador por ataque múltiple (-5 a tu segundo ataque, -10 a ataques posteriores) 402 a 403"
+      }
     ]
   },
   {
     "header": "Diplomacia (Carisma)"
   },
   {
-    "title": "Reunir información",
-    "icon": "exploration",
-    "subtitle": "Diplomacia (Carisma) – No entrenado",
-    "description": "Buscas rumores, noticias o datos hablando con otras personas.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción exploratoria",
-      "Tiempo: mínimo 1 hora de interacción",
-      "Tirada: Diplomacia contra la CD fijada por la fuente",
-      "Éxito: obtienes información fiable; Fracaso: no consigues nada",
-      "Rasgos: exploración"
-    ]
-  },
-  {
     "title": "Causar impresión",
-    "icon": "single_action",
-    "subtitle": "Diplomacia (Carisma) – No entrenado",
-    "description": "Generas una impresión inicial favorable o desfavorable en un objetivo.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Diplomacia contra la CD fijada por la situación",
-      "Éxito: impactas tu imagen; Fracaso: no deja huella",
-      "Rasgos: audible, lingüístico"
+    "icon": "smitten",
+    "subtitle": "No entrenado",
+    "description": "<p>Con por lo menos 1 minuto de conversación, durante el cual te dedicas a hacer preliminares carismáticos, adulación y otros actos de buena voluntad, buscas causar una buena impresión en alguien para que esté temporalmente bien dispuesto hacia ti. Al final de la con versación, haz una prueba de Diplomacia contra la CD de Voluntad de un objetivo. En su lugar puedes elegir hasta cinco objetivos, si aceptas un penalizador -2. El DJ podría considerar otros bonificado res o penalizadores basados en la situación. Cualquier impresión que hagas solo será válida para la interacción social actual, a menos que el DJ decida lo contrario. Consulta la barra lateral Cómo cambiar las actitudes para un resumen de los estados de actitud. </p><p><br></p><ul><li><strong>Éxito crítico</strong> La actitud del objetivo hacia ti mejora dos pasos. </li><li><strong>Éxito </strong>La actitud del objetivo hacia ti mejora un paso. </li><li><strong>Fallo crítico</strong> La actitud del objetivo hacia ti empeora un paso.</li></ul>",
+    "reference": "Manual de jugador p.237",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Auditivo",
+        "info": " (rasgo) Las acciones y los efectos auditivos se basan en el soni do. Una acción con el rasgo auditivo sólo se puede llevar a cabo con  éxito si la criatura que la utiliza puede hablar o, de alguna manera,  emitir los sonidos requeridos. Un conjuro o efecto con el rasgo au ditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica  a las partes del efecto basadas en el sonido, a determinar por el DJ.  Es diferente a un efecto sónico, que afectará a objetivos que no pue dan oírlo (como por ejemplo objetivos sordos) mientras el efecto en  sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Linguistico",
+        "info": "(rasgo) Un efecto con este rasgo depende de la comprensión  lingüística. Un efecto lingüístico que designa como objetivo a una  criatura sólo funciona si entiende el idioma que estás utilizando."
+      },
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      }
     ]
   },
   {
-    "title": "Pedir",
-    "icon": "single_action",
-    "subtitle": "Diplomacia (Carisma) – No entrenado",
-    "description": "Solicitas algo de manera cortés o persuasiva a otra criatura.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Diplomacia contra la CD fijada por la situación",
-      "Éxito: consigues lo pedido; Fracaso: te niegan",
-      "Rasgos: audible, lingüístico"
+    "title": "Pedir [one-action]",
+    "icon": "telepathy",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Puedes hacer una petición a una criatura que es amistosa o solícita hacia ti. Deberás formular la petición en unos términos que el objeti vo acepte dada su actitud hacia ti en ese momento. El DJ es quien fija la CD basándose en la dificultad de la petición. Algunas peticiones son desagradables o imposibles, y ni siquiera un PNJ solícito estará de acuerdo con ellas.</p><p><br></p><ul><li><strong>Éxito crítico</strong> El objetivo está de acuerdo sin reservas con tu petición. </li><li><strong>Éxito</strong> El objetivo está de acuerdo con tu petición, pero puede imponer cláusulas o modificaciones a la misma. </li><li><strong>Fallo </strong>El objetivo rechaza tu petición, aunque puede proponer una alternativa menos extrema. </li><li><strong>Fallo crítico</strong> No sólo el objetivo rechaza la petición, sino que su actitud hacia ti empeora en un paso debido a la temeridad de la misma.</li></ul>",
+    "reference": "Manual de jugador p.237",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Auditivo",
+        "info": " (rasgo) Las acciones y los efectos auditivos se basan en el soni do. Una acción con el rasgo auditivo sólo se puede llevar a cabo con  éxito si la criatura que la utiliza puede hablar o, de alguna manera,  emitir los sonidos requeridos. Un conjuro o efecto con el rasgo au ditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica  a las partes del efecto basadas en el sonido, a determinar por el DJ.  Es diferente a un efecto sónico, que afectará a objetivos que no pue dan oírlo (como por ejemplo objetivos sordos) mientras el efecto en  sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Linguistico",
+        "info": "(rasgo) Un efecto con este rasgo depende de la comprensión  lingüística. Un efecto lingüístico que designa como objetivo a una  criatura sólo funciona si entiende el idioma que estás utilizando."
+      },
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      }
+    ]
+  },
+  {
+    "title": "Reunir información",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Rastreas mercados locales, tabernas y lugares de reunión en un intento de averiguar cosas acerca de un individuo o de un tema en particular. El DJ es quien determina la CD de la prueba y la cantidad de tiempo que requiere (típicamente 2 horas, pero a veces más), junto con cualquier beneficio que puedes ser capaz de obtener invirtiendo dinero en sobornos, bebida o regalos. </p><p><br></p><ul><li><strong>Éxito </strong>Reúnes información acerca del individuo o del tema. El DJ es quien determina los detalles. </li><li><strong>Fallo crítico</strong> Reúnes información incorrecta acerca del individuo o del tema. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Reunir información </strong></p><p><br></p><ul><li><strong>No entrenado</strong> tema de actualidad </li><li><strong>Entrenado </strong>rumor común </li><li><strong>Experto </strong>rumor oscuro, secreto mal guardado </li><li><strong>Maestro </strong>información bien guardada o esotérica </li><li><strong>Legendario</strong> información sólo al alcance de unos pocos e increíblemente selectos o sólo de seres extraordinarios</li></ul>",
+    "reference": "Manual de jugador p.237",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
