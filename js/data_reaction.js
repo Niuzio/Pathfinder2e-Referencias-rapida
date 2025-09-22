@@ -471,55 +471,87 @@ data_reaction = [
     "header": "Engaño (Carisma)"
   },
   {
-    "title": "Crear una distracción",
-    "icon": "single_action",
-    "subtitle": "Engaño (Carisma) – No entrenado",
-    "description": "Desvías la atención de un objetivo para ocultarte o evadirlo.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Engaño contra la CD de Percepción del objetivo",
-      "Éxito: el objetivo se distrae; Fracaso: mantiene la atención",
-      "Rasgos: audible, manipular, mental"
+    "title": "Crear una distracción [one-action]",
+    "icon": "surprised",
+    "subtitle": "No entrenado",
+    "description": "<p>Con un gesto, un truquillo o unas palabras engañosas, puedes crear una distracción que atrae hacia otra parte la atención de una criatura. Si utilizas un gesto o un truquillo, la acción obtiene el rasgo manipular. Si utilizas palabras distractoras, obtiene los rasgos auditivo y lingüístico.</p><p>Haz una sola prueba de Engaño y compárala con las CD de Percepción de las criaturas cuya atención tratas de distraer. Tanto si tienes éxito como si no, las criaturas que tratas de distraer obtienen un bonificador +4 por circunstancia a sus CD de Percepción contra tus intentos de Crear una distracción durante 1 minuto. </p><p><br></p><ul><li><strong>Éxito </strong>Quedas escondido ante todas las criaturas cuya CD de Per cepción es menor o igual que tu resultado (el estado escondido te permite Moverte furtivamente para alejarte, tal y como se describe en la pág. 245). Esto dura hasta el final de tu turno o hasta que haces cualquier cosa excepto dar un Paso o utilizar la habilidad Sigilo para Esconderte o Moverte furtivamente (págs. 244 y 245). Si das un Golpe a una criatura, está desprevenida contra dicho ataque y a continuación quedas observado. Si ha ces cualquier otra cosa, quedas observado justo antes de actuar, si el DJ no determina lo contrario. </li><li><strong>Fallo </strong>No distraes la atención de ninguna criatura cuya CD de Percepción es mayor que tu resultado y dichas criaturas son conscientes de que pretendes engañarlas.</li></ul>",
+    "reference": "Manual de jugador p.239",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      }
     ]
   },
   {
     "title": "Imitar",
-    "icon": "single_action",
-    "subtitle": "Engaño (Carisma) – No entrenado",
-    "description": "Reproduces una voz, acento o sonido para engañar.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Engaño contra la CD del sonido objetivo",
-      "Éxito: imitación creíble; Fracaso: suena forzado",
-      "Rasgos: auditivo, lingüístico"
+    "icon": "smitten",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Creas un disfraz para hacerte pasar por alguien o algo que no eres. Preparar un disfraz convincente cuesta 10 minutos y requiere material de disfraz (en la pág. 290), pero un disfraz más sencillo y rápido podría bastar si no tratas de imitar a un individuo específico, a discreción del DJ.</p><p> En la mayoría de casos, las criaturas tienen una probabilidad de detectar tu engaño tan sólo si utilizan la acción de Buscar para hacer pruebas de Percepción contra tu CD de Engaño. Si tratas de Interactuar de forma directa con alguien mientras estás disfrazado, en su lugar el DJ hace una prueba secreta de Engaño por ti contra la CD de Percepción de dicha criatura.</p><p> Si vas disfrazado como un individuo específico, el DJ podría con ceder a las criaturas con las que interaccionas un bonificador por circunstancia basado en lo bien que conocen a la persona imitada, o bien podría hacer una prueba secreta de Engaño incluso si no estás interaccionando directamente con otros. </p><p><br></p><ul><li><strong>Éxito </strong>Engañas a la criatura para que crea que eres la persona de la que vas disfrazado. Podrías tener que hacer una nueva prueba si tu comportamiento cambiara. </li><li><strong>Fallo </strong>La criatura puede ver que no eres quien dices ser. </li><li><strong>Fallo crítico</strong> La criatura puede ver que no eres quien dices ser y te reconoce, si es capaz de saber quién eres sin un disfraz.</li></ul>",
+    "reference": "Manual de jugador p.239",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
     "title": "Mentir",
-    "icon": "single_action",
-    "subtitle": "Engaño (Carisma) – No entrenado",
-    "description": "Proporcionas información falsa con el fin de engañar.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Engaño contra la CD de Voluntad del objetivo",
-      "Éxito: cree tu mentira; Fracaso: detecta el engaño",
-      "Rasgos: audible, lingüístico, mental"
+    "icon": "smitten",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Tratas de engañar a alguien con una falsedad. Hacerlo cuesta por lo menos 1 asalto, o más si la mentira es elaborada. Haz una sola prueba de Engaño y compárala con las CD de Percepción de las criaturas a las que tratas de engañar. El DJ podría concederles un bonificador por circunstancia basado en la situación y en la naturaleza de la men tira que intentas colar. Es mucho más difícil hacer que una criatura se crea una mentira elaborada o altamente improbable que las mentiras más sencillas y más creíbles, y algunas son tan evidentes que es imposible que nadie se las crea. </p><p>A discreción del DJ, si una criatura se cree inicialmente tu mentira, podría hacer una prueba de Percepción más tarde para Averiguar intenciones contra tu CD de Engaño para darse cuenta de que le has mentido. Esto suele pasar si la criatura descubre pruebas suficientes para contrarrestar tus afirmaciones. </p><p><br></p><ul><li><strong>Éxito </strong>El objetivo se cree tu mentira. </li><li><strong>Fallo </strong>El objetivo no se cree tu mentira y obtiene un bonificador +4 por circunstancia contra tus intentos de Mentir mientras dura vuestra conversación. Además es probable que, en el futuro, el objetivo sospeche de ti.</li></ul>",
+    "reference": "Manual de jugador p.239",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Auditivo",
+        "info": " (rasgo) Las acciones y los efectos auditivos se basan en el soni do. Una acción con el rasgo auditivo sólo se puede llevar a cabo con  éxito si la criatura que la utiliza puede hablar o, de alguna manera,  emitir los sonidos requeridos. Un conjuro o efecto con el rasgo au ditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica  a las partes del efecto basadas en el sonido, a determinar por el DJ.  Es diferente a un efecto sónico, que afectará a objetivos que no pue dan oírlo (como por ejemplo objetivos sordos) mientras el efecto en  sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Linguistico",
+        "info": "(rasgo) Un efecto con este rasgo depende de la comprensión  lingüística. Un efecto lingüístico que designa como objetivo a una  criatura sólo funciona si entiende el idioma que estás utilizando."
+      },
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
-    "title": "Fintar",
-    "icon": "single_action",
-    "subtitle": "Engaño (Carisma) – Entrenado",
-    "description": "Engañas a un oponente en combate para dejarlo desprevenido.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Engaño contra la CD de Percepción del objetivo",
-      "Éxito: el siguiente ataque tiene ventaja; Fracaso: sin efecto",
-      "Rasgos: mental, entrenado"
+    "title": "Fintar  [one-action]",
+    "icon": "surprised",
+    "subtitle": "Entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Estás a alcance de cuerpo a cuerpo del oponente al que quieres Fintar. </p><p><br></p><p>Con una floritura engañosa, dejas a un oponente mal preparado para tu ataque real. Haz una prueba de Engaño contra la CD de Percepción de tu objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Desarbolas por completo las defensas de tu enemigo contra ti. El objetivo queda desprevenido contra los ataques cuerpo a cuerpo que haces contra él hasta el final de tu siguiente turno. </li><li><strong>Éxito </strong>Tu enemigo resulta engañado, pero sólo momentáneamente. El objetivo queda desprevenido contra el siguiente ataque cuerpo a cuerpo que haces contra él hasta el final de tu turno actual. </li><li><strong>Fallo crítico</strong> Tu finta acaba fatal. Quedas desprevenido contra los ataques cuerpo a cuerpo que el objetivo hace contra ti hasta el final de tu siguiente turno.</li></ul>",
+    "reference": "Manual de jugador p.239",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      }
     ]
   },
   {
@@ -527,58 +559,97 @@ data_reaction = [
   },
   {
     "title": "Interpretar",
-    "icon": "single_action",
-    "subtitle": "Interpretación (Carisma) – No entrenado",
-    "description": "Realizas una actuación musical, teatral o artística.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Interpretación contra la CD fijada por la situación",
-      "Éxito: cautivas a la audiencia; Fracaso: indiferencia",
-      "Rasgos: auditivo, visual"
+    "icon": "smitten",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Cuando llevas a cabo una interpretación breve (una canción, un baile rápido o unos cuantos chistes) utilizas la acción Interpretar. Esta acción es especialmente útil cuando quieres demostrar tu capacidad o impresionar rápidamente a alguien. Interpretar raramente tiene impacto por sí sola, pero podría influenciar las CD de las pruebas de Diplomacia subsiguientes contra quienes observan o incluso cambiar sus actitudes si el DJ lo cree conveniente. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Tu interpretación impresiona a los observadores, que es probable que compartan comentarios acerca de tu aptitud. </li><li><strong>Éxito </strong>Demuestras tu valía y los observadores aprecian la calidad de tu interpretación. </li><li><strong>Fallo </strong>Tu interpretación fracasa. </li><li><strong>Fallo crítico</strong> Tan solo demuestras tu incompetencia. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Interpretar</strong></p><p><br></p><ul><li><strong>No entrenado</strong> audiencia de plebeyos </li><li><strong>Entrenado</strong> audiencia de artesanos </li><li><strong>Experto </strong>audiencia de mercaderes o nobles menores Maestro audiencia de la alta nobleza o la realeza menor </li><li><strong>Legendario </strong>audiencia de la realeza mayor o seres de otro mundo</li></ul>",
+    "reference": "Manual de jugador p.240",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      }
     ]
   },
   {
     "title": "Obtener ingresos",
-    "icon": "exploration",
-    "subtitle": "Interpretación (Carisma) – Entrenado",
-    "description": "Ganas dinero actuando o interpretando ante un público.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción exploratoria",
-      "Tiempo: mínimo 1 hora de actuación",
-      "Tirada: Interpretación contra la CD fijada por la audiencia",
-      "Éxito: obtienes más ganancias; Fracaso: menos",
-      "Rasgos: exploración, entrenado"
+    "icon": "receive-money",
+    "subtitle": "Entrenado",
+    "description": "<p>&nbsp;Utilizas una de tus habilidades para ganar dinero durante tu tiempo libre. El DJ asigna un nivel de tarea que representa el trabajo más lu crativo disponible. Puedes buscar tareas de nivel inferior, y el DJ de terminará si las encuentras o no. A veces puedes hacer un intento de encontrar un trabajo mejor remunerado que la oferta inicial, aunque esto consume tiempo y requiere utilizar la habilidad Diplomacia para Reunir información, llevar a cabo algunas investigaciones o socializar. </p><p><br></p><p>Cuando aceptas un trabajo, el DJ fija en secreto la CD de tu prueba de habilidad. Después de tu primer día de trabajo, haces una tirada para determinar tus ganancias. Obtienes una cantidad de ingresos basada en tu resultado, el nivel de la tarea y tu rango de competencia (tal y como se indica en la tabla Ingresos obtenidos). </p><p><br></p><p>Puedes continuar trabajando en dicha tarea en días subsiguientes sin tener que tirar de nuevo. Por cada día que inviertes a partir del primero, ganas la misma cantidad que aquel día hasta completar la tarea. El DJ determina cuánto tiempo puedes trabajar en ella. La mayoría duran una semana o dos, aunque otras pueden durar meses o incluso años.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Tu trabajo es sobresaliente. Obtienes la cantidad de mone das indicada para el nivel de la tarea + 1 y tu rango de competencia </li><li><strong>Éxito </strong>Tu trabajo es competente. Obtienes la cantidad de monedas indicada para el nivel de la tarea y tu rango de competencia </li><li><strong>Fallo </strong>Tu trabajo es chapucero y te pagan el mínimo por tu tiempo. Obtienes la cantidad de monedas indicada en la columna de fallos para el nivel de la tarea. El DJ probablemente reduzca el tiempo que puedes continuar en dicha tarea. </li><li><strong>Fallo crítico</strong> No obtienes nada por tu trabajo y eres despedido de inmediato. No puedes continuar en la tarea. Tu reputación se resiente, lo que potencialmente hace difícil que encuentres trabajos bien remunerados en dicha comunidad en el futuro.</li></ul><p><br></p><p><strong>&nbsp;Ejemplos de tareas de Obtener ingresos </strong></p><p><br></p><p>Dichos ejemplos utilizan Saber (alcohol) para trabajar en un bar o Saber (legal) para llevar a cabo tareas legales. </p><p><br></p><ul><li><strong>Entrenado </strong>despachar en un bar, hacer investigaciones legales. </li><li><strong>Experto </strong>cuidar de una selección de bebidas, llevar a juicio casos menores </li><li><strong>Maestro </strong>dirigir una gran fábrica de cerveza, llevar a juicio casos importantes </li><li><strong>Legendario </strong>dirigir una franquicia internacional de cervezas, llevar a juicio un caso en los tribunales del Infierno</li></ul><p><br></p><p><strong>&nbsp;Fabricar mercancías para el mercado (Artesanía) </strong></p><p><br></p><p>Utilizando Artesanía, puedes trabajar fabricando objetos comunes para su venta. Por lo general es fácil encontrar trabajo elaborando objetos básicos cuyo nivel es 1 ó 2 por debajo del nivel de tu asentamiento.</p><p> Las tareas de nivel superior representan encargos especiales, que podrían requerir que Elaboraras un objeto específico utilizando la actividad de tiempo libre Elaborar y se la vendieras a un comprador a precio completo. Estas oportunidades no se presentan a menudo y podrían tener requisitos especiales… o serias consecuencias si incomodas a un cliente importante.</p><p><br></p><p><strong>Organizar un espectáculo (Interpretación)</strong> </p><p><br></p><p>Interpretas ante una audiencia para ganar dinero. Las audiencias disponibles determinan el nivel de tu tarea, puesto que un público más exigente es más difícil de impresionar pero proporciona una paga mejor. El DJ determina el nivel de la tarea basándose en las audiencias disponibles. Interpretar para una audiencia típica de plebeyos en la calle es una tarea de nivel 0, pero una interpretación para un grupo de artesanos de gustos más refinados podría ser una tarea de 2.º o de 3.er nivel y, si hablamos de mercaderes, de la nobleza o de la realeza, el nivel sería cada vez mayor. </p><p>Tu grado de éxito determina si consigues conmover a tu audiencia y si te recompensan con aplausos o con fruta podrida. </p><p><br></p><p><strong>Practicar un oficio (Saber)</strong> </p><p><br></p><p>Aplicas los beneficios prácticos de una de tus especialidades de Saber durante el tiempo libre practicando tu oficio. Esto resulta especialmente efectivo para las especialidades de Saber como por ejemplo negocios, derecho o navegar, donde hay una alta demanda de trabajadores. El DJ podría incrementar la CD o determinar que tan sólo hay disponibles tareas de bajo nivel si tratas de utilizar una oscura habilidad de Saber para Obtener&nbsp;ingresos. También podrías necesitar utillaje especializado para aceptar un trabajo, como por ejemplo herramientas de minero en una mina o una balanza de mercader para comprar y vender objetos valiosos en un mercado.</p><p><br></p><p><a href=\"https://i.postimg.cc/59Py9J0F/Captura-de-pantalla-2025-09-21-230122.png\" target=\"_blank\">Captura-de-pantalla-2025-09-21-230122.png (323×416)</a></p><p><br></p><p><strong>&nbsp;PREPARACIÓN ADICIONAL </strong></p><p><br></p><p>Cuando Obtienes ingresos, podrías pasarte algunos días de tiempo libre preparándote para tu labor, lo que reduce la CD de la prueba de habilidad. Esto podría implicar los ensayos de una obra de teatro, el estudio de un tema, etc. El DJ es quien determina lo que dura la preparación y cuánto hace que cambie la CD. Esto es muy útil cuando acometes una tarea de un nivel mayor que el tuyo.</p><p><br></p><p><strong>Acabar o interrumpir tareas </strong></p><p><br></p><p>Cuando una tarea que estás llevando a cabo está completa o te detienes en mitad de una, normalmente tienes que buscar una tarea nueva si quieres seguir Obteniendo ingresos. Por ejemplo, si dejas tu trabajo en los muelles, tienes que encontrar otro empleo en lugar de reanudarlo donde lo dejaste. Buscar pistas sobre nuevos trabajos suele requerir 1 día o más de tiempo libre. Sin embargo, podrías pausar una tarea debido a una aventura o suceso, lo que no te impediría volver más adelante al mismo trabajo. El DJ es quien decide si puedes continuar donde lo dejaste, suponiendo que la tarea no haya sido completada por otros durante tu ausencia. Que tengas que hacer o no una nueva prueba de habilidad al reintegrarte al trabajo también queda a discreción del DJ. En términos generales, si tu tirada inicial era buena y quieres conservarla, puedes hacerlo, pero si tu tirada inicial era mala, no puedes intentar ir a por una mejor pausando el trabajo para hacer otra cosa. Si tus estadísticas cambian durante el intervalo (normalmente por haber subido de nivel yendo de aventuras) puedes hacer una nueva prueba.</p><p><br></p><p><br></p><ul><li>Fabricando mercancías para el mercado (Artesanía) </li><li>Organizar una Interpretación (Interpretación) </li><li>Practicar un Oficio (Saber)</li></ul><p><br></p><p>&nbsp;En algunos casos, el DJ te podría permitir el uso de una habilidad diferente para Obtener ingresos mediante el trabajo especializado. Suele tratarse de trabajos de erudito, como por ejemplo usar Religión en un monasterio para estudiar textos antiguos, pero pronunciar sermones en una iglesia seguiría&nbsp;&nbsp;necesitando de Interpretación en lugar de Religión. También podrías utilizar tus habilidades físicas para ganar dinero, como por ejemplo Acrobacias para llevar a cabo proezas en un circo o Latrocinio para vaciar bolsillos. Si utilizas una habilidad diferente a Artesanía, Interpretación o Saber, la CD tiende a ser significativamente mayor.</p>",
+    "reference": "Manual de jugador p.230",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Tiempo libre",
+        "info": " Un modo de juego en el que los PJs no están de aventuras. Los  días pasan rápidamente en la mesa y los PJs emprenden actividades  de larga duración. "
+      }
     ]
   },
   {
     "header": "Intimidación (Carisma)"
   },
   {
-    "title": "Demoralizar",
-    "icon": "single_action",
-    "subtitle": "Intimidación (Carisma) – No entrenado",
-    "description": "Infundes miedo o dudas en un objetivo mediante amenazas o presencia imponente.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Intimidación contra la CD de Voluntad del objetivo",
-      "Éxito: el objetivo queda atemorizado; Fracaso: sin efecto",
-      "Rasgos: audible, mental"
+    "title": "Demoralizar [one-action]",
+    "icon": "screaming",
+    "subtitle": "No entrenado",
+    "description": "<p>Con un grito repentino, un desafío bien calibrado o una injuria hiriente, puedes quebrantar la resolución de un enemigo. Elige una criatu&nbsp;ra a 30 pies (9 m) o menos de ti de la que eres consciente. Haz una prueba de Intimidación contra la CD de Voluntad de tu objetivo. Si el objetivo no entiende el idioma en el que hablas, o no estás hablando un idioma, sufres un penalizador -4 por circunstancia a la prueba. Sea cual sea el resultado, el objetivo quedará temporalmente inmune a tus intentos de Desmoralizarle durante 10 minutos. </p><p><br></p><ul><li><strong>Éxito crítico</strong> El objetivo queda asustado 2. </li><li><strong>Éxito </strong>El objetivo queda asustado 1.</li></ul>",
+    "reference": "Manual de jugador p.240",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Auditivo",
+        "info": " (rasgo) Las acciones y los efectos auditivos se basan en el soni do. Una acción con el rasgo auditivo sólo se puede llevar a cabo con  éxito si la criatura que la utiliza puede hablar o, de alguna manera,  emitir los sonidos requeridos. Un conjuro o efecto con el rasgo au ditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica  a las partes del efecto basadas en el sonido, a determinar por el DJ.  Es diferente a un efecto sónico, que afectará a objetivos que no pue dan oírlo (como por ejemplo objetivos sordos) mientras el efecto en  sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Emocion",
+        "info": " (rasgo) Este efecto altera las emociones de una criatura. Los  efectos con este rasgo siempre tienen también el rasgo mental. Las  criaturas con entrenamiento especial o que disponen de inteligencia  artificial o mecánica son inmunes a dichos efectos."
+      },
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      },
+      {
+        "name": "Miedo",
+        "info": " (rasgo) Los efectos de miedo evocan la emoción del miedo. Los  efectos con este rasgo siempre tienen también los rasgos mental  y emoción."
+      }
     ]
   },
   {
     "title": "Obligar",
-    "icon": "single_action",
-    "subtitle": "Intimidación (Carisma) – Entrenado",
-    "description": "Impones tu voluntad para forzar a alguien a actuar bajo coacción.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Intimidación contra la CD de Voluntad del objetivo",
-      "Éxito: el objetivo cede; Fracaso: resiste",
-      "Rasgos: mental, entrenado"
+    "icon": "screaming",
+    "subtitle": "No entrenado",
+    "description": "<p>Con amenazas veladas o directas, tratas de obligar a una criatura a que haga lo que tú quieres. Debes invertir por lo menos 1 minuto conversando con la criatura. Al final de la conversación, haz una prueba de Intimidación contra la CD de Voluntad del objetivo, modificada por cualquier circunstancia que el DJ determine (las actitudes a que se hace referencia en los efectos de más abajo se resumen en la barra lateral Cómo cambiar las actitudes de la pág. 238, y se describen al completo en el Apéndice Estados, que em pieza en la pág. 442). </p><p><br></p><ul><li><strong>Éxito crítico</strong> El objetivo te facilita la información que buscas o se muestra de acuerdo en seguir tus instrucciones si éstas no pueden dañarle en modo alguno. El objetivo continúa estando de acuerdo contigo durante una cantidad de tiempo determinada por el DJ, pero no superior a 1 día, en cuyo momento se vuelve malintencio nado (si aún no era malintencionado u hostil). Sin embargo, tiene demasiado miedo de ti para tomar represalias... por lo menos a corto plazo. </li><li><strong>Éxito </strong>Como éxito crítico, pero una vez que el objetivo se vuelve malintencionado, podría decidirse a actuar contra ti, por ejemplo informando de ti a las autoridades o ayudando a tus enemigos. </li><li><strong>Fallo </strong>El objetivo no hace lo que tú dices y, si aún no era malintencio nado u hostil, se vuelve malintencionado. </li><li><strong>Fallo crítico</strong> El objetivo rehúsa cumplir tus órdenes, se vuelve hostil si aún no lo era y queda temporalmente inmune a tus intentos de Obligarle durante por lo menos 1 semana.</li></ul>",
+    "reference": "Manual de jugador p.240",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Auditivo",
+        "info": " (rasgo) Las acciones y los efectos auditivos se basan en el soni do. Una acción con el rasgo auditivo sólo se puede llevar a cabo con  éxito si la criatura que la utiliza puede hablar o, de alguna manera,  emitir los sonidos requeridos. Un conjuro o efecto con el rasgo au ditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica  a las partes del efecto basadas en el sonido, a determinar por el DJ.  Es diferente a un efecto sónico, que afectará a objetivos que no pue dan oírlo (como por ejemplo objetivos sordos) mientras el efecto en  sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Emocion",
+        "info": " (rasgo) Este efecto altera las emociones de una criatura. Los  efectos con este rasgo siempre tienen también el rasgo mental. Las  criaturas con entrenamiento especial o que disponen de inteligencia  artificial o mecánica son inmunes a dichos efectos."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Linguistico",
+        "info": "(rasgo) Un efecto con este rasgo depende de la comprensión  lingüística. Un efecto lingüístico que designa como objetivo a una  criatura sólo funciona si entiende el idioma que estás utilizando."
+      },
+      {
+        "name": "Mental",
+        "info": "(rasgo) Un efecto mental puede alterar la mente del objetivo. No  tiene efecto sobre un objeto o sobre una criatura descerebrada."
+      }
     ]
   },
   {
@@ -588,14 +659,15 @@ data_reaction = [
     "title": "Escamotear objeto",
     "icon": "single_action",
     "subtitle": "Latrocinio (Destreza) – No entrenado",
-    "description": "Te llevas un objeto que alguien está sosteniendo sin que lo note.",
+    "description": "<p>Te llevas un objeto que alguien está sosteniendo sin que lo note.</p>",
     "reference": "Pantalla del Director – Acciones de Habilidad",
     "bullets": [
       "Coste: 1 acción",
       "Tirada: Latrocinio contra la CD de Percepción del objetivo",
       "Éxito: sustraes sin que note; Fracaso: te descubre",
       "Rasgos: manipular"
-    ]
+    ],
+    "tags": []
   },
   {
     "title": "Sustraer",
@@ -614,27 +686,29 @@ data_reaction = [
     "title": "Forzar cerradura",
     "icon": "two_actions",
     "subtitle": "Latrocinio (Destreza) – Entrenado",
-    "description": "Abres una cerradura sin llave usando herramientas especializadas.",
+    "description": "<p>Abres una cerradura sin llave usando herramientas especializadas.</p>",
     "reference": "Pantalla del Director – Acciones de Habilidad",
     "bullets": [
       "Coste: 2 acciones",
       "Tirada: Latrocinio contra la CD de la cerradura",
       "Éxito: abres sin ruido; Fracaso: atascas o suena alerta",
       "Rasgos: manipular, entrenado"
-    ]
+    ],
+    "tags": []
   },
   {
     "title": "Inutilizar mecanismo",
     "icon": "two_actions",
     "subtitle": "Latrocinio (Destreza) – Entrenado",
-    "description": "Desactivas un mecanismo o trampa usando destreza y herramientas.",
+    "description": "<p>Desactivas un mecanismo o trampa usando destreza y herramientas.</p>",
     "reference": "Pantalla del Director – Acciones de Habilidad",
     "bullets": [
       "Coste: 2 acciones",
       "Tirada: Latrocinio contra la CD del dispositivo",
       "Éxito: desactivas sin riesgo; Fracaso: activas la trampa",
       "Rasgos: manipular, entrenado"
-    ]
+    ],
+    "tags": []
   },
   {
     "header": "Medicina (Sabiduria)"
