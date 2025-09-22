@@ -69,7 +69,7 @@ data_reaction = [
   {
     "title": "Recordar conocimiento [one-action]",
     "icon": "magnifying-glass",
-    "subtitle": "No entrenado",
+    "subtitle": "No entrenado ( acerca de teorías arca nas; tradiciones mágicas; criaturas de significado arcano  (como constructos, bestias y elementales); y los Planos Ele mental, Astral y el Inframundo.)",
     "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento </li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad. </li><li><strong>Fallo </strong>No obtienes información alguna. </li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo). </li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p> Los siguientes ejemplos utilizan Sociedad o Religión. </p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal </li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote </li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios </li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul>",
     "reference": "Manual de jugador p.231",
     "bullets": [],
@@ -87,7 +87,7 @@ data_reaction = [
   {
     "title": "Descifrar escritura",
     "icon": "magnifying-glass",
-    "subtitle": "Entrenado",
+    "subtitle": "Entrenado ( acerca de la teoría arcana)",
     "description": "<p>&nbsp;Tratas de descifrar una escritura o literatura complicada sobre un tema oscuro. Esto suele requerir 1 minuto por página de texto, pero podría durar más (típicamente una hora por página para desencriptar mensajes cifrados o cosas parecidas). El texto tendrá que estar en un idioma que sepas leer, aunque el DJ te podría permitir intentos de des cifrar textos escritos en un idioma poco familiar utilizando Sociedad en su lugar. La CD la determina el DJ basándose en el estado o en la compleji dad del documento. Podría hacer que hicieras una sola prueba para un texto corto o una prueba para cada sección de un texto mayor. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Entiendes el verdadero significado del texto.&nbsp;</li><li><strong>Éxito </strong>Entiendes el verdadero significado del texto. Si era un documento en clave, averiguas el significado general, pero podrías no disponer de una traducción palabra por palabra. </li><li><strong>Fallo </strong>No puedes entender el texto y sufres un penalizador -2 por circunstancia a las pruebas posteriores para descifrarlo. </li><li><strong>Fallo crítico</strong> Crees haber entendido el texto de dicha página, pero en realidad has entendido mal el mensaje. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Descifrar escritura</strong></p><p><br></p><ul><li><strong>Entrenado </strong>un tratado de filosofía básica </li><li><strong>Experto </strong>un código complejo, como por ejemplo una clave </li><li><strong>Maestro </strong>el código de un maestro de espías o notas de investigación avanzadas </li><li><strong>Legendario </strong>un texto planario esotérico escrito con metáforas por un antiguo celestial</li></ul>",
     "reference": "Manual de jugador p.229",
     "bullets": [],
@@ -109,7 +109,7 @@ data_reaction = [
   {
     "title": "Identificar magia",
     "icon": "magnifying-glass",
-    "subtitle": "Entrenado",
+    "subtitle": "Entrenado (en particular: magia de la  tradición arcana.)",
     "description": "<p>Una vez descubres que un objeto, lugar o efecto continuado es mágico, puedes invertir 10 minutos en identificar los detalles de su magia. Si tu intento se ve interrumpido, tienes que empezar de nuevo. El DJ es quien fija la CD para tu prueba. La magia de las maldiciones o los objetos esotéricos suelen tener una CD mayor o podrían ser incluso imposibles de identificar utilizando tan solo esta actividad. Potenciar un conjuro no incrementa la CD para identificarlo.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Averiguas todos los atributos de la magia, incluyendo su nombre (si se trata de un efecto), lo que hace, cualquier medio de activarla (para un objeto o lugar) y si está maldita. </li><li><strong>Éxito </strong>Para un objeto o lugar, obtienes una sensación de lo que hace y averiguas el método de activarlo. Para un efecto continuado (como por ejemplo un conjuro con duración), averiguas el nombre del efecto y lo que hace. No puedes probar de nuevo con la esperanza de obtener un éxito crítico. </li><li><strong>Fallo </strong>No consigues identificar la magia y no puedes volver a probar durante 1 día. </li><li><strong>Fallo crítico</strong> Confundes la magia con otra cosa a elección del DJ.&nbsp;</li></ul>",
     "reference": "Manual de jugador p.229",
     "bullets": [],
@@ -131,7 +131,7 @@ data_reaction = [
   {
     "title": "Aprender un conjuro",
     "icon": "magnifying-glass",
-    "subtitle": "Entrenado",
+    "subtitle": "Entrenado ( de la tradición arcana.)",
     "description": "<p><strong>Requisitos:</strong> Tienes un rasgo de clase de lanzamiento de conjuros, y el conjuro que quieres aprender está en la lista de conjuros de tu tradición mágica.</p><p><br></p><p>Si eres un lanzador de conjuros, puedes utilizar la habilidad correspondiente a tu tradición mágica para aprender un nuevo conjuro de dicha tradición. La Tabla 4-1: Aprender un conjuro, indica el Precio de los materiales necesarios para Aprender un conjuro de cada nivel</p><p><br></p><p><strong>APRENDER UN CONJURO</strong></p><p><br></p><p>&nbsp;Puedes obtener acceso a un nuevo conjuro de tu tradición a partir de alguien que lo conoce o a partir de escritura mágica, como un libro&nbsp;de conjuros o un pergamino. Si puedes lanzar conjuros de tradiciones múltiples, puedes Aprender un conjuro de cualquiera de ellas, pero para hacerlo deberás utilizar la habilidad correspondiente. Por ejemplo, si eres un clérigo con el arquetipo multiclase bardo, no puedes&nbsp;utilizar Religión para añadir un conjuro de ocultismo a tu repertorio de conjuros de bardo. 234Para aprender el conjuro, debes hacer lo siguiente:</p><p><br></p><ul><li>Invertir 1 hora por nivel del conjuro, durante la cual debes permanecer en conversación con una persona que conoce el conjuro o disponer de la escritura mágica</li><li>Disponer de los materiales con el Precio indicado en la Tabla 4-1.</li><li>Hacer una prueba de habilidad para la habilidad correspondiente a tu tradición (la CD la determina el DJ, a menudo parecida a la CD de la Tabla 4-1). Los conjurospoco comunes o raros tienen CD superiores; las directrices completas para el DJ aparecen en la pág. 503.</li></ul><p><br></p><p>&nbsp;Si tienes un libro de conjuros, Aprender un conjuro te permite añadirlo a tu libro; si preparas conjuros de una lista, se añade a tu lista; si tienes un repertorio de conjuros, puedes seleccionarlo cuando añades o intercambias conjuros.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Gastas la mitad de los materiales y aprendes el conjuro.</li><li><strong>Éxito</strong> Gastas los materiales y aprendes el conjuro.</li><li><strong>Fallo</strong> No consigues aprender el conjuro pero podrás intentarlo de nuevo una vez subas de nivel Los materiales no se gastan.</li><li><strong>Fallo crítico</strong> Como en un fallo, y además gastas la mitad de los materiales.</li></ul><p><br></p><p><strong>TABLA 4-1: APRENDER UN CONJURO</strong></p><p><br></p><p>&lt;img src=\"https://i.postimg.cc/jdfxtw0V/Captura-de-pantalla-2025-03-15-052729.png\" alt=\"Tabla 4-1: Aprender un conjuro\" style=\"max-width:100%; height:auto;\"&gt;</p><p><br></p><p><br></p><p><strong>Conjuros aprendidos</strong></p><p><br></p><p>Un conjuro que aprendes se añade a tu depósito de conjuros, como por ejemplo un libro de conjuros para un mago, un familiar para un brujo o una lista de conjuros para un clérigo o un druida. Si dispones de un repertorio de conjuros, como por ejemplo si eres un bardo, no se añade automáticamente, puesto que sólo puedes conocer una cantidad limitada de conjuros. En su lugar, puedes seleccionarlo cuando añades o intercambias conjuros.</p>",
     "reference": "Manual de jugador p.228",
     "bullets": [],
@@ -170,7 +170,7 @@ data_reaction = [
   {
     "title": "Recordar conocimiento [one-action]",
     "icon": "magnifying-glass",
-    "subtitle": "No entrenado",
+    "subtitle": "No entrenado (acerca de las reacciones  químicas, el valor de los objetos, la ingeniería, los materia les poco usuales y las criaturas alquímicas o mecánicas. Es  el DJ quien determina a qué criaturas se aplica esto, pero  por lo general incluye a los constructos.)",
     "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento </li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad. </li><li><strong>Fallo </strong>No obtienes información alguna. </li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo). </li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p> Los siguientes ejemplos utilizan Sociedad o Religión. </p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal </li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote </li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios </li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
     "reference": "Manual de jugador p.231",
     "bullets": [],
@@ -206,7 +206,7 @@ data_reaction = [
   {
     "title": "Obtener ingresos",
     "icon": "receive-money",
-    "subtitle": "Entrenado",
+    "subtitle": "Entrenado ( fabricando mercancías para  el mercado.)",
     "description": "<p>&nbsp;Utilizas una de tus habilidades para ganar dinero durante tu tiempo libre. El DJ asigna un nivel de tarea que representa el trabajo más lu crativo disponible. Puedes buscar tareas de nivel inferior, y el DJ de terminará si las encuentras o no. A veces puedes hacer un intento de encontrar un trabajo mejor remunerado que la oferta inicial, aunque esto consume tiempo y requiere utilizar la habilidad Diplomacia para Reunir información, llevar a cabo algunas investigaciones o socializar. </p><p><br></p><p>Cuando aceptas un trabajo, el DJ fija en secreto la CD de tu prueba de habilidad. Después de tu primer día de trabajo, haces una tirada para determinar tus ganancias. Obtienes una cantidad de ingresos basada en tu resultado, el nivel de la tarea y tu rango de competencia (tal y como se indica en la tabla Ingresos obtenidos). </p><p><br></p><p>Puedes continuar trabajando en dicha tarea en días subsiguientes sin tener que tirar de nuevo. Por cada día que inviertes a partir del primero, ganas la misma cantidad que aquel día hasta completar la tarea. El DJ determina cuánto tiempo puedes trabajar en ella. La mayoría duran una semana o dos, aunque otras pueden durar meses o incluso años.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Tu trabajo es sobresaliente. Obtienes la cantidad de mone das indicada para el nivel de la tarea + 1 y tu rango de competencia </li><li><strong>Éxito </strong>Tu trabajo es competente. Obtienes la cantidad de monedas indicada para el nivel de la tarea y tu rango de competencia </li><li><strong>Fallo </strong>Tu trabajo es chapucero y te pagan el mínimo por tu tiempo. Obtienes la cantidad de monedas indicada en la columna de fallos para el nivel de la tarea. El DJ probablemente reduzca el tiempo que puedes continuar en dicha tarea. </li><li><strong>Fallo crítico</strong> No obtienes nada por tu trabajo y eres despedido de inmediato. No puedes continuar en la tarea. Tu reputación se resiente, lo que potencialmente hace difícil que encuentres trabajos bien remunerados en dicha comunidad en el futuro.</li></ul><p><br></p><p><strong>&nbsp;Ejemplos de tareas de Obtener ingresos </strong></p><p><br></p><p>Dichos ejemplos utilizan Saber (alcohol) para trabajar en un bar o Saber (legal) para llevar a cabo tareas legales. </p><p><br></p><ul><li><strong>Entrenado </strong>despachar en un bar, hacer investigaciones legales. </li><li><strong>Experto </strong>cuidar de una selección de bebidas, llevar a juicio casos menores </li><li><strong>Maestro </strong>dirigir una gran fábrica de cerveza, llevar a juicio casos importantes </li><li><strong>Legendario </strong>dirigir una franquicia internacional de cervezas, llevar a juicio un caso en los tribunales del Infierno</li></ul><p><br></p><p><strong>&nbsp;Fabricar mercancías para el mercado (Artesanía) </strong></p><p><br></p><p>Utilizando Artesanía, puedes trabajar fabricando objetos comunes para su venta. Por lo general es fácil encontrar trabajo elaborando objetos básicos cuyo nivel es 1 ó 2 por debajo del nivel de tu asentamiento.</p><p> Las tareas de nivel superior representan encargos especiales, que podrían requerir que Elaboraras un objeto específico utilizando la actividad de tiempo libre Elaborar y se la vendieras a un comprador a precio completo. Estas oportunidades no se presentan a menudo y podrían tener requisitos especiales… o serias consecuencias si incomodas a un cliente importante.</p><p><br></p><p><strong>Organizar un espectáculo (Interpretación)</strong> </p><p><br></p><p>Interpretas ante una audiencia para ganar dinero. Las audiencias disponibles determinan el nivel de tu tarea, puesto que un público más exigente es más difícil de impresionar pero proporciona una paga mejor. El DJ determina el nivel de la tarea basándose en las audiencias disponibles. Interpretar para una audiencia típica de plebeyos en la calle es una tarea de nivel 0, pero una interpretación para un grupo de artesanos de gustos más refinados podría ser una tarea de 2.º o de 3.er nivel y, si hablamos de mercaderes, de la nobleza o de la realeza, el nivel sería cada vez mayor. </p><p>Tu grado de éxito determina si consigues conmover a tu audiencia y si te recompensan con aplausos o con fruta podrida. </p><p><br></p><p><strong>Practicar un oficio (Saber)</strong> </p><p><br></p><p>Aplicas los beneficios prácticos de una de tus especialidades de Saber durante el tiempo libre practicando tu oficio. Esto resulta especialmente efectivo para las especialidades de Saber como por ejemplo negocios, derecho o navegar, donde hay una alta demanda de trabajadores. El DJ podría incrementar la CD o determinar que tan sólo hay disponibles tareas de bajo nivel si tratas de utilizar una oscura habilidad de Saber para Obtener&nbsp;ingresos. También podrías necesitar utillaje especializado para aceptar un trabajo, como por ejemplo herramientas de minero en una mina o una balanza de mercader para comprar y vender objetos valiosos en un mercado.</p><p><br></p><p><a href=\"https://i.postimg.cc/59Py9J0F/Captura-de-pantalla-2025-09-21-230122.png\" target=\"_blank\">Captura-de-pantalla-2025-09-21-230122.png (323×416)</a></p><p><br></p><p><strong>&nbsp;PREPARACIÓN ADICIONAL </strong></p><p><br></p><p>Cuando Obtienes ingresos, podrías pasarte algunos días de tiempo libre preparándote para tu labor, lo que reduce la CD de la prueba de habilidad. Esto podría implicar los ensayos de una obra de teatro, el estudio de un tema, etc. El DJ es quien determina lo que dura la preparación y cuánto hace que cambie la CD. Esto es muy útil cuando acometes una tarea de un nivel mayor que el tuyo.</p><p><br></p><p><strong>Acabar o interrumpir tareas </strong></p><p><br></p><p>Cuando una tarea que estás llevando a cabo está completa o te detienes en mitad de una, normalmente tienes que buscar una tarea nueva si quieres seguir Obteniendo ingresos. Por ejemplo, si dejas tu trabajo en los muelles, tienes que encontrar otro empleo en lugar de reanudarlo donde lo dejaste. Buscar pistas sobre nuevos trabajos suele requerir 1 día o más de tiempo libre. Sin embargo, podrías pausar una tarea debido a una aventura o suceso, lo que no te impediría volver más adelante al mismo trabajo. El DJ es quien decide si puedes continuar donde lo dejaste, suponiendo que la tarea no haya sido completada por otros durante tu ausencia. Que tengas que hacer o no una nueva prueba de habilidad al reintegrarte al trabajo también queda a discreción del DJ. En términos generales, si tu tirada inicial era buena y quieres conservarla, puedes hacerlo, pero si tu tirada inicial era mala, no puedes intentar ir a por una mejor pausando el trabajo para hacer otra cosa. Si tus estadísticas cambian durante el intervalo (normalmente por haber subido de nivel yendo de aventuras) puedes hacer una nueva prueba.</p><p><br></p><p><br></p><ul><li>Fabricando mercancías para el mercado (Artesanía) </li><li>Organizar una Interpretación (Interpretación) </li><li>Practicar un Oficio (Saber)</li></ul><p><br></p><p>&nbsp;En algunos casos, el DJ te podría permitir el uso de una habilidad diferente para Obtener ingresos mediante el trabajo especializado. Suele tratarse de trabajos de erudito, como por ejemplo usar Religión en un monasterio para estudiar textos antiguos, pero pronunciar sermones en una iglesia seguiría&nbsp;&nbsp;necesitando de Interpretación en lugar de Religión. También podrías utilizar tus habilidades físicas para ganar dinero, como por ejemplo Acrobacias para llevar a cabo proezas en un circo o Latrocinio para vaciar bolsillos. Si utilizas una habilidad diferente a Artesanía, Interpretación o Saber, la CD tiende a ser significativamente mayor.</p>",
     "reference": "Manual de jugador p.230",
     "bullets": [],
@@ -555,7 +555,8 @@ data_reaction = [
     ]
   },
   {
-    "header": "Interpretacion (Carisma)"
+    "header": "Interpretacion (Carisma)",
+    "tags": []
   },
   {
     "title": "Interpretar",
@@ -574,7 +575,7 @@ data_reaction = [
   {
     "title": "Obtener ingresos",
     "icon": "receive-money",
-    "subtitle": "Entrenado",
+    "subtitle": "Entrenado (organizando una Interpretación.)",
     "description": "<p>&nbsp;Utilizas una de tus habilidades para ganar dinero durante tu tiempo libre. El DJ asigna un nivel de tarea que representa el trabajo más lu crativo disponible. Puedes buscar tareas de nivel inferior, y el DJ de terminará si las encuentras o no. A veces puedes hacer un intento de encontrar un trabajo mejor remunerado que la oferta inicial, aunque esto consume tiempo y requiere utilizar la habilidad Diplomacia para Reunir información, llevar a cabo algunas investigaciones o socializar. </p><p><br></p><p>Cuando aceptas un trabajo, el DJ fija en secreto la CD de tu prueba de habilidad. Después de tu primer día de trabajo, haces una tirada para determinar tus ganancias. Obtienes una cantidad de ingresos basada en tu resultado, el nivel de la tarea y tu rango de competencia (tal y como se indica en la tabla Ingresos obtenidos). </p><p><br></p><p>Puedes continuar trabajando en dicha tarea en días subsiguientes sin tener que tirar de nuevo. Por cada día que inviertes a partir del primero, ganas la misma cantidad que aquel día hasta completar la tarea. El DJ determina cuánto tiempo puedes trabajar en ella. La mayoría duran una semana o dos, aunque otras pueden durar meses o incluso años.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Tu trabajo es sobresaliente. Obtienes la cantidad de mone das indicada para el nivel de la tarea + 1 y tu rango de competencia </li><li><strong>Éxito </strong>Tu trabajo es competente. Obtienes la cantidad de monedas indicada para el nivel de la tarea y tu rango de competencia </li><li><strong>Fallo </strong>Tu trabajo es chapucero y te pagan el mínimo por tu tiempo. Obtienes la cantidad de monedas indicada en la columna de fallos para el nivel de la tarea. El DJ probablemente reduzca el tiempo que puedes continuar en dicha tarea. </li><li><strong>Fallo crítico</strong> No obtienes nada por tu trabajo y eres despedido de inmediato. No puedes continuar en la tarea. Tu reputación se resiente, lo que potencialmente hace difícil que encuentres trabajos bien remunerados en dicha comunidad en el futuro.</li></ul><p><br></p><p><strong>&nbsp;Ejemplos de tareas de Obtener ingresos </strong></p><p><br></p><p>Dichos ejemplos utilizan Saber (alcohol) para trabajar en un bar o Saber (legal) para llevar a cabo tareas legales. </p><p><br></p><ul><li><strong>Entrenado </strong>despachar en un bar, hacer investigaciones legales. </li><li><strong>Experto </strong>cuidar de una selección de bebidas, llevar a juicio casos menores </li><li><strong>Maestro </strong>dirigir una gran fábrica de cerveza, llevar a juicio casos importantes </li><li><strong>Legendario </strong>dirigir una franquicia internacional de cervezas, llevar a juicio un caso en los tribunales del Infierno</li></ul><p><br></p><p><strong>&nbsp;Fabricar mercancías para el mercado (Artesanía) </strong></p><p><br></p><p>Utilizando Artesanía, puedes trabajar fabricando objetos comunes para su venta. Por lo general es fácil encontrar trabajo elaborando objetos básicos cuyo nivel es 1 ó 2 por debajo del nivel de tu asentamiento.</p><p> Las tareas de nivel superior representan encargos especiales, que podrían requerir que Elaboraras un objeto específico utilizando la actividad de tiempo libre Elaborar y se la vendieras a un comprador a precio completo. Estas oportunidades no se presentan a menudo y podrían tener requisitos especiales… o serias consecuencias si incomodas a un cliente importante.</p><p><br></p><p><strong>Organizar un espectáculo (Interpretación)</strong> </p><p><br></p><p>Interpretas ante una audiencia para ganar dinero. Las audiencias disponibles determinan el nivel de tu tarea, puesto que un público más exigente es más difícil de impresionar pero proporciona una paga mejor. El DJ determina el nivel de la tarea basándose en las audiencias disponibles. Interpretar para una audiencia típica de plebeyos en la calle es una tarea de nivel 0, pero una interpretación para un grupo de artesanos de gustos más refinados podría ser una tarea de 2.º o de 3.er nivel y, si hablamos de mercaderes, de la nobleza o de la realeza, el nivel sería cada vez mayor. </p><p>Tu grado de éxito determina si consigues conmover a tu audiencia y si te recompensan con aplausos o con fruta podrida. </p><p><br></p><p><strong>Practicar un oficio (Saber)</strong> </p><p><br></p><p>Aplicas los beneficios prácticos de una de tus especialidades de Saber durante el tiempo libre practicando tu oficio. Esto resulta especialmente efectivo para las especialidades de Saber como por ejemplo negocios, derecho o navegar, donde hay una alta demanda de trabajadores. El DJ podría incrementar la CD o determinar que tan sólo hay disponibles tareas de bajo nivel si tratas de utilizar una oscura habilidad de Saber para Obtener&nbsp;ingresos. También podrías necesitar utillaje especializado para aceptar un trabajo, como por ejemplo herramientas de minero en una mina o una balanza de mercader para comprar y vender objetos valiosos en un mercado.</p><p><br></p><p><a href=\"https://i.postimg.cc/59Py9J0F/Captura-de-pantalla-2025-09-21-230122.png\" target=\"_blank\">Captura-de-pantalla-2025-09-21-230122.png (323×416)</a></p><p><br></p><p><strong>&nbsp;PREPARACIÓN ADICIONAL </strong></p><p><br></p><p>Cuando Obtienes ingresos, podrías pasarte algunos días de tiempo libre preparándote para tu labor, lo que reduce la CD de la prueba de habilidad. Esto podría implicar los ensayos de una obra de teatro, el estudio de un tema, etc. El DJ es quien determina lo que dura la preparación y cuánto hace que cambie la CD. Esto es muy útil cuando acometes una tarea de un nivel mayor que el tuyo.</p><p><br></p><p><strong>Acabar o interrumpir tareas </strong></p><p><br></p><p>Cuando una tarea que estás llevando a cabo está completa o te detienes en mitad de una, normalmente tienes que buscar una tarea nueva si quieres seguir Obteniendo ingresos. Por ejemplo, si dejas tu trabajo en los muelles, tienes que encontrar otro empleo en lugar de reanudarlo donde lo dejaste. Buscar pistas sobre nuevos trabajos suele requerir 1 día o más de tiempo libre. Sin embargo, podrías pausar una tarea debido a una aventura o suceso, lo que no te impediría volver más adelante al mismo trabajo. El DJ es quien decide si puedes continuar donde lo dejaste, suponiendo que la tarea no haya sido completada por otros durante tu ausencia. Que tengas que hacer o no una nueva prueba de habilidad al reintegrarte al trabajo también queda a discreción del DJ. En términos generales, si tu tirada inicial era buena y quieres conservarla, puedes hacerlo, pero si tu tirada inicial era mala, no puedes intentar ir a por una mejor pausando el trabajo para hacer otra cosa. Si tus estadísticas cambian durante el intervalo (normalmente por haber subido de nivel yendo de aventuras) puedes hacer una nueva prueba.</p><p><br></p><p><br></p><ul><li>Fabricando mercancías para el mercado (Artesanía) </li><li>Organizar una Interpretación (Interpretación) </li><li>Practicar un Oficio (Saber)</li></ul><p><br></p><p>&nbsp;En algunos casos, el DJ te podría permitir el uso de una habilidad diferente para Obtener ingresos mediante el trabajo especializado. Suele tratarse de trabajos de erudito, como por ejemplo usar Religión en un monasterio para estudiar textos antiguos, pero pronunciar sermones en una iglesia seguiría&nbsp;&nbsp;necesitando de Interpretación en lugar de Religión. También podrías utilizar tus habilidades físicas para ganar dinero, como por ejemplo Acrobacias para llevar a cabo proezas en un circo o Latrocinio para vaciar bolsillos. Si utilizas una habilidad diferente a Artesanía, Interpretación o Saber, la CD tiende a ser significativamente mayor.</p>",
     "reference": "Manual de jugador p.230",
     "bullets": [],
@@ -653,294 +654,605 @@ data_reaction = [
     ]
   },
   {
-    "header": "Latrocinio (Destreza)"
-  },
-  {
-    "title": "Escamotear objeto",
-    "icon": "single_action",
-    "subtitle": "Latrocinio (Destreza) – No entrenado",
-    "description": "<p>Te llevas un objeto que alguien está sosteniendo sin que lo note.</p>",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Latrocinio contra la CD de Percepción del objetivo",
-      "Éxito: sustraes sin que note; Fracaso: te descubre",
-      "Rasgos: manipular"
-    ],
+    "header": "Latrocinio (Destreza)",
     "tags": []
   },
   {
-    "title": "Sustraer",
-    "icon": "single_action",
-    "subtitle": "Latrocinio (Destreza) – No entrenado",
-    "description": "Robas algo pequeño sin llamar la atención.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Latrocinio contra la CD de Percepción del entorno",
-      "Éxito: robas sin ruido; Fracaso: provocas atención",
-      "Rasgos: manipular"
+    "title": "Escamotear objeto [one-action]",
+    "icon": "snatch",
+    "subtitle": "No entrenado",
+    "description": "<p>Te haces con un objeto pequeño no atendido e intentas que nadie se dé cuenta. Haz una sola prueba de Latrocinio contra la CD de Percepción de todas las criaturas que te están observando en ese momento. Lo normal es que sólo puedas Escamotear objetos de Impedimenta insignificante, aunque el DJ podría determinar otra cosa dependiendo de la situación. </p><p><br></p><ul><li><strong>Éxito </strong>La criatura no se da cuenta de que Escamoteas el objeto. </li><li><strong>Fallo </strong>La criatura se da cuenta de que Escamoteas el objeto.</li></ul>",
+    "reference": "Manual de jugador p.240",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
     ]
   },
   {
-    "title": "Forzar cerradura",
-    "icon": "two_actions",
-    "subtitle": "Latrocinio (Destreza) – Entrenado",
-    "description": "<p>Abres una cerradura sin llave usando herramientas especializadas.</p>",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 2 acciones",
-      "Tirada: Latrocinio contra la CD de la cerradura",
-      "Éxito: abres sin ruido; Fracaso: atascas o suena alerta",
-      "Rasgos: manipular, entrenado"
-    ],
-    "tags": []
+    "title": "Sustraer [one-action]",
+    "icon": "snatch",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Tratas de hacerte con un objeto de otra criatura sin que lo note. Típicamente, tan sólo puedes Sustraer un objeto de Impedimenta insignificante, y fallas automáticamente si la criatura que tiene el objeto está en combate o en guardia.&nbsp;</p><p>Haz una prueba de Latrocinio para determinar si Sustraes el objeto con éxito. La CD suele ser la CD de Percepción de la criatura que tiene el objeto. Es más fácil robar un objeto que se lleva encima pero que no está vigilado de cerca (como por ejemplo una bolsa de monedas que cuelga del cinto o un objeto dentro de dicha bolsa). El DJ puede incrementar la CD si el objeto está protegido o si la naturaleza del mismo hace que sea más difícil de sustraer (como por ejemplo, un objeto muy pequeño en un embalaje grande o un pergamino mezclado con otros documentos). Por ejemplo, la CD es típicamente 5 mayor si el objeto está en un bolsillo, lo lleva una criatura en la mano o está similarmente protegido.</p><p> También podrías tener que comparar el resultado de tu prueba de Latrocinio contra la CD de Percepción de otros observadores distintos a la persona que lleva el objeto. El DJ podría imponer un penalizador por circunstancia a la CD de los observadores distraídos. </p><p><br></p><ul><li><strong>Éxito </strong>Robas el objeto sin que el portador se dé cuenta, o un observador no te ve hacerte con el objeto o intentar hacerte con él. </li><li><strong>Fallo </strong>El portador del objeto detecta tu intento antes de que puedas hacerte con el objeto, o un observador te ve sustraerlo o intentar lo. El DJ es quien determina la respuesta de cualquier criatura que se da cuenta de tu sustracción.</li></ul>",
+    "reference": "Manual de jugador p.240",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
+    ]
   },
   {
-    "title": "Inutilizar mecanismo",
-    "icon": "two_actions",
-    "subtitle": "Latrocinio (Destreza) – Entrenado",
-    "description": "<p>Desactivas un mecanismo o trampa usando destreza y herramientas.</p>",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 2 acciones",
-      "Tirada: Latrocinio contra la CD del dispositivo",
-      "Éxito: desactivas sin riesgo; Fracaso: activas la trampa",
-      "Rasgos: manipular, entrenado"
-    ],
-    "tags": []
+    "title": "Forzar cerradura [two-actions]",
+    "icon": "locked-door",
+    "subtitle": "Entrenado",
+    "description": "<p><strong>Requisitos </strong>Empuñas o sostienes un juego de herramientas de ladrón (pág. 288). </p><p><br></p><p>Abrir una cerradura sin tener la llave es muy parecido a Inutilizar un mecanismo, pero la CD de la prueba la determinan la complejidad y la construcción de la cerradura (las cerraduras y sus CD están en la pág. 287). Las cerraduras de calidad superior podrían requerir múltiples éxitos para ser forzadas. Si careces de las herramientas apropiadas, el DJ te podría permitir que utilizaras ganzúas improvisadas, que se tratan como herramientas de baja calidad. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Fuerzas la cerradura u obtienes dos éxitos acumulativos para forzar una que requiere más de un éxito. No dejas rastro de tus manipulaciones. </li><li><strong>Éxito </strong>Fuerzas la cerradura u obtienes un éxito acumulativo para forzar una que requiere más de un éxito. Dejas tras de ti unos daños que indican que la cerradura ha sido forzada, si se examina de cerca. </li><li><strong>Fallo crítico</strong> Rompes tus herramientas y dejas tras de ti unos daños ob vios. Arreglar un juego de herramientas roto requiere utilizar Artesanía para Repararlo, o bien incorporar ganzúas de repuesto (que cues tan 3 pp, o 3 po si es un juego de herramientas de ladrón infiltrador).</li></ul>",
+    "reference": "Manual de jugador p.241",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
+    ]
+  },
+  {
+    "title": "Inutilizar mecanismo  [two-actions]",
+    "icon": "snatch",
+    "subtitle": "Entrenado",
+    "description": "<p>Esta acción te permite desactivar una trampa u otro artilugio complejo. A menudo, un artilugio requiere numerosos éxitos antes de quedar desactivado, dependiendo de su construcción y de su complejidad. Para estas cosas, va muy bien un juego de herramientas de ladrón, y a veces incluso es de uso obligado para Inutilizar un&nbsp;mecanismo, a criterio del DJ; otras veces, un artilugio requiere un rango de competencia mayor en Latrocinio para desactivarlo. El resultado de tu prueba de Latrocinio determina los progresos que haces. </p><p><br></p><p><br></p><ul><li><strong>Éxito crítico</strong> Inutilizas el mecanismo u obtienes dos éxitos acumulativos para desactivar uno que requiere más de un éxito. No dejas rastro de tus manipulaciones y puedes rearmarlo más tarde, si ese tipo de mecanismo puede ser rearmado. </li><li><strong>Éxito</strong> Inutilizas el mecanismo u obtienes un éxito acumulativo para desactivar uno que requiere más de un éxito. </li><li><strong>Fallo crítico</strong> Activas el mecanismo.</li></ul>",
+    "reference": "Manual de jugador p.241",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
+    ]
   },
   {
     "header": "Medicina (Sabiduria)"
   },
   {
-    "title": "Primeros auxilios",
-    "icon": "single_action",
-    "subtitle": "Medicina (Sabiduría) – No entrenado",
-    "description": "Proporcionas cuidados básicos para estabilizar y curar heridas menores.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Medicina contra la CD del daño sufrido",
-      "Éxito: estabilizas o curas; Fracaso: sin efecto",
-      "Rasgos: manipular, sanación"
+    "title": "Recordar conocimiento [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado (acerca de enfermeda des, heridas, venenos y otras aflicciones. Puedes utilizar  esto para llevar a cabo exámenes forenses si inviertes 10  minutos (o más, si así lo determina el DJ), buscando pruebas como por ejemplo patrones de heridas. Esto es particularmente útil si quieres determinar cómo un cuerpo ha  resultado herido o muerto.)",
+    "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento </li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad. </li><li><strong>Fallo </strong>No obtienes información alguna. </li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo). </li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p> Los siguientes ejemplos utilizan Sociedad o Religión. </p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal </li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote </li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios </li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
+    "reference": "Manual de jugador p.231",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
-    "title": "Recordar conocimiento",
-    "icon": "single_action",
-    "subtitle": "Medicina (Sabiduría) – No entrenado",
-    "description": "Recuerdas información médica y biológica para diagnóstico.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción",
-      "Tirada: Medicina contra la CD de la información",
-      "Éxito: obtienes detalles clínicos; Fracaso: sin información",
-      "Rasgos: secreto, general"
+    "title": "Primeros auxilios [two-actions]",
+    "icon": "medical-pack",
+    "subtitle": "No entrenado",
+    "description": "<p><strong>Requisitos </strong>Empuñas o sostienes material de curas o dispones de él (pág. 290). </p><p><br></p><p>Administras Primeros auxilios a una criatura adyacente que está moribunda o sangrando. Si una criatura está a la vez moribunda y sangrando, elige cuál de las aflicciones vas a tratar antes de hacer la tirada. Puedes administrar Primeros auxilios de nuevo para intentar remediar el otro efecto</p><p><br></p><ul><li><strong>Detener la hemorragia</strong> Haz una prueba de Medicina sobre una criatura que está sufriendo daño persistente por sangra do (pág. 409). La CD suele ser la misma del efecto que causó el sangrado. </li><li><strong>Estabilizar </strong>Haz una prueba de Medicina sobre una criatura que está a 0 Puntos de Golpe y tiene el estado moribundo. La CD es igual a 5 + la CD de la tirada de recuperación de dicha criatura (típicamente 15 + su valor de moribundo). </li></ul><p><br></p><p><br></p><ul><li><strong>Éxito </strong>Si estás intentando estabilizar, el objetivo pierde el estado moribundo (pero permanece inconsciente). Si intentas detener la hemorragia, el objetivo se beneficia de una recuperación asistida (pág. 443) con la CD rebajada por una ayuda particuarmente apropiada. </li><li><strong>Fallo crítico</strong> Si intentabas estabilizar, el valor de moribundo del objetivo se incrementa en 1. Si intentabas detener la hemorragia, el objetivo sufre de inmediato una cantidad de daño igual a su daño persistente por sangrado.</li></ul>",
+    "reference": "Manual de jugador p.242",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
     ]
   },
   {
     "title": "Tratar enfermedad",
-    "icon": "exploration",
-    "subtitle": "Medicina (Sabiduría) – Entrenado",
-    "description": "Ayudas a un paciente a resistir o recuperarse de una enfermedad.",
-    "reference": "Pantalla del Director – Acciones de Habilidad",
-    "bullets": [
-      "Coste: 1 acción exploratoria",
-      "Tirada: Medicina contra la CD de la enfermedad",
-      "Éxito: mitigas síntomas o retarda avance.",
-      "Fracaso: sin efecto.",
-      "Rasgos: manipular, entrenado"
+    "icon": "medical-pack",
+    "subtitle": "Entrenado",
+    "description": "<p><strong>Requisitos </strong>Empuñas o sostienes material de curas (pág. 290). </p><p><br></p><p>Inviertes por lo menos 8 horas cuidando de una criatura enferma. Haz una prueba de Medicina contra la CD de la enfermedad. Una vez la has hecho, no puedes hacerla de nuevo hasta después de la siguiente salvación de la criatura contra la enfermedad. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Concedes a la criatura un bonificador +4 por circunstancia a su siguiente tirada de salvación contra la enfermedad. </li><li><strong>Éxito </strong>Concedes a la criatura un bonificador +2 por circunstancia a su siguiente tirada de salvación contra la enfermedad. </li><li><strong>Fallo crítico</strong> Tus esfuerzos hacen que la criatura sufra un penaliza dor -2 por circunstancia a su siguiente tirada de salvación contra la enfermedad.</li></ul>",
+    "reference": "Manual de jugador p.242",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      },
+      {
+        "name": "Tiempo libre",
+        "info": " Un modo de juego en el que los PJs no están de aventuras. Los  días pasan rápidamente en la mesa y los PJs emprenden actividades  de larga duración. "
+      }
     ]
   },
   {
-    "header": "Naturaleza (Sabiduria)"
-  },
-  {
-    "title": "Forrajear",
-    "icon": "leaf",
-    "subtitle": "Naturaleza (entrenado: no)",
-    "description": "Recolectas alimento, agua o materiales del entorno.",
-    "reference": "Pantalla del Director – Naturaleza",
-    "bullets": [
-      "Tirada: Naturaleza contra la CD del terreno.",
-      "Éxito: obtienes recursos suficientes.",
-      "Fracaso: encuentras menos de lo necesario.",
-      "Rasgos: exploración"
+    "title": "Tratar heridas",
+    "icon": "medical-pack",
+    "subtitle": "Entrenado",
+    "reference": "Manual de jugador p.242",
+    "description": "<p><strong>Requisitos</strong> Empuñas o sostienes material de curas (pág. 290). </p><p><br></p><p>Inviertes 10 minutos tratando a una criatura viva herida (designándote a ti mismo como objetivo, si así lo decides). El objetivo queda a continuación temporalmente inmune a las acciones de Tratar heridas durante 1 hora, pero este intervalo se solapa con el tiempo que has pasado tratándolo (por lo que un paciente puede ser tratado una vez por hora, no una vez cada 70 minutos).</p><p> La CD de la prueba de Medicina suele ser 15, aunque el DJ podría ajustarla basándose en las circunstancias, como por ejemplo tratar un paciente en el exterior en mitad de una tormenta, o tratar heridas mágicamente malditas. Si tienes el rango experto en Medicina, en su lugar puedes hacer una prueba CD 20 para incrementar en 10 los Puntos de Golpe recuperados; si tienes el rango maestro, en su lugar puedes hacer una prueba CD 30 para incrementar en 30 los Puntos de Golpe recuperados; y si tienes el rango legendario, en su lugar puedes hacer una prueba CD 40 para incrementar en 50 puntos los puntos de Golpe recuperados. El daño infligido con un fallo crítico sigue siendo el mismo.</p><p> Si tienes éxito en tu prueba, puedes continuar tratando al objetivo para concederle curación adicional. Si le tratas durante 1 hora, dobla los Puntos de Golpe que recupera debido a Tratar heridas.</p><p> El resultado de tu prueba de Medicina determina cuántos puntos de Golpe recupera el objetivo. </p><p><br></p><ul><li><strong>Éxito crítico</strong> El objetivo recupera 4d8 Puntos de Golpe y pierde el estado herido. </li><li><strong>Éxito </strong>El objetivo recupera 2d8 Puntos de Golpe y pierde el estado herido. </li><li><strong>Fallo crítico</strong> El objetivo sufre 1d8 daño.</li></ul>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Curación",
+        "info": "(rasgo) Un efecto de curación restaura el cuerpo de una cria tura, típicamente restableciendo Puntos de Golpe, pero a veces elimi nando enfermedades u otros efectos debilitantes."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
     ]
   },
   {
-    "title": "Rastrear",
-    "icon": "paw",
-    "subtitle": "Naturaleza (entrenado: sí)",
-    "description": "Sigues rastros de criaturas u objetos.",
-    "reference": "Pantalla del Director – Naturaleza",
-    "bullets": [
-      "Tirada: Naturaleza contra la CD de las huellas.",
-      "Éxito: encuentras el objetivo.",
-      "Fracaso: te pierdes o avanzas mal.",
-      "Rasgos: exploración, entrenado"
+    "title": "Tratar veneno [one-action]",
+    "icon": "medical-pack",
+    "subtitle": "Entrenado",
+    "reference": "Manual de jugador p.242",
+    "description": "<p><strong>Requisitos </strong>Empuñas o sostienes material de curas (pág. 290).</p><p><br></p><p>Tratas a un paciente para prevenir la extensión del veneno. Haz una prueba de Medicina contra la CD del veneno. Una vez has hecho una prueba de Tratar veneno para una criatura, no puedes hacerlo de nuevo hasta después de la siguiente salvación de la misma contra el veneno.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Concedes a la criatura un bonificador +4 por circunstancia a su siguiente tirada de salvación contra el veneno. </li><li><strong>Éxito </strong>Concedes a la criatura un bonificador +2 por circunstancia a su siguiente tirada de salvación contra el veneno. </li><li><strong>Fallo crítico</strong> Tus esfuerzos hacen que la criatura sufra un penalizador -2 por circunstancia a su siguiente tirada de salvación contra el veneno</li></ul>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Manipular",
+        "info": "(rasgo) Tienes que manipular físicamente un objeto o hacer gestos para usar una acción con este rasgo. Las criaturas que carecen de un apéndice adecuado no pueden llevar a cabo acciones con este rasgo. Las acciones de manipular a menudo desencadenan reacciones."
+      }
+    ]
+  },
+  {
+    "header": "Naturaleza (Sabiduria)",
+    "tags": []
+  },
+  {
+    "title": "Recordar conocimiento [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado ( acerca de la fauna, la flora, la geo grafía, el clima, el entorno, las criaturas de origen natural  (como los animales, las bestias, las hadas y las plantas), el  Primer Mundo y los Planos Elementales.)",
+    "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento</li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad.</li><li><strong>Fallo </strong>No obtienes información alguna.</li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo).</li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p>Los siguientes ejemplos utilizan Sociedad o Religión.</p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal</li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote</li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios</li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
+    "reference": "Manual de jugador p.231",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Comandar un animal [one-action]",
+    "icon": "raven",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Das una orden a un animal. Haz una prueba de Naturaleza contra la CD de Voluntad del animal. El DJ podría ajustar la CD si tiene una actitud buena hacia ti, si sugieres un curso de acción hacia el que estaba predispuesto o si le ofreces una golosina.</p><p> Fallas automáticamente si el animal es hostil o malintencionado hacia ti. Si es solícito contigo, incrementa en un paso tu grado de éxito. Podrías ser capaz de Comandar a un animal más fácilmente con una dote como Montar (pág. 261).</p><p> La mayoría de animales conocen las acciones básicas Buscar, Golpear, Ponerse de pie, Saltar y Zancada. Si un animal conoce una actividad, como el Galope de un caballo, puedes Comandar al animal para que la lleve a cabo, pero debes gastar tantas acciones en ello como número de acciones de la actividad. También puedes invertir múltiples acciones de Comandar al animal para que lleve a cabo dicho número de acciones básicas en su siguiente turno; por ejemplo, podrías invertir tres acciones para Comandar a un animal y que dé tres Zancadas, o que dé dos Zancadas y después un Golpe. </p><p><br></p><ul><li><strong>Éxito</strong> El animal hace lo que le has ordenado en su siguiente turno. </li><li><strong>Fallo</strong> El animal duda o se resiste, y no hace nada. </li><li><strong>Fallo crítico</strong> El animal se comporta mal o se confunde, y lleva a cabo alguna otra acción determinada por el DJ.</li></ul>",
+    "reference": "Manual de jugador p.243",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "auditivo",
+        "info": "(rasgo) Las acciones y los efectos auditivos se basan en el sonido. Una acción con el rasgo auditivo sólo se puede llevar a cabo con éxito si la criatura que la utiliza puede hablar o, de alguna manera, emitir los sonidos requeridos. Un conjuro o efecto con el rasgo auditivo sólo tiene efecto si el objetivo puede oírlo. Esto solo se aplica a las partes del efecto basadas en el sonido, a determinar por el DJ. Es diferente a un efecto sónico, que afectará a objetivos que no puedan oírlo (como por ejemplo objetivos sordos) mientras el efecto en sí produzca sonido."
+      },
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      }
+    ]
+  },
+  {
+    "title": "Identificar magia",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( en particular la magia de la  tradición primigenia.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>Una vez descubres que un objeto, lugar o efecto continuado es mágico, puedes invertir 10 minutos en identificar los detalles de su magia. Si tu intento se ve interrumpido, tienes que empezar de nuevo. El DJ es quien fija la CD para tu prueba. La magia de las maldiciones o los objetos esotéricos suelen tener una CD mayor o podrían ser incluso imposibles de identificar utilizando tan solo esta actividad. Potenciar un conjuro no incrementa la CD para identificarlo.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Averiguas todos los atributos de la magia, incluyendo su nombre (si se trata de un efecto), lo que hace, cualquier medio de activarla (para un objeto o lugar) y si está maldita. </li><li><strong>Éxito </strong>Para un objeto o lugar, obtienes una sensación de lo que hace y averiguas el método de activarlo. Para un efecto continuado (como por ejemplo un conjuro con duración), averiguas el nombre del efecto y lo que hace. No puedes probar de nuevo con la esperanza de obtener un éxito crítico. </li><li><strong>Fallo </strong>No consigues identificar la magia y no puedes volver a probar durante 1 día. </li><li><strong>Fallo crítico</strong> Confundes la magia con otra cosa a elección del DJ.&nbsp;</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Aprender un conjuro",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( de la tradición primigenia.)",
+    "reference": "Manual de jugador p.228",
+    "description": "<p><strong>Requisitos:</strong> Tienes un rasgo de clase de lanzamiento de conjuros, y el conjuro que quieres aprender está en la lista de conjuros de tu tradición mágica.</p><p><br></p><p>Si eres un lanzador de conjuros, puedes utilizar la habilidad correspondiente a tu tradición mágica para aprender un nuevo conjuro de dicha tradición. La Tabla 4-1: Aprender un conjuro, indica el Precio de los materiales necesarios para Aprender un conjuro de cada nivel</p><p><br></p><p><strong>APRENDER UN CONJURO</strong></p><p><br></p><p>&nbsp;Puedes obtener acceso a un nuevo conjuro de tu tradición a partir de alguien que lo conoce o a partir de escritura mágica, como un libro&nbsp;de conjuros o un pergamino. Si puedes lanzar conjuros de tradiciones múltiples, puedes Aprender un conjuro de cualquiera de ellas, pero para hacerlo deberás utilizar la habilidad correspondiente. Por ejemplo, si eres un clérigo con el arquetipo multiclase bardo, no puedes&nbsp;utilizar Religión para añadir un conjuro de ocultismo a tu repertorio de conjuros de bardo. 234Para aprender el conjuro, debes hacer lo siguiente:</p><p><br></p><ul><li>Invertir 1 hora por nivel del conjuro, durante la cual debes permanecer en conversación con una persona que conoce el conjuro o disponer de la escritura mágica</li><li>Disponer de los materiales con el Precio indicado en la Tabla 4-1.</li><li>Hacer una prueba de habilidad para la habilidad correspondiente a tu tradición (la CD la determina el DJ, a menudo parecida a la CD de la Tabla 4-1). Los conjurospoco comunes o raros tienen CD superiores; las directrices completas para el DJ aparecen en la pág. 503.</li></ul><p><br></p><p>&nbsp;Si tienes un libro de conjuros, Aprender un conjuro te permite añadirlo a tu libro; si preparas conjuros de una lista, se añade a tu lista; si tienes un repertorio de conjuros, puedes seleccionarlo cuando añades o intercambias conjuros.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Gastas la mitad de los materiales y aprendes el conjuro.</li><li><strong>Éxito</strong> Gastas los materiales y aprendes el conjuro.</li><li><strong>Fallo</strong> No consigues aprender el conjuro pero podrás intentarlo de nuevo una vez subas de nivel Los materiales no se gastan.</li><li><strong>Fallo crítico</strong> Como en un fallo, y además gastas la mitad de los materiales.</li></ul><p><br></p><p><strong>TABLA 4-1: APRENDER UN CONJURO</strong></p><p><br></p><p>&lt;img src=\"https://i.postimg.cc/jdfxtw0V/Captura-de-pantalla-2025-03-15-052729.png\" alt=\"Tabla 4-1: Aprender un conjuro\" style=\"max-width:100%; height:auto;\"&gt;</p><p><br></p><p><br></p><p><strong>Conjuros aprendidos</strong></p><p><br></p><p>Un conjuro que aprendes se añade a tu depósito de conjuros, como por ejemplo un libro de conjuros para un mago, un familiar para un brujo o una lista de conjuros para un clérigo o un druida. Si dispones de un repertorio de conjuros, como por ejemplo si eres un bardo, no se añade automáticamente, puesto que sólo puedes conocer una cantidad limitada de conjuros. En su lugar, puedes seleccionarlo cuando añades o intercambias conjuros.</p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      }
     ]
   },
   {
     "header": "Ocultismo (Inteligencia)"
   },
   {
-    "title": "Recordar conocimiento",
-    "icon": "eye",
-    "subtitle": "Ocultismo (entrenado: no)",
-    "description": "Recuerdas información sobre fenómenos mágicos o arcanos ocultos.",
-    "reference": "Pantalla del Director – Ocultismo",
-    "bullets": [
-      "Tirada: Ocultismo contra la CD de la información.",
-      "Éxito: obtienes detalles precisos.",
-      "Fracaso: no recuerdas nada útil.",
-      "Rasgos: concentración, secreto"
+    "title": "Recordar conocimiento [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento</li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad.</li><li><strong>Fallo </strong>No obtienes información alguna.</li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo).</li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p>Los siguientes ejemplos utilizan Sociedad o Religión.</p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal</li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote</li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios</li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
+    "reference": "Manual de jugador p.231",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Descifrar escritura",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( sobre temática ocultista,  incluyendo sistemas metafísicos complejos, principios sin créticos, filosofías oscuras y divagaciones incoherentes.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>&nbsp;Tratas de descifrar una escritura o literatura complicada sobre un tema oscuro. Esto suele requerir 1 minuto por página de texto, pero podría durar más (típicamente una hora por página para desencriptar mensajes cifrados o cosas parecidas). El texto tendrá que estar en un idioma que sepas leer, aunque el DJ te podría permitir intentos de des cifrar textos escritos en un idioma poco familiar utilizando Sociedad en su lugar. La CD la determina el DJ basándose en el estado o en la compleji dad del documento. Podría hacer que hicieras una sola prueba para un texto corto o una prueba para cada sección de un texto mayor. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Entiendes el verdadero significado del texto.&nbsp;</li><li><strong>Éxito </strong>Entiendes el verdadero significado del texto. Si era un documento en clave, averiguas el significado general, pero podrías no disponer de una traducción palabra por palabra. </li><li><strong>Fallo </strong>No puedes entender el texto y sufres un penalizador -2 por circunstancia a las pruebas posteriores para descifrarlo. </li><li><strong>Fallo crítico</strong> Crees haber entendido el texto de dicha página, pero en realidad has entendido mal el mensaje. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Descifrar escritura</strong></p><p><br></p><ul><li><strong>Entrenado </strong>un tratado de filosofía básica </li><li><strong>Experto </strong>un código complejo, como por ejemplo una clave </li><li><strong>Maestro </strong>el código de un maestro de espías o notas de investigación avanzadas </li><li><strong>Legendario </strong>un texto planario esotérico escrito con metáforas por un antiguo celestial</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Identificar magia",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( en particular la magia de la  tradición ocultista.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>Una vez descubres que un objeto, lugar o efecto continuado es mágico, puedes invertir 10 minutos en identificar los detalles de su magia. Si tu intento se ve interrumpido, tienes que empezar de nuevo. El DJ es quien fija la CD para tu prueba. La magia de las maldiciones o los objetos esotéricos suelen tener una CD mayor o podrían ser incluso imposibles de identificar utilizando tan solo esta actividad. Potenciar un conjuro no incrementa la CD para identificarlo.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Averiguas todos los atributos de la magia, incluyendo su nombre (si se trata de un efecto), lo que hace, cualquier medio de activarla (para un objeto o lugar) y si está maldita.</li><li><strong>Éxito </strong>Para un objeto o lugar, obtienes una sensación de lo que hace y averiguas el método de activarlo. Para un efecto continuado (como por ejemplo un conjuro con duración), averiguas el nombre del efecto y lo que hace. No puedes probar de nuevo con la esperanza de obtener un éxito crítico.</li><li><strong>Fallo </strong>No consigues identificar la magia y no puedes volver a probar durante 1 día.</li><li><strong>Fallo crítico</strong> Confundes la magia con otra cosa a elección del DJ.&nbsp;</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Aprender un conjuro",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( de la tradición ocultista.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p><strong>Requisitos:</strong> Tienes un rasgo de clase de lanzamiento de conjuros, y el conjuro que quieres aprender está en la lista de conjuros de tu tradición mágica.</p><p><br></p><p>Si eres un lanzador de conjuros, puedes utilizar la habilidad correspondiente a tu tradición mágica para aprender un nuevo conjuro de dicha tradición. La Tabla 4-1: Aprender un conjuro, indica el Precio de los materiales necesarios para Aprender un conjuro de cada nivel</p><p><br></p><p><strong>APRENDER UN CONJURO</strong></p><p><br></p><p>&nbsp;Puedes obtener acceso a un nuevo conjuro de tu tradición a partir de alguien que lo conoce o a partir de escritura mágica, como un libro&nbsp;de conjuros o un pergamino. Si puedes lanzar conjuros de tradiciones múltiples, puedes Aprender un conjuro de cualquiera de ellas, pero para hacerlo deberás utilizar la habilidad correspondiente. Por ejemplo, si eres un clérigo con el arquetipo multiclase bardo, no puedes&nbsp;utilizar Religión para añadir un conjuro de ocultismo a tu repertorio de conjuros de bardo. 234Para aprender el conjuro, debes hacer lo siguiente:</p><p><br></p><ul><li>Invertir 1 hora por nivel del conjuro, durante la cual debes permanecer en conversación con una persona que conoce el conjuro o disponer de la escritura mágica</li><li>Disponer de los materiales con el Precio indicado en la Tabla 4-1.</li><li>Hacer una prueba de habilidad para la habilidad correspondiente a tu tradición (la CD la determina el DJ, a menudo parecida a la CD de la Tabla 4-1). Los conjurospoco comunes o raros tienen CD superiores; las directrices completas para el DJ aparecen en la pág. 503.</li></ul><p><br></p><p>&nbsp;Si tienes un libro de conjuros, Aprender un conjuro te permite añadirlo a tu libro; si preparas conjuros de una lista, se añade a tu lista; si tienes un repertorio de conjuros, puedes seleccionarlo cuando añades o intercambias conjuros.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Gastas la mitad de los materiales y aprendes el conjuro.</li><li><strong>Éxito</strong> Gastas los materiales y aprendes el conjuro.</li><li><strong>Fallo</strong> No consigues aprender el conjuro pero podrás intentarlo de nuevo una vez subas de nivel Los materiales no se gastan.</li><li><strong>Fallo crítico</strong> Como en un fallo, y además gastas la mitad de los materiales.</li></ul><p><br></p><p><strong>TABLA 4-1: APRENDER UN CONJURO</strong></p><p><br></p><p>&lt;img src=\"https://i.postimg.cc/jdfxtw0V/Captura-de-pantalla-2025-03-15-052729.png\" alt=\"Tabla 4-1: Aprender un conjuro\" style=\"max-width:100%; height:auto;\"&gt;</p><p><br></p><p><br></p><p><strong>Conjuros aprendidos</strong></p><p><br></p><p>Un conjuro que aprendes se añade a tu depósito de conjuros, como por ejemplo un libro de conjuros para un mago, un familiar para un brujo o una lista de conjuros para un clérigo o un druida. Si dispones de un repertorio de conjuros, como por ejemplo si eres un bardo, no se añade automáticamente, puesto que sólo puedes conocer una cantidad limitada de conjuros. En su lugar, puedes seleccionarlo cuando añades o intercambias conjuros.</p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      }
     ]
   },
   {
     "header": "Religión (Sabiduria)"
   },
   {
-    "title": "Recordar conocimiento",
-    "icon": "church",
-    "subtitle": "Religión (entrenado: no)",
-    "description": "Recuerdas información sobre dioses, rituales y dogmas.",
-    "reference": "Pantalla del Director – Religión",
-    "bullets": [
-      "Tirada: Religión contra la CD de la información.",
-      "Éxito: obtienes detalles precisos.",
-      "Fracaso: no recuerdas nada útil.",
-      "Rasgos: concentración, secreto"
+    "title": "Recordar conocimiento [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento</li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad.</li><li><strong>Fallo </strong>No obtienes información alguna.</li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo).</li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p>Los siguientes ejemplos utilizan Sociedad o Religión.</p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal</li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote</li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios</li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
+    "reference": "Manual de jugador p.231",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Descifrar escritura",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado ( de naturaleza religiosa, incluyendo alegorías, homilías y proverbios.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>&nbsp;Tratas de descifrar una escritura o literatura complicada sobre un tema oscuro. Esto suele requerir 1 minuto por página de texto, pero podría durar más (típicamente una hora por página para desencriptar mensajes cifrados o cosas parecidas). El texto tendrá que estar en un idioma que sepas leer, aunque el DJ te podría permitir intentos de des cifrar textos escritos en un idioma poco familiar utilizando Sociedad en su lugar. La CD la determina el DJ basándose en el estado o en la compleji dad del documento. Podría hacer que hicieras una sola prueba para un texto corto o una prueba para cada sección de un texto mayor.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Entiendes el verdadero significado del texto.&nbsp;</li><li><strong>Éxito </strong>Entiendes el verdadero significado del texto. Si era un documento en clave, averiguas el significado general, pero podrías no disponer de una traducción palabra por palabra.</li><li><strong>Fallo </strong>No puedes entender el texto y sufres un penalizador -2 por circunstancia a las pruebas posteriores para descifrarlo.</li><li><strong>Fallo crítico</strong> Crees haber entendido el texto de dicha página, pero en realidad has entendido mal el mensaje.</li></ul><p><br></p><p><strong>Ejemplos de tareas de Descifrar escritura</strong></p><p><br></p><ul><li><strong>Entrenado </strong>un tratado de filosofía básica</li><li><strong>Experto </strong>un código complejo, como por ejemplo una clave</li><li><strong>Maestro </strong>el código de un maestro de espías o notas de investigación avanzadas</li><li><strong>Legendario </strong>un texto planario esotérico escrito con metáforas por un antiguo celestial</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Identificar magia",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado (en particular la magia de la  tradición divina.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>Una vez descubres que un objeto, lugar o efecto continuado es mágico, puedes invertir 10 minutos en identificar los detalles de su magia. Si tu intento se ve interrumpido, tienes que empezar de nuevo. El DJ es quien fija la CD para tu prueba. La magia de las maldiciones o los objetos esotéricos suelen tener una CD mayor o podrían ser incluso imposibles de identificar utilizando tan solo esta actividad. Potenciar un conjuro no incrementa la CD para identificarlo.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Averiguas todos los atributos de la magia, incluyendo su nombre (si se trata de un efecto), lo que hace, cualquier medio de activarla (para un objeto o lugar) y si está maldita.</li><li><strong>Éxito </strong>Para un objeto o lugar, obtienes una sensación de lo que hace y averiguas el método de activarlo. Para un efecto continuado (como por ejemplo un conjuro con duración), averiguas el nombre del efecto y lo que hace. No puedes probar de nuevo con la esperanza de obtener un éxito crítico.</li><li><strong>Fallo </strong>No consigues identificar la magia y no puedes volver a probar durante 1 día.</li><li><strong>Fallo crítico</strong> Confundes la magia con otra cosa a elección del DJ.&nbsp;</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Aprender un conjuro",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado (de la tradición divina.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p><strong>Requisitos:</strong> Tienes un rasgo de clase de lanzamiento de conjuros, y el conjuro que quieres aprender está en la lista de conjuros de tu tradición mágica.</p><p><br></p><p>Si eres un lanzador de conjuros, puedes utilizar la habilidad correspondiente a tu tradición mágica para aprender un nuevo conjuro de dicha tradición. La Tabla 4-1: Aprender un conjuro, indica el Precio de los materiales necesarios para Aprender un conjuro de cada nivel</p><p><br></p><p><strong>APRENDER UN CONJURO</strong></p><p><br></p><p>&nbsp;Puedes obtener acceso a un nuevo conjuro de tu tradición a partir de alguien que lo conoce o a partir de escritura mágica, como un libro&nbsp;de conjuros o un pergamino. Si puedes lanzar conjuros de tradiciones múltiples, puedes Aprender un conjuro de cualquiera de ellas, pero para hacerlo deberás utilizar la habilidad correspondiente. Por ejemplo, si eres un clérigo con el arquetipo multiclase bardo, no puedes&nbsp;utilizar Religión para añadir un conjuro de ocultismo a tu repertorio de conjuros de bardo. 234Para aprender el conjuro, debes hacer lo siguiente:</p><p><br></p><ul><li>Invertir 1 hora por nivel del conjuro, durante la cual debes permanecer en conversación con una persona que conoce el conjuro o disponer de la escritura mágica</li><li>Disponer de los materiales con el Precio indicado en la Tabla 4-1.</li><li>Hacer una prueba de habilidad para la habilidad correspondiente a tu tradición (la CD la determina el DJ, a menudo parecida a la CD de la Tabla 4-1). Los conjurospoco comunes o raros tienen CD superiores; las directrices completas para el DJ aparecen en la pág. 503.</li></ul><p><br></p><p>&nbsp;Si tienes un libro de conjuros, Aprender un conjuro te permite añadirlo a tu libro; si preparas conjuros de una lista, se añade a tu lista; si tienes un repertorio de conjuros, puedes seleccionarlo cuando añades o intercambias conjuros.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Gastas la mitad de los materiales y aprendes el conjuro.</li><li><strong>Éxito</strong> Gastas los materiales y aprendes el conjuro.</li><li><strong>Fallo</strong> No consigues aprender el conjuro pero podrás intentarlo de nuevo una vez subas de nivel Los materiales no se gastan.</li><li><strong>Fallo crítico</strong> Como en un fallo, y además gastas la mitad de los materiales.</li></ul><p><br></p><p><strong>TABLA 4-1: APRENDER UN CONJURO</strong></p><p><br></p><p>&lt;img src=\"https://i.postimg.cc/jdfxtw0V/Captura-de-pantalla-2025-03-15-052729.png\" alt=\"Tabla 4-1: Aprender un conjuro\" style=\"max-width:100%; height:auto;\"&gt;</p><p><br></p><p><br></p><p><strong>Conjuros aprendidos</strong></p><p><br></p><p>Un conjuro que aprendes se añade a tu depósito de conjuros, como por ejemplo un libro de conjuros para un mago, un familiar para un brujo o una lista de conjuros para un clérigo o un druida. Si dispones de un repertorio de conjuros, como por ejemplo si eres un bardo, no se añade automáticamente, puesto que sólo puedes conocer una cantidad limitada de conjuros. En su lugar, puedes seleccionarlo cuando añades o intercambias conjuros.</p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      }
     ]
   },
   {
     "header": "Sociedad (inteligencia)"
   },
   {
-    "title": "Recordar conocimiento",
-    "icon": "university",
-    "subtitle": "Sociedad (entrenado: no)",
-    "description": "Recuerdas información sobre costumbres, leyes u organización social.",
-    "reference": "Pantalla del Director – Sociedad",
-    "bullets": [
-      "Tirada: Sociedad contra la CD de la información.",
-      "Éxito: obtienes detalles precisos.",
-      "Fracaso: no recuerdas nada útil.",
-      "Rasgos: concentración, secreto"
+    "title": "Recordar conocimiento [one-action]",
+    "icon": "magnifying-glass",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Haces una prueba de habilidad para intentar recordar un fragmento de conocimiento sobre un tema relacionado con dicha habilidad. Sugiere qué habilidad querrías usar y formula una pregunta al DJ. El DJ es quien determina la CD. Podrías tener que colaborar con él para acotar la pregunta o las habilidades, y podrías decidir no Recordar conocimiento antes de decidirte por la acción si no te gustan tus opciones.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad y, o bien te proporciona información o contexto adicionales, o bien contesta una pregunta de seguimiento</li><li><strong>Éxito </strong>Recuerdas con exactitud el conocimiento. El DJ responde a tu pregunta con veracidad.</li><li><strong>Fallo </strong>No obtienes información alguna.</li><li><strong>Fallo crítico</strong> Recuerdas información incorrecta. El DJ responde a tu pregunta con una falsedad (o decide no proporcionarte información alguna, como en un fallo).</li></ul><p><br></p><p><strong>Tareas de Recordar conocimiento</strong></p><p><br></p><p>Los siguientes ejemplos utilizan Sociedad o Religión.</p><p><br></p><ul><li><strong>No entrenado</strong> el nombre de un gobernante, jefe de estado, noble clave o dios principal</li><li><strong>Entrenado </strong>la línea sucesoria de una familia noble principal, las doctrinas centrales de un dios principal Experto la genealogía de un noble menor, las enseñanzas de un antiguo sacerdote</li><li><strong>Maestro </strong>la jerarquía de la corte de un genio noble, los templos extraplanarios principales de un dios</li><li><strong>Legendario </strong>la existencia de un heredero noble largo tiempo perdido, las doctrinas secretas de una religión</li></ul><p><br></p>",
+    "reference": "Manual de jugador p.231",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Subsistir",
+    "icon": "campfire",
+    "subtitle": "Entrenado ( en un asentamiento buscando refugio,  rebuscando por la calle o mendigando comida.)",
+    "reference": "Manual de jugador p.246",
+    "description": "<p>&nbsp;Tratas de proporcionarte a ti mismo comida y cobijo, y posiblemente también a otros, con un nivel de vida descrito en la pág. 295. El DJ es quien determina la CD basándose en la Naturaleza del lugar en el que tratas de Subsistir. Podrías necesitar un rango de competencia mínimo para Subsistir en entornos particularmente extraños. A diferencia de la mayoría de las actividades de tiempo libre, puedes Subsistir después de 8 horas o menos de exploración, pero si lo haces sufres un penalizador -5. </p><p><br></p><ul><li><strong>Éxito crítico</strong> O bien proporcionas un nivel de vida de subsistencia para ti mismo y una criatura adicional, o bien mejoras tu propia comida y cobijo, lo que te concede un nivel de vida cómodo.&nbsp;</li><li><strong>Éxito </strong>Encuentras suficiente comida y cobijo con protección básica ante los elementos, como para proporcionarte un nivel de vida de subsistencia. </li><li><strong>Fallo </strong>Quedas expuesto a los elementos y no obtienes suficiente comida, quedando fatigado hasta que consigues suficiente comida y cobijo. </li><li><strong>Fallo crítico</strong> Atraes problemas, comes algo que no deberías o empeoras tu situación de alguna otra forma. Sufres un penalizador -2 por circunstancia a las pruebas de Subsistir durante 1 semana. No encuentras comida en absoluto; si no tienes nada almacenado, corres el peligro de morirte de hambre o de sed si continúas fallando. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Subsistir</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> un bosque frondoso en tiempo apacible o una gran ciudad con abundancia de recursos </li><li><strong>Entrenado </strong>la ladera de una colina o poblado típicos </li><li><strong>Experto </strong>unas montañas típicas o una aldea aislada Maestro un desierto típico o una ciudad asediada </li><li><strong>Legendario </strong>un yermo desolado o una ciudad de muertos vivientes</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Tiempo libre",
+        "info": " Un modo de juego en el que los PJs no están de aventuras. Los  días pasan rápidamente en la mesa y los PJs emprenden actividades  de larga duración. "
+      }
+    ]
+  },
+  {
+    "title": "Descifrar escritura",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado (que es un mensaje codificado, un texto escrito en una forma incompleta o arcaica o, en algunos casos, un texto en un idioma que no conoces.)",
+    "reference": "Manual de jugador p.229",
+    "description": "<p>&nbsp;Tratas de descifrar una escritura o literatura complicada sobre un tema oscuro. Esto suele requerir 1 minuto por página de texto, pero podría durar más (típicamente una hora por página para desencriptar mensajes cifrados o cosas parecidas). El texto tendrá que estar en un idioma que sepas leer, aunque el DJ te podría permitir intentos de des cifrar textos escritos en un idioma poco familiar utilizando Sociedad en su lugar. La CD la determina el DJ basándose en el estado o en la compleji dad del documento. Podría hacer que hicieras una sola prueba para un texto corto o una prueba para cada sección de un texto mayor.</p><p><br></p><ul><li><strong>Éxito crítico</strong> Entiendes el verdadero significado del texto.&nbsp;</li><li><strong>Éxito </strong>Entiendes el verdadero significado del texto. Si era un documento en clave, averiguas el significado general, pero podrías no disponer de una traducción palabra por palabra.</li><li><strong>Fallo </strong>No puedes entender el texto y sufres un penalizador -2 por circunstancia a las pruebas posteriores para descifrarlo.</li><li><strong>Fallo crítico</strong> Crees haber entendido el texto de dicha página, pero en realidad has entendido mal el mensaje.</li></ul><p><br></p><p><strong>Ejemplos de tareas de Descifrar escritura</strong></p><p><br></p><ul><li><strong>Entrenado </strong>un tratado de filosofía básica</li><li><strong>Experto </strong>un código complejo, como por ejemplo una clave</li><li><strong>Maestro </strong>el código de un maestro de espías o notas de investigación avanzadas</li><li><strong>Legendario </strong>un texto planario esotérico escrito con metáforas por un antiguo celestial</li></ul><p><br></p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Falsificar",
+    "icon": "scroll-unfurled",
+    "subtitle": "Entrenado",
+    "reference": "Manual de jugador p.246",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Proporcionas el material de escritura adecuado para tu falsificación.</p><p><br></p><p>Creas un documento falso, por lo general a lo largo de un día o de una semana. El DJ hace una prueba secreta de Sociedad CD 20. Si tienes que falsificar la caligrafía de una persona específi ca, necesitas una muestra de la misma. De lo contrario, tan sólo necesitas haber visto un documento similar, y obtienes hasta un bonificador +4 por circunstancia a la prueba (el DJ es quien deter mina el bonificador). </p><p><br></p><ul><li><strong>Éxito </strong>La falsificación es lo bastante buena como para que los observadores pasivos no se den cuenta (pero consulta Cómo examinar falsificaciones).</li><li><strong>Fallo </strong>La falsificación tiene signos obvios de que es un documento falso, permitiendo potencialmente que los observadores pasivos lo detecten. Cada vez que un observador pasivo ve el documento, el DJ compara el resultado de tu prueba con la CD de Percepción del observador o su CD de Sociedad, la mayor de ambas. Si tu resultado no excede la CD de un observador pasivo, éste determina que el documento es una falsificación.</li></ul>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      },
+      {
+        "name": "Tiempo libre",
+        "info": " Un modo de juego en el que los PJs no están de aventuras. Los  días pasan rápidamente en la mesa y los PJs emprenden actividades  de larga duración. "
+      }
     ]
   },
   {
     "header": "Sigilo (Destreza)"
   },
   {
-    "title": "Esconderse",
-    "icon": "eye-slash",
-    "subtitle": "Sigilo (entrenado: no)",
-    "description": "Intentas ocultarte a la vista o al olfato.",
-    "reference": "Pantalla del Director – Sigilo",
-    "bullets": [
-      "Tirada: Sigilo contra la CD de Percepción.",
-      "Éxito: quedas oculto.",
-      "Fracaso: permaneces visible.",
-      "Rasgos: sigilo"
+    "title": "Esconderse [one-action]",
+    "icon": "hidden",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Te acurrucas tras una cobertura, una cobertura mayor u obtienes ocultamiento para quedar escondido, a fin de no seguir siendo observado. El DJ hace en secreto tu prueba de Sigilo y compara el resultado con la CD de Percepción de cada criatura de las que te están observando pero contra las que dispones de cobertura,&nbsp;&nbsp;cobertura mayor o estás oculto. Obtienes un bonificador +2 por circunstancia a la prueba si dispones de cobertura estándar (o +4 si dispones de cobertura mayor). </p><p><br></p><p><strong>Éxito </strong>Si la criatura podía verte, ahora estás escondido de ella en lugar de observado. Si estabas escondido de la misma o no de tectado por ella, mantienes dicho estado. </p><p>Si consigues esconderte con éxito de una criatura, pero lue go dejas de tener cobertura o cobertura mayor contra la misma o de estar oculto de ella, vuelves a estar observado. Dejas de estar escondido si haces cualquier cosa excepto Esconderte, Mo verte furtivamente o dar un Paso. Si tratas de dar un Golpe a una criatura, ésta permanece desprevenida ante dicho ataque y después quedas observado. Si haces cualquier otra cosa, quedas observado justo antes de actuar, si el DJ no opina lo contrario. El DJ podría permitirte llevar a cabo una acción particularmente discreta sin que se te vea, lo que posiblemente requeriría otra prueba de Sigilo.</p><p> Si una criatura utiliza Buscar para que quedes observado por ella, deberás Esconderte con éxito para quedar de nuevo escon dido de ella</p>",
+    "reference": "Manual de jugador p.244",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
-    "title": "Avanzar sigilosamente",
-    "icon": "shoe-prints",
-    "subtitle": "Sigilo (entrenado: no)",
-    "description": "Te mueves sin producir ruido ni alertar a otros.",
-    "reference": "Pantalla del Director – Sigilo",
-    "bullets": [
-      "Tirada: Sigilo contra la CD auditiva de Percepción.",
-      "Éxito: no eres detectado al moverte.",
-      "Fracaso: produces ruido y alertas.",
-      "Rasgos: sigilo"
+    "title": "Movimiento furtivo [one-action]",
+    "icon": "journey",
+    "subtitle": "No entrenado",
+    "description": "<p>&nbsp;Tratas de mover a otro sitio mientras sigues estando no detectado o pasas a dicho estado. Da una Zancada hasta la mitad de tu Velocidad (puedes utilizar movimiento furtivo mientras Excavas, Trepas, Vuelas o Nadas en lugar de dar una Zancada si dispones del correspondiente tipo de movimiento; debes mover a la mitad de dicha Velocidad).</p><p> Al final de tu movimiento, el DJ hace en secreto tu prueba de Sigilo y compara el resultado con la CD de Percepción de cada criatura de la que estabas escondido o no detectado al inicio de tu movimiento. Si dispones de cobertura o de cobertura mayor frente a la criatura a lo largo de tu Zancada, obtienes el bonificador +2 por circunstancia si tienes cobertura (o +4 si tienes cobertura mayor) a tu prueba de Sigilo. Como quiera que estás moviendo, el incremento de bonificador por Ponerse a cubierto no se aplica. No tienes derecho a una tirada contra una criatura si, al final de tu movimiento, ni estás oculto de la misma, ni dispones de cobertura o de cobertura mayor contra ella. Quedas automáticamente observado por dicha criatura. </p><p><br></p><ul><li><strong>Éxito</strong> Estás no detectado por la criatura durante tu movimiento y permaneces no detectado por ella al final del mismo. Quedas observado en cuanto haces cualquier cosa diferente a Es conderte, Moverte furtivamente o dar un Paso. Si das un Golpe a una criatura, está desprevenida contra dicho ataque y a continuación que das observado. Si haces cualquier otra cosa, quedas observado justo antes de actuar, si el DJ no dice lo contrario. El DJ podría permitirte llevar a cabo una acción particularmente discreta sin que se te vea, lo que posiblemente requeriría otra prueba de Sigilo. Si hablas o haces un ruido deliberadamente alto, quedas escondido en lugar de no detectado. Si una criatura utiliza Buscar y como resultado quedas escondido de la misma, debes Moverte furtivamente si quieres volver a estar no detectado por ella. </li><li><strong>Fallo </strong>Un sonido delator o cualquier otra señal revela tu posición, aun que sigues sin ser visto. Estás escondido de la criatura a lo largo de tu movimiento y permaneces así. </li><li><strong>Fallo crítico</strong> ¡Te han visto! Estás observado por la criatura a lo largo de tu movimiento y permaneces así. Si eres invisible y estabas&nbsp;escondido de la criatura, en lugar de observado estás escondido a lo largo de tu movimiento y permaneces así.</li></ul>",
+    "reference": "Manual de jugador p.244",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
+    ]
+  },
+  {
+    "title": "Ocultar un objeto [one-action]",
+    "icon": "snatch",
+    "subtitle": "No entrenado",
+    "reference": "Manual de jugador p.244",
+    "description": "<p>&nbsp;Disimulas un pequeño objeto en tu persona (como por ejemplo, un&nbsp;&nbsp;arma de Impedimenta ligera). Cuando tratas de pasar un objeto oculto por delante de alguien que podría darse cuenta de su presencia, el DJ hace por ti una prueba de Sigilo y la compara con la CD de Percepción del observador pasivo. Una vez el DJ hace tu prueba para un objeto oculto, se utiliza el mismo resultado sin importar por delante de cuántos observadores pasivos tratas de camuflarlo. Si una criatura te está registrando específicamente en busca de un objeto, puede hacer una prueba de Percepción contra tu CD de Sigilo (si tiene éxito, lo encuentra).</p><p> También puedes ocultar un objeto en alguna parte que no es tu persona, como por ejemplo en el sotobosque o en un compartimento secreto de un mueble. En este caso, los personajes que Buscan en un área comparan los resultados de su prueba de Percepción contra tu CD de Sigilo para determinar si encuentran el objeto. </p><p><br></p><ul><li><strong>Éxito </strong>El objeto sigue sin ser detectado. </li><li><strong>Fallo </strong>El buscador encuentra el objeto.</li></ul>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      },
+      {
+        "name": "secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
     "header": "Supervivencia (sabiduria)"
   },
   {
+    "title": "Subsistir",
+    "icon": "campfire",
+    "subtitle": "Entrenado (en las tierras vírgenes forrajeando en  busca de comida y construyendo refugios.)",
+    "description": "<p>&nbsp;Tratas de proporcionarte a ti mismo comida y cobijo, y posiblemente también a otros, con un nivel de vida descrito en la pág. 295. El DJ es quien determina la CD basándose en la Naturaleza del lugar en el que tratas de Subsistir. Podrías necesitar un rango de competencia mínimo para Subsistir en entornos particularmente extraños. A diferencia de la mayoría de las actividades de tiempo libre, puedes Subsistir después de 8 horas o menos de exploración, pero si lo haces sufres un penalizador -5. </p><p><br></p><ul><li><strong>Éxito crítico</strong> O bien proporcionas un nivel de vida de subsistencia para ti mismo y una criatura adicional, o bien mejoras tu propia comida y cobijo, lo que te concede un nivel de vida cómodo.&nbsp;</li><li><strong>Éxito </strong>Encuentras suficiente comida y cobijo con protección básica ante los elementos, como para proporcionarte un nivel de vida de subsistencia. </li><li><strong>Fallo </strong>Quedas expuesto a los elementos y no obtienes suficiente comida, quedando fatigado hasta que consigues suficiente comida y cobijo. </li><li><strong>Fallo crítico</strong> Atraes problemas, comes algo que no deberías o empeoras tu situación de alguna otra forma. Sufres un penalizador -2 por circunstancia a las pruebas de Subsistir durante 1 semana. No encuentras comida en absoluto; si no tienes nada almacenado, corres el peligro de morirte de hambre o de sed si continúas fallando. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Subsistir</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> un bosque frondoso en tiempo apacible o una gran ciudad con abundancia de recursos </li><li><strong>Entrenado </strong>la ladera de una colina o poblado típicos </li><li><strong>Experto </strong>unas montañas típicas o una aldea aislada Maestro un desierto típico o una ciudad asediada </li><li><strong>Legendario </strong>un yermo desolado o una ciudad de muertos vivientes</li></ul>",
+    "reference": "Manual de jugador p.246",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Tiempo libre",
+        "info": " Un modo de juego en el que los PJs no están de aventuras. Los  días pasan rápidamente en la mesa y los PJs emprenden actividades  de larga duración. "
+      }
+    ]
+  },
+  {
     "title": "Sentir dirección",
     "icon": "compass",
     "subtitle": "Supervivencia (entrenado: no)",
-    "description": "Determinas los puntos cardinales sin herramienta especial.",
+    "description": "<p>&nbsp;Utilizando las estrellas, la posición del sol, los rasgos de la geogra fía o de la flora o el comportamiento de la fauna, puedes permanecer orientado en las tierras vírgenes. Típicamente, haces una prueba de Supervivencia sólo una vez al día, pero algunos entornos o cambios podrían requerir alguna tirada más a menudo. Es el DJ quien determina la CD y lo que dura esta actividad (por lo general, tan sólo un minuto). Ubicaciones más inusuales o aquellas con las que no estás familiariza do podrían requerir de ti un rango de competencia mínimo para Sentir la dirección. Sin una brújula, sufres un penalizador -2 por objeto a las pruebas para Sentir la dirección. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Tienes una excelente idea de dónde estás. Si estás en un entorno con direcciones cardinales, las conoces exactamente. </li><li><strong>Éxito </strong>Obtienes una orientación suficiente como para evitar perderte por completo. Si estás en un entorno con direcciones cardinales, tienes un buen sentido de las mismas. </li></ul><p><br></p><p><strong>Tareas de Sentir la dirección</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> determinar una dirección cardinal utilizando el sol</li><li><strong>Entrenado </strong>encontrar un sendero tapado por la vegetación en un bosque&nbsp;</li><li><strong>Experto</strong> orientarse en un laberinto de vegetación </li><li><strong>Maestro </strong>orientarse en un laberinto complicado o en un desierto relativamente uniforme </li><li><strong>Legendario </strong>orientarse en un reino onírico en cambio continuo.</li></ul>",
     "reference": "Pantalla del Director – Supervivencia",
-    "bullets": [
-      "Tirada: Supervivencia contra la CD ambiental.",
-      "Éxito: sabes qué dirección tomar.",
-      "Fracaso: te desorientas.",
-      "Rasgos: exploración"
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Exploración ",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Secreto",
+        "info": "(rasgo) El DJ hace en secreto la prueba para esta aptitud. 405"
+      }
     ]
   },
   {
-    "title": "Subsistir",
-    "icon": "campground",
-    "subtitle": "Supervivencia (entrenado: sí)",
-    "description": "Usas tus conocimientos para sobrevivir en la naturaleza.",
-    "reference": "Pantalla del Director – Supervivencia",
-    "bullets": [
-      "Tiempo: varía según el entorno.",
-      "Tirada: Supervivencia contra la CD del terreno.",
-      "Éxito: localizas refugio, comida y agua.",
-      "Fracaso: sufres penalizadores ambientales.",
-      "Rasgos: tiempo libre, exploración, entrenado"
+    "title": "Cubrir rastro",
+    "icon": "hidden",
+    "subtitle": "Entrenado",
+    "description": "<p>Cubres tus huellas, moviéndote hasta la mitad de tu Velocidad de viaje, utilizando las reglas de la pág. 438. No tienes que hacer una prueba de Supervivencia para cubrir tu rastro, pero cual quiera que te rastrea ha de tener éxito en una prueba de Super vivencia contra tu CD de Supervivencia si es superior a la CD normal para Rastrear.</p><p> En algunos casos, podrías Cubrir rastro en un encuentro. En este caso, es una sola acción y carece del rasgo exploración.</p>",
+    "reference": "Manual de jugador p.247",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    "title": "Forzar cerradura",
-    "icon": "lock-open",
-    "subtitle": "Juego de manos (entrenado: sí)",
-    "description": "Abres cerraduras sin llave.",
-    "reference": "Pantalla del Director – Juego de manos",
-    "bullets": [
-      "Requiere herramientas de ladrón.",
-      "Tirada: Juego de manos contra la CD de la cerradura.",
-      "Éxito: abres sin activar trampas.",
-      "Fracaso: no abres o activas la trampa.",
-      "Rasgos: manipular, entrenado"
-    ]
-  },
-  {
-    "title": "Desactivar dispositivo",
-    "icon": "bomb",
-    "subtitle": "Juego de manos (entrenado: sí)",
-    "description": "Desarmes trampas u otros mecanismos explosivos.",
-    "reference": "Pantalla del Director – Juego de manos",
-    "bullets": [
-      "Requiere herramientas de ladrón.",
-      "Tirada: Juego de manos contra la CD del dispositivo.",
-      "Éxito: desactivas sin riesgo.",
-      "Fracaso: activas la trampa.",
-      "Rasgos: manipular, entrenado"
-    ]
-  },
-  {
-    "title": "Robar",
-    "icon": "hand-back-fist",
-    "subtitle": "Juego de manos (entrenado: no)",
-    "description": "Sustraes un objeto de un objetivo sin que lo note.",
-    "reference": "Pantalla del Director – Juego de manos",
-    "bullets": [
-      "Tirada: Juego de manos contra la CD de Percepción del objetivo.",
-      "Éxito: sustraes el objeto sin que note.",
-      "Fracaso: te descubren.",
-      "Rasgos: manipular"
-    ]
-  },
-  {
-    "title": "Interpretar",
-    "icon": "theater-masks",
-    "subtitle": "Interpretación (entrenado: no)",
-    "description": "Realizas una actuación artística para entretener o impresionar.",
-    "reference": "Pantalla del Director – Interpretación",
-    "bullets": [
-      "Tirada: Interpretación contra la CD fijada por la situación.",
-      "Éxito: logras entretener o impresionar.",
-      "Fracaso: no logras causar impacto.",
-      "Rasgos: performativo"
+    "title": "Rastrear",
+    "icon": "magnifying-glass",
+    "subtitle": "Entrenado",
+    "description": "<p>&nbsp;Sigues rastros, moviéndote hasta la mitad de tu Velocidad de viaje, utilizando las reglas de la pág. 438. Tras una prueba con éxito de Rastrear, puedes continuar siguiendo el rastro a la mitad de tu Velocidad sin hacer pruebas adicionales durante hasta 1 hora.</p><p>&nbsp;En algunos casos, podrías Rastrear en un encuentro. En este caso, Rastrear es una sola acción y carece del rasgo exploración, pero podrías tener que tirar más a menudo por estar en una situación tensa. Es el DJ quien determina lo a menudo que tienes que hacer la prueba</p><p>. Haces tu prueba de Supervivencia cuando empiezas a Rastrear, una vez por cada hora que continúas rastreando y en cualquier momento en que cambia algo significativo en el rastro. El DJ es quien determina las clases de dificultad para dichas pruebas, de pendiendo de lo reciente del rastro, del clima y del tipo de terreno. </p><p><br></p><ul><li><strong>Éxito </strong>Encuentras el rastro o continuas siguiendo el actual. </li><li><strong>Fallo </strong>Pierdes el rastro, pero puedes intentar encontrarlo de nuevo al cabo de 1 hora. </li><li><strong>Fallo crítico</strong> Pierdes el rastro y no puedes intentar encontrarlo de nuevo hasta al cabo de 24 horas.</li></ul><p><br></p><p>&nbsp;<strong>Ejemplos de tareas de Rastrear</strong> </p><p><br></p><ul><li><strong>No entrenado</strong> el rastro de un ejército grande por un camino </li><li><strong>Entrenado </strong>huellas relativamente recientes de un oso desbocado a través de las llanuras </li><li><strong>Experto </strong>las huellas de una ágil pantera en una jungla, huellas después de llover Maestro huellas oscurecidas por la nieve invernal, las de un ratón o una criatura más pequeña, huellas dejadas en superficies que no las soportan, como por ejemplo la roca viva </li><li><strong>Legendario </strong>antiguas huellas en la arena de un desierto ventoso, huellas tras un gran vendaval o un huracán</li></ul>",
+    "reference": "Manual de jugador p.247",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   }
 ];
