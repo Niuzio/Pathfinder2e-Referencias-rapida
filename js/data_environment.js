@@ -60,28 +60,42 @@ data_environment_light = [
 ]
 
 data_environment_vision = [
-    {
-    title: "Olfato",
-    icon: "nose",
-    subtitle: "Impreciso",
-    description: "Detectas olores en un área limitada, sin localización exacta.",
-    reference: "Reglas básicas – Sentidos especiales",
-    bullets: [
-      "Localiza criaturas por aroma, pero no su posición precisa.",
-      "Útil para rastrear y detectar objetivos ocultos."
-    ]
+  {
+    "title": "Olfato",
+    "icon": "nose",
+    "subtitle": "Sentidos",
+    "description": "<p>&nbsp;El olfato implica detectar criaturas u objetos mediante el olfato, y suele ser un sentido vago. El rango se indica en la aptitud y sólo funciona si la criatura u objeto a detectar emite un aroma. Si la criatura emite un fuerte aroma o está a barlovento, el DJ puede doblar o incluso triplicar el rango de las aptitudes de olfato utili zadas para detectar dicha criatura, o puede reducirlo si la criatura esta a sotavento.</p>",
+    "reference": "Manual de jugador p.433",
+    "bullets": [],
+    "tags": []
   },
   {
-    title: "Percepción sísmica",
-    icon: "one-eyed",
-    subtitle: "Impreciso",
-    description: "Percibes vibraciones a través del suelo en un radio determinado.",
-    reference: "Reglas básicas – Sentidos especiales",
-    bullets: [
-      "Detecta criaturas u objetos en contacto con la superficie.",
-      "No revela detalles finos ni posición exacta."
-        ]
-    }
+    "title": "Sentidos precisos",
+    "icon": "one-eyed",
+    "subtitle": "Sentidos",
+    "description": "<p>&nbsp;La vista normal es un sentido preciso, que se puede utilizar para percibir el mundo con un detalle matizado. La única forma para designar como objetivo a una criatura sin tener inconvenientes es utilizar un sentido preciso. Por lo general puedes detectar a una criatura automáticamente con un sentido preciso si no se está es condiendo o está oscurecida por el entorno, en cuyo caso puedes utilizar la acción básica Buscar para detectarla mejor.</p>",
+    "reference": "Manual de jugador p.433",
+    "bullets": [],
+    "tags": []
+  },
+  {
+    "title": " Sentidos imprecisos",
+    "icon": "one-eyed",
+    "subtitle": "Sentidos",
+    "reference": "Manual de jugador p.433",
+    "description": "<p>&nbsp;El oído normal es un sentido impreciso, porque no puede detectar la gama completa de detalles de un sentido preciso. Por lo general puedes sentir automáticamente a una criatura con un sentido impreciso, pero tiene el estado escondido en lugar de observado. Podría estar no detectado por ti si utiliza Movimiento furtivo o está en un entorno que distorsiona el sentido, como una habitación ruidosa en el caso del oído. En dichos casos, tienes que utilizar la acción básica Buscar para detectar a la criatura. En el mejor de los casos, un sentido impreciso puede utilizarse para conseguir que una criatura no detectada (o una que ni siquiera sabías que estaba allí) esté simple mente escondida; no puede hacer que la criatura quede observada.</p>",
+    "bullets": [],
+    "tags": []
+  },
+  {
+    "title": " Sentidos vagos",
+    "icon": "one-eyed",
+    "subtitle": "Sentidos",
+    "reference": "Manual de jugador p.433",
+    "description": "<p>&nbsp;Un PJ también dispone de muchos sentidos vagos, que le pueden alertar de que hay algo allí pero no son útiles para centrarse en ello y determinar exactamente de qué se trata. El más útil de ellos para un PJ típico es el sentido del olfato. En el mejor de los casos, un sentido vago se puede utilizar para detectar la presencia de una criatura no detectada, haciendo que pase a detectada.</p><p> Incluso entonces, el sentido vago no es suficiente para conseguir que la criatura pase a escondida u observada. Cuando una criatura podría detectar a otra, el DJ casi siempre utiliza el sentido más preciso disponible. </p><p>Las reglas de Pathfinder suponen que una criatura determina da tiene la vista como su único sentido preciso y el oído como su único sentido impreciso. Sin embargo, algunos PJs y criaturas disponen de sentidos precisos o imprecisos que no encajan con esta suposición. Por ejemplo, un PJ con mala vista podría tratar dicho sentido como impreciso, un animal con la aptitud olfato puede utilizar su sentido del olfato como sentido impreciso y una criatura con ecolocalización o una aptitud similar puede utilizar el oído como sentido preciso. Dichos sentidos reciben a menudo nombres especiales y aparecen como “ecolocalización (preciso)”, “olfato (impreciso) 30 pies (9 m)”, etc.</p>",
+    "bullets": [],
+    "tags": []
+  }
 ]
 
 data_environment_cover = [
