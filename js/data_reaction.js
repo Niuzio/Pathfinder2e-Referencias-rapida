@@ -1,66 +1,78 @@
 data_reaction = [
-  { header: "Acrobacias (Destreza)" },
   {
-    title: "Mantener el equilibrio",
-    icon: "single_action",
-    subtitle: "Acrobacias (Destreza) – No entrenado",
-    description: "Te desplazas sobre terreno difícil, resbaladizo o estrecho intentando no caer.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
-      "Coste: 1 acción",
-      "Tirada: Acrobacias contra la CD determinada por el terreno",
-      "Éxito: avanzas sin caer; Fracaso: caes prone o sufres penalizador",
-      "Rasgos: movimiento"
+    "header": "Acrobacias (Destreza)",
+    "tags": []
+  },
+  {
+    "title": "Mantener el equilibrio [one-action]",
+    "icon": "two-shadows",
+    "subtitle": "Acrobacias (Destreza) – No entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>estás en una casilla que contiene una superficie estrecha, terreno desigual u otro rasgo similar. </p><p><br></p><p>Cruzas una superficie estrecha o terreno desigual mediante una prueba de Acrobacias contra tu CD de Mantener el equilibrio. Mientras estás en una superficie estrecha o terreno desigual, estás desprevenido. </p><p><br></p><ul><li><strong>Éxito crítico</strong> Te mueves hasta tu Velocidad. </li><li><strong>Éxito </strong>Te mueves hasta tu Velocidad, tratándolo como terreno difícil (cada 5 pies cuestan 10 pies de movimiento [1,5 y 3 m respectivamente]). </li><li><strong>Fallo </strong>Tienes que permanecer estacionario para no perder el equilibrio (malgastando la acción) o te caes. Si te caes, se acaba tu turno. </li><li><strong>Fallo crítico</strong> Te caes y se acaba tu turno.</li></ul><p><br></p><p>&nbsp;<strong>Ejemplos de tareas de Mantener el equilibrio</strong></p><p><br></p><ul><li><strong>No entrenado</strong> raíces enmarañadas, adoquines irregulares </li><li><strong>Entrenado</strong> viga de madera </li><li><strong>Experto </strong>grava profunda y suelta </li><li><strong>Maestro</strong> cuerda fija, placa de hielo lisa </li><li><strong>Legendario </strong>el filo de una navaja, fragmentos de terreno cayen do por los aires</li></ul>",
+    "reference": "Manual de jugador p.233",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    title: "Pasar haciendo acrobacias",
-    icon: "single_action",
-    subtitle: "Acrobacias (Destreza) – No entrenado",
-    description: "Te abres paso a través del espacio amenazado de un enemigo usando agilidad.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
-      "Coste: 1 acción",
-      "Tirada: Acrobacias contra la CD de Reflejos del enemigo",
-      "Éxito: atraviesas sin provocar ataques de oportunidad; Fracaso: tu movimiento termina",
-      "Rasgos: movimiento"
+    "title": "Pasar haciendo acrobacias [one-action]",
+    "icon": "journey",
+    "subtitle": "Acrobacias (Destreza) – No entrenado",
+    "description": "<p>Das una Zancada hasta tu Velocidad. Durante este movimiento,&nbsp;puedes intentar atravesar el espacio de un enemigo. Haz una prueba de Acrobacias contra la CD de Reflejos de tu enemigo en cuanto vayas a entrar en su espacio. Puedes Pasar haciendo acrobacias utilizando Trepar, Volar, Nadar u otra acción en lugar de Zancada en el entorno apropiado. </p><p><br></p><ul><li><strong>Éxito </strong>Atraviesas el espacio del enemigo, tratando las casillas del mismo como terreno difícil (cada 5 pies cuestan 10 pies de movimiento [1,5 y 3 m respectivamente]). Si no tienes suficiente Velocidad para moverte todo el recorrido a través de su espacio, obtienes el mismo efecto que un fallo. </li><li><strong>Fallo </strong>Tu movimiento se acaba y desencadenas reacciones como si hubieras salido de la casilla en la que empezaste.</li></ul>",
+    "reference": "Manual de jugador p.233",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    title: "Escurrirse",
-    icon: "single_action",
-    subtitle: "Acrobacias (Destreza) – Entrenado",
-    description: "Sales de una sujeción o pasas por un espacio muy reducido usando destreza.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
-      "Coste: 1 acción",
-      "Tirada: Acrobacias contra la CD del obstáculo",
-      "Éxito: avanzas lentamente; Fracaso: no avanzas",
-      "Rasgos: movimiento, entrenado"
+    "title": "Escurrirse",
+    "icon": "crawl",
+    "subtitle": "Acrobacias (Destreza) – Entrenado",
+    "description": "<p>&nbsp;Te contorsionas para escurrirte a través de un espacio tan pequeño que apenas puedes encajar en él. Esta acción es para espacios excepcionalmente pequeños; muchos espacios estrechos son terreno difícil (pág. 423) que puedes atravesar más rápidamente y sin necesitar prueba alguna. </p><p><br></p><ol><li><strong>Éxito crítico</strong> Te escurres a través del estrecho espacio a razón de 10 pies (3 m) por minuto. </li><li><strong>Éxito </strong>Te escurres a razón de 5 pies (1,5 m) por minuto. </li><li><strong>Fallo crítico</strong> Te quedas atascado en el estrecho espacio. Mientras estás atascado, puedes invertir 1 minuto haciendo otra prueba de Acrobacias a la misma CD. Cualquier resultado de dicha prueba diferente a un fallo crítico consigue desatascarte. </li></ol><p><br></p><p><strong>Ejemplos de tareas de Escurrirse</strong></p><p><br></p><p><strong>Entrenado </strong>un espacio en el que apenas caben tus hombros </p><p><strong>Maestro </strong>un espacio en el que apenas cabe tu cabeza</p>",
+    "reference": "Manual de jugador p.233",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      },
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
   {
-    title: "Maniobrar en vuelo",
-    icon: "single_action",
-    subtitle: "Acrobacias (Destreza) – Entrenado",
-    description: "Controlas tu trayectoria y altura mientras vuelas, sin caer.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
-      "Coste: 1 acción",
-      "Tirada: Acrobacias contra la CD determinada por la situación de vuelo",
-      "Éxito: cambias dirección o te estabilizas; Fracaso: pierdes altitud o estabilidad",
-      "Rasgos: movimiento, entrenado"
+    "title": "Maniobrar en vuelo [one-action]",
+    "icon": "feathered-wing",
+    "subtitle": "Acrobacias (Destreza) – Entrenado",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes Velocidad de vuelo</p><p><br></p><p>Haces una maniobra difícil mientras vuelas. Haz una prueba de Acrobacias. El DJ es quien determina qué maniobras son posibles, pero raramente se te va a permitir moverte más allá de tu Velocidad de vuelo. </p><p><br></p><ul><li><strong>Éxito </strong>Tienes éxito en la maniobra. </li><li><strong>Fallo </strong>Tu maniobra falla. El DJ es quien decide si simplemente no pue des moverte o si tiene lugar algún otro efecto negativo. El desenlace debería ser apropiado a la maniobra (por ejemplo,ser desviado de tu rumbo si pretendías volar contra un viento fuerte). </li><li><strong>Fallo crítico</strong> Igual que fallo, pero las consecuencias son más temibles. </li></ul><p><br></p><p><strong>Ejemplos de tareas de Maniobrar en vuelo</strong> </p><p><br></p><ul><li><strong>Entrenado</strong> ascenso o descenso empinado </li><li><strong>Experto </strong>volar contra el viento </li><li><strong>Maestro </strong>invertir la dirección </li><li><strong>Legendario </strong>atravesar volando un vendaval</li></ul>",
+    "reference": "Manual de jugador p.233",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "Movimiento",
+        "info": "(rasgo) Una acción con este rasgo implica moverse de un espacio a otro."
+      }
     ]
   },
-
-  { header: "Arcanos (Inteligencia)" },
   {
-    title: "Recordar conocimiento",
-    icon: "single_action",
-    subtitle: "Arcanos (Inteligencia) – No entrenado",
-    description: "Recuerdas información sobre magia arcana, criaturas mágicas, planos y fenómenos.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Arcanos (Inteligencia)"
+  },
+  {
+    "title": "Recordar conocimiento",
+    "icon": "single_action",
+    "subtitle": "Arcanos (Inteligencia) – No entrenado",
+    "description": "Recuerdas información sobre magia arcana, criaturas mágicas, planos y fenómenos.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Arcanos contra la CD de la información",
       "Éxito: obtienes detalles precisos; Fracaso: no recuerdas nada",
@@ -76,12 +88,12 @@ data_reaction = [
     "bullets": []
   },
   {
-    title: "Descifrar escritura",
-    icon: "single_action",
-    subtitle: "Arcanos (Inteligencia) – Entrenado",
-    description: "Analizas y comprendes un texto arcano, oculto o cifrado.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Descifrar escritura",
+    "icon": "single_action",
+    "subtitle": "Arcanos (Inteligencia) – Entrenado",
+    "description": "Analizas y comprendes un texto arcano, oculto o cifrado.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Arcanos contra la CD del texto",
       "Éxito: comprendes el mensaje; Fracaso: no descifras nada",
@@ -89,12 +101,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Identificar magia",
-    icon: "single_action",
-    subtitle: "Arcanos (Inteligencia) – Entrenado",
-    description: "Determinas la naturaleza y propiedades de un objeto, efecto o criatura mágica.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Identificar magia",
+    "icon": "single_action",
+    "subtitle": "Arcanos (Inteligencia) – Entrenado",
+    "description": "Determinas la naturaleza y propiedades de un objeto, efecto o criatura mágica.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Arcanos contra la CD del objeto o efecto",
       "Éxito: identificas propiedades y usos; Fracaso: no obtienes info",
@@ -102,27 +114,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Pedir prestado un conjuro arcano",
-    icon: "single_action",
-    subtitle: "Arcanos (Inteligencia) – Entrenado",
-    description: "Obtienes temporalmente un conjuro de otro lanzador arcano para una sola ejecución.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Pedir prestado un conjuro arcano",
+    "icon": "single_action",
+    "subtitle": "Arcanos (Inteligencia) – Entrenado",
+    "description": "Obtienes temporalmente un conjuro de otro lanzador arcano para una sola ejecución.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Requisito: acceso a un lanzador arcano",
       "Efecto: lanzas ese conjuro una vez",
       "Rasgos: concentración, exploración, entrenado"
     ]
   },
-
-  { header: "Artesanía (Destreza)" },
   {
-    title: "Recordar conocimiento",
-    icon: "single_action",
-    subtitle: "Artesanía (Inteligencia) – No entrenado",
-    description: "Recuerdas procesos, técnicas o materiales artesanales.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Artesanía (Destreza)"
+  },
+  {
+    "title": "Recordar conocimiento",
+    "icon": "single_action",
+    "subtitle": "Artesanía (Inteligencia) – No entrenado",
+    "description": "Recuerdas procesos, técnicas o materiales artesanales.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Artesanía contra la CD del tema",
       "Éxito: obtienes detalles útiles; Fracaso: no recuerdas nada",
@@ -130,12 +143,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Reparar",
-    icon: "exploration",
-    subtitle: "Artesanía (Inteligencia) – No entrenado",
-    description: "Restauras puntos de golpe a un objeto dañado usando herramientas adecuadas.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Reparar",
+    "icon": "exploration",
+    "subtitle": "Artesanía (Inteligencia) – No entrenado",
+    "description": "Restauras puntos de golpe a un objeto dañado usando herramientas adecuadas.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria",
       "Tirada: Artesanía contra la CD del objeto",
       "Éxito: restaura puntos; Fracaso: sin efecto",
@@ -143,12 +156,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Elaborar",
-    icon: "exploration",
-    subtitle: "Artesanía (Inteligencia) – Entrenado",
-    description: "Construyes o fabricas un objeto siguiendo un plano o fórmula.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Elaborar",
+    "icon": "exploration",
+    "subtitle": "Artesanía (Inteligencia) – Entrenado",
+    "description": "Construyes o fabricas un objeto siguiendo un plano o fórmula.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria (tiempo libre requerido)",
       "Tirada: Artesanía contra la CD del objeto",
       "Éxito: creas el objeto; Fracaso: pierdes materiales",
@@ -156,12 +169,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Identificar alquimia",
-    icon: "single_action",
-    subtitle: "Artesanía (Inteligencia) – Entrenado",
-    description: "Analizas un objeto alquímico para descubrir sus propiedades.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Identificar alquimia",
+    "icon": "single_action",
+    "subtitle": "Artesanía (Inteligencia) – Entrenado",
+    "description": "Analizas un objeto alquímico para descubrir sus propiedades.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Artesanía contra la CD del objeto alquímico",
       "Éxito: identificas efectos; Fracaso: sin información",
@@ -169,27 +182,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Obtener ingresos",
-    icon: "exploration",
-    subtitle: "Artesanía (Inteligencia) – Entrenado",
-    description: "Ganas dinero trabajando con tus habilidades artesanales.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Obtener ingresos",
+    "icon": "exploration",
+    "subtitle": "Artesanía (Inteligencia) – Entrenado",
+    "description": "Ganas dinero trabajando con tus habilidades artesanales.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria (tiempo libre requerido)",
       "Tirada: Artesanía contra una CD fija por nivel de demanda",
       "Éxito: obtienes más ganancias; Fracaso: obtienes menos",
       "Rasgos: tiempo libre, entrenado"
     ]
   },
-
-  { header: "Atletismo (Fuerza)" },
   {
-    title: "Presa",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Agarras y sujetas a una criatura usando tu fuerza.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Atletismo (Fuerza)"
+  },
+  {
+    "title": "Presa",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Agarras y sujetas a una criatura usando tu fuerza.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD de la criatura (Fortaleza)",
       "Éxito: la criatura queda agarrada; Fracaso: no la sujetas",
@@ -197,12 +211,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Salto de altura",
-    icon: "two_actions",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Saltas verticalmente para superar un obstáculo.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Salto de altura",
+    "icon": "two_actions",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Saltas verticalmente para superar un obstáculo.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 2 acciones",
       "Tirada: Atletismo contra la CD definida por el obstáculo",
       "Éxito: saltas la altura completa; Fracaso: saltas la mitad",
@@ -210,12 +224,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Salto de longitud",
-    icon: "two_actions",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Saltas horizontalmente para atravesar distancias.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Salto de longitud",
+    "icon": "two_actions",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Saltas horizontalmente para atravesar distancias.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 2 acciones",
       "Tirada: Atletismo contra la CD definida por el obstáculo",
       "Éxito: cubres la distancia completa; Fracaso: cubres la mitad",
@@ -223,12 +237,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Trepar",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Escalas una superficie vertical o inclinada.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Trepar",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Escalas una superficie vertical o inclinada.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD del terreno",
       "Éxito: asciendes tu velocidad; Fracaso: asciendes la mitad o caes",
@@ -236,12 +250,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Derribar",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Haces que una criatura pierda el equilibrio y caiga prone.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Derribar",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Haces que una criatura pierda el equilibrio y caiga prone.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD de la criatura (Fortaleza)",
       "Éxito: derribas al objetivo; Fracaso: no lo derribas",
@@ -249,12 +263,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Empujar",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Desplazas a una criatura u objeto en una dirección específica.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Empujar",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Desplazas a una criatura u objeto en una dirección específica.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD de la criatura u objeto",
       "Éxito: desplazas 1,5 m; Fracaso: no lo mueves",
@@ -262,12 +276,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Abrir a la fuerza",
-    icon: "two_actions",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Fuerzas una puerta, cofre u otro objeto cerrado.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Abrir a la fuerza",
+    "icon": "two_actions",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Fuerzas una puerta, cofre u otro objeto cerrado.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 2 acciones",
       "Tirada: Atletismo contra la CD del objeto",
       "Éxito: lo abres; Fracaso: no lo abres",
@@ -275,12 +289,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Nadar",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – No entrenado",
-    description: "Te desplazas por el agua usando tu fuerza y resistencia.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Nadar",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – No entrenado",
+    "description": "Te desplazas por el agua usando tu fuerza y resistencia.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD definida por la corriente/profundidad",
       "Éxito: avanzas tu velocidad; Fracaso: avanzas la mitad",
@@ -288,27 +302,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Desarmar",
-    icon: "single_action",
-    subtitle: "Atletismo (Fuerza) – Entrenado",
-    description: "Quitas un objeto empuñado por una criatura o dispositivo.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Desarmar",
+    "icon": "single_action",
+    "subtitle": "Atletismo (Fuerza) – Entrenado",
+    "description": "Quitas un objeto empuñado por una criatura o dispositivo.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Atletismo contra la CD de la criatura o del mecanismo",
       "Éxito: desarmas; Fracaso: no lo desarmas",
       "Rasgos: manipular, entrenado"
     ]
   },
-
-  { header: "Diplomacia (Carisma)" },
   {
-    title: "Reunir información",
-    icon: "exploration",
-    subtitle: "Diplomacia (Carisma) – No entrenado",
-    description: "Buscas rumores, noticias o datos hablando con otras personas.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Diplomacia (Carisma)"
+  },
+  {
+    "title": "Reunir información",
+    "icon": "exploration",
+    "subtitle": "Diplomacia (Carisma) – No entrenado",
+    "description": "Buscas rumores, noticias o datos hablando con otras personas.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria",
       "Tiempo: mínimo 1 hora de interacción",
       "Tirada: Diplomacia contra la CD fijada por la fuente",
@@ -317,12 +332,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Causar impresión",
-    icon: "single_action",
-    subtitle: "Diplomacia (Carisma) – No entrenado",
-    description: "Generas una impresión inicial favorable o desfavorable en un objetivo.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Causar impresión",
+    "icon": "single_action",
+    "subtitle": "Diplomacia (Carisma) – No entrenado",
+    "description": "Generas una impresión inicial favorable o desfavorable en un objetivo.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Diplomacia contra la CD fijada por la situación",
       "Éxito: impactas tu imagen; Fracaso: no deja huella",
@@ -330,27 +345,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Pedir",
-    icon: "single_action",
-    subtitle: "Diplomacia (Carisma) – No entrenado",
-    description: "Solicitas algo de manera cortés o persuasiva a otra criatura.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Pedir",
+    "icon": "single_action",
+    "subtitle": "Diplomacia (Carisma) – No entrenado",
+    "description": "Solicitas algo de manera cortés o persuasiva a otra criatura.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Diplomacia contra la CD fijada por la situación",
       "Éxito: consigues lo pedido; Fracaso: te niegan",
       "Rasgos: audible, lingüístico"
     ]
   },
-
-  { header: "Engaño (Carisma)" },
   {
-    title: "Crear una distracción",
-    icon: "single_action",
-    subtitle: "Engaño (Carisma) – No entrenado",
-    description: "Desvías la atención de un objetivo para ocultarte o evadirlo.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Engaño (Carisma)"
+  },
+  {
+    "title": "Crear una distracción",
+    "icon": "single_action",
+    "subtitle": "Engaño (Carisma) – No entrenado",
+    "description": "Desvías la atención de un objetivo para ocultarte o evadirlo.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Engaño contra la CD de Percepción del objetivo",
       "Éxito: el objetivo se distrae; Fracaso: mantiene la atención",
@@ -358,12 +374,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Imitar",
-    icon: "single_action",
-    subtitle: "Engaño (Carisma) – No entrenado",
-    description: "Reproduces una voz, acento o sonido para engañar.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Imitar",
+    "icon": "single_action",
+    "subtitle": "Engaño (Carisma) – No entrenado",
+    "description": "Reproduces una voz, acento o sonido para engañar.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Engaño contra la CD del sonido objetivo",
       "Éxito: imitación creíble; Fracaso: suena forzado",
@@ -371,12 +387,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Mentir",
-    icon: "single_action",
-    subtitle: "Engaño (Carisma) – No entrenado",
-    description: "Proporcionas información falsa con el fin de engañar.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Mentir",
+    "icon": "single_action",
+    "subtitle": "Engaño (Carisma) – No entrenado",
+    "description": "Proporcionas información falsa con el fin de engañar.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Engaño contra la CD de Voluntad del objetivo",
       "Éxito: cree tu mentira; Fracaso: detecta el engaño",
@@ -384,27 +400,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Fintar",
-    icon: "single_action",
-    subtitle: "Engaño (Carisma) – Entrenado",
-    description: "Engañas a un oponente en combate para dejarlo desprevenido.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Fintar",
+    "icon": "single_action",
+    "subtitle": "Engaño (Carisma) – Entrenado",
+    "description": "Engañas a un oponente en combate para dejarlo desprevenido.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Engaño contra la CD de Percepción del objetivo",
       "Éxito: el siguiente ataque tiene ventaja; Fracaso: sin efecto",
       "Rasgos: mental, entrenado"
     ]
   },
-
-  { header: "Interpretacion (Carisma)" },
   {
-    title: "Interpretar",
-    icon: "single_action",
-    subtitle: "Interpretación (Carisma) – No entrenado",
-    description: "Realizas una actuación musical, teatral o artística.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Interpretacion (Carisma)"
+  },
+  {
+    "title": "Interpretar",
+    "icon": "single_action",
+    "subtitle": "Interpretación (Carisma) – No entrenado",
+    "description": "Realizas una actuación musical, teatral o artística.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Interpretación contra la CD fijada por la situación",
       "Éxito: cautivas a la audiencia; Fracaso: indiferencia",
@@ -412,12 +429,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Obtener ingresos",
-    icon: "exploration",
-    subtitle: "Interpretación (Carisma) – Entrenado",
-    description: "Ganas dinero actuando o interpretando ante un público.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Obtener ingresos",
+    "icon": "exploration",
+    "subtitle": "Interpretación (Carisma) – Entrenado",
+    "description": "Ganas dinero actuando o interpretando ante un público.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria",
       "Tiempo: mínimo 1 hora de actuación",
       "Tirada: Interpretación contra la CD fijada por la audiencia",
@@ -425,15 +442,16 @@ data_reaction = [
       "Rasgos: exploración, entrenado"
     ]
   },
-
-  { header: "Intimidación (Carisma)" },
   {
-    title: "Demoralizar",
-    icon: "single_action",
-    subtitle: "Intimidación (Carisma) – No entrenado",
-    description: "Infundes miedo o dudas en un objetivo mediante amenazas o presencia imponente.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Intimidación (Carisma)"
+  },
+  {
+    "title": "Demoralizar",
+    "icon": "single_action",
+    "subtitle": "Intimidación (Carisma) – No entrenado",
+    "description": "Infundes miedo o dudas en un objetivo mediante amenazas o presencia imponente.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Intimidación contra la CD de Voluntad del objetivo",
       "Éxito: el objetivo queda atemorizado; Fracaso: sin efecto",
@@ -441,27 +459,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Obligar",
-    icon: "single_action",
-    subtitle: "Intimidación (Carisma) – Entrenado",
-    description: "Impones tu voluntad para forzar a alguien a actuar bajo coacción.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Obligar",
+    "icon": "single_action",
+    "subtitle": "Intimidación (Carisma) – Entrenado",
+    "description": "Impones tu voluntad para forzar a alguien a actuar bajo coacción.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Intimidación contra la CD de Voluntad del objetivo",
       "Éxito: el objetivo cede; Fracaso: resiste",
       "Rasgos: mental, entrenado"
     ]
   },
-
-  { header: "Latrocinio (Destreza)" },
   {
-    title: "Escamotear objeto",
-    icon: "single_action",
-    subtitle: "Latrocinio (Destreza) – No entrenado",
-    description: "Te llevas un objeto que alguien está sosteniendo sin que lo note.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Latrocinio (Destreza)"
+  },
+  {
+    "title": "Escamotear objeto",
+    "icon": "single_action",
+    "subtitle": "Latrocinio (Destreza) – No entrenado",
+    "description": "Te llevas un objeto que alguien está sosteniendo sin que lo note.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Latrocinio contra la CD de Percepción del objetivo",
       "Éxito: sustraes sin que note; Fracaso: te descubre",
@@ -469,12 +488,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Sustraer",
-    icon: "single_action",
-    subtitle: "Latrocinio (Destreza) – No entrenado",
-    description: "Robas algo pequeño sin llamar la atención.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Sustraer",
+    "icon": "single_action",
+    "subtitle": "Latrocinio (Destreza) – No entrenado",
+    "description": "Robas algo pequeño sin llamar la atención.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Latrocinio contra la CD de Percepción del entorno",
       "Éxito: robas sin ruido; Fracaso: provocas atención",
@@ -482,12 +501,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Forzar cerradura",
-    icon: "two_actions",
-    subtitle: "Latrocinio (Destreza) – Entrenado",
-    description: "Abres una cerradura sin llave usando herramientas especializadas.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Forzar cerradura",
+    "icon": "two_actions",
+    "subtitle": "Latrocinio (Destreza) – Entrenado",
+    "description": "Abres una cerradura sin llave usando herramientas especializadas.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 2 acciones",
       "Tirada: Latrocinio contra la CD de la cerradura",
       "Éxito: abres sin ruido; Fracaso: atascas o suena alerta",
@@ -495,27 +514,28 @@ data_reaction = [
     ]
   },
   {
-    title: "Inutilizar mecanismo",
-    icon: "two_actions",
-    subtitle: "Latrocinio (Destreza) – Entrenado",
-    description: "Desactivas un mecanismo o trampa usando destreza y herramientas.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Inutilizar mecanismo",
+    "icon": "two_actions",
+    "subtitle": "Latrocinio (Destreza) – Entrenado",
+    "description": "Desactivas un mecanismo o trampa usando destreza y herramientas.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 2 acciones",
       "Tirada: Latrocinio contra la CD del dispositivo",
       "Éxito: desactivas sin riesgo; Fracaso: activas la trampa",
       "Rasgos: manipular, entrenado"
     ]
   },
-
-  { header: "Medicina (Sabiduria)" },
   {
-    title: "Primeros auxilios",
-    icon: "single_action",
-    subtitle: "Medicina (Sabiduría) – No entrenado",
-    description: "Proporcionas cuidados básicos para estabilizar y curar heridas menores.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "header": "Medicina (Sabiduria)"
+  },
+  {
+    "title": "Primeros auxilios",
+    "icon": "single_action",
+    "subtitle": "Medicina (Sabiduría) – No entrenado",
+    "description": "Proporcionas cuidados básicos para estabilizar y curar heridas menores.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Medicina contra la CD del daño sufrido",
       "Éxito: estabilizas o curas; Fracaso: sin efecto",
@@ -523,12 +543,12 @@ data_reaction = [
     ]
   },
   {
-    title: "Recordar conocimiento",
-    icon: "single_action",
-    subtitle: "Medicina (Sabiduría) – No entrenado",
-    description: "Recuerdas información médica y biológica para diagnóstico.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Recordar conocimiento",
+    "icon": "single_action",
+    "subtitle": "Medicina (Sabiduría) – No entrenado",
+    "description": "Recuerdas información médica y biológica para diagnóstico.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción",
       "Tirada: Medicina contra la CD de la información",
       "Éxito: obtienes detalles clínicos; Fracaso: sin información",
@@ -536,194 +556,206 @@ data_reaction = [
     ]
   },
   {
-    title: "Tratar enfermedad",
-    icon: "exploration",
-    subtitle: "Medicina (Sabiduría) – Entrenado",
-    description: "Ayudas a un paciente a resistir o recuperarse de una enfermedad.",
-    reference: "Pantalla del Director – Acciones de Habilidad",
-    bullets: [
+    "title": "Tratar enfermedad",
+    "icon": "exploration",
+    "subtitle": "Medicina (Sabiduría) – Entrenado",
+    "description": "Ayudas a un paciente a resistir o recuperarse de una enfermedad.",
+    "reference": "Pantalla del Director – Acciones de Habilidad",
+    "bullets": [
       "Coste: 1 acción exploratoria",
       "Tirada: Medicina contra la CD de la enfermedad",
-      "Éxito: mitigas síntomas o retarda avance." ,
-      "Fracaso: sin efecto." ,
+      "Éxito: mitigas síntomas o retarda avance.",
+      "Fracaso: sin efecto.",
       "Rasgos: manipular, entrenado"
     ]
-  } ,
-    { header: "Naturaleza (Sabiduria)" },
+  },
   {
-    title : "Forrajear" ,
-    icon : "leaf" ,
-    subtitle : "Naturaleza (entrenado: no)" ,
-    description : "Recolectas alimento, agua o materiales del entorno." ,
-    reference : "Pantalla del Director – Naturaleza" ,
-    bullets : [
-      "Tirada: Naturaleza contra la CD del terreno." ,
-      "Éxito: obtienes recursos suficientes." ,
-      "Fracaso: encuentras menos de lo necesario." ,
+    "header": "Naturaleza (Sabiduria)"
+  },
+  {
+    "title": "Forrajear",
+    "icon": "leaf",
+    "subtitle": "Naturaleza (entrenado: no)",
+    "description": "Recolectas alimento, agua o materiales del entorno.",
+    "reference": "Pantalla del Director – Naturaleza",
+    "bullets": [
+      "Tirada: Naturaleza contra la CD del terreno.",
+      "Éxito: obtienes recursos suficientes.",
+      "Fracaso: encuentras menos de lo necesario.",
       "Rasgos: exploración"
     ]
-  } ,
+  },
   {
-    title : "Rastrear" ,
-    icon : "paw" ,
-    subtitle : "Naturaleza (entrenado: sí)" ,
-    description : "Sigues rastros de criaturas u objetos." ,
-    reference : "Pantalla del Director – Naturaleza" ,
-    bullets : [
-      "Tirada: Naturaleza contra la CD de las huellas." ,
-      "Éxito: encuentras el objetivo." ,
-      "Fracaso: te pierdes o avanzas mal." ,
+    "title": "Rastrear",
+    "icon": "paw",
+    "subtitle": "Naturaleza (entrenado: sí)",
+    "description": "Sigues rastros de criaturas u objetos.",
+    "reference": "Pantalla del Director – Naturaleza",
+    "bullets": [
+      "Tirada: Naturaleza contra la CD de las huellas.",
+      "Éxito: encuentras el objetivo.",
+      "Fracaso: te pierdes o avanzas mal.",
       "Rasgos: exploración, entrenado"
     ]
-  } ,
-     { header: "Ocultismo (Inteligencia)" },
+  },
   {
-    title : "Recordar conocimiento" ,
-    icon : "eye" ,
-    subtitle : "Ocultismo (entrenado: no)" ,
-    description : "Recuerdas información sobre fenómenos mágicos o arcanos ocultos." ,
-    reference : "Pantalla del Director – Ocultismo" ,
-    bullets : [
-      "Tirada: Ocultismo contra la CD de la información." ,
-      "Éxito: obtienes detalles precisos." ,
-      "Fracaso: no recuerdas nada útil." ,
+    "header": "Ocultismo (Inteligencia)"
+  },
+  {
+    "title": "Recordar conocimiento",
+    "icon": "eye",
+    "subtitle": "Ocultismo (entrenado: no)",
+    "description": "Recuerdas información sobre fenómenos mágicos o arcanos ocultos.",
+    "reference": "Pantalla del Director – Ocultismo",
+    "bullets": [
+      "Tirada: Ocultismo contra la CD de la información.",
+      "Éxito: obtienes detalles precisos.",
+      "Fracaso: no recuerdas nada útil.",
       "Rasgos: concentración, secreto"
     ]
-  } ,
-     { header: "Religión (Sabiduria)" },
+  },
   {
-    title : "Recordar conocimiento" ,
-    icon : "church" ,
-    subtitle : "Religión (entrenado: no)" ,
-    description : "Recuerdas información sobre dioses, rituales y dogmas." ,
-    reference : "Pantalla del Director – Religión" ,
-    bullets : [
-      "Tirada: Religión contra la CD de la información." ,
-      "Éxito: obtienes detalles precisos." ,
-      "Fracaso: no recuerdas nada útil." ,
+    "header": "Religión (Sabiduria)"
+  },
+  {
+    "title": "Recordar conocimiento",
+    "icon": "church",
+    "subtitle": "Religión (entrenado: no)",
+    "description": "Recuerdas información sobre dioses, rituales y dogmas.",
+    "reference": "Pantalla del Director – Religión",
+    "bullets": [
+      "Tirada: Religión contra la CD de la información.",
+      "Éxito: obtienes detalles precisos.",
+      "Fracaso: no recuerdas nada útil.",
       "Rasgos: concentración, secreto"
     ]
-  } ,
-       { header: "Sociedad (inteligencia)" },
+  },
   {
-    title : "Recordar conocimiento" ,
-    icon : "university" ,
-    subtitle : "Sociedad (entrenado: no)" ,
-    description : "Recuerdas información sobre costumbres, leyes u organización social." ,
-    reference : "Pantalla del Director – Sociedad" ,
-    bullets : [
-      "Tirada: Sociedad contra la CD de la información." ,
-      "Éxito: obtienes detalles precisos." ,
-      "Fracaso: no recuerdas nada útil." ,
+    "header": "Sociedad (inteligencia)"
+  },
+  {
+    "title": "Recordar conocimiento",
+    "icon": "university",
+    "subtitle": "Sociedad (entrenado: no)",
+    "description": "Recuerdas información sobre costumbres, leyes u organización social.",
+    "reference": "Pantalla del Director – Sociedad",
+    "bullets": [
+      "Tirada: Sociedad contra la CD de la información.",
+      "Éxito: obtienes detalles precisos.",
+      "Fracaso: no recuerdas nada útil.",
       "Rasgos: concentración, secreto"
     ]
-  } ,
-       { header: "Sigilo (Destreza)" },
+  },
   {
-    title : "Esconderse" ,
-    icon : "eye-slash" ,
-    subtitle : "Sigilo (entrenado: no)" ,
-    description : "Intentas ocultarte a la vista o al olfato." ,
-    reference : "Pantalla del Director – Sigilo" ,
-    bullets : [
-      "Tirada: Sigilo contra la CD de Percepción." ,
-      "Éxito: quedas oculto." ,
-      "Fracaso: permaneces visible." ,
+    "header": "Sigilo (Destreza)"
+  },
+  {
+    "title": "Esconderse",
+    "icon": "eye-slash",
+    "subtitle": "Sigilo (entrenado: no)",
+    "description": "Intentas ocultarte a la vista o al olfato.",
+    "reference": "Pantalla del Director – Sigilo",
+    "bullets": [
+      "Tirada: Sigilo contra la CD de Percepción.",
+      "Éxito: quedas oculto.",
+      "Fracaso: permaneces visible.",
       "Rasgos: sigilo"
     ]
-  } ,
+  },
   {
-    title : "Avanzar sigilosamente" ,
-    icon : "shoe-prints" ,
-    subtitle : "Sigilo (entrenado: no)" ,
-    description : "Te mueves sin producir ruido ni alertar a otros." ,
-    reference : "Pantalla del Director – Sigilo" ,
-    bullets : [
-      "Tirada: Sigilo contra la CD auditiva de Percepción." ,
-      "Éxito: no eres detectado al moverte." ,
-      "Fracaso: produces ruido y alertas." ,
+    "title": "Avanzar sigilosamente",
+    "icon": "shoe-prints",
+    "subtitle": "Sigilo (entrenado: no)",
+    "description": "Te mueves sin producir ruido ni alertar a otros.",
+    "reference": "Pantalla del Director – Sigilo",
+    "bullets": [
+      "Tirada: Sigilo contra la CD auditiva de Percepción.",
+      "Éxito: no eres detectado al moverte.",
+      "Fracaso: produces ruido y alertas.",
       "Rasgos: sigilo"
     ]
-  } ,
-         { header: "Supervivencia (sabiduria)" },
+  },
   {
-    title : "Sentir dirección" ,
-    icon : "compass" ,
-    subtitle : "Supervivencia (entrenado: no)" ,
-    description : "Determinas los puntos cardinales sin herramienta especial." ,
-    reference : "Pantalla del Director – Supervivencia" ,
-    bullets : [
-      "Tirada: Supervivencia contra la CD ambiental." ,
-      "Éxito: sabes qué dirección tomar." ,
-      "Fracaso: te desorientas." ,
+    "header": "Supervivencia (sabiduria)"
+  },
+  {
+    "title": "Sentir dirección",
+    "icon": "compass",
+    "subtitle": "Supervivencia (entrenado: no)",
+    "description": "Determinas los puntos cardinales sin herramienta especial.",
+    "reference": "Pantalla del Director – Supervivencia",
+    "bullets": [
+      "Tirada: Supervivencia contra la CD ambiental.",
+      "Éxito: sabes qué dirección tomar.",
+      "Fracaso: te desorientas.",
       "Rasgos: exploración"
     ]
-  } ,
+  },
   {
-    title : "Subsistir" ,
-    icon : "campground" ,
-    subtitle : "Supervivencia (entrenado: sí)" ,
-    description : "Usas tus conocimientos para sobrevivir en la naturaleza." ,
-    reference : "Pantalla del Director – Supervivencia" ,
-    bullets : [
-      "Tiempo: varía según el entorno." ,
-      "Tirada: Supervivencia contra la CD del terreno." ,
-      "Éxito: localizas refugio, comida y agua." ,
-      "Fracaso: sufres penalizadores ambientales." ,
+    "title": "Subsistir",
+    "icon": "campground",
+    "subtitle": "Supervivencia (entrenado: sí)",
+    "description": "Usas tus conocimientos para sobrevivir en la naturaleza.",
+    "reference": "Pantalla del Director – Supervivencia",
+    "bullets": [
+      "Tiempo: varía según el entorno.",
+      "Tirada: Supervivencia contra la CD del terreno.",
+      "Éxito: localizas refugio, comida y agua.",
+      "Fracaso: sufres penalizadores ambientales.",
       "Rasgos: tiempo libre, exploración, entrenado"
     ]
-  } ,
+  },
   {
-    title : "Forzar cerradura" ,
-    icon : "lock-open" ,
-    subtitle : "Juego de manos (entrenado: sí)" ,
-    description : "Abres cerraduras sin llave." ,
-    reference : "Pantalla del Director – Juego de manos" ,
-    bullets : [
-      "Requiere herramientas de ladrón." ,
-      "Tirada: Juego de manos contra la CD de la cerradura." ,
-      "Éxito: abres sin activar trampas." ,
-      "Fracaso: no abres o activas la trampa." ,
+    "title": "Forzar cerradura",
+    "icon": "lock-open",
+    "subtitle": "Juego de manos (entrenado: sí)",
+    "description": "Abres cerraduras sin llave.",
+    "reference": "Pantalla del Director – Juego de manos",
+    "bullets": [
+      "Requiere herramientas de ladrón.",
+      "Tirada: Juego de manos contra la CD de la cerradura.",
+      "Éxito: abres sin activar trampas.",
+      "Fracaso: no abres o activas la trampa.",
       "Rasgos: manipular, entrenado"
     ]
-  } ,
+  },
   {
-    title : "Desactivar dispositivo" ,
-    icon : "bomb" ,
-    subtitle : "Juego de manos (entrenado: sí)" ,
-    description : "Desarmes trampas u otros mecanismos explosivos." ,
-    reference : "Pantalla del Director – Juego de manos" ,
-    bullets : [
-      "Requiere herramientas de ladrón." ,
-      "Tirada: Juego de manos contra la CD del dispositivo." ,
-      "Éxito: desactivas sin riesgo." ,
-      "Fracaso: activas la trampa." ,
+    "title": "Desactivar dispositivo",
+    "icon": "bomb",
+    "subtitle": "Juego de manos (entrenado: sí)",
+    "description": "Desarmes trampas u otros mecanismos explosivos.",
+    "reference": "Pantalla del Director – Juego de manos",
+    "bullets": [
+      "Requiere herramientas de ladrón.",
+      "Tirada: Juego de manos contra la CD del dispositivo.",
+      "Éxito: desactivas sin riesgo.",
+      "Fracaso: activas la trampa.",
       "Rasgos: manipular, entrenado"
     ]
-  } ,
+  },
   {
-    title : "Robar" ,
-    icon : "hand-back-fist" ,
-    subtitle : "Juego de manos (entrenado: no)" ,
-    description : "Sustraes un objeto de un objetivo sin que lo note." ,
-    reference : "Pantalla del Director – Juego de manos" ,
-    bullets : [
-      "Tirada: Juego de manos contra la CD de Percepción del objetivo." ,
-      "Éxito: sustraes el objeto sin que note." ,
-      "Fracaso: te descubren." ,
+    "title": "Robar",
+    "icon": "hand-back-fist",
+    "subtitle": "Juego de manos (entrenado: no)",
+    "description": "Sustraes un objeto de un objetivo sin que lo note.",
+    "reference": "Pantalla del Director – Juego de manos",
+    "bullets": [
+      "Tirada: Juego de manos contra la CD de Percepción del objetivo.",
+      "Éxito: sustraes el objeto sin que note.",
+      "Fracaso: te descubren.",
       "Rasgos: manipular"
     ]
-  } ,
+  },
   {
-    title : "Interpretar" ,
-    icon : "theater-masks" ,
-    subtitle : "Interpretación (entrenado: no)" ,
-    description : "Realizas una actuación artística para entretener o impresionar." ,
-    reference : "Pantalla del Director – Interpretación" ,
-    bullets : [
-      "Tirada: Interpretación contra la CD fijada por la situación." ,
-      "Éxito: logras entretener o impresionar." ,
-      "Fracaso: no logras causar impacto." ,
+    "title": "Interpretar",
+    "icon": "theater-masks",
+    "subtitle": "Interpretación (entrenado: no)",
+    "description": "Realizas una actuación artística para entretener o impresionar.",
+    "reference": "Pantalla del Director – Interpretación",
+    "bullets": [
+      "Tirada: Interpretación contra la CD fijada por la situación.",
+      "Éxito: logras entretener o impresionar.",
+      "Fracaso: no logras causar impacto.",
       "Rasgos: performativo"
     ]
   }
