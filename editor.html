@@ -238,14 +238,20 @@ try {
   alert(err.message);
 }
 });
-document.getElementById('exportBtn').addEventListener('click', async () => {
+document.getElementById('exportBtn').addEventListener('click', () => {
   try {
-    const code = await toAssignmentJs(vm.varName, vm.items);
-    const blob = new Blob([code], { type: 'text/javascript;charset=utf-8' });
-    saveAs(blob, vm.fileName || (vm.varName + '.js'));
+    const ds = vm.datasets.find(d => d.name === vm.selectedDataset);
+    if (!ds) throw new Error('No se encontró el dataset seleccionado');
+    const code = toAssignmentJs(ds.name, ds.items);
+    const blob = new Blob([code], { type: 'text/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = ds.name + '.js';
+    a.click();
+    URL.revokeObjectURL(url);
   } catch (err) {
-    console.error("Error al generar código:", err);
-    alert("Hubo un problema al generar el archivo. Revisa la consola.");
+    alert('Error al generar código: ' + err.message);
   }
 });
 </script>
