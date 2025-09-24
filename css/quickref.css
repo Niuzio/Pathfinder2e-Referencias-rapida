@@ -703,14 +703,14 @@ body.dark-mode .modal-backdrop {
 }
 .section-row.actions-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
-  justify-items: start;   /* <- en vez de stretch o center */
+  justify-content: start;   /* <- fuerza a que las tarjetas se alineen a la izquierda */
 }
 
 .section-row.actions-list > .item {
-  width: 100%;            /* <- fuerza a ocupar todo el ancho disponible */
-  max-width: 100%;        /* <- evita que se quede flotando */
+  width: 100%;            /* <- ocupa todo el ancho de su celda */
+  max-width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
