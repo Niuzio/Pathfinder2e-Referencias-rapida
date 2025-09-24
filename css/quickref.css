@@ -546,3 +546,40 @@ p:first-child {
 .tag:hover .tooltip-card {
     display: block;
 }
+/* Contenedor de cada habilidad */
+.skill-group {
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+/* Header clicable */
+.skill-header {
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Indicador visual (flecha) */
+.skill-header::after {
+  content: "▸";
+  float: right;
+  transition: transform 0.2s ease;
+}
+.skill-group.open .skill-header::after {
+  transform: rotate(90deg);
+}
+
+/* Contenido oculto por defecto */
+.skill-content {
+  display: none;
+  padding: 10px;
+  background: #fafafa;
+}
+.skill-group.open .skill-content {
+  display: block;
+}
