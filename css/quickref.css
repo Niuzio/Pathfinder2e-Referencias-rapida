@@ -489,54 +489,6 @@ p:first-child {
   width: 48px;
   height: 48px;
 }
-/* ---------------------------------------------------
-   1) Contenedor de acciones en fila
-   --------------------------------------------------- */
-.actions-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly; /* reparte espacio extra */
-  align-items: flex-start;       /* alinea todas las tarjetas por su parte superior */
-  gap: 1rem;                     /* separación homogénea fila/columna */
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/* ---------------------------------------------------
-   2) Cada botón/ítem como bloque flexible
-   --------------------------------------------------- */
-.actions-list .item {
-    float: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    flex: 0 1 auto;  /* ahora pueden encoger para no pisarse */
-    width: auto;
-    margin: 0;
-}
-
-/* ---------------------------------------------------
-   3) Icono y texto ya definidos
-   --------------------------------------------------- */
-.item-icon {
-  flex-shrink: 0;           /* no se encoja */
-  margin-bottom: 0.25rem;   /* espacio icono/texto */
-}
-
-.item-text-container {
-  white-space: normal;      /* varias líneas permitidas */
-  word-break: break-word;
-  text-align: center;
-}
-
-.item-title,
-.item-desc {
-  white-space: normal;
-  overflow: visible;        /* permite desbordar verticalmente */
-  text-overflow: clip;      /* sin puntos suspensivos forzados */
-}
 /* Contenedor de cada habilidad */
 .skill-group {
   border: 2px solid #ccc;
