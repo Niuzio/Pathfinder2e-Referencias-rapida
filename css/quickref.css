@@ -701,6 +701,41 @@ body.dark-mode .modal-container {
 body.dark-mode .modal-backdrop {
   background-color: rgba(0,0,0,0.85) !important;
 }
+/* Organización uniforme de acciones */
+.actions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* columnas flexibles */
+  gap: 12px; /* espacio entre tarjetas */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.actions-list .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.actions-list .item-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.actions-list .item-text-container {
+  word-break: break-word;
+  white-space: normal;
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
