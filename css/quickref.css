@@ -702,18 +702,17 @@ body.dark-mode .modal-backdrop {
   background-color: rgba(0,0,0,0.85) !important;
 }
 .section-row.actions-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
-  justify-content: start;   /* <- fuerza a que las tarjetas se alineen a la izquierda */
+  display: flex;                 /* usa flex en lugar de grid */
+  flex-wrap: wrap;               /* permite varias filas */
+  gap: 12px;                     /* espacio entre tarjetas */
+  justify-content: flex-start;   /* siempre pegadas a la izquierda */
 }
 
 .section-row.actions-list > .item {
-  width: 100%;            /* <- ocupa todo el ancho de su celda */
-  max-width: 100%;
+  flex: 1 1 240px;               /* ancho mínimo 240px, se expanden si hay espacio */
+  max-width: 1fr;                /* no se pasan del ancho de la fila */
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 6px;
