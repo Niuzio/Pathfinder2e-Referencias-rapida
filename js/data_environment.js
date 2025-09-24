@@ -66,7 +66,7 @@ data_environment_light = [
     "tags": []
   },
   {
-    "title": " No detectado",
+    "title": "No detectado",
     "icon": "double-face-mask",
     "subtitle": "",
     "reference": "Manual de jugador p.434",
@@ -106,7 +106,7 @@ data_environment_light = [
 data_environment_vision = [
   {
     "title": "Olfato",
-    "icon": "nose",
+    "icon": "nose-front",
     "subtitle": "Sentidos",
     "description": "<p>&nbsp;El olfato implica detectar criaturas u objetos mediante el olfato, y suele ser un sentido vago. El rango se indica en la aptitud y sólo funciona si la criatura u objeto a detectar emite un aroma. Si la criatura emite un fuerte aroma o está a barlovento, el DJ puede doblar o incluso triplicar el rango de las aptitudes de olfato utili zadas para detectar dicha criatura, o puede reducirlo si la criatura esta a sotavento.</p>",
     "reference": "Manual de jugador p.433",
