@@ -675,6 +675,30 @@ body.dark-mode .item-group {
 body.dark-mode .item:hover {
   background-color: #2a2a2a;
 }
+/* --- Corrección modo oscuro para secciones y modales --- */
+
+/* Secciones principales */
+body.dark-mode .section-content {
+  background-color: #1a1a1a !important;
+  color: #e0e0e0;
+}
+
+/* Filas internas */
+body.dark-mode .section-row {
+  background-color: transparent !important;
+  color: #e0e0e0;
+}
+
+/* Modal (cuando clickeas una acción) */
+body.dark-mode .modal-container {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0;
+}
+
+/* Fondo detrás del modal */
+body.dark-mode .modal-backdrop {
+  background-color: rgba(0,0,0,0.85) !important;
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
