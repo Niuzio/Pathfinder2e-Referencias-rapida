@@ -709,16 +709,18 @@ body.dark-mode .modal-backdrop {
 }
 
 .section-row.actions-list > .item {
-  flex: 1 1 240px;               /* ancho mínimo 240px, se expanden si hay espacio */
-  max-width: 1fr;                /* no se pasan del ancho de la fila */
+  flex: 1 1 200px;        /* antes 240px → ahora mínimo 200px */
+  max-width: 1fr;
   display: flex;
   align-items: flex-start;
-  padding: 8px;
+  justify-content: flex-start;
+  padding: 6px;           /* antes 8px → menos relleno */
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 4px;     /* esquinas un poco más compactas */
   background: #fafafa;
   box-sizing: border-box;
   text-align: left;
+  font-size: 0.9em;       /* texto un poco más pequeño */
 }
 
 .section-row.actions-list > .item .item-icon {
