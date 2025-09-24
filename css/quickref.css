@@ -735,6 +735,20 @@ body.dark-mode .modal-backdrop {
   word-break: break-word;
   white-space: normal;
 }
+/* --- Compatibilidad con modo oscuro --- */
+body.dark-mode .section-row.actions-list > .item {
+  background: #1e1e1e;   /* fondo oscuro */
+  border-color: #333;    /* borde más tenue */
+  color: #eee;           /* texto claro */
+}
+
+body.dark-mode .section-row.actions-list > .item .item-title {
+  color: #fff;           /* títulos más visibles */
+}
+
+body.dark-mode .section-row.actions-list > .item .item-desc {
+  color: #bbb;           /* descripciones en gris claro */
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
