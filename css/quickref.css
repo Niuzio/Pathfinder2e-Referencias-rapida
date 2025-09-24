@@ -638,6 +638,43 @@ body.dark-mode .skill-header {
 body.dark-mode .skill-content {
   background-color: #1a1a1a;
 }
+/* --- Ajustes generales modo oscuro --- */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Títulos y subtítulos */
+body.dark-mode .section-title,
+body.dark-mode .section-subheader {
+  color: #ffffff;
+  border-color: #444;
+}
+
+/* Filas y celdas */
+body.dark-mode .section-row,
+body.dark-mode .item {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #e0e0e0;
+}
+
+/* Descripciones */
+body.dark-mode .section-description {
+  color: #bbbbbb;
+}
+
+/* Estados, listas y cajas */
+body.dark-mode .category,
+body.dark-mode .item-group {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
+
+/* Hover y resaltados */
+body.dark-mode .item:hover {
+  background-color: #2a2a2a;
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
