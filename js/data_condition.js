@@ -113,7 +113,7 @@
   },
   {
     "title": "Drenado",
-    "icon": "blood ",
+    "icon": "blood",
     "subtitle": "Estas drenado",
     "description": "<p>Cuando una criatura drena con éxito tu sangre o tu fuerza vital, tu salud se reduce. Drenado incluye siempre un valor. Sufres un penalizador por estatus igual a tu valor de drenado a las pruebas basadas en la Constitución, como por ejemplo las salvaciones de Fortaleza. También pierdes tantos Puntos de Golpe como tu nivel (mínimo 1) multiplicado por el valor de drenado, y tus Puntos de Golpe máximos se reducen en la misma cantidad. Por ejemplo, si eres víctima de un efecto que inflige drenado 3 y eres un personaje de 3er Nivel, pierdes 9 Puntos de Golpe y reduces en 9 tus Puntos de Golpe máximos. Perder estos Puntos de Golpe no cuenta como sufrir daño.</p><p><br></p><p>Cada vez que consigues descansar una noche completa, tu valor de drenado disminuye en 1. Esto incrementa tus Puntos de Golpe máximos, pero no recuperas de inmediato los Puntos de Golpe perdidos.</p>",
     "reference": "Reglas básicas – Estado Drenado",
