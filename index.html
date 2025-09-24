@@ -226,34 +226,26 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentGroup = null;
 
   rows.forEach(row => {
-    if (row.classList.contains("section-subtitle")) {
-      // Crear grupo
+    if (row.classList.contains("skill-subtitle")) { // ← CAMBIO AQUÍ
       currentGroup = document.createElement("div");
       currentGroup.className = "skill-group";
 
-      // Crear header clicable
       const header = document.createElement("div");
       header.className = "skill-header";
       header.textContent = row.textContent.trim();
 
-      // Crear contenedor de contenido
       const content = document.createElement("div");
       content.className = "skill-content";
 
-      // Insertar en el DOM
       container.insertBefore(currentGroup, row);
       currentGroup.appendChild(header);
       currentGroup.appendChild(content);
-
-      // Eliminar el row original
       row.remove();
 
-      // Toggle al hacer clic
       header.addEventListener("click", () => {
         currentGroup.classList.toggle("open");
       });
     } else if (currentGroup) {
-      // Mover acciones al contenido del grupo actual
       currentGroup.querySelector(".skill-content").appendChild(row);
     }
   });
@@ -261,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
