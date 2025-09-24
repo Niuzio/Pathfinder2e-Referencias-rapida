@@ -92,26 +92,28 @@
 }
 
 .item-title {
-    font-weight: bold;
-    font-size: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-weight: bold;
+  font-size: inherit;
+  white-space: normal;       /* permite varias líneas */
+  overflow: visible;         /* no recorta */
+  text-overflow: unset;      /* sin puntos suspensivos */
 }
 
 .item-desc {
-    font-style: italic;
-    font-size: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-style: italic;
+  font-size: 0.95em;
+  white-space: normal;       /* permite varias líneas */
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .item-text-container {
-    flex: 1;
-    padding-right: 4px;
-    font-size: inherit;
-    height: 100%;
+  flex: 1;
+  padding-right: 4px;
+  font-size: inherit;
+  height: auto;              /* se adapta al contenido */
+  text-align: left;          /* mantiene alineación limpia */
+  word-break: break-word;    /* evita que palabras largas rompan el layout */
 }
 
 
