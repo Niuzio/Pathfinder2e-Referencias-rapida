@@ -703,9 +703,9 @@ body.dark-mode .modal-backdrop {
 }
 .section-row.actions-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* usa auto-fit en vez de auto-fill */
   gap: 12px;
-  justify-items: stretch;   /* <- fuerza a que cada tarjeta ocupe todo el ancho */
+  justify-items: stretch;   /* fuerza a que cada tarjeta ocupe todo el ancho de su celda */
 }
 
 .section-row.actions-list > .item {
