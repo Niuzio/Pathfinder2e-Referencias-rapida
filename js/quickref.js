@@ -27,7 +27,7 @@ if (parent !== lastParent) {
 
     // Título de subcategoría
     var h = document.createElement("div");
-    h.className = "section-subheader skill-subtitle";
+    h.className = "section-subheader";
     h.textContent = data.header;
     category.appendChild(h);
 
