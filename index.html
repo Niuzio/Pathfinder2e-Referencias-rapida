@@ -251,8 +251,81 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<script>
+(function() {
+  function groupSkills() {
+    const container = document.getElementById('basic-reactions');
+    if (!container) return;
+
+    // Tomar cada bloque de habilidad tal como lo genera quickref.js
+    const categories = Array.from(container.querySelectorAll('.category'));
+    if (!categories.length) return;
+
+    categories.forEach(cat => {
+      const headerEl = cat.querySelector('.section-subheader.skill-subtitle');
+      if (!headerEl) return; // no es una habilidad; lo dejamos como está
+
+      const itemsEl = cat.querySelector('.item-group');
+
+      // Crear estructura colapsable
+      const group = document.createElement('div');
+      group.className = 'skill-group'; // cerrado por defecto
+
+      const header = document.createElement('div');
+      header.className = 'skill-header';
+      header.textContent = (headerEl.textContent || '').trim();
+
+      const content = document.createElement('div');
+      content.className = 'skill-content';
+
+      // Mover acciones al contenido
+      if (itemsEl) {
+        while (itemsEl.firstChild) {
+          content.appendChild(itemsEl.firstChild);
+        }
+      }
+
+      // Insertar el colapsable antes del bloque original y eliminar el original
+      cat.parentNode.insertBefore(group, cat);
+      group.appendChild(header);
+      group.appendChild(content);
+      cat.remove();
+
+      // Toggle
+      header.addEventListener('click', () => {
+        group.classList.toggle('open');
+      });
+    });
+  }
+
+  // Ejecutar cuando el contenido ya esté pintado
+  function initWhenReady() {
+    const container = document.getElementById('basic-reactions');
+    if (!container) return;
+
+    // Si ya hay headers de habilidad, agrupar de una vez
+    if (container.querySelector('.section-subheader.skill-subtitle')) {
+      groupSkills();
+      return;
+    }
+
+    // Si aún no están, observar hasta que se inserten
+    const obs = new MutationObserver(() => {
+      if (container.querySelector('.section-subheader.skill-subtitle')) {
+        obs.disconnect();
+        groupSkills();
+      }
+    });
+    obs.observe(container, { childList: true, subtree: true });
+  }
+
+  // Asegurar ejecución tras carga completa
+  window.addEventListener('load', initWhenReady);
+})();
+</script>
 </body>
 </html>
+
 
 
 
