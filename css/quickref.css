@@ -537,15 +537,6 @@ p:first-child {
   overflow: visible;        /* permite desbordar verticalmente */
   text-overflow: clip;      /* sin puntos suspensivos forzados */
 }
-/* Al final de quickref.css */
-.itemsize {
-  width: auto !important;
-  height: auto !important;
-}
-
-.tag:hover .tooltip-card {
-    display: block;
-}
 /* Contenedor de cada habilidad */
 .skill-group {
   border: 2px solid #ccc;
@@ -582,4 +573,13 @@ p:first-child {
 }
 .skill-group.open .skill-content {
   display: block;
+}
+/* Al final de quickref.css */
+.itemsize {
+  width: auto !important;
+  height: auto !important;
+}
+
+.tag:hover .tooltip-card {
+    display: block;
 }
