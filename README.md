@@ -1,7 +1,7 @@
-Pathfinder2e-referencia (en proceso)
+Pathfinder2e-referencia
 ==============
 
-Referencia Rápida para Pathfinder 2e remaster (en proceso)
+Referencia Rápida para Pathfinder 2e remaster
 
 https://niuzio.github.io/Pathfinder2e-Referencias-rapida/
 
