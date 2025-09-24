@@ -701,35 +701,33 @@ body.dark-mode .modal-container {
 body.dark-mode .modal-backdrop {
   background-color: rgba(0,0,0,0.85) !important;
 }
-/* Organización uniforme de acciones */
-.actions-list {
+.section-row.actions-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* columnas flexibles */
-  gap: 12px; /* espacio entre tarjetas */
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  justify-items: stretch;   /* <- fuerza a que cada tarjeta ocupe todo el ancho */
 }
 
-.actions-list .item {
+.section-row.actions-list > .item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: flex-start; /* <- asegura que icono+texto arranquen a la izquierda */
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 6px;
   background: #fafafa;
   box-sizing: border-box;
+  text-align: left;
 }
 
-.actions-list .item-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 6px;
+.section-row.actions-list > .item .item-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  flex-shrink: 0;           /* <- evita que el icono se reduzca */
 }
 
 .actions-list .item-text-container {
