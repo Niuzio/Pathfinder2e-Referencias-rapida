@@ -675,55 +675,6 @@ body.dark-mode .item-group {
 body.dark-mode .item:hover {
   background-color: #2a2a2a;
 }
-/* --- Ajustes completos de modo oscuro --- */
-body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-/* Títulos */
-body.dark-mode .section-title,
-body.dark-mode .section-subheader,
-body.dark-mode .skill-header {
-  color: #ffffff;
-  background-color: #1e1e1e;
-  border-color: #444;
-}
-
-/* Contenedores */
-body.dark-mode .category,
-body.dark-mode .item-group,
-body.dark-mode .skill-content {
-  background-color: #1a1a1a;
-  border-color: #333;
-}
-
-/* Filas y celdas */
-body.dark-mode .section-row,
-body.dark-mode .item {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  color: #e0e0e0;
-}
-
-/* Hover */
-body.dark-mode .item:hover {
-  background-color: #2a2a2a;
-}
-
-/* Descripciones */
-body.dark-mode .section-description {
-  color: #bbbbbb;
-}
-
-/* Estados (condiciones) */
-body.dark-mode .condition,
-body.dark-mode .state,
-body.dark-mode .effect {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  color: #e0e0e0;
-}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
