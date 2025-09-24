@@ -574,6 +574,42 @@ p:first-child {
 .skill-group.open .skill-content {
   display: block;
 }
+/* --- Colapsables de habilidades --- */
+.skill-group {
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.skill-header {
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.skill-header::after {
+  content: "▸";
+  float: right;
+  transition: transform 0.2s ease;
+}
+
+.skill-group.open .skill-header::after {
+  transform: rotate(90deg);
+}
+
+.skill-content {
+  display: none;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.skill-group.open .skill-content {
+  display: block;
+}
 /* Al final de quickref.css */
 .itemsize {
   width: auto !important;
