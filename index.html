@@ -219,8 +219,6 @@
     <script type="text/javascript" src="js/quickref.js" charset="utf-8"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Buscar todos los headers que genera data_reaction.js
-  // (usan la clase 'section-subtitle' cuando son headers de habilidad)
   const container = document.getElementById("basic-reactions");
   if (!container) return;
 
@@ -228,8 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentGroup = null;
 
   rows.forEach(row => {
-    const text = (row.textContent || "").trim();
-    // Detectar si es un header de habilidad (ej: "Acrobacias (Destreza)")
     if (row.classList.contains("section-subtitle")) {
       // Crear grupo
       currentGroup = document.createElement("div");
@@ -238,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Crear header clicable
       const header = document.createElement("div");
       header.className = "skill-header";
-      header.textContent = text;
+      header.textContent = row.textContent.trim();
 
       // Crear contenedor de contenido
       const content = document.createElement("div");
@@ -249,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentGroup.appendChild(header);
       currentGroup.appendChild(content);
 
-      // Eliminar el row original (ya usamos su texto)
+      // Eliminar el row original
       row.remove();
 
       // Toggle al hacer clic
@@ -257,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentGroup.classList.toggle("open");
       });
     } else if (currentGroup) {
-      // Si no es header, es acción → mover al contenido del grupo actual
+      // Mover acciones al contenido del grupo actual
       currentGroup.querySelector(".skill-content").appendChild(row);
     }
   });
@@ -265,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
