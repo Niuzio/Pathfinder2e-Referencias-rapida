@@ -25,7 +25,7 @@
   },
   {
     "title": "Anonadado",
-    "icon": "Knockout",
+    "icon": "knockout",
     "subtitle": "Estas anonadado",
     "description": "<p>Tus pensamientos y tus instintos están nublados. Anonadado siempre incluye un valor. Sufres un penalizador por estatus igual a este valor a las pruebas y las CD basadas en la Inteligencia, la Sabiduría y el Carisma, incluyendo las salvaciones de Voluntad, las tiradas de ataque de conjuro, las CD de conjuro y las pruebas de habilidad que utilizan estas puntuaciones de característica. Cada vez que intentas Lanzar un conjuro mientras estás anonadado, queda disipado si no tienes éxito en una prueba plana con una CD igual a 5 + tu valor de anonadado.</p>",
     "reference": "Reglas básicas – Estado Anonadado",
