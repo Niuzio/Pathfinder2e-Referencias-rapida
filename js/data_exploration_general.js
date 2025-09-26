@@ -178,5 +178,23 @@ data_exploration_general = [
         "info": "(rasgo) Un efecto visual tan sólo puede afectar a las criaturas que  pueden verlo. Esto sólo se aplica a las partes visibles del efecto, a  determinar por el DJ."
       }
     ]
+  },
+  {
+    "title": "Reenfocar",
+    "icon": "magic-swirl",
+    "subtitle": "Restablecer un punto de Foco",
+    "reference": "Manual de jugador p.298",
+    "description": "<p>&nbsp;<strong>Requisitos </strong>Tienes una reserva de foco.</p><p><br></p><p> Inviertes 10 minutos llevando a cabo actividades que restablecen tu conexión mágica. Esto te permite restablecer 1 Punto de Foco a tu reserva. Las actividades que tienes que llevar a cabo se especifican en la clase o en la aptitud que te concede tus conjuros de foco. Estas actividades pueden por lo general solaparse con otras tareas que tienen relación con el origen de tus conjuros de foco. Por ejemplo, un clérigo con conjuros de foco procedentes de un dios sagrado puede normalmente Reenfocar mientras atiende a las heridas de sus aliados.</p>",
+    "bullets": [],
+    "tags": [
+      {
+        "name": "concentrar",
+        "info": "(rasgo) Una acción con esta rasgo requiere cierto grado de concentración y disciplina mental."
+      },
+      {
+        "name": "Exploración",
+        "info": " Un modo de juego usado para viajar, investigar y, por lo  demás, explorar. El DJ es quien determina el flujo del tiempo. "
+      }
+    ]
   }
 ];
