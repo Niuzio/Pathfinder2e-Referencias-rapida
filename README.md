@@ -1,7 +1,7 @@
 Pathfinder2e-referencia
 ==============
 
-Referencia Rápida para Pathfinder 2e remaster
+Pagina web de Referencia: Acciones, Actividades y mas en Pathfinder Segunda Edición
 
 https://niuzio.github.io/Pathfinder2e-Referencias-rapida/
 
