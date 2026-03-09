@@ -1,4 +1,4 @@
-data_Action_Starfinder2e = [
+data_Armadura = [
   {
     "title": "Arcos",
     "icon": "crossed-swords",
