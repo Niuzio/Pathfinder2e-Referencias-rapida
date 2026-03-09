@@ -140,6 +140,7 @@ function init() {
 	fill_section(data_optional, "optional-actions", "Acción basicas");
 	fill_section(data_exploration_general, "exploration-general", "Exploración general");
 	fill_section(data_Action_Starfinder2e,   "Action-Starfinder2e",   "Especialización crítica");
+	fill_section(data_Action_Starfinder2e,   "Armadura",   "Efectos de la especialización en armadura");
 	
 
     var modal = document.getElementById("modal");
