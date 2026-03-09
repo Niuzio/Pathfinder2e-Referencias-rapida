@@ -201,6 +201,13 @@
 #section-Action-Starfinder2e .text {
     color: purple;
 }
+#section-Armadura, #Armadura .item-icon {
+    background-color: purple;
+    border-color: purple;
+}
+#section-Armadura .text {
+    color: purple;
+}
 
 /* ------------------------------------------------------------------------- */
 /* Page container */
