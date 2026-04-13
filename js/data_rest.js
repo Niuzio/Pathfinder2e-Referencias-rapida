@@ -1,10 +1,10 @@
 data_rest = [
   {
-    "title": "Descanso de larga duración",
+    "title": "Descanso y preparativos diarios",
     "icon": "campfire",
     "subtitle": "Tiempo libre",
-    "description": "<p>&nbsp;Puedes invertir un día y una noche enteros descansando durante el tiempo libre para recuperar tantos Puntos de Golpe como tu modifica dor por Constitución (mínimo 1) multiplicado por el doble de tu nivel.</p>",
-    "reference": "Manual de jugador p.440",
+    "description": "<p>Funcionas mejor cuando te tomas el tiempo suficiente para descan sar y prepararte. Una vez cada 24 horas, puedes tomarte un periodo de descanso (típicamente 8 horas), durante el cual te curas de forma natural, recuperando tantos Puntos de Golpe como tu modificador por Constitución (mínimo 1) multiplicado por tu nivel, y podrías re cuperarte de ciertos estados o mejorarlos. Dormir con la armadura puesta hace que descanses mal y te deja fatigado. Si pasas más de 16 horas sin descansar, quedas fatigado (no te puedes recuperar de esta fatiga hasta descansar por lo menos 8 horas seguidas). </p><p> Después de descansar, llevas a cabo tus preparativos diarios, lo que implica alrededor de 1 hora. Sólo puedes hacer dichos preparativos si has descansado y sólo una vez al día. Durante los preparativos:</p><p><br></p><ul><li> Los lanzadores de conjuros recuperan espacios de conjuro y los lanzadores de conjuros preparados eligen conjuros para tenerlos disponibles ese día. </li><li> Recuperas los Puntos de Foco, las aptitudes que se renuevan durante tus preparativos y las aptitudes que sólo se pueden utilizar cierto número de veces al día, incluyendo los usos de los objetos mágicos. </li><li>Te pones la armadura y preparas las armas y otro equipo. </li><li>Invistes hasta 10 objetos mágicos puestos para obtener sus beneficios durante el día (tal y como se explica en el Manual de dirección).&nbsp;</li></ul><p><br></p><p>El tiempo libre te concede tiempo para descansar por completo, dedicarte a un empeño artesano o profesional, aprender nuevos conjuros, reconvertir dotes o simplemente distraerte. Puedes ven der los objetos adquiridos durante tus aventuras, comprar objetos nuevos y llevar a cabo otras actividades a determinar por tus dotes, tus habilidades y el asentamiento en el que pasas el tiempo libre.</p><p><br></p><p><strong>Descanso de larga duración</strong></p><p><br></p><p>Puedes invertir un día y una noche enteros descansando durante el tiempo libre para recuperar tantos Puntos de Golpe como tu modifica dor por Constitución (mínimo 1) multiplicado por el doble de tu nivel.</p>",
+    "reference": "Manual de jugador p.439",
     "bullets": [],
     "tags": []
   },
