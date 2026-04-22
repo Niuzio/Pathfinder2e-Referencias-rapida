@@ -767,3 +767,30 @@ body.dark-mode .section-row.actions-list > .item .item-desc {
 .tag:hover .tooltip-card {
     display: block;
 }
+/* Reordenar tags antes de descripción en modal */
+.modal-container {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#modal-title {
+  order: 1; /* Título primero */
+}
+
+.modal-tags {
+  order: 2 !important; /* Tags en segunda fila */
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+#modal-subtitle {
+  order: 3 !important; /* Descripción después */
+}
+
+#modal-reference {
+  order: 4;
+}
+
+#modal-bullets {
+  order: 5;
+}
