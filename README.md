@@ -1,7 +1,7 @@
 Pathfinder2e-referencia
 ==============
 
-Pagina web de Referencia: Acciones, Actividades y mas en Pathfinder Segunda Edición
+Pagina web de Referencia(Pantalla de jugador Web): Acciones, Actividades y mas en Pathfinder Segunda Edición
 
 https://niuzio.github.io/Pathfinder2e-Referencias-rapida/
 
